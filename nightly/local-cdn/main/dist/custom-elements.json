@@ -336,6 +336,16 @@
           "members": [
             {
               "kind": "field",
+              "name": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the custom text alternative of the badge icon.\n\n**Note:** If not provided, the badge uses the icon accessible name.\nIf no icon accessible name is available, a generic fallback text is used.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "icon",
               "type": {
                 "text": "string | undefined"
@@ -363,6 +373,15 @@
             }
           ],
           "attributes": [
+            {
+              "description": "Defines the custom text alternative of the badge icon.\n\n**Note:** If not provided, the badge uses the icon accessible name.\nIf no icon accessible name is available, a generic fallback text is used.",
+              "name": "accessible-name",
+              "default": "undefined",
+              "fieldName": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
             {
               "description": "Defines the icon name to be displayed inside the badge.\n\n**Note:** You should import the desired icon first, then use its name as \"icon\".\n\n`import \"@ui5/webcomponents-icons/dist/{icon_name}.js\"`",
               "name": "icon",
@@ -6665,7 +6684,7 @@
                 ]
               },
               "default": "\"Text\"",
-              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.",
+              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.\n- Type `Number` does not support suggestions.",
               "privacy": "public"
             },
             {
@@ -6706,7 +6725,7 @@
           "slots": [
             {
               "name": "default",
-              "description": "Defines the suggestion items.\n\n**Note:** The suggestions would be displayed only if the `showSuggestions`\nproperty is set to `true`.\n\n**Note:** The `<ui5-suggestion-item>`, `<ui5-suggestion-item-group>` and `ui5-suggestion-item-custom` are recommended to be used as suggestion items."
+              "description": "Defines the suggestion items.\n\n**Note:** The suggestions would be displayed only if the `showSuggestions`\nproperty is set to `true`.\n\n**Note:** The `<ui5-suggestion-item>`, `<ui5-suggestion-item-group>` and `ui5-suggestion-item-custom` are recommended to be used as suggestion items.\n\n**Note:** Input with type `Number` does not support suggestions."
             },
             {
               "name": "icon",
@@ -6868,7 +6887,7 @@
               }
             },
             {
-              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.",
+              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.\n- Type `Number` does not support suggestions.",
               "name": "type",
               "default": "\"Text\"",
               "fieldName": "type",
@@ -9714,7 +9733,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "### Overview\n\nThe `ui5-input` component allows the user to enter and edit text or numeric values in one line.\n\nAdditionally, you can provide `suggestionItems`,\nthat are displayed in a popover right under the input.\n\nThe text field can be editable or read-only (`readonly` property),\nand it can be enabled or disabled (`disabled` property).\nTo visualize semantic states, such as \"Negative\" or \"Critical\", the `valueState` property is provided.\nWhen the user makes changes to the text, the change event is fired,\nwhich enables you to react on any text change.\n\n### Keyboard Handling\nThe `ui5-input` provides the following keyboard shortcuts:\n\n- [Escape] - Closes the suggestion list, if open. If closed or not enabled, cancels changes and reverts to the value which the Input field had when it got the focus.\n- [Enter] or [Return] - If suggestion list is open takes over the current matching item and closes it. If value state or group header is focused, does nothing.\n- [Down] - Focuses the next matching item in the suggestion list. Selection-change event is fired.\n- [Up] - Focuses the previous matching item in the suggestion list. Selection-change event is fired.\n- [Home] - If focus is in the text input, moves caret before the first character. If focus is in the list, highlights the first item and updates the input accordingly.\n- [End] - If focus is in the text input, moves caret after the last character. If focus is in the list, highlights the last item and updates the input accordingly.\n- [Page Up] - If focus is in the list, moves highlight up by page size (10 items by default). If focus is in the input, does nothing.\n- [Page Down] - If focus is in the list, moves highlight down by page size (10 items by default). If focus is in the input, does nothing.\n- [Ctrl]+[Alt]+[F8] or [Command]+[Option]+[F8] - Focuses the first link in the value state message, if available. Pressing [Tab] moves the focus to the next link in the value state message, or closes the value state message if there are no more links.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Input.js\";`",
+          "description": "### Overview\n\nThe `ui5-input` component allows the user to enter and edit text or numeric values in one line.\n\nAdditionally, you can provide `suggestionItems`\nthat are displayed in a popover right under the input. Keep in mind that `ui5-input` with type `Number` does not support suggestions.\n\nThe text field can be editable or read-only (`readonly` property),\nand it can be enabled or disabled (`disabled` property).\nTo visualize semantic states, such as \"Negative\" or \"Critical\", the `valueState` property is provided.\nWhen the user makes changes to the text, the change event is fired,\nwhich enables you to react on any text change.\n\n### Keyboard Handling\nThe `ui5-input` provides the following keyboard shortcuts:\n\n- [Escape] - Closes the suggestion list, if open. If closed or not enabled, cancels changes and reverts to the value which the Input field had when it got the focus.\n- [Enter] or [Return] - If suggestion list is open takes over the current matching item and closes it. If value state or group header is focused, does nothing.\n- [Down] - Focuses the next matching item in the suggestion list. Selection-change event is fired.\n- [Up] - Focuses the previous matching item in the suggestion list. Selection-change event is fired.\n- [Home] - If focus is in the text input, moves caret before the first character. If focus is in the list, highlights the first item and updates the input accordingly.\n- [End] - If focus is in the text input, moves caret after the last character. If focus is in the list, highlights the last item and updates the input accordingly.\n- [Page Up] - If focus is in the list, moves highlight up by page size (10 items by default). If focus is in the input, does nothing.\n- [Page Down] - If focus is in the list, moves highlight down by page size (10 items by default). If focus is in the input, does nothing.\n- [Ctrl]+[Alt]+[F8] or [Command]+[Option]+[F8] - Focuses the first link in the value state message, if available. Pressing [Tab] moves the focus to the next link in the value state message, or closes the value state message if there are no more links.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Input.js\";`",
           "name": "Input",
           "cssParts": [
             {
@@ -9733,7 +9752,7 @@
           "slots": [
             {
               "name": "default",
-              "description": "Defines the suggestion items.\n\n**Note:** The suggestions would be displayed only if the `showSuggestions`\nproperty is set to `true`.\n\n**Note:** The `<ui5-suggestion-item>`, `<ui5-suggestion-item-group>` and `ui5-suggestion-item-custom` are recommended to be used as suggestion items."
+              "description": "Defines the suggestion items.\n\n**Note:** The suggestions would be displayed only if the `showSuggestions`\nproperty is set to `true`.\n\n**Note:** The `<ui5-suggestion-item>`, `<ui5-suggestion-item-group>` and `ui5-suggestion-item-custom` are recommended to be used as suggestion items.\n\n**Note:** Input with type `Number` does not support suggestions."
             },
             {
               "name": "icon",
@@ -9916,7 +9935,7 @@
                 ]
               },
               "default": "\"Text\"",
-              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.",
+              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.\n- Type `Number` does not support suggestions.",
               "privacy": "public"
             },
             {
@@ -10135,7 +10154,7 @@
               }
             },
             {
-              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.",
+              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.\n- Type `Number` does not support suggestions.",
               "name": "type",
               "default": "\"Text\"",
               "fieldName": "type",
@@ -14233,7 +14252,7 @@
           "slots": [
             {
               "name": "default",
-              "description": "Defines the suggestion items.\n\n**Note:** The suggestions would be displayed only if the `showSuggestions`\nproperty is set to `true`.\n\n**Note:** The `<ui5-suggestion-item>`, `<ui5-suggestion-item-group>` and `ui5-suggestion-item-custom` are recommended to be used as suggestion items."
+              "description": "Defines the suggestion items.\n\n**Note:** The suggestions would be displayed only if the `showSuggestions`\nproperty is set to `true`.\n\n**Note:** The `<ui5-suggestion-item>`, `<ui5-suggestion-item-group>` and `ui5-suggestion-item-custom` are recommended to be used as suggestion items.\n\n**Note:** Input with type `Number` does not support suggestions."
             },
             {
               "name": "icon",
@@ -14430,7 +14449,7 @@
                 ]
               },
               "default": "\"Text\"",
-              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.",
+              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.\n- Type `Number` does not support suggestions.",
               "privacy": "public"
             },
             {
@@ -14679,7 +14698,7 @@
               }
             },
             {
-              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.",
+              "description": "Defines the HTML type of the component.\n\n**Notes:**\n\n- The particular effect of this property differs depending on the browser\nand the current language settings, especially for type `Number`.\n- The property is mostly intended to be used with touch devices\nthat use different soft keyboard layouts depending on the given input type.\n- Type `Number` does not support suggestions.",
               "name": "type",
               "default": "\"Text\"",
               "fieldName": "type",

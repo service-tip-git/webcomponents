@@ -1,9 +1,15 @@
-commit 4de208302675ab036ba72ee8e6dce3a07c4a02bf
-Author: Nikolay Deshev <nikolay.deshev@sap.com>
-Date:   Tue Apr 21 10:07:18 2026 +0300
+commit eae39b178716c47bf31325127070b0b0f5198131
+Author: niyap <38278268+niyap@users.noreply.github.com>
+Date:   Wed Apr 22 22:18:01 2026 +0300
 
-    fix(ui5-shellbar-search): fire search on mobile devices on search icon press (#13410)
+    fix(ui5-input): enhance documentation (#13424)
     
-    * fix(ui5-search): fire search on mobile devices on search icon press
+    * fix(ui5-input): enhance documentation
     
-    fire search event when the search icon is pressed in the mobile dialog
+    * fix documentation issue
+    
+    Co-authored-by: LilyanaOviPe <82088805+LilyanaOviPe@users.noreply.github.com>
+    
+    ---------
+    
+    Co-authored-by: LilyanaOviPe <82088805+LilyanaOviPe@users.noreply.github.com>

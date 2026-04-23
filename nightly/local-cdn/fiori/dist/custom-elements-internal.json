@@ -10732,6 +10732,17 @@
             },
             {
               "kind": "field",
+              "name": "iconTooltip",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the tooltip of the graphical icon.",
+              "default": "undefined",
+              "privacy": "public",
+              "_ui5since": "2.22.0"
+            },
+            {
+              "kind": "field",
               "name": "name",
               "type": {
                 "text": "string | undefined"
@@ -10808,6 +10819,15 @@
               "name": "icon",
               "default": "undefined",
               "fieldName": "icon",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "description": "Defines the tooltip of the graphical icon.",
+              "name": "icon-tooltip",
+              "default": "undefined",
+              "fieldName": "iconTooltip",
               "type": {
                 "text": "string | undefined"
               }

@@ -961,8 +961,13 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         if (!this._useSelectedValue && item.value !== undefined) {
             this._useSelectedValue = true;
         }
-        if (this._useSelectedValue) {
+        // Always set selectedValue when the item has a value property, regardless of _useSelectedValue state
+        if (item.value !== undefined) {
             this.selectedValue = item.value;
+        }
+        else if (this._useSelectedValue) {
+            // Only clear selectedValue if we were using it before
+            this.selectedValue = undefined;
         }
         if (!item.selected) {
             this.fireDecoratorEvent("selection-change", {
