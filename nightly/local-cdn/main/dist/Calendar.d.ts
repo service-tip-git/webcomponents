@@ -420,9 +420,15 @@ declare class Calendar extends CalendarPart {
     onYearButtonKeyUp(e: KeyboardEvent): void;
     onYearRangeButtonKeyDown(e: KeyboardEvent): void;
     onYearRangeButtonKeyUp(e: KeyboardEvent): void;
-    _handleNavigationButtonKeyDown(e: MouseEvent, isDisabled: boolean, action: () => void): void;
+    _handleNavigationButtonClick(e: MouseEvent, isDisabled: boolean, action: () => void): void;
+    _handlePrevNextButtonKeyDown(e: KeyboardEvent, isDisabled: boolean, action: () => void): void;
+    _handlePrevNextButtonKeyUp(e: KeyboardEvent, isDisabled: boolean, action: () => void): void;
     onPrevButtonClick(e: MouseEvent): void;
     onNextButtonClick(e: MouseEvent): void;
+    onPrevButtonKeyDown(e: KeyboardEvent): void;
+    onPrevButtonKeyUp(e: KeyboardEvent): void;
+    onNextButtonKeyDown(e: KeyboardEvent): void;
+    onNextButtonKeyUp(e: KeyboardEvent): void;
     /**
      * Returns an array of UTC timestamps, representing the selected dates.
      * @protected

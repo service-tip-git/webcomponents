@@ -787,6 +787,7 @@ let Calendar = Calendar_1 = class Calendar extends CalendarPart {
     }
     onYearButtonKeyUp(e) {
         if (isSpace(e)) {
+            e.preventDefault();
             this.switchToYearPicker();
             this.fireDecoratorEvent("show-year-view");
         }
@@ -802,11 +803,12 @@ let Calendar = Calendar_1 = class Calendar extends CalendarPart {
     }
     onYearRangeButtonKeyUp(e) {
         if (isSpace(e)) {
+            e.preventDefault();
             this.switchToYearRangePicker();
             this.fireDecoratorEvent("show-year-range-view");
         }
     }
-    _handleNavigationButtonKeyDown(e, isDisabled, action) {
+    _handleNavigationButtonClick(e, isDisabled, action) {
         if (isDisabled) {
             e.preventDefault();
             return;
@@ -817,11 +819,46 @@ let Calendar = Calendar_1 = class Calendar extends CalendarPart {
         action();
         e.preventDefault();
     }
+    _handlePrevNextButtonKeyDown(e, isDisabled, action) {
+        if (isDisabled) {
+            e.preventDefault();
+            return;
+        }
+        if (isSpace(e)) {
+            e.preventDefault();
+        }
+        if (isEnter(e)) {
+            action();
+            e.preventDefault();
+        }
+    }
+    _handlePrevNextButtonKeyUp(e, isDisabled, action) {
+        if (isDisabled) {
+            e.preventDefault();
+            return;
+        }
+        if (isSpace(e)) {
+            e.preventDefault();
+            action();
+        }
+    }
     onPrevButtonClick(e) {
-        this._handleNavigationButtonKeyDown(e, this._previousButtonDisabled, () => this.onHeaderPreviousPress());
+        this._handleNavigationButtonClick(e, this._previousButtonDisabled, () => this.onHeaderPreviousPress());
     }
     onNextButtonClick(e) {
-        this._handleNavigationButtonKeyDown(e, this._nextButtonDisabled, () => this.onHeaderNextPress());
+        this._handleNavigationButtonClick(e, this._nextButtonDisabled, () => this.onHeaderNextPress());
+    }
+    onPrevButtonKeyDown(e) {
+        this._handlePrevNextButtonKeyDown(e, this._previousButtonDisabled, () => this.onHeaderPreviousPress());
+    }
+    onPrevButtonKeyUp(e) {
+        this._handlePrevNextButtonKeyUp(e, this._previousButtonDisabled, () => this.onHeaderPreviousPress());
+    }
+    onNextButtonKeyDown(e) {
+        this._handlePrevNextButtonKeyDown(e, this._nextButtonDisabled, () => this.onHeaderNextPress());
+    }
+    onNextButtonKeyUp(e) {
+        this._handlePrevNextButtonKeyUp(e, this._nextButtonDisabled, () => this.onHeaderNextPress());
     }
     /**
      * Returns an array of UTC timestamps, representing the selected dates.

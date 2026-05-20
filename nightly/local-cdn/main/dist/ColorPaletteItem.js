@@ -13,6 +13,7 @@ import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import { isPhone } from "@ui5/webcomponents-base/dist/Device.js";
 import ColorPaletteItemTemplate from "./ColorPaletteItemTemplate.js";
 import { COLORPALETTE_COLOR_LABEL, } from "./generated/i18n/i18n-defaults.js";
+import event from "@ui5/webcomponents-base/dist/decorators/event-strict.js";
 // Styles
 import ColorPaletteItemCss from "./generated/themes/ColorPaletteItem.css.js";
 /**
@@ -87,6 +88,22 @@ let ColorPaletteItem = ColorPaletteItem_1 = class ColorPaletteItem extends UI5El
             },
         };
     }
+    _onClick(e) {
+        if (this._disabled) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        e.stopImmediatePropagation();
+        // Fire semantic click event (CustomEvent that bubbles)
+        const prevented = !this.fireDecoratorEvent("click", {
+            originalEvent: e,
+        });
+        if (prevented) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }
 };
 __decorate([
     property()
@@ -119,6 +136,20 @@ ColorPaletteItem = ColorPaletteItem_1 = __decorate([
         styles: ColorPaletteItemCss,
         template: ColorPaletteItemTemplate,
         shadowRootOptions: { delegatesFocus: true },
+    })
+    /**
+     * Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.
+     *
+     * **Note:** The event will not be fired if the `disabled` property is set to `true`.
+     *
+     * @param {Event} originalEvent The original DOM event that triggered the click. Use this to access modifier keys (altKey, ctrlKey, metaKey, shiftKey) and other native event properties.
+     * @since 2.22.0
+     * @public
+     */
+    ,
+    event("click", {
+        bubbles: true,
+        cancelable: true,
     })
 ], ColorPaletteItem);
 ColorPaletteItem.define();

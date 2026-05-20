@@ -25,7 +25,7 @@ function renderPrevButton(isFirst, isMultiple) {
     return (_jsx("div", { "data-ui5-cal-header-btn-prev": true, class: {
             "ui5-calheader-arrowbtn": true,
             "ui5-calheader-arrowbtn-disabled": this._previousButtonDisabled,
-        }, part: "calendar-header-arrow-button", role: "button", onMouseDown: this.onPrevButtonClick, tabindex: this._previousButtonDisabled ? -1 : 0, title: this.accInfo.tooltipPrevButton, "aria-label": this.accInfo.ariaLabelPrevButton, "aria-description": this.accInfo.ariaLabelPrevButton, "aria-keyshortcuts": this.accInfo.keyShortcutPrevButton, children: _jsx(Icon, { class: "ui5-calheader-arrowicon", name: slimArowLeft }) }));
+        }, part: "calendar-header-arrow-button", role: "button", onMouseDown: this.onPrevButtonClick, onKeyDown: this.onPrevButtonKeyDown, onKeyUp: this.onPrevButtonKeyUp, tabindex: this._previousButtonDisabled ? -1 : 0, title: this.accInfo.tooltipPrevButton, "aria-label": this.accInfo.ariaLabelPrevButton, "aria-description": this.accInfo.ariaLabelPrevButton, "aria-keyshortcuts": this.accInfo.keyShortcutPrevButton, children: _jsx(Icon, { class: "ui5-calheader-arrowicon", name: slimArowLeft }) }));
 }
 function renderMiddleButtons(headerText) {
     return (_jsxs("div", { class: "ui5-calheader-midcontainer", children: [_jsxs("div", { "data-ui5-cal-header-btn-month": true, class: "ui5-calheader-arrowbtn ui5-calheader-middlebtn", part: "calendar-header-middle-button", hidden: this._isHeaderMonthButtonHidden, tabindex: 0, role: "button", "aria-label": this.accInfo.ariaLabelMonthButton, "aria-description": this.accInfo.ariaLabelMonthButton, title: this.accInfo.tooltipMonthButton, "aria-keyshortcuts": this.accInfo.keyShortcutMonthButton, onClick: this.onHeaderMonthButtonPress, onKeyDown: this.onMonthButtonKeyDown, onKeyUp: this.onMonthButtonKeyUp, children: [_jsx("span", { children: headerText.monthText }), this.hasSecondaryCalendarType && headerText.secondMonthText &&
@@ -43,7 +43,7 @@ function renderNextButton(isFirst, isLast, isMultiple) {
         return (_jsx("div", { "data-ui5-cal-header-btn-next": true, class: {
                 "ui5-calheader-arrowbtn": true,
                 "ui5-calheader-arrowbtn-disabled": this._nextButtonDisabled,
-            }, part: "calendar-header-arrow-button", role: "button", onMouseDown: this.onNextButtonClick, tabindex: this._nextButtonDisabled ? -1 : 0, title: this.accInfo.tooltipNextButton, "aria-label": this.accInfo.ariaLabelNextButton, "aria-description": this.accInfo.ariaLabelNextButton, "aria-keyshortcuts": this.accInfo.keyShortcutNextButton, children: _jsx(Icon, { class: "ui5-calheader-arrowicon", name: slimArowRight }) }));
+            }, part: "calendar-header-arrow-button", role: "button", onMouseDown: this.onNextButtonClick, onKeyDown: this.onNextButtonKeyDown, onKeyUp: this.onNextButtonKeyUp, tabindex: this._nextButtonDisabled ? -1 : 0, title: this.accInfo.tooltipNextButton, "aria-label": this.accInfo.ariaLabelNextButton, "aria-description": this.accInfo.ariaLabelNextButton, "aria-keyshortcuts": this.accInfo.keyShortcutNextButton, children: _jsx(Icon, { class: "ui5-calheader-arrowicon", name: slimArowRight }) }));
     }
     if (shouldShowSpacer) {
         return _jsx("div", { class: "ui5-calheader-spacer" });

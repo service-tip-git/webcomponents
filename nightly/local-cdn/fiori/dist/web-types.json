@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
   "name": "@ui5/webcomponents-fiori",
-  "version": "2.22.0-rc.1",
+  "version": "2.22.0-rc.5",
   "description-markup": "markdown",
   "contributions": {
     "html": {
@@ -982,6 +982,26 @@
                 "type": "\"Button\" | \"None\"",
                 "default": "\"None\""
               }
+            },
+            {
+              "name": "loading",
+              "description": "Defines if a busy indicator would be displayed over the item.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "loading-delay",
+              "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+              "value": { "type": "number", "default": "1000" }
+            },
+            {
+              "name": "read",
+              "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "title-text",
+              "description": "Defines the `titleText` of the item.",
+              "value": { "type": "string | undefined", "default": "undefined" }
             }
           ],
           "slots": [
@@ -1011,6 +1031,26 @@
                 "name": "growing",
                 "description": "Defines whether the component will have growing capability by pressing a `More` button.\nWhen button is pressed `load-more` event will be fired.",
                 "value": { "type": "\"Button\" | \"None\"" }
+              },
+              {
+                "name": "loading",
+                "description": "Defines if a busy indicator would be displayed over the item.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "loading-delay",
+                "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+                "value": { "type": "number" }
+              },
+              {
+                "name": "read",
+                "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "title-text",
+                "description": "Defines the `titleText` of the item.",
+                "value": { "type": "string | undefined" }
               }
             ],
             "events": [
@@ -1043,7 +1083,7 @@
         },
         {
           "name": "ui5-li-notification",
-          "description": "### Overview\nThe `ui5-li-notification` is a type of list item, meant to display notifications.\n\nThe component has a rich set of various properties that allows the user to set `avatar`, `menu`, `titleText`, descriptive `content`\nand `footnotes` to fully describe a notification.\n\nThe user can:\n\n- display a `Close` button\n- can control whether the `titleText` and `description` should wrap or truncate\nand display a `ShowMore` button to switch between less and more information\n- add actions by using the `ui5-menu` component\n\n**Note:** Adding custom actions by using the `ui5-notification-action` component is deprecated as of version 2.0!\n\n### Usage\nThe component should be used inside a `ui5-notification-list`.\n\n### Keyboard Handling\n\n#### Basic Navigation\nThe user can use the following keyboard shortcuts to perform actions (such as select, delete):\n\n- [Enter] - select an item (trigger \"item-click\" event)\n- [Delete] - close an item (trigger \"item-close\" event)\n\n#### Fast Navigation\nThis component provides a fast navigation using the following keyboard shortcuts:\n\n- [Shift] + [Enter] - 'More'/'Less' link will be triggered\n- [Shift] + [F10] - 'Menu' (Actions) button will be triggered (clicked)\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/NotificationListItem.js\";`\n---\n\n\n### **Events:**\n - **close** - Fired when the `Close` button is pressed.\n\n### **Slots:**\n - **avatar** - Defines the avatar, displayed in the `ui5-li-notification`.\n\n**Note:** Consider using the `ui5-avatar` to display icons, initials or images.\n\n**Note:** In order to be complaint with the UX guidlines and for best experience,\nwe recommend using avatars with 2rem X 2rem in size (32px X 32px). In case you are using the `ui5-avatar`\nyou can set its `size` property to `XS` to get the required size - `<ui5-avatar size=\"XS\"></ui5-avatar>`.\n- **default** - Defines the content of the `ui5-li-notification`,\nusually a description of the notification.\n\n**Note:** Although this slot accepts HTML Elements, it is strongly recommended that you only use text in order to preserve the intended design.\n- **footnotes** - Defines the elements, displayed in the footer of the of the component.\n- **menu** - Defines the menu, displayed in the `ui5-li-notification`.\n\n**Note:** Use this for implementing actions.\n\n**Note:** Should be used instead `u5-notification-action`, which is deprecated as of version 2.0.\n\n### **CSS Parts:**\n - **title-text** - Used to style the titleText of the notification list item",
+          "description": "### Overview\nThe `ui5-li-notification` is a type of list item, meant to display notifications.\n\nThe component has a rich set of various properties that allows the user to set `avatar`, `menu`, `titleText`, descriptive `content`\nand `footnotes` to fully describe a notification.\n\nThe user can:\n\n- display a `Close` button\n- can control whether the `titleText` and `description` should wrap or truncate\nand display a `ShowMore` button to switch between less and more information\n- add actions by using the `ui5-menu` component\n\n**Note:** Adding custom actions by using the `ui5-notification-action` component is deprecated as of version 2.0!\n\n### Usage\nThe component should be used inside a `ui5-notification-list`.\n\n### Keyboard Handling\n\n#### Basic Navigation\nThe user can use the following keyboard shortcuts to perform actions (such as select, delete):\n\n- [Enter] - select an item (trigger \"item-click\" event)\n- [Delete] - close an item (trigger \"item-close\" event)\n\n#### Fast Navigation\nThis component provides a fast navigation using the following keyboard shortcuts:\n\n- [Shift] + [Enter] - 'More'/'Less' link will be triggered\n- [Shift] + [F10] - 'Menu' (Actions) button will be triggered (clicked)\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/NotificationListItem.js\";`\n---\n\n\n### **Events:**\n - **click** - Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n- **close** - Fired when the `Close` button is pressed.\n\n### **Slots:**\n - **avatar** - Defines the avatar, displayed in the `ui5-li-notification`.\n\n**Note:** Consider using the `ui5-avatar` to display icons, initials or images.\n\n**Note:** In order to be complaint with the UX guidlines and for best experience,\nwe recommend using avatars with 2rem X 2rem in size (32px X 32px). In case you are using the `ui5-avatar`\nyou can set its `size` property to `XS` to get the required size - `<ui5-avatar size=\"XS\"></ui5-avatar>`.\n- **default** - Defines the content of the `ui5-li-notification`,\nusually a description of the notification.\n\n**Note:** Although this slot accepts HTML Elements, it is strongly recommended that you only use text in order to preserve the intended design.\n- **footnotes** - Defines the elements, displayed in the footer of the of the component.\n- **menu** - Defines the menu, displayed in the `ui5-li-notification`.\n\n**Note:** Use this for implementing actions.\n\n**Note:** Should be used instead `u5-notification-action`, which is deprecated as of version 2.0.\n\n### **CSS Parts:**\n - **title-text** - Used to style the titleText of the notification list item",
           "doc-url": "",
           "attributes": [
             {
@@ -1053,6 +1093,21 @@
                 "type": "\"Standard\" | \"Important\"",
                 "default": "\"Standard\""
               }
+            },
+            {
+              "name": "loading",
+              "description": "Defines if a busy indicator would be displayed over the item.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "loading-delay",
+              "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+              "value": { "type": "number", "default": "1000" }
+            },
+            {
+              "name": "read",
+              "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+              "value": { "type": "boolean", "default": "false" }
             },
             {
               "name": "show-close",
@@ -1066,6 +1121,11 @@
                 "type": "\"None\" | \"Positive\" | \"Critical\" | \"Negative\" | \"Information\"",
                 "default": "\"None\""
               }
+            },
+            {
+              "name": "title-text",
+              "description": "Defines the `titleText` of the item.",
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "wrapping-type",
@@ -1096,6 +1156,10 @@
           ],
           "events": [
             {
+              "name": "click",
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key."
+            },
+            {
               "name": "close",
               "description": "Fired when the `Close` button is pressed."
             }
@@ -1106,6 +1170,21 @@
                 "name": "importance",
                 "description": "Defines the `Important` label of the item.",
                 "value": { "type": "\"Standard\" | \"Important\"" }
+              },
+              {
+                "name": "loading",
+                "description": "Defines if a busy indicator would be displayed over the item.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "loading-delay",
+                "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+                "value": { "type": "number" }
+              },
+              {
+                "name": "read",
+                "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+                "value": { "type": "boolean" }
               },
               {
                 "name": "show-close",
@@ -1120,12 +1199,21 @@
                 }
               },
               {
+                "name": "title-text",
+                "description": "Defines the `titleText` of the item.",
+                "value": { "type": "string | undefined" }
+              },
+              {
                 "name": "wrapping-type",
                 "description": "Defines if the `titleText` and `description` should wrap,\nthey truncate by default.\n\n**Note:** by default the `titleText` and `description`,\nand a `ShowMore/Less` button would be displayed.",
                 "value": { "type": "\"None\" | \"Normal\"" }
               }
             ],
             "events": [
+              {
+                "name": "click",
+                "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key."
+              },
               {
                 "name": "close",
                 "description": "Fired when the `Close` button is pressed."
@@ -2305,6 +2393,11 @@
           "doc-url": "",
           "attributes": [
             {
+              "name": "accessible-name",
+              "description": "Defines the accessible ARIA name of the component.",
+              "value": { "type": "string | undefined", "default": "undefined" }
+            },
+            {
               "name": "disabled",
               "description": "Defines whether the component is disabled.\nA disabled component can't be pressed or\nfocused, and it is not in the tab chain.",
               "value": { "type": "boolean", "default": "false" }
@@ -2334,6 +2427,11 @@
           "events": [],
           "js": {
             "properties": [
+              {
+                "name": "accessible-name",
+                "description": "Defines the accessible ARIA name of the component.",
+                "value": { "type": "string | undefined" }
+              },
               {
                 "name": "disabled",
                 "description": "Defines whether the component is disabled.\nA disabled component can't be pressed or\nfocused, and it is not in the tab chain.",
@@ -2370,6 +2468,11 @@
                 "type": "SideNavigationItemAccessibilityAttributes",
                 "default": "{}"
               }
+            },
+            {
+              "name": "accessible-name",
+              "description": "Defines the accessible ARIA name of the component.",
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "design",
@@ -2445,6 +2548,11 @@
                 "value": { "type": "SideNavigationItemAccessibilityAttributes" }
               },
               {
+                "name": "accessible-name",
+                "description": "Defines the accessible ARIA name of the component.",
+                "value": { "type": "string | undefined" }
+              },
+              {
                 "name": "design",
                 "description": "Item design.\n\n**Note:** Items with \"Action\" design must not have sub-items.",
                 "value": { "type": "\"Default\" | \"Action\"" }
@@ -2517,6 +2625,11 @@
               }
             },
             {
+              "name": "accessible-name",
+              "description": "Defines the accessible ARIA name of the component.",
+              "value": { "type": "string | undefined", "default": "undefined" }
+            },
+            {
               "name": "design",
               "description": "Item design.\n\n**Note:** Items with \"Action\" design must not have sub-items.",
               "value": {
@@ -2577,6 +2690,11 @@
                 "name": "accessibility-attributes",
                 "description": "Defines the additional accessibility attributes that will be applied to the component.\nThe following fields are supported:\n\n- **hasPopup**: Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by the button.\nAccepts the following string values: `dialog`, `grid`, `listbox`, `menu` or `tree`.\n\n**Note:** Do not use it on parent items, as it will be overridden if the item is in the overflow menu.",
                 "value": { "type": "SideNavigationItemAccessibilityAttributes" }
+              },
+              {
+                "name": "accessible-name",
+                "description": "Defines the accessible ARIA name of the component.",
+                "value": { "type": "string | undefined" }
               },
               {
                 "name": "design",
@@ -2667,7 +2785,7 @@
         },
         {
           "name": "ui5-timeline",
-          "description": "### Overview\n\nThe `ui5-timeline` component shows entries (such as objects, events, or posts) in chronological order.\nA common use case is to provide information about changes to an object, or events related to an object.\nThese entries can be generated by the system (for example, value XY changed from A to B), or added manually.\nThere are two distinct variants of the timeline: basic and social. The basic timeline is read-only,\nwhile the social timeline offers a high level of interaction and collaboration, and is integrated within SAP Jam.\n\n### Header Bar\n\nThe Timeline supports a `header-bar` slot for search, filter, and sort functionality.\nUse the `ui5-timeline-header-bar` component in this slot.\nThe Timeline fires `search`, `filter`, and `sort` events that the application should handle\nby adding, removing, or reordering items in the DOM. The Timeline itself does not perform\nfiltering or sorting — it renders whatever items are provided in the default slot.\n---\n\n\n### **Events:**\n - **filter** - Fired when the user changes filter selection in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the filter selection.\n- **load-more** - Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`.\n- **search** - Fired when the user performs a search in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the search results.\n- **sort** - Fired when the user changes sort order in the header bar.\n\n**Note:** The Timeline does not perform sorting. The application should handle\nthis event and reorder the items in the DOM accordingly.\n\n### **Slots:**\n - **default** - Determines the content of the `ui5-timeline`.\n- **headerBar** - Defines the header bar of the timeline.\nUse `ui5-timeline-header-bar` for filtering, sorting, and search functionality.\n\n**Note:** The Timeline fires `search`, `filter`, and `sort` events when the user interacts\nwith the header bar. The application should handle these events to filter/sort the items.",
+          "description": "### Overview\n\nThe `ui5-timeline` component shows entries (such as objects, events, or posts) in chronological order.\nA common use case is to provide information about changes to an object, or events related to an object.\nThese entries can be generated by the system (for example, value XY changed from A to B), or added manually.\nThere are two distinct variants of the timeline: basic and social. The basic timeline is read-only,\nwhile the social timeline offers a high level of interaction and collaboration, and is integrated within SAP Jam.\n---\n\n\n### **Events:**\n - **load-more** - Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`.\n\n### **Slots:**\n - **default** - Determines the content of the `ui5-timeline`.",
           "doc-url": "",
           "attributes": [
             {
@@ -2706,28 +2824,12 @@
             {
               "name": "default",
               "description": "Determines the content of the `ui5-timeline`."
-            },
-            {
-              "name": "headerBar",
-              "description": "Defines the header bar of the timeline.\nUse `ui5-timeline-header-bar` for filtering, sorting, and search functionality.\n\n**Note:** The Timeline fires `search`, `filter`, and `sort` events when the user interacts\nwith the header bar. The application should handle these events to filter/sort the items."
             }
           ],
           "events": [
             {
-              "name": "filter",
-              "description": "Fired when the user changes filter selection in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the filter selection."
-            },
-            {
               "name": "load-more",
               "description": "Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`."
-            },
-            {
-              "name": "search",
-              "description": "Fired when the user performs a search in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the search results."
-            },
-            {
-              "name": "sort",
-              "description": "Fired when the user changes sort order in the header bar.\n\n**Note:** The Timeline does not perform sorting. The application should handle\nthis event and reorder the items in the DOM accordingly."
             }
           ],
           "js": {
@@ -2760,55 +2862,10 @@
             ],
             "events": [
               {
-                "name": "filter",
-                "description": "Fired when the user changes filter selection in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the filter selection."
-              },
-              {
                 "name": "load-more",
                 "description": "Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`."
-              },
-              {
-                "name": "search",
-                "description": "Fired when the user performs a search in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the search results."
-              },
-              {
-                "name": "sort",
-                "description": "Fired when the user changes sort order in the header bar.\n\n**Note:** The Timeline does not perform sorting. The application should handle\nthis event and reorder the items in the DOM accordingly."
               }
             ]
-          }
-        },
-        {
-          "name": "ui5-timeline-filter-option",
-          "description": "### Overview\n\nThe `ui5-timeline-filter-option` component defines individual filter values within a `ui5-timeline-header-bar`.\nIt represents a single selectable option that users can choose to filter timeline items.\n\n### Usage\n\nThe `ui5-timeline-filter-option` is used as a child component within `ui5-timeline-header-bar`.\nEach option represents a specific value that can be used for filtering.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/TimelineFilterOption.js\";`\n---\n",
-          "doc-url": "",
-          "attributes": [
-            {
-              "name": "selected",
-              "description": "Defines if the filter option is selected.",
-              "value": { "type": "boolean", "default": "false" }
-            },
-            {
-              "name": "text",
-              "description": "Defines the text of the filter option.",
-              "value": { "type": "string", "default": "\"\"" }
-            }
-          ],
-          "events": [],
-          "js": {
-            "properties": [
-              {
-                "name": "selected",
-                "description": "Defines if the filter option is selected.",
-                "value": { "type": "boolean" }
-              },
-              {
-                "name": "text",
-                "description": "Defines the text of the filter option.",
-                "value": { "type": "string" }
-              }
-            ],
-            "events": []
           }
         },
         {
@@ -2856,124 +2913,6 @@
               {
                 "name": "toggle",
                 "description": "Fired when the group item is expanded or collapsed."
-              }
-            ]
-          }
-        },
-        {
-          "name": "ui5-timeline-header-bar",
-          "description": "### Overview\n\nThe `ui5-timeline-header-bar` component provides search, filter, and sort functionality\nfor the `ui5-timeline` component. It is designed to be slotted into the `header-bar` slot\nof the Timeline.\n\n### Usage\n\nThe component fires events (`search`, `filter`, `sort`) that the application should handle\nto filter/sort the timeline items. The Timeline component itself does not perform any\nfiltering or sorting - this is the responsibility of the application.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/TimelineHeaderBar.js\";`\n---\n\n\n### **Events:**\n - **filter** - Fired when the user changes filter selection.\n- **search** - Fired when the user performs a search.\n- **sort** - Fired when the user changes sort order.\n\n### **Slots:**\n - **default** - Filter options to display in the filter dialog.",
-          "doc-url": "",
-          "attributes": [
-            {
-              "name": "filter-by",
-              "description": "The current filter category label.",
-              "value": { "type": "string", "default": "\"\"" }
-            },
-            {
-              "name": "search-value",
-              "description": "The current search value.",
-              "value": { "type": "string", "default": "\"\"" }
-            },
-            {
-              "name": "show-filter",
-              "description": "Shows the filter button.",
-              "value": { "type": "boolean", "default": "false" }
-            },
-            {
-              "name": "show-filter-by-date",
-              "description": "Shows the filter by date option.",
-              "value": { "type": "boolean", "default": "false" }
-            },
-            {
-              "name": "show-search",
-              "description": "Shows the search input field.",
-              "value": { "type": "boolean", "default": "false" }
-            },
-            {
-              "name": "show-sort",
-              "description": "Shows the sort button.",
-              "value": { "type": "boolean", "default": "false" }
-            },
-            {
-              "name": "sort-order",
-              "description": "The current sort order.",
-              "value": {
-                "type": "\"Ascending\" | \"Descending\"",
-                "default": "\"Ascending\""
-              }
-            }
-          ],
-          "slots": [
-            {
-              "name": "default",
-              "description": "Filter options to display in the filter dialog."
-            }
-          ],
-          "events": [
-            {
-              "name": "filter",
-              "description": "Fired when the user changes filter selection."
-            },
-            {
-              "name": "search",
-              "description": "Fired when the user performs a search."
-            },
-            {
-              "name": "sort",
-              "description": "Fired when the user changes sort order."
-            }
-          ],
-          "js": {
-            "properties": [
-              {
-                "name": "filter-by",
-                "description": "The current filter category label.",
-                "value": { "type": "string" }
-              },
-              {
-                "name": "search-value",
-                "description": "The current search value.",
-                "value": { "type": "string" }
-              },
-              {
-                "name": "show-filter",
-                "description": "Shows the filter button.",
-                "value": { "type": "boolean" }
-              },
-              {
-                "name": "show-filter-by-date",
-                "description": "Shows the filter by date option.",
-                "value": { "type": "boolean" }
-              },
-              {
-                "name": "show-search",
-                "description": "Shows the search input field.",
-                "value": { "type": "boolean" }
-              },
-              {
-                "name": "show-sort",
-                "description": "Shows the sort button.",
-                "value": { "type": "boolean" }
-              },
-              {
-                "name": "sort-order",
-                "description": "The current sort order.",
-                "value": { "type": "\"Ascending\" | \"Descending\"" }
-              }
-            ],
-            "events": [
-              {
-                "name": "filter",
-                "description": "Fired when the user changes filter selection."
-              },
-              {
-                "name": "search",
-                "description": "Fired when the user performs a search."
-              },
-              {
-                "name": "sort",
-                "description": "Fired when the user changes sort order."
               }
             ]
           }
@@ -3610,7 +3549,13 @@
           "name": "ui5-user-menu-item",
           "description": "### Overview\n\n`ui5-user-menu-item` is the item to use inside a `ui5-user-menu`.\nAn arbitrary hierarchy structure can be represented by recursively nesting menu items.\n\n### Usage\n\n`ui5-user-menu-item` represents a node in a `ui5-user-menu`. The user menu itself is rendered as a list,\nand each `ui5-menu-item` is represented by a menu item in that menu. Therefore, you should only use\n`ui5-user-menu-item` directly in your apps. The `ui5-menu` menu item is internal for the menu, and not intended for public use.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/UserMenuItem.js\";`\n---\n\n\n### **Slots:**\n - **default** - Defines the items of this component.\n\n**Note:** Use `ui5-user-menu-item` for the intended design.",
           "doc-url": "",
-          "attributes": [],
+          "attributes": [
+            {
+              "name": "show-selection",
+              "description": "When set, a second line appears below the menu item text showing the text\nof the currently selected sub-item. Intended for use with a single-select\nui5-menu-item-group (check-mode=\"Single\").\nWhen enabled, the checked sub-item cannot be unchecked,\nensuring the selection text is always displayed.",
+              "value": { "type": "boolean", "default": "false" }
+            }
+          ],
           "slots": [
             {
               "name": "default",
@@ -3618,7 +3563,16 @@
             }
           ],
           "events": [],
-          "js": { "properties": [], "events": [] }
+          "js": {
+            "properties": [
+              {
+                "name": "show-selection",
+                "description": "When set, a second line appears below the menu item text showing the text\nof the currently selected sub-item. Intended for use with a single-select\nui5-menu-item-group (check-mode=\"Single\").\nWhen enabled, the checked sub-item cannot be unchecked,\nensuring the selection text is always displayed.",
+                "value": { "type": "boolean" }
+              }
+            ],
+            "events": []
+          }
         },
         {
           "name": "ui5-user-menu-item-group",
@@ -4097,14 +4051,9 @@
         },
         {
           "name": "ui5-view-settings-dialog",
-          "description": "### Overview\nThe `ui5-view-settings-dialog` component helps the user to sort data within a list or a table.\nIt consists of several lists like `Sort order` which is built-in and `Sort By` and `Filter By` lists,\nfor which you must be provide items(`ui5-sort-item` & `ui5-filter-item` respectively)\nThese options can be used to create sorters for a table.\n\nThe `ui5-view-settings-dialog` interrupts the current application processing as it is the only focused UI element and\nthe main screen is dimmed/blocked.\nThe `ui5-view-settings-dialog` is modal, which means that user action is required before returning to the parent window is possible.\n\n### Structure\nA `ui5-view-settings-dialog` consists of a header, content, and a footer for action buttons.\nThe `ui5-view-settings-dialog` is usually displayed at the center of the screen.\n\n### Responsive Behavior\n`ui5-view-settings-dialog` stretches on full screen on phones.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/ViewSettingsDialog.js\";`\n---\n\n\n### **Events:**\n - **before-open** - Fired before the component is opened.\n- **cancel** - Fired when cancel button is activated.\n- **close** - Fired after the dialog is closed.\n- **confirm** - Fired when confirmation button is activated.\n- **open** - Fired after the dialog is opened.\n- **reset-click** - Fired when the Reset button is clicked.\n\n**Note:** Use this event to reset the state of custom tab content,\nas the component cannot detect changes within custom tabs.\n\n### **Methods:**\n - **setConfirmedSettings(settings: _VSDSettings_): _void_** - Sets a JavaScript object, as settings to the `ui5-view-settings-dialog`.\nThis method can be used after the dialog is initially open, as the dialog needs\nto set its initial settings.\nThe `ui5-view-settings-dialog` throws an event called \"before-open\",\nwhich can be used as a trigger point.\nThe object should have the following format:\n\n### **Slots:**\n - **customTabs** - Defines custom tabs for the dialog.\n\nThe custom tabs are rendered after the built-in tabs (`Sort`, `Filter`, `Group`).\n\n**Note:** If you want to use this slot, you need to import the item: `import \"@ui5/webcomponents-fiori/dist/ViewSettingsDialogCustomTab.js\";`\n- **filterItems** - Defines the `filterItems` list.\n\n**Note:** If you want to use this slot, you need to import used item: `import \"@ui5/webcomponents-fiori/dist/FilterItem.js\";`\n- **groupItems** - Defines the list of items against which the user could group data.\n\n**Note:** If you want to use this slot, you need to import used item: `import \"@ui5/webcomponents-fiori/dist/GroupItem.js\";`\n- **sortItems** - Defines the list of items against which the user could sort data.\n\n**Note:** If you want to use this slot, you need to import used item: `import \"@ui5/webcomponents-fiori/dist/SortItem.js\";`\n\n### **CSS Parts:**\n - **header** - Used to style the header.",
+          "description": "### Overview\nThe `ui5-view-settings-dialog` component helps the user to sort data within a list or a table.\nIt consists of several lists like `Sort order` which is built-in and `Sort By` and `Filter By` lists,\nfor which you must be provide items(`ui5-sort-item` & `ui5-filter-item` respectively)\nThese options can be used to create sorters for a table.\n\nThe `ui5-view-settings-dialog` interrupts the current application processing as it is the only focused UI element and\nthe main screen is dimmed/blocked.\nThe `ui5-view-settings-dialog` is modal, which means that user action is required before returning to the parent window is possible.\n\n### Structure\nA `ui5-view-settings-dialog` consists of a header, content, and a footer for action buttons.\nThe `ui5-view-settings-dialog` is usually displayed at the center of the screen.\n\n### Responsive Behavior\n`ui5-view-settings-dialog` stretches on full screen on phones.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/ViewSettingsDialog.js\";`\n---\n\n\n### **Events:**\n - **before-open** - Fired before the component is opened.\n- **cancel** - Fired when cancel button is activated.\n- **close** - Fired after the dialog is closed.\n- **confirm** - Fired when confirmation button is activated.\n- **open** - Fired after the dialog is opened.\n- **reset** - Fired when the Reset button is clicked.\n\n**Note:** This event is particularly relevant when the dialog contains custom tabs.\nBy default, the Reset button resets all built-in settings (sort, filter, group) to their\ninitial values. However, the component has no knowledge of the content or state inside\ncustom tabs — it cannot detect what has changed or what the \"default\" values are.\nTherefore, when this event is fired, it is the application developer's responsibility\nto listen for it and manually reset the custom tab content to its initial state.\n\n### **Methods:**\n - **setConfirmedSettings(settings: _VSDSettings_): _void_** - Sets a JavaScript object, as settings to the `ui5-view-settings-dialog`.\nThis method can be used after the dialog is initially open, as the dialog needs\nto set its initial settings.\nThe `ui5-view-settings-dialog` throws an event called \"before-open\",\nwhich can be used as a trigger point.\nThe object should have the following format:\n\n### **Slots:**\n - **customTabs** - Defines custom tabs for the dialog.\n\nThe custom tabs are rendered after the built-in tabs (`Sort`, `Filter`, `Group`).\n\n**Note:** If you want to use this slot, you need to import the item: `import \"@ui5/webcomponents-fiori/dist/ViewSettingsDialogCustomTab.js\";`\n- **filterItems** - Defines the `filterItems` list.\n\n**Note:** If you want to use this slot, you need to import used item: `import \"@ui5/webcomponents-fiori/dist/FilterItem.js\";`\n- **groupItems** - Defines the list of items against which the user could group data.\n\n**Note:** If you want to use this slot, you need to import used item: `import \"@ui5/webcomponents-fiori/dist/GroupItem.js\";`\n- **sortItems** - Defines the list of items against which the user could sort data.\n\n**Note:** If you want to use this slot, you need to import used item: `import \"@ui5/webcomponents-fiori/dist/SortItem.js\";`\n\n### **CSS Parts:**\n - **header** - Used to style the header.",
           "doc-url": "",
           "attributes": [
-            {
-              "name": "enable-reset",
-              "description": "Defines whether the Reset button is always enabled.\n\n**Note:** By default, the Reset button is only enabled when the dialog settings\ndiffer from their initial state. Set this property to `true` to keep the Reset\nbutton always enabled, which is useful when working with custom tabs\nwhose internal state changes cannot be detected by the component.",
-              "value": { "type": "boolean", "default": "false" }
-            },
             {
               "name": "group-descending",
               "description": "Defines the initial group order.",
@@ -4113,6 +4062,11 @@
             {
               "name": "open",
               "description": "Indicates if the dialog is open.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "reset-enabled",
+              "description": "Controls whether the Reset button is always enabled.\n\nBy default, the Reset button is enabled only when the built-in settings (Sort, Filter, Group)\ndiffer from their initial state — the component can detect these changes automatically.\nHowever, when the dialog contains custom tabs, the component has no way to detect\nwhether the custom tab content has been modified by the user.\n\nSet this property to `true` when the user has made changes inside a custom tab, so that\nthe Reset button becomes enabled and the user can trigger a reset.\nSet it back to `false` once the custom tab content is back to its initial state\n(e.g. after the user confirms or after a reset is applied).",
               "value": { "type": "boolean", "default": "false" }
             },
             {
@@ -4161,17 +4115,12 @@
               "description": "Fired after the dialog is opened."
             },
             {
-              "name": "reset-click",
-              "description": "Fired when the Reset button is clicked.\n\n**Note:** Use this event to reset the state of custom tab content,\nas the component cannot detect changes within custom tabs."
+              "name": "reset",
+              "description": "Fired when the Reset button is clicked.\n\n**Note:** This event is particularly relevant when the dialog contains custom tabs.\nBy default, the Reset button resets all built-in settings (sort, filter, group) to their\ninitial values. However, the component has no knowledge of the content or state inside\ncustom tabs — it cannot detect what has changed or what the \"default\" values are.\nTherefore, when this event is fired, it is the application developer's responsibility\nto listen for it and manually reset the custom tab content to its initial state."
             }
           ],
           "js": {
             "properties": [
-              {
-                "name": "enable-reset",
-                "description": "Defines whether the Reset button is always enabled.\n\n**Note:** By default, the Reset button is only enabled when the dialog settings\ndiffer from their initial state. Set this property to `true` to keep the Reset\nbutton always enabled, which is useful when working with custom tabs\nwhose internal state changes cannot be detected by the component.",
-                "value": { "type": "boolean" }
-              },
               {
                 "name": "group-descending",
                 "description": "Defines the initial group order.",
@@ -4180,6 +4129,11 @@
               {
                 "name": "open",
                 "description": "Indicates if the dialog is open.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "reset-enabled",
+                "description": "Controls whether the Reset button is always enabled.\n\nBy default, the Reset button is enabled only when the built-in settings (Sort, Filter, Group)\ndiffer from their initial state — the component can detect these changes automatically.\nHowever, when the dialog contains custom tabs, the component has no way to detect\nwhether the custom tab content has been modified by the user.\n\nSet this property to `true` when the user has made changes inside a custom tab, so that\nthe Reset button becomes enabled and the user can trigger a reset.\nSet it back to `false` once the custom tab content is back to its initial state\n(e.g. after the user confirms or after a reset is applied).",
                 "value": { "type": "boolean" }
               },
               {
@@ -4210,8 +4164,8 @@
                 "description": "Fired after the dialog is opened."
               },
               {
-                "name": "reset-click",
-                "description": "Fired when the Reset button is clicked.\n\n**Note:** Use this event to reset the state of custom tab content,\nas the component cannot detect changes within custom tabs."
+                "name": "reset",
+                "description": "Fired when the Reset button is clicked.\n\n**Note:** This event is particularly relevant when the dialog contains custom tabs.\nBy default, the Reset button resets all built-in settings (sort, filter, group) to their\ninitial values. However, the component has no knowledge of the content or state inside\ncustom tabs — it cannot detect what has changed or what the \"default\" values are.\nTherefore, when this event is fired, it is the application developer's responsibility\nto listen for it and manually reset the custom tab content to its initial state."
               }
             ]
           }
@@ -4223,12 +4177,12 @@
           "attributes": [
             {
               "name": "icon",
-              "description": "Defines the icon of the custom tab.\n\n**Note:** If not provided, the tab should not be rendered.",
-              "value": { "type": "string", "default": "\"\"" }
+              "description": "Defines the icon of the custom tab button in the segmented button.",
+              "value": { "type": "string", "default": "\"action-settings\"" }
             },
             {
-              "name": "title",
-              "description": "Defines the title of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
+              "name": "title-text",
+              "description": "Defines the title text of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
               "value": { "type": "string", "default": "\"\"" }
             },
             {
@@ -4252,12 +4206,12 @@
             "properties": [
               {
                 "name": "icon",
-                "description": "Defines the icon of the custom tab.\n\n**Note:** If not provided, the tab should not be rendered.",
+                "description": "Defines the icon of the custom tab button in the segmented button.",
                 "value": { "type": "string" }
               },
               {
-                "name": "title",
-                "description": "Defines the title of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
+                "name": "title-text",
+                "description": "Defines the title text of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
                 "value": { "type": "string" }
               },
               {

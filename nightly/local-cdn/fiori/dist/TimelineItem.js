@@ -67,8 +67,6 @@ let TimelineItem = TimelineItem_1 = class TimelineItem extends UI5Element {
          */
         this.lastItem = false;
         /**
-         * Used internally by TimelineGroupItem for collapse/expand mechanics.
-         * Applications should not use this for filtering — instead, add/remove items from the DOM.
          * @private
          */
         this.hidden = false;

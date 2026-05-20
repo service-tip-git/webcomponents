@@ -2095,6 +2095,16 @@
             },
             {
               "kind": "field",
+              "name": "accessibleRole",
+              "type": {
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
+              },
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "additionalText",
               "type": {
                 "text": "string | undefined"
@@ -2266,6 +2276,15 @@
               }
             },
             {
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "name": "accessible-role",
+              "default": "undefined",
+              "fieldName": "accessibleRole",
+              "type": {
+                "text": "\"None\" | \"ListItem\" | \"MenuItem\" | \"TreeItem\" | \"Option\" | undefined"
+              }
+            },
+            {
               "description": "Defines the `additionalText`, displayed in the end of the menu item.\n\n**Note:** The additional text will not be displayed if there are items added in `items` slot or there are\ncomponents added to `endContent` slot.\n\nThe priority of what will be displayed at the end of the menu item is as follows:\nsub-menu arrow (if there are items added in `items` slot) -> components added in `endContent` -> text set to `additionalText`.",
               "name": "additional-text",
               "default": "undefined",
@@ -2430,6 +2449,20 @@
                 "text": "CustomEvent"
               },
               "description": "Fired when an item is checked or unchecked."
+            },
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
             },
             {
               "name": "close",
@@ -2680,6 +2713,20 @@
                 "text": "CustomEvent"
               },
               "description": "Fired when the `ui5-li-notification-group` is expanded/collapsed by user interaction."
+            },
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
             }
           ],
           "attributes": [
@@ -2699,6 +2746,42 @@
               "fieldName": "growing",
               "type": {
                 "text": "\"Button\" | \"None\""
+              }
+            },
+            {
+              "description": "Defines if a busy indicator would be displayed over the item.",
+              "name": "loading",
+              "default": "false",
+              "fieldName": "loading",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+              "name": "loading-delay",
+              "default": "1000",
+              "fieldName": "loadingDelay",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+              "name": "read",
+              "default": "false",
+              "fieldName": "read",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "description": "Defines the `titleText` of the item.",
+              "name": "title-text",
+              "default": "undefined",
+              "fieldName": "titleText",
+              "type": {
+                "text": "string | undefined"
               }
             }
           ],
@@ -3971,6 +4054,20 @@
           ],
           "events": [
             {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<NotificationListItemClickEventDetail>",
+                "references": [
+                  {
+                    "name": "NotificationListItemClickEventDetail",
+                    "package": "@ui5/webcomponents-fiori",
+                    "module": "dist/NotificationListItem.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key."
+            },
+            {
               "name": "close",
               "type": {
                 "text": "CustomEvent<NotificationListItemCloseEventDetail>",
@@ -3996,6 +4093,33 @@
               }
             },
             {
+              "description": "Defines if a busy indicator would be displayed over the item.",
+              "name": "loading",
+              "default": "false",
+              "fieldName": "loading",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+              "name": "loading-delay",
+              "default": "1000",
+              "fieldName": "loadingDelay",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+              "name": "read",
+              "default": "false",
+              "fieldName": "read",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
               "description": "Defines if the `Close` button would be displayed.",
               "name": "show-close",
               "default": "false",
@@ -4011,6 +4135,15 @@
               "fieldName": "state",
               "type": {
                 "text": "\"None\" | \"Positive\" | \"Critical\" | \"Negative\" | \"Information\""
+              }
+            },
+            {
+              "description": "Defines the `titleText` of the item.",
+              "name": "title-text",
+              "default": "undefined",
+              "fieldName": "titleText",
+              "type": {
+                "text": "string | undefined"
               }
             },
             {
@@ -4101,11 +4234,66 @@
               "privacy": "public"
             }
           ],
+          "attributes": [
+            {
+              "description": "Defines if a busy indicator would be displayed over the item.",
+              "name": "loading",
+              "default": "false",
+              "fieldName": "loading",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "description": "Defines the delay in milliseconds, after which the busy indicator will show up for this component.",
+              "name": "loading-delay",
+              "default": "1000",
+              "fieldName": "loadingDelay",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "description": "Defines if the `notification` is new or has been already read.\n\n**Note:** if set to `false` the `titleText` has bold font,\nif set to true - it has a normal font.",
+              "name": "read",
+              "default": "false",
+              "fieldName": "read",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "description": "Defines the `titleText` of the item.",
+              "name": "title-text",
+              "default": "undefined",
+              "fieldName": "titleText",
+              "type": {
+                "text": "string | undefined"
+              }
+            }
+          ],
           "superclass": {
             "name": "ListItemBase",
             "package": "@ui5/webcomponents",
             "module": "dist/ListItemBase.js"
-          }
+          },
+          "customElement": true,
+          "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
+            }
+          ]
         }
       ],
       "exports": [
@@ -5054,6 +5242,20 @@
                 "text": "CustomEvent"
               },
               "description": "Fired when delete button is pressed."
+            },
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
             }
           ],
           "attributes": [
@@ -6805,6 +7007,16 @@
           "members": [
             {
               "kind": "field",
+              "name": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the accessible ARIA name of the component.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "disabled",
               "type": {
                 "text": "boolean"
@@ -6845,6 +7057,15 @@
             }
           ],
           "attributes": [
+            {
+              "description": "Defines the accessible ARIA name of the component.",
+              "name": "accessible-name",
+              "default": "undefined",
+              "fieldName": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
             {
               "description": "Defines whether the component is disabled.\nA disabled component can't be pressed or\nfocused, and it is not in the tab chain.",
               "name": "disabled",
@@ -6940,6 +7161,16 @@
               },
               "default": "{}",
               "description": "Defines the additional accessibility attributes that will be applied to the component.\nThe following fields are supported:\n\n- **hasPopup**: Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by the button.\nAccepts the following string values: `dialog`, `grid`, `listbox`, `menu` or `tree`.\n\n**Note:** Do not use it on parent items, as it will be overridden if the item is in the overflow menu.",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the accessible ARIA name of the component.",
+              "default": "undefined",
               "privacy": "public"
             },
             {
@@ -7058,6 +7289,15 @@
               "fieldName": "accessibilityAttributes",
               "type": {
                 "text": "SideNavigationItemAccessibilityAttributes"
+              }
+            },
+            {
+              "description": "Defines the accessible ARIA name of the component.",
+              "name": "accessible-name",
+              "default": "undefined",
+              "fieldName": "accessibleName",
+              "type": {
+                "text": "string | undefined"
               }
             },
             {
@@ -7206,6 +7446,16 @@
           "members": [
             {
               "kind": "field",
+              "name": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the accessible ARIA name of the component.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "disabled",
               "type": {
                 "text": "boolean"
@@ -7236,6 +7486,15 @@
             }
           ],
           "attributes": [
+            {
+              "description": "Defines the accessible ARIA name of the component.",
+              "name": "accessible-name",
+              "default": "undefined",
+              "fieldName": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
             {
               "description": "Defines whether the component is disabled.\nA disabled component can't be pressed or\nfocused, and it is not in the tab chain.",
               "name": "disabled",
@@ -7307,6 +7566,16 @@
               },
               "default": "{}",
               "description": "Defines the additional accessibility attributes that will be applied to the component.\nThe following fields are supported:\n\n- **hasPopup**: Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by the button.\nAccepts the following string values: `dialog`, `grid`, `listbox`, `menu` or `tree`.\n\n**Note:** Do not use it on parent items, as it will be overridden if the item is in the overflow menu.",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the accessible ARIA name of the component.",
+              "default": "undefined",
               "privacy": "public"
             },
             {
@@ -7431,6 +7700,15 @@
               "fieldName": "accessibilityAttributes",
               "type": {
                 "text": "SideNavigationItemAccessibilityAttributes"
+              }
+            },
+            {
+              "description": "Defines the accessible ARIA name of the component.",
+              "name": "accessible-name",
+              "default": "undefined",
+              "fieldName": "accessibleName",
+              "type": {
+                "text": "string | undefined"
               }
             },
             {
@@ -7562,6 +7840,16 @@
             },
             {
               "kind": "field",
+              "name": "accessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the accessible ARIA name of the component.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "design",
               "type": {
                 "text": "SideNavigationItemDesign",
@@ -7673,6 +7961,15 @@
               "fieldName": "accessibilityAttributes",
               "type": {
                 "text": "SideNavigationItemAccessibilityAttributes"
+              }
+            },
+            {
+              "description": "Defines the accessible ARIA name of the component.",
+              "name": "accessible-name",
+              "default": "undefined",
+              "fieldName": "accessibleName",
+              "type": {
+                "text": "string | undefined"
               }
             },
             {
@@ -7878,16 +8175,12 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "### Overview\n\nThe `ui5-timeline` component shows entries (such as objects, events, or posts) in chronological order.\nA common use case is to provide information about changes to an object, or events related to an object.\nThese entries can be generated by the system (for example, value XY changed from A to B), or added manually.\nThere are two distinct variants of the timeline: basic and social. The basic timeline is read-only,\nwhile the social timeline offers a high level of interaction and collaboration, and is integrated within SAP Jam.\n\n### Header Bar\n\nThe Timeline supports a `header-bar` slot for search, filter, and sort functionality.\nUse the `ui5-timeline-header-bar` component in this slot.\nThe Timeline fires `search`, `filter`, and `sort` events that the application should handle\nby adding, removing, or reordering items in the DOM. The Timeline itself does not perform\nfiltering or sorting — it renders whatever items are provided in the default slot.",
+          "description": "### Overview\n\nThe `ui5-timeline` component shows entries (such as objects, events, or posts) in chronological order.\nA common use case is to provide information about changes to an object, or events related to an object.\nThese entries can be generated by the system (for example, value XY changed from A to B), or added manually.\nThere are two distinct variants of the timeline: basic and social. The basic timeline is read-only,\nwhile the social timeline offers a high level of interaction and collaboration, and is integrated within SAP Jam.",
           "name": "Timeline",
           "slots": [
             {
               "name": "default",
               "description": "Determines the content of the `ui5-timeline`."
-            },
-            {
-              "name": "headerBar",
-              "description": "Defines the header bar of the timeline.\nUse `ui5-timeline-header-bar` for filtering, sorting, and search functionality.\n\n**Note:** The Timeline fires `search`, `filter`, and `sort` events when the user interacts\nwith the header bar. The application should handle these events to filter/sort the items."
             }
           ],
           "members": [
@@ -7958,53 +8251,11 @@
           ],
           "events": [
             {
-              "name": "filter",
-              "type": {
-                "text": "CustomEvent<TimelineFilterEventDetail>",
-                "references": [
-                  {
-                    "name": "TimelineFilterEventDetail",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/Timeline.js"
-                  }
-                ]
-              },
-              "description": "Fired when the user changes filter selection in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the filter selection."
-            },
-            {
               "name": "load-more",
               "type": {
                 "text": "CustomEvent"
               },
               "description": "Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`."
-            },
-            {
-              "name": "search",
-              "type": {
-                "text": "CustomEvent<TimelineSearchEventDetail>",
-                "references": [
-                  {
-                    "name": "TimelineSearchEventDetail",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/Timeline.js"
-                  }
-                ]
-              },
-              "description": "Fired when the user performs a search in the header bar.\n\n**Note:** The Timeline does not perform filtering. The application should handle\nthis event and add/remove items from the DOM to reflect the search results."
-            },
-            {
-              "name": "sort",
-              "type": {
-                "text": "CustomEvent<TimelineSortEventDetail>",
-                "references": [
-                  {
-                    "name": "TimelineSortEventDetail",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/Timeline.js"
-                  }
-                ]
-              },
-              "description": "Fired when the user changes sort order in the header bar.\n\n**Note:** The Timeline does not perform sorting. The application should handle\nthis event and reorder the items in the DOM accordingly."
             }
           ],
           "attributes": [
@@ -8078,84 +8329,6 @@
           "declaration": {
             "name": "Timeline",
             "module": "dist/Timeline.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/TimelineFilterOption.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "### Overview\n\nThe `ui5-timeline-filter-option` component defines individual filter values within a `ui5-timeline-header-bar`.\nIt represents a single selectable option that users can choose to filter timeline items.\n\n### Usage\n\nThe `ui5-timeline-filter-option` is used as a child component within `ui5-timeline-header-bar`.\nEach option represents a specific value that can be used for filtering.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/TimelineFilterOption.js\";`",
-          "name": "TimelineFilterOption",
-          "members": [
-            {
-              "kind": "field",
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Defines if the filter option is selected.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Defines the text of the filter option.",
-              "privacy": "public"
-            }
-          ],
-          "attributes": [
-            {
-              "description": "Defines if the filter option is selected.",
-              "name": "selected",
-              "default": "false",
-              "fieldName": "selected",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "description": "Defines the text of the filter option.",
-              "name": "text",
-              "default": "\"\"",
-              "fieldName": "text",
-              "type": {
-                "text": "string"
-              }
-            }
-          ],
-          "superclass": {
-            "name": "UI5Element",
-            "package": "@ui5/webcomponents-base",
-            "module": "dist/UI5Element.js"
-          },
-          "tagName": "ui5-timeline-filter-option",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "TimelineFilterOption",
-            "module": "dist/TimelineFilterOption.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "ui5-timeline-filter-option",
-          "declaration": {
-            "name": "TimelineFilterOption",
-            "module": "dist/TimelineFilterOption.js"
           }
         }
       ]
@@ -8249,236 +8422,6 @@
           "declaration": {
             "name": "TimelineGroupItem",
             "module": "dist/TimelineGroupItem.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/TimelineHeaderBar.js",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "### Overview\n\nThe `ui5-timeline-header-bar` component provides search, filter, and sort functionality\nfor the `ui5-timeline` component. It is designed to be slotted into the `header-bar` slot\nof the Timeline.\n\n### Usage\n\nThe component fires events (`search`, `filter`, `sort`) that the application should handle\nto filter/sort the timeline items. The Timeline component itself does not perform any\nfiltering or sorting - this is the responsibility of the application.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/TimelineHeaderBar.js\";`",
-          "name": "TimelineHeaderBar",
-          "slots": [
-            {
-              "name": "default",
-              "description": "Filter options to display in the filter dialog."
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "filterBy",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "The current filter category label.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "searchValue",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "The current search value.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "showFilter",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Shows the filter button.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "showFilterByDate",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Shows the filter by date option.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "showSearch",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Shows the search input field.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "showSort",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Shows the sort button.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "sortOrder",
-              "type": {
-                "text": "TimelineSortOrder",
-                "references": [
-                  {
-                    "name": "TimelineSortOrder",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/types/TimelineSortOrder.js"
-                  }
-                ]
-              },
-              "default": "\"Ascending\"",
-              "description": "The current sort order.",
-              "privacy": "public"
-            }
-          ],
-          "events": [
-            {
-              "name": "filter",
-              "type": {
-                "text": "CustomEvent<TimelineHeaderBarFilterEventDetail>",
-                "references": [
-                  {
-                    "name": "TimelineHeaderBarFilterEventDetail",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/TimelineHeaderBar.js"
-                  }
-                ]
-              },
-              "description": "Fired when the user changes filter selection."
-            },
-            {
-              "name": "search",
-              "type": {
-                "text": "CustomEvent<TimelineHeaderBarSearchEventDetail>",
-                "references": [
-                  {
-                    "name": "TimelineHeaderBarSearchEventDetail",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/TimelineHeaderBar.js"
-                  }
-                ]
-              },
-              "description": "Fired when the user performs a search."
-            },
-            {
-              "name": "sort",
-              "type": {
-                "text": "CustomEvent<TimelineHeaderBarSortEventDetail>",
-                "references": [
-                  {
-                    "name": "TimelineHeaderBarSortEventDetail",
-                    "package": "@ui5/webcomponents-fiori",
-                    "module": "dist/TimelineHeaderBar.js"
-                  }
-                ]
-              },
-              "description": "Fired when the user changes sort order."
-            }
-          ],
-          "attributes": [
-            {
-              "description": "The current filter category label.",
-              "name": "filter-by",
-              "default": "\"\"",
-              "fieldName": "filterBy",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "description": "The current search value.",
-              "name": "search-value",
-              "default": "\"\"",
-              "fieldName": "searchValue",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "description": "Shows the filter button.",
-              "name": "show-filter",
-              "default": "false",
-              "fieldName": "showFilter",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "description": "Shows the filter by date option.",
-              "name": "show-filter-by-date",
-              "default": "false",
-              "fieldName": "showFilterByDate",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "description": "Shows the search input field.",
-              "name": "show-search",
-              "default": "false",
-              "fieldName": "showSearch",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "description": "Shows the sort button.",
-              "name": "show-sort",
-              "default": "false",
-              "fieldName": "showSort",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "description": "The current sort order.",
-              "name": "sort-order",
-              "default": "\"Ascending\"",
-              "fieldName": "sortOrder",
-              "type": {
-                "text": "\"Ascending\" | \"Descending\""
-              }
-            }
-          ],
-          "superclass": {
-            "name": "UI5Element",
-            "package": "@ui5/webcomponents-base",
-            "module": "dist/UI5Element.js"
-          },
-          "tagName": "ui5-timeline-header-bar",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "TimelineHeaderBar",
-            "module": "dist/TimelineHeaderBar.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "ui5-timeline-header-bar",
-          "declaration": {
-            "name": "TimelineHeaderBar",
-            "module": "dist/TimelineHeaderBar.js"
           }
         }
       ]
@@ -9025,6 +8968,16 @@
             },
             {
               "kind": "field",
+              "name": "accessibleRole",
+              "type": {
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
+              },
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "highlight",
               "type": {
                 "text": "Highlight",
@@ -9116,6 +9069,20 @@
                 "text": "CustomEvent"
               },
               "description": "Fired when the terminate button is pressed.\n\n**Note:** Terminate button is displayed when `uploadState` property is set to `Uploading`."
+            },
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
             },
             {
               "name": "detail-click",
@@ -9214,6 +9181,15 @@
               "fieldName": "accessibilityAttributes",
               "type": {
                 "text": "ListItemAccessibilityAttributes"
+              }
+            },
+            {
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "name": "accessible-role",
+              "default": "undefined",
+              "fieldName": "accessibleRole",
+              "type": {
+                "text": "\"None\" | \"ListItem\" | \"MenuItem\" | \"TreeItem\" | \"Option\" | undefined"
               }
             },
             {
@@ -9770,14 +9746,17 @@
               "description": "Defines the components that should be displayed at the end of the menu item.\n\n**Note:** It is highly recommended to slot only components of type `ui5-button`,`ui5-link`\nor `ui5-icon` in order to preserve the intended design. If there are components added to this slot,\nand there is text set in `additionalText`, it will not be displayed. If there are items added to `items` slot,\nnether `additionalText` nor components added to this slot would be displayed.\n\nThe priority of what will be displayed at the end of the menu item is as follows:\nsub-menu arrow (if there are items added in `items` slot) -> components added in `endContent` -> text set to `additionalText`.\n\nApplication developers are responsible for ensuring that interactive elements placed in the `endContent` slot\nhave the correct accessibility behaviour, including their enabled or disabled states.\nThe menu does not manage these aspects when the menu item state changes."
             }
           ],
-          "superclass": {
-            "name": "MenuItem",
-            "package": "@ui5/webcomponents",
-            "module": "dist/MenuItem.js"
-          },
-          "tagName": "ui5-user-menu-item",
-          "customElement": true,
           "members": [
+            {
+              "kind": "field",
+              "name": "showSelection",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When set, a second line appears below the menu item text showing the text\nof the currently selected sub-item. Intended for use with a single-select\nui5-menu-item-group (check-mode=\"Single\").\nWhen enabled, the checked sub-item cannot be unchecked,\nensuring the selection text is always displayed.",
+              "privacy": "public"
+            },
             {
               "kind": "field",
               "name": "accessibilityAttributes",
@@ -9802,6 +9781,16 @@
                 "text": "string | undefined"
               },
               "description": "Defines the accessible ARIA name of the component.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "accessibleRole",
+              "type": {
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
+              },
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
               "privacy": "public"
             },
@@ -9940,65 +9929,16 @@
               "privacy": "public"
             }
           ],
-          "events": [
-            {
-              "name": "before-close",
-              "type": {
-                "text": "CustomEvent<MenuBeforeCloseEventDetail>",
-                "references": [
-                  {
-                    "name": "MenuBeforeCloseEventDetail",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/MenuItem.js"
-                  }
-                ]
-              },
-              "description": "Fired before the menu is closed. This event can be cancelled, which will prevent the menu from closing."
-            },
-            {
-              "name": "before-open",
-              "type": {
-                "text": "CustomEvent<MenuBeforeOpenEventDetail>",
-                "references": [
-                  {
-                    "name": "MenuBeforeOpenEventDetail",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/MenuItem.js"
-                  }
-                ]
-              },
-              "description": "Fired before the menu is opened. This event can be cancelled, which will prevent the menu from opening.\n\n**Note:** Since 1.14.0 the event is also fired before a sub-menu opens."
-            },
-            {
-              "name": "check",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired when an item is checked or unchecked."
-            },
-            {
-              "name": "close",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired after the menu is closed."
-            },
-            {
-              "name": "detail-click",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired when the user clicks on the detail button when type is `Detail`."
-            },
-            {
-              "name": "open",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired after the menu is opened."
-            }
-          ],
           "attributes": [
+            {
+              "description": "When set, a second line appears below the menu item text showing the text\nof the currently selected sub-item. Intended for use with a single-select\nui5-menu-item-group (check-mode=\"Single\").\nWhen enabled, the checked sub-item cannot be unchecked,\nensuring the selection text is always displayed.",
+              "name": "show-selection",
+              "default": "false",
+              "fieldName": "showSelection",
+              "type": {
+                "text": "boolean"
+              }
+            },
             {
               "description": "Defines the additional accessibility attributes that will be applied to the component.\nThe following fields are supported:\n\n- **ariaKeyShortcuts**: Indicated the availability of a keyboard shortcuts defined for the menu item.\n\n- **role**: Defines the role of the menu item. If not set, menu item will have default role=\"menuitem\".",
               "name": "accessibility-attributes",
@@ -10015,6 +9955,15 @@
               "fieldName": "accessibleName",
               "type": {
                 "text": "string | undefined"
+              }
+            },
+            {
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "name": "accessible-role",
+              "default": "undefined",
+              "fieldName": "accessibleRole",
+              "type": {
+                "text": "\"None\" | \"ListItem\" | \"MenuItem\" | \"TreeItem\" | \"Option\" | undefined"
               }
             },
             {
@@ -10124,6 +10073,85 @@
               "type": {
                 "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
               }
+            }
+          ],
+          "superclass": {
+            "name": "MenuItem",
+            "package": "@ui5/webcomponents",
+            "module": "dist/MenuItem.js"
+          },
+          "tagName": "ui5-user-menu-item",
+          "customElement": true,
+          "events": [
+            {
+              "name": "before-close",
+              "type": {
+                "text": "CustomEvent<MenuBeforeCloseEventDetail>",
+                "references": [
+                  {
+                    "name": "MenuBeforeCloseEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/MenuItem.js"
+                  }
+                ]
+              },
+              "description": "Fired before the menu is closed. This event can be cancelled, which will prevent the menu from closing."
+            },
+            {
+              "name": "before-open",
+              "type": {
+                "text": "CustomEvent<MenuBeforeOpenEventDetail>",
+                "references": [
+                  {
+                    "name": "MenuBeforeOpenEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/MenuItem.js"
+                  }
+                ]
+              },
+              "description": "Fired before the menu is opened. This event can be cancelled, which will prevent the menu from opening.\n\n**Note:** Since 1.14.0 the event is also fired before a sub-menu opens."
+            },
+            {
+              "name": "check",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when an item is checked or unchecked."
+            },
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
+            },
+            {
+              "name": "close",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired after the menu is closed."
+            },
+            {
+              "name": "detail-click",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when the user clicks on the detail button when type is `Detail`."
+            },
+            {
+              "name": "open",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired after the menu is opened."
             }
           ]
         }
@@ -10716,6 +10744,16 @@
             },
             {
               "kind": "field",
+              "name": "accessibleRole",
+              "type": {
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
+              },
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "default": "undefined",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "highlight",
               "type": {
                 "text": "Highlight",
@@ -10845,6 +10883,15 @@
               }
             },
             {
+              "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
+              "name": "accessible-role",
+              "default": "undefined",
+              "fieldName": "accessibleRole",
+              "type": {
+                "text": "\"None\" | \"ListItem\" | \"MenuItem\" | \"TreeItem\" | \"Option\" | undefined"
+              }
+            },
+            {
               "description": "Defines the highlight state of the list items.\nAvailable options are: `\"None\"` (by default), `\"Positive\"`, `\"Critical\"`, `\"Information\"` and `\"Negative\"`.",
               "name": "highlight",
               "default": "\"None\"",
@@ -10943,6 +10990,20 @@
             }
           ],
           "events": [
+            {
+              "name": "click",
+              "type": {
+                "text": "CustomEvent<ListItemBaseClickEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemBaseClickEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
+            },
             {
               "name": "detail-click",
               "type": {
@@ -11491,16 +11552,6 @@
           "members": [
             {
               "kind": "field",
-              "name": "enableReset",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Defines whether the Reset button is always enabled.\n\n**Note:** By default, the Reset button is only enabled when the dialog settings\ndiffer from their initial state. Set this property to `true` to keep the Reset\nbutton always enabled, which is useful when working with custom tabs\nwhose internal state changes cannot be detected by the component.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
               "name": "groupDescending",
               "type": {
                 "text": "boolean"
@@ -11517,6 +11568,16 @@
               },
               "default": "false",
               "description": "Indicates if the dialog is open.",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
+              "name": "resetEnabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Controls whether the Reset button is always enabled.\n\nBy default, the Reset button is enabled only when the built-in settings (Sort, Filter, Group)\ndiffer from their initial state — the component can detect these changes automatically.\nHowever, when the dialog contains custom tabs, the component has no way to detect\nwhether the custom tab content has been modified by the user.\n\nSet this property to `true` when the user has made changes inside a custom tab, so that\nthe Reset button becomes enabled and the user can trigger a reset.\nSet it back to `false` once the custom tab content is back to its initial state\n(e.g. after the user confirms or after a reset is applied).",
               "privacy": "public"
             },
             {
@@ -11608,23 +11669,14 @@
               "description": "Fired after the dialog is opened."
             },
             {
-              "name": "reset-click",
+              "name": "reset",
               "type": {
                 "text": "CustomEvent"
               },
-              "description": "Fired when the Reset button is clicked.\n\n**Note:** Use this event to reset the state of custom tab content,\nas the component cannot detect changes within custom tabs."
+              "description": "Fired when the Reset button is clicked.\n\n**Note:** This event is particularly relevant when the dialog contains custom tabs.\nBy default, the Reset button resets all built-in settings (sort, filter, group) to their\ninitial values. However, the component has no knowledge of the content or state inside\ncustom tabs — it cannot detect what has changed or what the \"default\" values are.\nTherefore, when this event is fired, it is the application developer's responsibility\nto listen for it and manually reset the custom tab content to its initial state."
             }
           ],
           "attributes": [
-            {
-              "description": "Defines whether the Reset button is always enabled.\n\n**Note:** By default, the Reset button is only enabled when the dialog settings\ndiffer from their initial state. Set this property to `true` to keep the Reset\nbutton always enabled, which is useful when working with custom tabs\nwhose internal state changes cannot be detected by the component.",
-              "name": "enable-reset",
-              "default": "false",
-              "fieldName": "enableReset",
-              "type": {
-                "text": "boolean"
-              }
-            },
             {
               "description": "Defines the initial group order.",
               "name": "group-descending",
@@ -11639,6 +11691,15 @@
               "name": "open",
               "default": "false",
               "fieldName": "open",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "description": "Controls whether the Reset button is always enabled.\n\nBy default, the Reset button is enabled only when the built-in settings (Sort, Filter, Group)\ndiffer from their initial state — the component can detect these changes automatically.\nHowever, when the dialog contains custom tabs, the component has no way to detect\nwhether the custom tab content has been modified by the user.\n\nSet this property to `true` when the user has made changes inside a custom tab, so that\nthe Reset button becomes enabled and the user can trigger a reset.\nSet it back to `false` once the custom tab content is back to its initial state\n(e.g. after the user confirms or after a reset is applied).",
+              "name": "reset-enabled",
+              "default": "false",
+              "fieldName": "resetEnabled",
               "type": {
                 "text": "boolean"
               }
@@ -11702,18 +11763,18 @@
               "type": {
                 "text": "string"
               },
-              "default": "\"\"",
-              "description": "Defines the icon of the custom tab.\n\n**Note:** If not provided, the tab should not be rendered.",
+              "default": "\"action-settings\"",
+              "description": "Defines the icon of the custom tab button in the segmented button.",
               "privacy": "public"
             },
             {
               "kind": "field",
-              "name": "title",
+              "name": "titleText",
               "type": {
                 "text": "string"
               },
               "default": "\"\"",
-              "description": "Defines the title of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
+              "description": "Defines the title text of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
               "privacy": "public"
             },
             {
@@ -11729,19 +11790,19 @@
           ],
           "attributes": [
             {
-              "description": "Defines the icon of the custom tab.\n\n**Note:** If not provided, the tab should not be rendered.",
+              "description": "Defines the icon of the custom tab button in the segmented button.",
               "name": "icon",
-              "default": "\"\"",
+              "default": "\"action-settings\"",
               "fieldName": "icon",
               "type": {
                 "text": "string"
               }
             },
             {
-              "description": "Defines the title of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
-              "name": "title",
+              "description": "Defines the title text of the custom tab.\n\n**Note:** It is displayed in the dialog header when this tab is selected.",
+              "name": "title-text",
               "default": "\"\"",
-              "fieldName": "title",
+              "fieldName": "titleText",
               "type": {
                 "text": "string"
               }
@@ -12467,21 +12528,6 @@
           "declaration": {
             "name": "TimelineLayout",
             "module": "dist/types/TimelineLayout.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/types/TimelineSortOrder.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "TimelineSortOrder",
-            "module": "dist/types/TimelineSortOrder.js"
           }
         }
       ]

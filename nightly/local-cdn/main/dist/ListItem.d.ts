@@ -116,14 +116,26 @@ declare abstract class ListItem extends ListItemBase {
     selected: boolean;
     /**
      * Used to define the role of the list item.
-     * @private
-     * @default "ListItem"
-     * @since 1.3.0
      *
+     * **Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property
+     * (e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).
+     * An explicitly set `accessible-role` on the list item takes precedence over the inherited role.
+     * @default undefined
+     * @public
+     * @since 1.3.0
      */
-    accessibleRole: `${ListItemAccessibleRole}`;
+    accessibleRole?: `${Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group>}`;
     _forcedAccessibleRole?: string;
+    _inheritedAccessibleRole?: string;
     _selectionMode: `${ListSelectionMode}`;
+    /**
+     * Indicates whether the list item is in edit mode.
+     * When active, Tab cycles through internal focusable elements
+     * instead of navigating to the next list item.
+     * Toggled by F2; also set by the parent List on F7.
+     * @private
+     */
+    _editMode: boolean;
     /**
      * Defines the current media query size.
      * @default "S"
@@ -177,7 +189,7 @@ declare abstract class ListItem extends ListItemBase {
     get typeNavigation(): boolean;
     get typeActive(): boolean;
     get _ariaSelected(): boolean | undefined;
-    get listItemAccessibleRole(): AriaRole | undefined;
+    get listItemAccessibleRole(): import("@ui5/webcomponents-base/dist/thirdparty/preact/jsx.js").JSXInternal.AriaRole;
     get ariaSelectedText(): string | undefined;
     get deleteText(): string;
     get hasDeleteButtonSlot(): boolean;
@@ -187,8 +199,11 @@ declare abstract class ListItem extends ListItemBase {
     get _hasHighlightColor(): boolean;
     get hasConfigurableMode(): boolean;
     get _listItem(): HTMLLIElement | null;
-    _handleF2(): Promise<void>;
+    _handleF2(): void;
+    _handleTabNext(e: KeyboardEvent): void;
+    _handleTabPrevious(e: KeyboardEvent): void;
     _getFocusableElements(): HTMLElement[];
+    _indexOfActiveElement(focusables: HTMLElement[]): number;
     _getFocusedElementIndex(): number;
     _hasFocusableElements(): boolean;
     _isFocusOnInternalElement(): boolean;

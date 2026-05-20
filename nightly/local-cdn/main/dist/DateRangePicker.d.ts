@@ -1,4 +1,5 @@
 import type { IFormInputElement } from "@ui5/webcomponents-base/dist/features/InputElementsFormSupport.js";
+import type DateFormat from "@ui5/webcomponents-localization/dist/DateFormat.js";
 import DatePicker from "./DatePicker.js";
 import type { DatePickerChangeEventDetail as DateRangePickerChangeEventDetail, DatePickerInputEventDetail as DateRangePickerInputEventDetail } from "./DatePicker.js";
 import type { CalendarSelectionChangeEventDetail } from "./Calendar.js";
@@ -12,7 +13,10 @@ import type CalendarSelectionMode from "./types/CalendarSelectionMode.js";
  * ### Usage
  * The user can enter a date by:
  * Using the calendar that opens in a popup or typing it in directly in the input field (not available for mobile devices).
- * For the `ui5-daterange-picker`
+ * For the `ui5-daterange-picker`:
+ *
+ * **Note:** Relative date values such as "today", "yesterday", or "tomorrow" are not supported.
+ * Entering a relative date sets the component to an error state.
  * ### ES6 Module Import
  *
  * `import "@ui5/webcomponents/dist/DateRangePicker.js";`
@@ -67,6 +71,13 @@ declare class DateRangePicker extends DatePicker implements IFormInputElement {
     get formValidity(): ValidityStateFlags;
     get formFormattedValue(): string | FormData;
     constructor();
+    /**
+     * Checks if a date string is a relative date (e.g. "today", "tomorrow")
+     * that would be resolved by DateFormat.parseRelative().
+     * Relative dates are not supported in DateRangePicker.
+     * @private
+     */
+    _isRelativeValue(dateString: string, format: DateFormat): boolean;
     /**
      * **Note:** The getter method is inherited and not supported. If called it will return an empty value.
      * @public

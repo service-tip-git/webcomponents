@@ -1,5 +1,6 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type { DefaultSlot } from "@ui5/webcomponents-base/dist/UI5Element.js";
+import "@ui5/webcomponents-icons/dist/action-settings.js";
 /**
  * @class
  *
@@ -20,13 +21,13 @@ import type { DefaultSlot } from "@ui5/webcomponents-base/dist/UI5Element.js";
  */
 declare class ViewSettingsDialogCustomTab extends UI5Element {
     /**
-     * Defines the title of the custom tab.
+     * Defines the title text of the custom tab.
      *
      * **Note:** It is displayed in the dialog header when this tab is selected.
      * @default ""
      * @public
      */
-    title: string;
+    titleText: string;
     /**
      * Defines the tooltip of the custom tab button.
      *
@@ -36,10 +37,9 @@ declare class ViewSettingsDialogCustomTab extends UI5Element {
      */
     tooltip: string;
     /**
-     * Defines the icon of the custom tab.
+     * Defines the icon of the custom tab button in the segmented button.
      *
-     * **Note:** If not provided, the tab should not be rendered.
-     * @default ""
+     * @default "action-settings"
      * @public
      */
     icon: string;

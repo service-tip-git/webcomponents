@@ -1204,6 +1204,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/config/UrlParams.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/converters/DOMReference.js",
       "declarations": [],
       "exports": [

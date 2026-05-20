@@ -281,6 +281,7 @@ let MultiComboBox = MultiComboBox_1 = class MultiComboBox extends UI5Element {
     onEnterDOM() {
         ResizeHandler.register(this, this._handleResizeBound);
         this._enableComposition();
+        this._effectiveValueState = this.valueState;
     }
     onExitDOM() {
         ResizeHandler.deregister(this, this._handleResizeBound);
@@ -559,23 +560,24 @@ let MultiComboBox = MultiComboBox_1 = class MultiComboBox extends UI5Element {
             }
         });
     }
-    async _handlePaste(e) {
+    _handlePaste(e) {
         if (this.readonly) {
             return;
         }
         e.preventDefault();
-        const pastedText = await navigator.clipboard.readText();
-        document.execCommand("insertText", true, pastedText ?? "");
-        const inputEvent = new Event("input", {
-            bubbles: true,
-            cancelable: true,
-        });
-        // Dispatch it
-        this._innerInput.dispatchEvent(inputEvent);
-        if (!pastedText) {
-            return;
+        // Get pasted text from clipboardData - more reliable than navigator.clipboard
+        const pastedText = e.clipboardData?.getData("text/plain") || "";
+        if (pastedText) {
+            // Use deprecated but still functional document.execCommand for cursor handling
+            document.execCommand("insertText", true, pastedText);
+            // Dispatch input event to ensure the component updates
+            const inputEvent = new Event("input", {
+                bubbles: true,
+                cancelable: true,
+            });
+            this._innerInput.dispatchEvent(inputEvent);
+            this._handleTokenCreationUponPaste(pastedText, e);
         }
-        this._handleTokenCreationUponPaste(pastedText, e);
     }
     _handleTokenCreationUponPaste(pastedText, e) {
         const separatedText = pastedText.split(/\r\n|\r|\n|\t/g).filter(t => !!t);
@@ -589,19 +591,27 @@ let MultiComboBox = MultiComboBox_1 = class MultiComboBox extends UI5Element {
         if (this.readonly || isFirefox()) {
             return;
         }
-        e.preventDefault();
-        const pastedText = await navigator.clipboard.readText();
-        document.execCommand("insertText", true, pastedText ?? "");
-        const inputEvent = new Event("input", {
-            bubbles: true,
-            cancelable: true,
-        });
-        // Dispatch it
-        this._innerInput.dispatchEvent(inputEvent);
-        if (!pastedText) {
-            return;
+        // For Shift+Insert, try to use navigator.clipboard API
+        // If it fails due to permissions, the browser's native paste will be blocked
+        try {
+            e.preventDefault();
+            const pastedText = await navigator.clipboard.readText();
+            if (pastedText) {
+                // Use deprecated but still functional document.execCommand for cursor handling
+                document.execCommand("insertText", true, pastedText);
+                // Dispatch input event to ensure the component updates
+                const inputEvent = new Event("input", {
+                    bubbles: true,
+                    cancelable: true,
+                });
+                this._innerInput.dispatchEvent(inputEvent);
+                this._handleTokenCreationUponPaste(pastedText, e);
+            }
         }
-        this._handleTokenCreationUponPaste(pastedText, e);
+        catch (err) {
+            // If clipboard API fails, silently ignore
+            // Native paste won't work since we already prevented default
+        }
     }
     _handleShow(e) {
         const items = this._getItems();
@@ -1399,6 +1409,13 @@ let MultiComboBox = MultiComboBox_1 = class MultiComboBox extends UI5Element {
         }
         if ((!this.shadowRoot.contains(e.relatedTarget) || focusIsGoingInPopover) && !this._deleting && !this._clearingValue) {
             this.focused = false;
+            if (!this.noValidation && this.value) {
+                this.value = "";
+                this._lastValue = "";
+                if (this.valueState === ValueState.Negative && this._effectiveValueState !== ValueState.Negative) {
+                    this._updateValueState(this._effectiveValueState);
+                }
+            }
             if (this._lastValue !== this.value) {
                 this._inputChange();
             }
@@ -1582,7 +1599,7 @@ let MultiComboBox = MultiComboBox_1 = class MultiComboBox extends UI5Element {
         return this._inputDom;
     }
     get _headerTitleText() {
-        return MultiComboBox_1.i18nBundle.getText(INPUT_SUGGESTIONS_TITLE);
+        return getAssociatedLabelForTexts(this) || MultiComboBox_1.i18nBundle.getText(INPUT_SUGGESTIONS_TITLE);
     }
     get _iconAccessibleNameText() {
         return MultiComboBox_1.i18nBundle.getText(SELECT_OPTIONS);

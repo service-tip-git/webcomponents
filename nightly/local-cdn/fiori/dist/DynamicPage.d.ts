@@ -125,7 +125,7 @@ declare class DynamicPage extends UI5Element {
     constructor();
     onBeforeRendering(): void;
     get endAreaHeight(): number;
-    get topAreaHeight(): number;
+    get scrollPaddingTop(): number;
     get dynamicPageTitle(): DynamicPageTitle | null;
     get dynamicPageHeader(): DynamicPageHeader | null;
     get footerWrapper(): Element | null | undefined;

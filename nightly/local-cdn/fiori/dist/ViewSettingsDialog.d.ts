@@ -89,7 +89,7 @@ declare class ViewSettingsDialog extends UI5Element {
         "before-open": void;
         "open": void;
         "close": void;
-        "reset-click": void;
+        "reset": void;
     };
     /**
      * Defines the initial sort order.
@@ -112,17 +112,22 @@ declare class ViewSettingsDialog extends UI5Element {
      */
     open: boolean;
     /**
-     * Defines whether the Reset button is always enabled.
+     * Controls whether the Reset button is always enabled.
      *
-     * **Note:** By default, the Reset button is only enabled when the dialog settings
-     * differ from their initial state. Set this property to `true` to keep the Reset
-     * button always enabled, which is useful when working with custom tabs
-     * whose internal state changes cannot be detected by the component.
+     * By default, the Reset button is enabled only when the built-in settings (Sort, Filter, Group)
+     * differ from their initial state — the component can detect these changes automatically.
+     * However, when the dialog contains custom tabs, the component has no way to detect
+     * whether the custom tab content has been modified by the user.
+     *
+     * Set this property to `true` when the user has made changes inside a custom tab, so that
+     * the Reset button becomes enabled and the user can trigger a reset.
+     * Set it back to `false` once the custom tab content is back to its initial state
+     * (e.g. after the user confirms or after a reset is applied).
      * @default false
      * @public
      * @since 2.22.0
      */
-    enableReset: boolean;
+    resetEnabled: boolean;
     /**
      * Keeps recently focused list in order to focus it on next dialog open.
      * @private
@@ -206,10 +211,6 @@ declare class ViewSettingsDialog extends UI5Element {
     get shouldBuildFilter(): boolean;
     get shouldBuildGroup(): boolean;
     get shouldBuildCustomTabs(): boolean;
-    /**
-     * Returns only custom tabs that have an icon defined and can be rendered.
-     */
-    get _renderableCustomTabs(): ViewSettingsDialogCustomTab[];
     get hasPagination(): boolean;
     get _defaultMode(): ViewSettingsDialogInternalMode;
     get _selectedCustomTab(): ViewSettingsDialogCustomTab | undefined;

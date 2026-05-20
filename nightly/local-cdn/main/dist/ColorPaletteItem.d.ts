@@ -1,6 +1,9 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import type { IColorPaletteItem } from "./ColorPalette.js";
+type ColorPaletteItemNativeClickEventDetail = {
+    originalEvent: Event;
+};
 /**
  * @class
  *
@@ -14,6 +17,9 @@ import type { IColorPaletteItem } from "./ColorPalette.js";
  * @public
  */
 declare class ColorPaletteItem extends UI5Element implements IColorPaletteItem {
+    eventDetails: {
+        "click": ColorPaletteItemNativeClickEventDetail;
+    };
     /**
      * Defines the colour of the component.
      *
@@ -71,5 +77,7 @@ declare class ColorPaletteItem extends UI5Element implements IColorPaletteItem {
             "ui5-cp-item": boolean;
         };
     };
+    _onClick(e: MouseEvent): void;
 }
 export default ColorPaletteItem;
+export type { ColorPaletteItemNativeClickEventDetail };

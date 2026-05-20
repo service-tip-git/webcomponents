@@ -28,7 +28,10 @@ const DEFAULT_DELIMITER = "-";
  * ### Usage
  * The user can enter a date by:
  * Using the calendar that opens in a popup or typing it in directly in the input field (not available for mobile devices).
- * For the `ui5-daterange-picker`
+ * For the `ui5-daterange-picker`:
+ *
+ * **Note:** Relative date values such as "today", "yesterday", or "tomorrow" are not supported.
+ * Entering a relative date sets the component to an error state.
  * ### ES6 Module Import
  *
  * `import "@ui5/webcomponents/dist/DateRangePicker.js";`
@@ -113,6 +116,24 @@ let DateRangePicker = DateRangePicker_1 = class DateRangePicker extends DatePick
          */
         this.showTwoMonths = false;
         this._prevDelimiter = null;
+    }
+    /**
+     * Checks if a date string is a relative date (e.g. "today", "tomorrow")
+     * that would be resolved by DateFormat.parseRelative().
+     * Relative dates are not supported in DateRangePicker.
+     * @private
+     */
+    _isRelativeValue(dateString, format) {
+        const trimmed = dateString.trim();
+        if (!trimmed) {
+            return false;
+        }
+        const parsed = format.parse(trimmed);
+        if (!parsed) {
+            return false;
+        }
+        const formatted = format.format(parsed);
+        return formatted !== trimmed;
     }
     /**
      * **Note:** The getter method is inherited and not supported. If called it will return an empty value.
@@ -261,6 +282,9 @@ let DateRangePicker = DateRangePicker_1 = class DateRangePicker extends DatePick
      */
     isValid(value) {
         const parts = this._splitValueByDelimiter(value).filter(str => str.trim() !== "");
+        if (parts.some(dateString => this._isRelativeValue(dateString, this.getFormat()))) {
+            return false;
+        }
         return parts.length <= 2 && parts.every(dateString => super.isValid(dateString)); // must be at most 2 dates and each must be valid
     }
     /**
@@ -270,6 +294,9 @@ let DateRangePicker = DateRangePicker_1 = class DateRangePicker extends DatePick
      */
     isValidValue(value) {
         const parts = this._splitValueByDelimiter(value).filter(str => str.trim() !== "");
+        if (parts.some(dateString => this._isRelativeValue(dateString, this.getValueFormat()))) {
+            return false;
+        }
         return parts.length <= 2 && parts.every(dateString => super.isValidValue(dateString)); // must be at most 2 dates and each must be valid
     }
     /**
@@ -279,6 +306,9 @@ let DateRangePicker = DateRangePicker_1 = class DateRangePicker extends DatePick
      */
     isValidDisplayValue(value) {
         const parts = this._splitValueByDelimiter(value).filter(str => str.trim() !== "");
+        if (parts.some(dateString => this._isRelativeValue(dateString, this.getDisplayFormat()))) {
+            return false;
+        }
         return parts.length <= 2 && parts.every(dateString => super.isValidDisplayValue(dateString)); // must be at most 2 dates and each must be valid
     }
     /**

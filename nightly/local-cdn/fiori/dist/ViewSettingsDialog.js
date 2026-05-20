@@ -80,17 +80,22 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
          */
         this.open = false;
         /**
-         * Defines whether the Reset button is always enabled.
+         * Controls whether the Reset button is always enabled.
          *
-         * **Note:** By default, the Reset button is only enabled when the dialog settings
-         * differ from their initial state. Set this property to `true` to keep the Reset
-         * button always enabled, which is useful when working with custom tabs
-         * whose internal state changes cannot be detected by the component.
+         * By default, the Reset button is enabled only when the built-in settings (Sort, Filter, Group)
+         * differ from their initial state — the component can detect these changes automatically.
+         * However, when the dialog contains custom tabs, the component has no way to detect
+         * whether the custom tab content has been modified by the user.
+         *
+         * Set this property to `true` when the user has made changes inside a custom tab, so that
+         * the Reset button becomes enabled and the user can trigger a reset.
+         * Set it back to `false` once the custom tab content is back to its initial state
+         * (e.g. after the user confirms or after a reset is applied).
          * @default false
          * @public
          * @since 2.22.0
          */
-        this.enableReset = false;
+        this.resetEnabled = false;
         /**
          * Stores current settings of the dialog.
          * @private
@@ -183,20 +188,14 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
         return !!this.groupItems.length;
     }
     get shouldBuildCustomTabs() {
-        return !!this._renderableCustomTabs.length;
-    }
-    /**
-     * Returns only custom tabs that have an icon defined and can be rendered.
-     */
-    get _renderableCustomTabs() {
-        return this.customTabs.filter(tab => tab.icon);
+        return !!this.customTabs.length;
     }
     get hasPagination() {
         const builtInTabsCount = [this.shouldBuildSort, this.shouldBuildFilter, this.shouldBuildGroup]
             .filter(condition => condition)
             .length;
         if (this.shouldBuildCustomTabs) {
-            return builtInTabsCount + this._renderableCustomTabs.length > 1;
+            return builtInTabsCount + this.customTabs.length > 1;
         }
         return builtInTabsCount > 1;
     }
@@ -211,7 +210,7 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
             return ViewSettingsDialogMode.Group;
         }
         if (this.shouldBuildCustomTabs) {
-            return this._customTabMode(this._renderableCustomTabs[0]);
+            return this._customTabMode(this.customTabs[0]);
         }
         return ViewSettingsDialogMode.Sort;
     }
@@ -219,7 +218,7 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
         if (!this._isCustomMode(this._currentMode)) {
             return;
         }
-        return this._renderableCustomTabs.find(tab => this._customTabMode(tab) === this._currentMode);
+        return this.customTabs.find(tab => this._customTabMode(tab) === this._currentMode);
     }
     get _filterByTitle() {
         const selectedFilterText = this._selectedFilter ? this._selectedFilter.text : "";
@@ -285,7 +284,7 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
      * Determines disabled state of the `Reset` button.
      */
     get _disableResetButton() {
-        if (this.enableReset) {
+        if (this.resetEnabled) {
             return false;
         }
         return this._dialog && this._settingsAreInitial && this._filteresAreInitial;
@@ -556,7 +555,7 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
         this._recentlyFocused = this._sortOrder;
         this._focusRecentlyUsedControl();
         announce(this._resetButtonAction, InvisibleMessageMode.Assertive);
-        this.fireDecoratorEvent("reset-click");
+        this.fireDecoratorEvent("reset");
     }
     /**
      * Sets current settings to ones passed as `settings` argument.
@@ -583,7 +582,7 @@ let ViewSettingsDialog = ViewSettingsDialog_1 = class ViewSettingsDialog extends
             return true;
         }
         if (this._isCustomMode(mode)) {
-            return this._renderableCustomTabs.some(tab => this._customTabMode(tab) === mode);
+            return this.customTabs.some(tab => this._customTabMode(tab) === mode);
         }
         return false;
     }
@@ -721,7 +720,7 @@ __decorate([
 ], ViewSettingsDialog.prototype, "open", void 0);
 __decorate([
     property({ type: Boolean })
-], ViewSettingsDialog.prototype, "enableReset", void 0);
+], ViewSettingsDialog.prototype, "resetEnabled", void 0);
 __decorate([
     property({ type: Object })
 ], ViewSettingsDialog.prototype, "_recentlyFocused", void 0);
@@ -856,13 +855,17 @@ ViewSettingsDialog = ViewSettingsDialog_1 = __decorate([
     /**
      * Fired when the Reset button is clicked.
      *
-     * **Note:** Use this event to reset the state of custom tab content,
-     * as the component cannot detect changes within custom tabs.
+     * **Note:** This event is particularly relevant when the dialog contains custom tabs.
+     * By default, the Reset button resets all built-in settings (sort, filter, group) to their
+     * initial values. However, the component has no knowledge of the content or state inside
+     * custom tabs — it cannot detect what has changed or what the "default" values are.
+     * Therefore, when this event is fired, it is the application developer's responsibility
+     * to listen for it and manually reset the custom tab content to its initial state.
      * @since 2.22.0
      * @public
      */
     ,
-    event("reset-click", {
+    event("reset", {
         bubbles: true,
     })
 ], ViewSettingsDialog);

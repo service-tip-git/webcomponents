@@ -10,6 +10,7 @@ import property from "@ui5/webcomponents-base/dist/decorators/property.js";
 import slot from "@ui5/webcomponents-base/dist/decorators/slot-strict.js";
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import ViewSettingsDialogCustomTabTemplate from "./ViewSettingsDialogCustomTabTemplate.js";
+import "@ui5/webcomponents-icons/dist/action-settings.js";
 /**
  * @class
  *
@@ -32,13 +33,13 @@ let ViewSettingsDialogCustomTab = class ViewSettingsDialogCustomTab extends UI5E
     constructor() {
         super(...arguments);
         /**
-         * Defines the title of the custom tab.
+         * Defines the title text of the custom tab.
          *
          * **Note:** It is displayed in the dialog header when this tab is selected.
          * @default ""
          * @public
          */
-        this.title = "";
+        this.titleText = "";
         /**
          * Defines the tooltip of the custom tab button.
          *
@@ -48,18 +49,17 @@ let ViewSettingsDialogCustomTab = class ViewSettingsDialogCustomTab extends UI5E
          */
         this.tooltip = "";
         /**
-         * Defines the icon of the custom tab.
+         * Defines the icon of the custom tab button in the segmented button.
          *
-         * **Note:** If not provided, the tab should not be rendered.
-         * @default ""
+         * @default "action-settings"
          * @public
          */
-        this.icon = "";
+        this.icon = "action-settings";
     }
 };
 __decorate([
     property({ type: String })
-], ViewSettingsDialogCustomTab.prototype, "title", void 0);
+], ViewSettingsDialogCustomTab.prototype, "titleText", void 0);
 __decorate([
     property({ type: String })
 ], ViewSettingsDialogCustomTab.prototype, "tooltip", void 0);

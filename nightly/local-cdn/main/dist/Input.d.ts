@@ -13,6 +13,7 @@ import InputType from "./types/InputType.js";
 import type Popover from "./Popover.js";
 import type { IIcon } from "./Icon.js";
 import type { ListItemClickEventDetail, ListSelectionChangeEventDetail } from "./List.js";
+import type { ListItemBaseClickEventDetail } from "./ListItemBase.js";
 import type ResponsivePopover from "./ResponsivePopover.js";
 import type InputKeyHint from "./types/InputKeyHint.js";
 import type InputComposition from "./features/InputComposition.js";
@@ -25,6 +26,9 @@ interface IInputSuggestionItem extends UI5Element {
     focused: boolean;
     additionalText?: string;
     items?: IInputSuggestionItem[];
+    eventDetails: {
+        click?: ListItemBaseClickEventDetail;
+    };
 }
 interface IInputSuggestionItemSelectable extends IInputSuggestionItem {
     text?: string;

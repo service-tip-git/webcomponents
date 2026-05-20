@@ -26,7 +26,7 @@ function _getSplitButtonItems() {
         buttonItems.push(_jsx(SegmentedButtonItem, { selected: this.isModeGroup, icon: groupIcon, "data-mode": "Group", tooltip: this._groupButtonTooltip }));
     }
     if (this.shouldBuildCustomTabs) {
-        this._renderableCustomTabs.forEach(customTab => {
+        this.customTabs.forEach(customTab => {
             buttonItems.push(_jsx(SegmentedButtonItem, { selected: this.isCurrentCustomTabMode(customTab), "data-mode": this._customTabMode(customTab), tooltip: customTab.tooltip, icon: customTab.icon }));
         });
     }
@@ -36,7 +36,7 @@ function ViewSettingsDialogTemplateContent() {
     return (_jsxs("div", { class: {
             "ui5-vsd-content": true,
             "ui5-vsd-content-expand": this.expandContent,
-        }, children: [this.shouldBuildSort && this.isModeSort && (ViewSettingsDialogSortAndGroupTemplate.call(this, true)), this.shouldBuildFilter && this.isModeFilter && (ViewSettingsDialogFilterTemplate.call(this)), this.shouldBuildGroup && this.isModeGroup && (ViewSettingsDialogSortAndGroupTemplate.call(this, false)), this.isModeCustom && this._selectedCustomTab && (_jsxs("div", { class: "ui5-vsd-custom-tab-content", children: [this._selectedCustomTab.title && (_jsx("div", { class: "ui5-vsd-custom-tab-title", children: this._selectedCustomTab.title })), _jsx("slot", { class: "ui5-vsd-custom-tab-slot", name: this._selectedCustomTab._individualSlot })] })), _jsx("div", { class: "ui5-vsd-hidden-tabs", children: this.customTabs
+        }, children: [this.shouldBuildSort && this.isModeSort && (ViewSettingsDialogSortAndGroupTemplate.call(this, true)), this.shouldBuildFilter && this.isModeFilter && (ViewSettingsDialogFilterTemplate.call(this)), this.shouldBuildGroup && this.isModeGroup && (ViewSettingsDialogSortAndGroupTemplate.call(this, false)), this.isModeCustom && this._selectedCustomTab && (_jsxs("div", { class: "ui5-vsd-custom-tab-content", children: [this._selectedCustomTab.titleText && (_jsx("div", { class: "ui5-vsd-custom-tab-title", children: this._selectedCustomTab.titleText })), _jsx("slot", { class: "ui5-vsd-custom-tab-slot", name: this._selectedCustomTab._individualSlot })] })), _jsx("div", { class: "ui5-vsd-hidden-tabs", children: this.customTabs
                     .filter(tab => tab !== this._selectedCustomTab)
                     .map(tab => (_jsx("slot", { name: tab._individualSlot }))) })] }));
 }

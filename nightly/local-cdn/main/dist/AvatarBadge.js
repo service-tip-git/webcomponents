@@ -71,31 +71,31 @@ let AvatarBadge = class AvatarBadge extends UI5Element {
         const icon = this.icon;
         if (!icon) {
             this.invalid = true;
-            this.effectiveAccessibleName = undefined;
+            this.effectiveTooltip = undefined;
             return;
         }
         const iconData = getIconDataSync(icon) || await getIconData(icon);
         this.invalid = !iconData || iconData === ICON_NOT_FOUND;
         if (this.invalid) {
-            this.effectiveAccessibleName = undefined;
+            this.effectiveTooltip = undefined;
         }
-        else if (this.accessibleName) {
-            // User-provided accessible name takes precedence
-            this.effectiveAccessibleName = this.accessibleName;
+        else if (this.tooltip) {
+            // User-provided tooltip takes precedence
+            this.effectiveTooltip = this.tooltip;
         }
         else if (iconData && iconData !== ICON_NOT_FOUND && iconData.accData) {
             // Use the icon's registered i18n label (e.g., message-error -> "Error")
             if (iconData.packageName) {
                 const i18nBundle = await getI18nBundle(iconData.packageName);
-                this.effectiveAccessibleName = i18nBundle.getText(iconData.accData) || undefined;
+                this.effectiveTooltip = i18nBundle.getText(iconData.accData) || undefined;
             }
             else {
-                this.effectiveAccessibleName = iconData.accData.defaultText || undefined;
+                this.effectiveTooltip = iconData.accData.defaultText || undefined;
             }
         }
         else {
             // Derive from icon name (e.g., "edit" -> "Edit")
-            this.effectiveAccessibleName = icon.charAt(0).toUpperCase() + icon.slice(1);
+            this.effectiveTooltip = icon.charAt(0).toUpperCase() + icon.slice(1);
         }
     }
 };
@@ -104,7 +104,7 @@ __decorate([
 ], AvatarBadge.prototype, "icon", void 0);
 __decorate([
     property()
-], AvatarBadge.prototype, "accessibleName", void 0);
+], AvatarBadge.prototype, "tooltip", void 0);
 __decorate([
     property()
 ], AvatarBadge.prototype, "state", void 0);
@@ -113,7 +113,7 @@ __decorate([
 ], AvatarBadge.prototype, "invalid", void 0);
 __decorate([
     property({ noAttribute: true })
-], AvatarBadge.prototype, "effectiveAccessibleName", void 0);
+], AvatarBadge.prototype, "effectiveTooltip", void 0);
 AvatarBadge = __decorate([
     customElement({
         tag: "ui5-avatar-badge",
