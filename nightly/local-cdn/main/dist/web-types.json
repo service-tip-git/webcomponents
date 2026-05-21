@@ -10339,6 +10339,79 @@
           }
         },
         {
+          "name": "ui5-table-group-row",
+          "description": "### Overview\n\nThe `ui5-table-group-row` component represents a group header row in the `ui5-table`.\nIt is used to visually group rows and spans across all visible table columns.\n\n### Usage\n\nThe `ui5-table-group-row` is placed as a direct child of `ui5-table`, alongside `ui5-table-row` elements.\nRows following a group row are considered part of that group until the next group row.\n\n```html\n<ui5-table>\n  <ui5-table-header-row>...</ui5-table-header-row>\n  <ui5-table-group-row>Country: Germany</ui5-table-group-row>\n  <ui5-table-row>...</ui5-table-row>\n  <ui5-table-row>...</ui5-table-row>\n  <ui5-table-group-row>Country: France</ui5-table-group-row>\n  <ui5-table-row>...</ui5-table-row>\n</ui5-table>\n```\n\n### Unsupported Features\n\nThe following features of `ui5-table-row` are currently not supported by `ui5-table-group-row` and have no effect:\n\n- **Cells** (`cells` slot): Group rows render a single spanning cell with a text. Any slotted `ui5-table-cell` elements are ignored.\n- **Actions** (`actions` slot): Row actions such as `ui5-table-row-action` or `ui5-table-row-action-navigation` are not rendered.\n- **Navigation** (`navigated` property): The navigated indicator is not rendered on group rows.\n- **Interactive** (`interactive` property): Group rows do not support click/activation behavior.\n- **Selection** (`rowKey` property`): Group rows cannot be selected. They are excluded from select all and range selection operations.\n- **Virtualizer** (`position` property`): Group rows are not supported by the `ui5-table-virtualizer`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/TableGroupRow.js\";`\n---\n\n\n### **Slots:**\n - **actions** - Defines the actions of the component.\n\n**Note:** Use `ui5-table-row-action` or `ui5-table-row-action-navigation` for the intended design.\n- **default** - Defines the cells of the component.\n\n**Note:** Use `ui5-table-cell` for the intended design.",
+          "doc-url": "",
+          "attributes": [
+            {
+              "name": "interactive",
+              "description": "Defines the interactive state of the row.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "movable",
+              "description": "Defines whether the row is movable.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "navigated",
+              "description": "Defines the navigated state of the row.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "position",
+              "description": "Defines the 0-based position of the row related to the total number of rows within the table when the `ui5-table-virtualizer` feature is used.",
+              "value": { "type": "number | undefined", "default": "undefined" }
+            },
+            {
+              "name": "row-key",
+              "description": "Unique identifier of the row.\n\n**Note:** For selection features to work properly, this property is mandatory, and its value must not contain spaces.",
+              "value": { "type": "string | undefined", "default": "undefined" }
+            }
+          ],
+          "slots": [
+            {
+              "name": "actions",
+              "description": "Defines the actions of the component.\n\n**Note:** Use `ui5-table-row-action` or `ui5-table-row-action-navigation` for the intended design."
+            },
+            {
+              "name": "default",
+              "description": "Defines the cells of the component.\n\n**Note:** Use `ui5-table-cell` for the intended design."
+            }
+          ],
+          "events": [],
+          "js": {
+            "properties": [
+              {
+                "name": "interactive",
+                "description": "Defines the interactive state of the row.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "movable",
+                "description": "Defines whether the row is movable.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "navigated",
+                "description": "Defines the navigated state of the row.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "position",
+                "description": "Defines the 0-based position of the row related to the total number of rows within the table when the `ui5-table-virtualizer` feature is used.",
+                "value": { "type": "number | undefined" }
+              },
+              {
+                "name": "row-key",
+                "description": "Unique identifier of the row.\n\n**Note:** For selection features to work properly, this property is mandatory, and its value must not contain spaces.",
+                "value": { "type": "string | undefined" }
+              }
+            ],
+            "events": []
+          }
+        },
+        {
           "name": "ui5-table-growing",
           "description": "### Overview\n\nThe `ui5-table-growing` component is used inside the `ui5-table` to add a growing/data loading functionalities\nto the table.\n\nThe component offers two options:\n* Button - a More button is displayed, clicking it will load more data.\n* Scroll - additional data is loaded automatically when the user scrolls to the end of the table.\n\n### Usage\n\nThe `ui5-table-growing` component is only used inside the `ui5-table` component as a feature.\nIt has to be slotted inside the `ui5-table` in the `features` slot.\nThe component is not intended to be used as a standalone component.\n\n```html\n<ui5-table>\n\t<ui5-table-growing mode=\"Button\" text=\"More\" slot=\"features\"></ui5-table-growing>\n</ui5-table>\n```\n\n**Notes**:\n* When the `ui5-table-growing` component is used with the `Scroll` mode and the table is currently not scrollable,\nthe component will render a growing button instead to ensure growing capabilities until the table becomes scrollable.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/TableGrowing.js\";`\n---\n\n\n### **Events:**\n - **load-more** - Fired when the growing button is pressed or the user scrolls to the end of the table.",
           "doc-url": "",
@@ -10867,7 +10940,7 @@
         },
         {
           "name": "ui5-table-virtualizer",
-          "description": "### Overview\n\nThe `ui5-table-virtualizer` component is used inside the `ui5-table` to virtualize the table rows, if the `overflowMode` property of the table is set to 'Scroll'.\nIt is responsible for rendering only the rows that are visible in the viewport and updating them on scroll.\nThis allows large numbers of rows to exist, but maintain high performance by only paying the cost for those that are currently visible.\n\n**Note:** The maximum number of virtualized rows is limited by browser constraints, specifically the maximum supported height for a DOM element.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents/dist/TableVirtualizer.js\";`\n---\n\n\n### **Events:**\n - **range-change** - Fired when the virtualizer is changed by user interaction e.g. on scrolling.\n\n### **Methods:**\n - **reset(): _void_** - Resets the virtualizer to its initial state and triggers the `range-change` event.",
+          "description": "### Overview\n\nThe `ui5-table-virtualizer` component is used inside the `ui5-table` to virtualize the table rows, if the `overflowMode` property of the table is set to 'Scroll'.\nIt is responsible for rendering only the rows that are visible in the viewport and updating them on scroll.\nThis allows large numbers of rows to exist, but maintain high performance by only paying the cost for those that are currently visible.\n\n**Note:** The maximum number of virtualized rows is limited by browser constraints, specifically the maximum supported height for a DOM element.\n**Note:** The `ui5-table-group-row` component is not supported by the virtualizer. Only `ui5-table-row` elements can be virtualized.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents/dist/TableVirtualizer.js\";`\n---\n\n\n### **Events:**\n - **range-change** - Fired when the virtualizer is changed by user interaction e.g. on scrolling.\n\n### **Methods:**\n - **reset(): _void_** - Resets the virtualizer to its initial state and triggers the `range-change` event.",
           "doc-url": "",
           "attributes": [
             {
