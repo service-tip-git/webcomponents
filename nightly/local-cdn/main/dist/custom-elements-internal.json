@@ -11060,6 +11060,17 @@
               "name": "root"
             }
           ],
+          "slots": [
+            {
+              "name": "fontIcon",
+              "description": "Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```",
+              "_ui5since": "2.23.0",
+              "_ui5type": {
+                "text": "Array<HTMLElement>"
+              },
+              "_ui5privacy": "public"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -18127,8 +18138,12 @@
               "name": "content"
             },
             {
-              "description": "Used to style the wrapper of the header.",
+              "description": "Used to style the header.",
               "name": "header"
+            },
+            {
+              "description": "Used to style the outermost header wrapper, useful for adjusting sticky header position.",
+              "name": "header-wrapper"
             }
           ],
           "slots": [
@@ -26945,7 +26960,7 @@
               "default": "false",
               "description": "Defines the interactive state of the navigation action.",
               "privacy": "public",
-              "deprecated": "As of version 2.20.0, the navigation icon is deprecated.\nFor better accessibility, the interactive mode which renders a button, must be used instead. To handle the action, attach a listener to the `click` event.\nIf the navigation should be triggered when a row is pressed, set the row's `interactive` property and use the `row-click` event of the `ui5-table`.\nThis property will be removed in a future release."
+              "deprecated": "As of version 2.20.0, the navigation icon is deprecated.\nFor better accessibility, the interactive mode which renders a button, must be used instead. To handle the action, attach a listener to the `click` event.\nIf the navigation should be triggered when a row is pressed, set the row's `interactive` property and use the `row-click` event of the `ui5-table`.\nThis property will be removed in the next major version."
             },
             {
               "kind": "field",
@@ -26967,7 +26982,7 @@
               "type": {
                 "text": "boolean"
               },
-              "deprecated": "As of version 2.20.0, the navigation icon is deprecated.\nFor better accessibility, the interactive mode which renders a button, must be used instead. To handle the action, attach a listener to the `click` event.\nIf the navigation should be triggered when a row is pressed, set the row's `interactive` property and use the `row-click` event of the `ui5-table`.\nThis property will be removed in a future release."
+              "deprecated": "As of version 2.20.0, the navigation icon is deprecated.\nFor better accessibility, the interactive mode which renders a button, must be used instead. To handle the action, attach a listener to the `click` event.\nIf the navigation should be triggered when a row is pressed, set the row's `interactive` property and use the `row-click` event of the `ui5-table`.\nThis property will be removed in the next major version."
             },
             {
               "description": "Defines the visibility of the row action.\n\n**Note:** Invisible row actions still take up space, allowing to hide the action while maintaining its position.",
