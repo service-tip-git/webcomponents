@@ -313,6 +313,9 @@ let ListItem = ListItem_1 = class ListItem extends ListItemBase {
         ].filter(Boolean);
         return texts.join(" ");
     }
+    get _ariaDescribedByIds() {
+        return `${this._id}-invisibleText-describedby`;
+    }
     get _accInfo() {
         return {
             role: this.listItemAccessibleRole,
@@ -325,6 +328,7 @@ let ListItem = ListItem_1 = class ListItem extends ListItemBase {
             setsize: this.accessibilityAttributes.ariaSetsize,
             posinset: this.accessibilityAttributes.ariaPosinset,
             tooltip: this.tooltip,
+            ariaDescribedBy: this._ariaDescribedByIds || undefined,
         };
     }
     get _hasHighlightColor() {

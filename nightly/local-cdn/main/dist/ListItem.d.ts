@@ -36,6 +36,7 @@ type AccInfo = {
     ariaOwns?: string;
     tooltip?: string;
     ariaKeyShortcuts?: string;
+    ariaDescribedBy?: string;
 };
 type ListItemAccessibilityAttributes = Pick<AccessibilityAttributes, "hasPopup" | "ariaSetsize" | "ariaPosinset">;
 /**
@@ -195,6 +196,7 @@ declare abstract class ListItem extends ListItemBase {
     get hasDeleteButtonSlot(): boolean;
     get _accessibleNameRef(): string;
     get ariaLabelledByText(): string;
+    get _ariaDescribedByIds(): string;
     get _accInfo(): AccInfo;
     get _hasHighlightColor(): boolean;
     get hasConfigurableMode(): boolean;
