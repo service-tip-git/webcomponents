@@ -642,8 +642,8 @@ export default `:host {
     --_ui5_radio_button_outer_ring_hover_color: var(--sapField_Hover_BorderColor);
     --_ui5_radio_button_outer_ring_active_color: var(--sapField_Hover_BorderColor);
     --_ui5_radio_button_outer_ring_checked_hover_color: var(--sapField_Hover_BorderColor);
-    --_ui5_radio_button_outer_ring_padding: var(--_ui5-compact-size, 0 .5rem)  var(--_ui5-cozy-size, 0 .6875rem);
-    --_ui5_radio_button_outer_ring_padding_with_label: var(--_ui5-compact-size, 0 .5rem)  var(--_ui5-cozy-size, 0 .6875rem);
+    --_ui5_radio_button_outer_ring_padding: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, .6875rem);
+    --_ui5_radio_button_outer_ring_padding_with_label: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, .6875rem);
     --_ui5_radio_button_border_radius: .5rem;
     --_ui5_radio_button_border: none;
     --_ui5_radio_button_focus_outline: block;
@@ -1164,10 +1164,9 @@ export default `:host {
     --_ui5_tc_item_icon_circle_size: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.75rem);
     --_ui5_tc_item_icon_size: var(--_ui5-compact-size, 1rem)  var(--_ui5-cozy-size, 1.25rem);
     --_ui5_tc_item_add_text_margin_top: var(--_ui5-compact-size, .3125rem)  var(--_ui5-cozy-size, .375rem);
-    --_ui5_radio_button_height: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.75rem);
-    --_ui5_radio_button_label_side_padding: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, .875rem);
+    --_ui5_radio_button_label_side_padding: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, .6875rem);
     --_ui5_radio_button_inner_size: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.75rem);
-    --_ui5_radio_button_svg_size: var(--_ui5-compact-size, 1rem)  var(--_ui5-cozy-size, 1.375rem);
+    --_ui5_radio_button_svg_size: var(--_ui5-compact-size, 1.1429em)  var(--_ui5-cozy-size, 1.5714em);
     --_ui5-responsive_popover_header_height: var(--_ui5-compact-size, 2.5rem)  var(--_ui5-cozy-size, 2.75rem);
     --_ui5-tree-indent-step: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, 1.5rem);
     --_ui5-tree-toggle-box-width: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.75rem);
