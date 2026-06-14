@@ -149,9 +149,10 @@ declare class DayPicker extends CalendarPart implements ICalendarPicker {
      * Selects/deselects a day.
      * @param e
      * @param isShift true if the user did Click+Shift or Enter+Shift (but not Space+Shift)
+     * @param setTimestamp whether to move focus (timestamp) to the selected day; false for mouse clicks where focus is independent
      * @private
      */
-    _selectDate(e: Event, isShift: boolean): void;
+    _selectDate(e: Event, isShift: boolean, setTimestamp?: boolean): void;
     _updateSelectedDates(timestamp: number, isShift: boolean): void;
     /**
      * Selects/deselects the whole row (week).
@@ -161,6 +162,7 @@ declare class DayPicker extends CalendarPart implements ICalendarPicker {
     _toggleTimestampInSelection(timestamp: number): void;
     _addTimestampToSelection(timestamp: number): void;
     _removeTimestampFromSelection(timestamp: number): void;
+    _onmousedown(e: MouseEvent): void;
     /**
      * Called when at least one day is selected and the user presses "Shift".
      * @param timestamp

@@ -41,7 +41,7 @@ import type TableCell from "./TableCell.js";
  *
  * @constructor
  * @extends TableRow
- * @since 2.22.0
+ * @since 2.23.0
  * @public
  */
 declare class TableGroupRow extends TableRow {

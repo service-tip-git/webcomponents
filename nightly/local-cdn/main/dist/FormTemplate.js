@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "@ui5/webcomponents-base/jsx-runtime";
 import Title from "./Title.js";
 export default function FormTemplate() {
-    return (_jsxs("div", { class: "ui5-form-root", role: this.effectiveAccessibleRole, "aria-label": this.effectiveAccessibleName, "aria-labelledby": this.effectiveАccessibleNameRef, style: {
+    return (_jsxs("div", { class: "ui5-form-root", role: this.effectiveAccessibleRole, "aria-label": this.effectiveAccessibleName, "aria-labelledby": this.effectiveAccessibleNameRef, style: {
             "--ui5-form-columns-s": this.columnsS,
             "--ui5-form-columns-m": this.columnsM,
             "--ui5-form-columns-l": this.columnsL,
