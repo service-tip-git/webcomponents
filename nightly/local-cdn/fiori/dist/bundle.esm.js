@@ -6,7 +6,6 @@ import "./Assets.js";
 // FIORI illustrations
 import "./illustrations/AllIllustrations.js";
 // FIORI components
-import HeroBanner from "./HeroBanner.js";
 import BarcodeScannerDialog from "./BarcodeScannerDialog.js";
 import DynamicPage from "./DynamicPage.js";
 import DynamicPageHeader from "./DynamicPageHeader.js";

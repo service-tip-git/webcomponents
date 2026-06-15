@@ -55,7 +55,7 @@ const EMPTY_ACTIONS = [];
  *
  * @constructor
  * @extends TableRow
- * @since 2.23.0
+ * @since 2.22.0
  * @public
  */
 let TableGroupRow = TableGroupRow_1 = class TableGroupRow extends TableRow {

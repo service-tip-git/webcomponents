@@ -5,8 +5,5 @@ const registerFeature = (name, feature) => {
 const getFeature = (name) => {
     return features.get(name);
 };
-const getRegisteredFeatures = () => {
-    return [...features.keys()];
-};
-export { registerFeature, getFeature, getRegisteredFeatures, };
+export { registerFeature, getFeature, };
 //# sourceMappingURL=FeaturesRegistry.js.map

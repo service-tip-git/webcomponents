@@ -329,10 +329,9 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
      * Selects/deselects a day.
      * @param e
      * @param isShift true if the user did Click+Shift or Enter+Shift (but not Space+Shift)
-     * @param setTimestamp whether to move focus (timestamp) to the selected day; false for mouse clicks where focus is independent
      * @private
      */
-    _selectDate(e, isShift, setTimestamp = true) {
+    _selectDate(e, isShift) {
         let target = e.target;
         if (!target.hasAttribute("data-sap-timestamp")) {
             target = target.parentNode;
@@ -341,9 +340,7 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
             return;
         }
         const timestamp = this._getTimestampFromDom(target);
-        if (setTimestamp) {
-            this._safelySetTimestamp(timestamp);
-        }
+        this._safelySetTimestamp(timestamp);
         this._updateSecondTimestamp();
         this._updateSelectedDates(timestamp, isShift);
         this.fireDecoratorEvent("change", {
@@ -414,17 +411,6 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
     }
     _removeTimestampFromSelection(timestamp) {
         this.selectedDates = this.selectedDates.filter(value => value !== timestamp);
-    }
-    _onmousedown(e) {
-        let target = e.target;
-        if (!target.hasAttribute("data-sap-timestamp")) {
-            target = target.parentNode;
-        }
-        if (!this._isDayPressed(target)) {
-            return;
-        }
-        this._safelySetTimestamp(this._getTimestampFromDom(target));
-        this.fireDecoratorEvent("navigate", { timestamp: this.timestamp });
     }
     /**
      * Called when at least one day is selected and the user presses "Shift".
@@ -552,7 +538,7 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
      * @private
      */
     _onclick(e) {
-        this._selectDate(e, e.shiftKey, false);
+        this._selectDate(e, e.shiftKey);
     }
     /**
      * Called upon "Home" or "End" - moves the focus to the first or last item in the row.

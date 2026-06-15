@@ -381,7 +381,6 @@ declare class Select extends UI5Element implements IFormInputElement {
     get responsivePopoverId(): string;
     get isDisabled(): true | undefined;
     get _headerTitleText(): string;
-    get _cancelButtonText(): string;
     get _currentlySelectedOption(): IOption;
     get _effectiveTabIndex(): 0 | -1;
     /**

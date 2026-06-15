@@ -401,8 +401,9 @@ Tab = Tab_1 = __decorate([
     /**
      * Fired when the tab is selected either with a mouse/tap or by using the Enter or Space key.
      *
-     * @since 2.23.0
+     * @since 2.22.0
      * @public
+     * @param {Tab} tab The selected tab.
      * @param {Event} originalEvent The original event from the user interaction.
      */
     ,

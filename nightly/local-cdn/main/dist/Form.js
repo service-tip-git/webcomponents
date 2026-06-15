@@ -366,7 +366,7 @@ let Form = Form_1 = class Form extends UI5Element {
         }
         return this.hasHeader ? undefined : Form_1.i18nBundle.getText(FORM_ACCESSIBLE_NAME);
     }
-    get effectiveAccessibleNameRef() {
+    get effectiveАccessibleNameRef() {
         if (this.accessibleName || this.accessibleNameRef) {
             return;
         }

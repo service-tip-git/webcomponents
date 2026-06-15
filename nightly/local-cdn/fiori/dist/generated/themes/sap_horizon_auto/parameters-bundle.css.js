@@ -1,10 +1,4 @@
 export default `:host {
-    --_ui5_banner_background: light-dark(var(--sapShell_Banner_Background, var(--sapHighlightColor)), var(--sapShell_HeroBanner_Background));
-    --_ui5_banner_text_color: light-dark(var(--sapShell_Banner_TextColor, var(--sapContent_ContrastTextColor)), var(--sapShell_HeroBanner_TextColor));
-    --_ui5_banner_border_radius: var(--sapTile_BorderCornerRadius);
-    --_ui5_banner_border: .0625rem solid var(--sapTile_BorderColor);
-    --_ui5_banner_box_shadow: var(--sapContent_Shadow0);
-    --_ui5_banner_background_image: var(--sapShell_HeroBanner_BackgroundImage);
     --_ui5_timeline_scroll_container_offset: var(--_ui5-light-scheme, .5rem) var(--_ui5-dark-scheme, var(--_ui5-f2d95f8));
     --_ui5_shellbar_notification_btn_count_offset: var(--_ui5-light-scheme, .125rem) var(--_ui5-dark-scheme, var(--_ui5-f2d95f8));
     --_ui5_side_navigation_item_expand_icon_hover_left: auto;

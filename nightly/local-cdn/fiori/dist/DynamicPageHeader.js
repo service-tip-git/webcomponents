@@ -65,9 +65,6 @@ let DynamicPageHeader = DynamicPageHeader_1 = class DynamicPageHeader extends UI
      * @internal
      */
     get _headerRegionAriaLabel() {
-        if (this.accessibleName) {
-            return this.accessibleName;
-        }
         const defaultText = this._snapped
             ? DYNAMIC_PAGE_ARIA_LABEL_SNAPPED_HEADER
             : DYNAMIC_PAGE_ARIA_LABEL_EXPANDED_HEADER;
@@ -80,9 +77,6 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], DynamicPageHeader.prototype, "_snapped", void 0);
-__decorate([
-    property()
-], DynamicPageHeader.prototype, "accessibleName", void 0);
 __decorate([
     i18n("@ui5/webcomponents-fiori")
 ], DynamicPageHeader, "i18nBundle", void 0);

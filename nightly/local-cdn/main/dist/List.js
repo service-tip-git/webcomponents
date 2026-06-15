@@ -23,7 +23,6 @@ import { findClosestPositionsByKey } from "@ui5/webcomponents-base/dist/util/dra
 import NavigationMode from "@ui5/webcomponents-base/dist/types/NavigationMode.js";
 import { getAllAccessibleDescriptionRefTexts, getEffectiveAriaDescriptionText, getEffectiveAriaLabelText, registerUI5Element, deregisterUI5Element, getAllAccessibleNameRefTexts, } from "@ui5/webcomponents-base/dist/util/AccessibilityTextsHelper.js";
 import getNormalizedTarget from "@ui5/webcomponents-base/dist/util/getNormalizedTarget.js";
-import announce from "@ui5/webcomponents-base/dist/util/InvisibleMessage.js";
 import debounce from "@ui5/webcomponents-base/dist/util/debounce.js";
 import isElementInView from "@ui5/webcomponents-base/dist/util/isElementInView.js";
 import ListSelectionMode from "./types/ListSelectionMode.js";
@@ -36,9 +35,8 @@ import ListTemplate from "./ListTemplate.js";
 // Styles
 import listCss from "./generated/themes/List.css.js";
 // Texts
-import { LIST_ROLE_DESCRIPTION, LIST_ROLE_LIST_GROUP_DESCRIPTION, LIST_ROLE_LISTBOX_GROUP_DESCRIPTION, LOAD_MORE_TEXT, ARIA_LABEL_LIST_SELECTABLE, ARIA_LABEL_LIST_MULTISELECTABLE, ARIA_LABEL_LIST_DELETABLE, LIST_ITEM_SELECTED, LIST_ITEM_NOT_SELECTED, } from "./generated/i18n/i18n-defaults.js";
+import { LIST_ROLE_DESCRIPTION, LIST_ROLE_LIST_GROUP_DESCRIPTION, LIST_ROLE_LISTBOX_GROUP_DESCRIPTION, LOAD_MORE_TEXT, ARIA_LABEL_LIST_SELECTABLE, ARIA_LABEL_LIST_MULTISELECTABLE, ARIA_LABEL_LIST_DELETABLE, } from "./generated/i18n/i18n-defaults.js";
 import { isInstanceOfListItemGroup } from "./ListItemGroup.js";
-import { isInstanceOfListItemCustom } from "./ListItemCustom.js";
 const INFINITE_SCROLL_DEBOUNCE_RATE = 250; // ms
 const PAGE_UP_DOWN_SIZE = 10;
 // Maps the List's accessible-role to the expected child item ARIA role (lowercase)
@@ -349,7 +347,7 @@ let List = List_1 = class List extends UI5Element {
     }
     get ariaDescriptionText() {
         const parts = [];
-        if (this.accessibleRole === ListAccessibleRole.List && this._hasInteractiveItems) {
+        if (this.accessibleRole === ListAccessibleRole.List) {
             parts.push(this.defaultAriaDescriptionText);
         }
         const externalDescription = this._associatedDescriptionRefTexts || getEffectiveAriaDescriptionText(this);
@@ -364,14 +362,6 @@ let List = List_1 = class List extends UI5Element {
     }
     get defaultAriaDescriptionText() {
         return List_1.i18nBundle.getText(LIST_ROLE_DESCRIPTION);
-    }
-    get _hasInteractiveItems() {
-        if (this.selectionMode === ListSelectionMode.Delete) {
-            return true;
-        }
-        return this.getItems().some(item => {
-            return item.getAttribute("type") === "Detail" || isInstanceOfListItemCustom(item);
-        });
     }
     get growingButtonAriaLabel() {
         return this.accessibilityAttributes.growingButton?.name;
@@ -502,13 +492,6 @@ let List = List_1 = class List extends UI5Element {
             });
             if (changePrevented) {
                 this._revertSelection(previouslySelectedItems);
-            }
-            else if (this.selectionMode !== ListSelectionMode.Delete) {
-                const item = e.detail.item;
-                const selectedText = item.selected
-                    ? List_1.i18nBundle.getText(LIST_ITEM_SELECTED)
-                    : List_1.i18nBundle.getText(LIST_ITEM_NOT_SELECTED);
-                announce(selectedText, "Polite");
             }
         }
     }
@@ -913,11 +896,7 @@ let List = List_1 = class List extends UI5Element {
         if (!e.target?.isListItemBase) {
             return;
         }
-        const item = e.detail?.item;
-        if (!item) {
-            return;
-        }
-        this.fireDecoratorEvent("item-toggle", { item });
+        this.fireDecoratorEvent("item-toggle", { item: e.detail.item });
     }
     onForwardBefore(e) {
         const listItem = e.target;

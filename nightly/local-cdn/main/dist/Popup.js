@@ -457,12 +457,6 @@ let Popup = Popup_1 = class Popup extends UI5Element {
     get _role() {
         return (this.accessibleRole === PopupAccessibleRole.None) ? undefined : toLowercaseEnumValue(this.accessibleRole);
     }
-    get _contentRole() {
-        return undefined;
-    }
-    get _contentAriaLabel() {
-        return undefined;
-    }
     get _ariaModal() {
         return this.accessibleRole === PopupAccessibleRole.None ? undefined : "true";
     }

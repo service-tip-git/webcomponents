@@ -191,7 +191,7 @@ export default `:host {
     --_ui5_checkbox_transition: unset;
     --_ui5_checkbox_disabled_opacity: var(--sapContent_DisabledOpacity);
     --_ui5_checkbox_border_radius: 0;
-    --_ui5_checkbox_hover_background: var(--sapField_Selector_Hover_Background);
+    --_ui5_checkbox_hover_background: var(--sapContent_Selected_Hover_Background);
     --_ui5_checkbox_active_background: var(--sapContent_Selected_Hover_Background);
     --_ui5_checkbox_checkmark_warning_color: var(--sapField_WarningColor);
     --_ui5_checkbox_inner_warning_color: var(--sapField_WarningColor);
@@ -212,10 +212,10 @@ export default `:host {
     --_ui5_checkbox_inner_error_border: var(--sapField_InvalidBorderWidth) solid var(--sapField_InvalidColor);
     --_ui5_checkbox_inner_warning_border: var(--sapField_WarningBorderWidth) solid var(--sapField_WarningColor);
     --_ui5_checkbox_inner_information_border: var(--sapField_InformationBorderWidth) solid var(--sapField_InformationColor);
-    --_ui5_checkbox_inner_warning_background_hover: var(--sapField_Selector_Hover_WarningBackground);
-    --_ui5_checkbox_inner_error_background_hover: var(--sapField_Selector_Hover_InvalidBackground);
-    --_ui5_checkbox_inner_success_background_hover: var(--sapField_Selector_Hover_SuccessBackground);
-    --_ui5_checkbox_inner_information_background_hover: var(--sapField_Selector_Hover_InformationBackground);
+    --_ui5_checkbox_inner_warning_background_hover: var(--sapField_Hover_Background);
+    --_ui5_checkbox_inner_error_background_hover: var(--sapField_Hover_Background);
+    --_ui5_checkbox_inner_success_background_hover: var(--sapField_Hover_Background);
+    --_ui5_checkbox_inner_information_background_hover: var(--sapField_Hover_Background);
     --_ui5_checkbox_inner_success_border: var(--sapField_SuccessBorderWidth) solid var(--sapField_SuccessColor);
     --_ui5_checkbox_inner_readonly_border: var(--sapElement_BorderWidth) var(--sapField_ReadOnly_BorderColor) dashed;
     --_ui5_checkbox_inner_background: var(--sapField_Background);
@@ -1038,7 +1038,7 @@ export default `:host {
     --_ui5-toolbar-padding-left: .5rem;
     --_ui5-toolbar-padding-right: .5rem;
     --_ui5-toolbar-item-margin-left: 0;
-    --_ui5-toolbar-item-margin-right: .5rem;
+    --_ui5-toolbar-item-margin-right: .25rem;
     --_ui5_step_input_input_error_background_color: inherit;
     --_ui5-step_input_button_state_hover_background_color: var(--sapField_Hover_Background);
     --_ui5_step_input_border_style: none;

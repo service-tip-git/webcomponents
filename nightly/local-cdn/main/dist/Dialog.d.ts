@@ -172,10 +172,6 @@ declare class Dialog extends Popup {
     get hasValueState(): boolean;
     get _dialogStateIcon(): string;
     get _role(): "dialog" | "alertdialog" | undefined;
-    get _contentRole(): "region";
-    get _headerAriaLabel(): string;
-    get _contentAriaLabel(): string;
-    get _footerAriaLabel(): string;
     _show(): void;
     onBeforeRendering(): void;
     /**

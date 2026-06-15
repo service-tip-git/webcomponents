@@ -405,6 +405,7 @@ declare class ShellBar extends UI5Element {
     getPackedSeparatorInfo(item: HTMLElement, isStartGroup: boolean): {
         shouldPack: boolean;
     };
+    sortItems(items: readonly ShellBarItem[]): ShellBarItem[];
     get actionsAccessibilityInfo(): ShellBarAccessibilityInfo;
     get actionsRole(): "toolbar" | undefined;
     get contentRole(): "group" | undefined;

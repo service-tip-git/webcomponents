@@ -8,7 +8,6 @@ var ColorPicker_1;
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import customElement from "@ui5/webcomponents-base/dist/decorators/customElement.js";
 import property from "@ui5/webcomponents-base/dist/decorators/property.js";
-import query from "@ui5/webcomponents-base/dist/decorators/query.js";
 import event from "@ui5/webcomponents-base/dist/decorators/event-strict.js";
 import { isEnter } from "@ui5/webcomponents-base/dist/Keys.js";
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
@@ -23,8 +22,7 @@ import InvisibleMessageMode from "@ui5/webcomponents-base/dist/types/InvisibleMe
 import { COLORPICKER_LABEL, COLORPICKER_SLIDER_GROUP, COLORPICKER_ALPHA_SLIDER, COLORPICKER_HUE_SLIDER, COLORPICKER_HEX, COLORPICKER_RED, COLORPICKER_GREEN, COLORPICKER_BLUE, COLORPICKER_ALPHA, COLORPICKER_SATURATION, COLORPICKER_LIGHT, COLORPICKER_HUE, COLORPICKER_TOGGLE_MODE_TOOLTIP, COLORPICKER_PERCENTAGE, COLORPICKER_COLOR_MODE_CHANGED, } from "./generated/i18n/i18n-defaults.js";
 // Styles
 import ColorPickerCss from "./generated/themes/ColorPicker.css.js";
-// Fallback box width in CSS pixels at 16px root font-size (16rem).
-const DEFAULT_BOX_SIZE = 256;
+const PICKER_POINTER_WIDTH = 6.5;
 /**
  * @class
  *
@@ -99,11 +97,10 @@ let ColorPicker = ColorPicker_1 = class ColorPicker extends UI5Element {
          */
         this._displayHSL = false;
         this._colorValue = new ColorValue();
-        // Bottom-right corner of the picker box (white = l=100%, s=0%)
-        // Stored as percentages so positioning is independent of root font-size.
+        // Bottom Right corner
         this._selectedCoordinates = {
-            x: 100,
-            y: 100,
+            x: 256 - PICKER_POINTER_WIDTH,
+            y: 256 - PICKER_POINTER_WIDTH,
         };
         // Default main color is red
         this._mainValue = {
@@ -114,11 +111,6 @@ let ColorPicker = ColorPicker_1 = class ColorPicker extends UI5Element {
         this.selectedHue = 0;
         this.mouseDown = false;
         this.mouseIn = false;
-    }
-    get _boxSize() {
-        // clientWidth excludes border, matching the coordinate space of MouseEvent.offsetX/Y
-        // which is measured from the element's padding edge.
-        return this._mainColorRef?.clientWidth || DEFAULT_BOX_SIZE;
     }
     onBeforeRendering() {
         const valueAsRGB = getRGBColor(this.value);
@@ -330,11 +322,9 @@ let ColorPicker = ColorPicker_1 = class ColorPicker extends UI5Element {
         this._colorValue.Alpha = this._alpha;
     }
     _changeSelectedColor(x, y) {
-        const boxSize = this._boxSize;
-        // Store coordinates as percentages of the picker box.
         this._selectedCoordinates = {
-            x: (x / boxSize) * 100,
-            y: (y / boxSize) * 100,
+            x: x - PICKER_POINTER_WIDTH, // Center the coordinates, because of the width of the circle
+            y: y - PICKER_POINTER_WIDTH, // Center the coordinates, because of the height of the circle
         };
         // Idication that changes to the color settings are triggered as a result of user pressing over the main color section.
         this._isSelectedColorChanged = true;
@@ -356,9 +346,8 @@ let ColorPicker = ColorPicker_1 = class ColorPicker extends UI5Element {
         // 0 ≤ H < 360
         // 4.251 because with 4.25 we get out of the colors range.
         const h = this._hue;
-        const boxSize = this._boxSize;
-        let s = +(1 - (y / boxSize)).toFixed(2);
-        let l = +(x / boxSize).toFixed(2);
+        let s = +(1 - (y / 256)).toFixed(2);
+        let l = +(x / 256).toFixed(2);
         if (Number.isNaN(s) || Number.isNaN(l)) {
             // The event is finished out of the main color section
             return;
@@ -379,11 +368,9 @@ let ColorPicker = ColorPicker_1 = class ColorPicker extends UI5Element {
     }
     _updateColorGrid() {
         const hslColours = this._colorValue.HSL;
-        // Coordinates are percentages: x = lightness, y = inverted saturation.
-        // The template applies them as `left: x%` / `top: y%` so the circle scales with the box.
         this._selectedCoordinates = {
-            x: hslColours.l,
-            y: 100 - hslColours.s,
+            x: ((hslColours.l * 2.56)) - PICKER_POINTER_WIDTH, // Center the coordinates, because of the width of the circle
+            y: (256 - (hslColours.s * 2.56)) - PICKER_POINTER_WIDTH, // Center the coordinates, because of the height of the circle
         };
         if (this._isSelectedColorChanged) { // We shouldn't update the hue value when user presses over the main color section.
             this._isSelectedColorChanged = false;
@@ -569,9 +556,6 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], ColorPicker.prototype, "_displayHSL", void 0);
-__decorate([
-    query(".ui5-color-picker-main-color")
-], ColorPicker.prototype, "_mainColorRef", void 0);
 __decorate([
     i18n("@ui5/webcomponents")
 ], ColorPicker, "i18nBundle", void 0);

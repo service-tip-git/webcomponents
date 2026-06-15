@@ -313,7 +313,7 @@ declare class Form extends UI5Element {
     get hasHeaderText(): boolean;
     get hasCustomHeader(): boolean;
     get effectiveAccessibleName(): string | undefined;
-    get effectiveAccessibleNameRef(): string | undefined;
+    get effectiveАccessibleNameRef(): string | undefined;
     get effectiveAccessibleRole(): "form" | "region";
     get groupItemsInfo(): Array<GroupItemsInfo>;
     get itemsInfo(): Array<ItemsInfo>;

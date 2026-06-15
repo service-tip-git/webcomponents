@@ -18,11 +18,6 @@
       "description": "### Overview\n\nA layout component, representing a web page, consisting of a title, header with dynamic behavior, a content area, and an optional floating footer.\n\nThe component consist of several components:\n\n- `DynamicPageTitle` - a component, holding the title of the page, the navigation actions and the content. The displayed content changes based on the current mode of the `DynamicPageHeader`.\n- `DynamicPageHeader` - a generic container, which can contain a single layout component and any other HTML elements. The header works in two modes - expanded and snapped and its behavior can be adjusted with the help of different properties.\n- `Content area` - a generic container, which can have a single UI5 layout.\n- `Footer` - positioned at the bottom with a small offset and used for additional actions, the footer floats above the content.\n\n### Usage\n\nUse the `DynamicPage` if you need to have a title, that is always visible\nand a header, that has configurable Expanding/Snapping functionality.\nIf you don't need the Expanding/Snapping functionality it is better to use the\n`ui5-page` as a lighter component.\n\nThe app can add to the `default` slot of the ui5-dynamic-page either content that is designed to fit its container (e.g. has 100% height),\nor content with own height that may overflow its container. In the second case the `DynamicPage` will show a scrollbar that allows the user\nscroll through the content.\n\n## Notes:\n\n- Snapping of the `DynamicPageTitle` is not supported in the following case:\n - When the `DynamicPage` has a scroll bar, the component usually scrolls to the snapping point - the point, where the `DynamicPageHeader` is scrolled out completely. However, when there is a scroll bar, but not enough content to reach the snapping point, the snapping is not possible using scrolling.\n\n### Responsive Behavior\n\nDynamic page web component implements the responsive paddings design.\n\n### Keyboard Handling\n\n\n### Basic Navigation\n\n- [SPACE, ENTER, RETURN] - If focus is on a button inside DynamicPageTitle its action is being triggered, once activated.\nIf focus is on the snap header button (arrow button), or on the header itself, once activated, it triggers the associated action (such as snap/expand the header).\nIf focus is on pin button (the button with pin icon on the bottom of the header), once activated, it triggers the associated action (pinning of the header).\n\n### Fast Navigation\n- This component provides a build in fast navigation group which can be used via `F6 / Shift + F6` or ` Ctrl + Alt(Option) + Down /  Ctrl + Alt(Option) + Up`.\nIn order to use this functionality, you need to import the following module:\n\n- `import \"@ui5/webcomponents-base/dist/features/F6Navigation.js\"`\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/DynamicPage.js\";`\n\n\n---\n\n\n\n\n### **Events:**\n - **pin-button-toggle** - Fired when the pin header button is toggled.\n- **title-toggle** - Fired when the expand/collapse area of the title is toggled.\n\n### **Slots:**\n - **default** - Defines the content of the Dynamic Page.\n- **footerArea** - Defines the footer HTML Element.\n- **headerArea** - Defines the header HTML Element.\n- **titleArea** - Defines the title HTML Element.\n\n### **CSS Parts:**\n - **content** - Used to style the content of the component\n- **fit-content** - Used to style the fit content container of the component.\n- **footer** - Used to style the footer of the component",
       "attributes": [
         {
-          "name": "accessibility-attributes",
-          "description": "Defines additional accessibility attributes on different areas of the component.\n\nThe accessibilityAttributes object has the following fields,\nwhere each field is an object supporting one or more accessibility attributes:\n\n - **root**: `root.role` and `root.name`.\n - **header**: `header.role` and `header.name`.\n - **content**: `content.role` and `content.name`.\n - **footer**: `footer.role` and `footer.name`.\n\nThe accessibility attributes support the following values:\n\n- **role**: Defines the accessible ARIA landmark role of the area.\nAccepts the following values per section:\n`root` — `none`, `main`, `region`;\n`header` — `none`, `banner`, `region`;\n`content` — `none`, `main`, `region`, `form`;\n`footer` — `none`, `contentinfo`, `region`.\n\n- **name**: Defines the accessible ARIA name of the area.\nAccepts any string.",
-          "values": [{ "name": "DynamicPageAccessibilityAttributes" }]
-        },
-        {
           "name": "header-pinned",
           "description": "Defines if the header is pinned.",
           "values": []
@@ -48,13 +43,7 @@
     {
       "name": "ui5-dynamic-page-header",
       "description": "Header of the DynamicPage.\n\n### Overview\n\nThe DynamicPageHeader `ui5-dynamic-page-header` is part of the DynamicPage family\nand is used to serve as header of the `DynamicPage`.\n\n### Usage\n\nThe `DynamicPageHeader` can hold any layout control and has two states - expanded\nand collapsed (snapped). The switching between these states happens when:\n- the user scrolls below its bottom margin\n- the user clicks on the `DynamicPageTitle`\n- through the `DynamicPage` property `headerSnapped`\n\n### Responsive Behavior\n\nThe responsive behavior of the `DynamicPageHeader` depends on the behavior of the\ncontent that is displayed.\n\n### Accessibility\n\nThe `DynamicPageHeader` provides an accessible label for the header region.\n\n\n---\n\n\n\n\n### **Slots:**\n - **default** - Defines the content of the Dynamic Page Header.",
-      "attributes": [
-        {
-          "name": "accessible-name",
-          "description": "Defines the accessible ARIA label for the header region.\nOverrides the default \"Header Expanded\" / \"Header Snapped\" text.",
-          "values": []
-        }
-      ],
+      "attributes": [],
       "references": []
     },
     {
@@ -232,38 +221,6 @@
         {
           "name": "text",
           "description": "Defines the text of the group item.",
-          "values": []
-        }
-      ],
-      "references": []
-    },
-    {
-      "name": "ui5-hero-banner",
-      "description": "### Overview\n\nThe `ui5-hero-banner` is a flexible, full-width banner designed for placement at the top of a page.\nIt provides a personalized greeting and quick access to key information or actions.\n\n### Structure\n\nThe HeroBanner consists of the following building blocks:\n\n- **Banner Canvas** - the visual base with a background color, optional background image and shadow.\n- **Overline** (optional) - contextual text at the top, e.g. the current date or a status message.\n- **Header** (optional) - the main greeting header below the overline, e.g. \"Hello, John\".\n- **Free Slots** (optional) - customizable content areas that can contain KPI cards, search components, text, buttons, etc.\n\nThe banner is not sticky — it scrolls away with the page content when the user scrolls down.\n\n### Usage\n\nPlace the `ui5-hero-banner` at the top of a page to welcome the user and surface relevant\ninformation or shortcuts at a glance.\n\nThe hero banner itself is non-interactive. However, interactive elements such as buttons, cards,\nor search fields can be placed inside the free content slots and will follow their own\ninteractive states.\n\n### Responsive Behavior\n\nThe hero banner adapts to different screen sizes:\n- On smaller screens, split layouts (Equal, FirstWider) collapse to a single stacked column.\n- The heading text wraps to multiple lines as needed.\n- Buttons in the headerAction slot will wrap.\n- On screens ≤1024px, the header text is wrapped to a maximum of 3 lines.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents-fiori/dist/HeroBanner.js\";`\n\n\n---\n\n\n\n\n### **Slots:**\n - **actions** - Defines action buttons displayed to the right of the header area.\nTypically used to display actions buttons in the top right corner.\n\nCan contain buttons, links, or other interactive elements that provide\nquick access to relevant actions directly from the hero banner header.\n- **default** - Defines the first (default) free content block of the hero banner.\n\nThis is the default slot — content placed directly inside `<ui5-hero-banner>`\nwithout a slot attribute lands here.\nCan contain KPI cards, search input fields, text, buttons, and more.\n- **endContent** - Defines the second free content block of the hero banner.\n\nUsed alongside `startContent` when `columnsRatio` is set (`Equal`, `FirstWider`).\nCan contain cards, buttons, and other interactive elements.\n\n### **CSS Parts:**\n - **canvas** - Used to style the banner canvas container\n- **content** - Used to style the content area of the banner\n- **endContent** - Used to style the end content block\n- **header** - Used to style the header area (salutation, date, header actions)\n- **startContent** - Used to style the start (default) content block",
-      "attributes": [
-        {
-          "name": "actions-placement",
-          "description": "Defines the placement of the actions slot within the hero banner header.\n\n- **TopEnd** (default) - Actions are displayed to the right of the header text, at the top of the header row.\n- **BottomStart** - Actions are displayed below the header text, left-aligned, regardless of `columnsRatio` or slot usage.",
-          "values": [{ "name": "TopEnd" }, { "name": "BottomStart" }]
-        },
-        {
-          "name": "columns-ratio",
-          "description": "Defines the ratio between the two content columns inside the hero banner.\n\nTakes effect only when `endContent` is provided. When no `endContent` is present, the content spans the full width (single column).\n\n- **Equal** - Two equal columns. Both content blocks share the available width equally.\n  On smaller screens, both slots stack vertically.\n- **FirstWider** - Two unequal columns. The start content takes two-thirds of the width, the end content one-third.\n  On smaller screens, both slots stack vertically.",
-          "values": [{ "name": "Equal" }, { "name": "FirstWider" }]
-        },
-        {
-          "name": "header-block-placement",
-          "description": "Defines the vertical placement of the header block within the content area.\n\n- **Top** (default) - Header block is placed at the top of the content area.\n- **Bottom** - Header block is pushed to the bottom of column 1. Only takes effect when `columnsRatio`\n  is `Equal` or `FirstWider` and only `endContent` is provided (no default slot content).\n  When `actionsPlacement` is also `BottomStart`, the `endContent` slot spans the full height.",
-          "values": [{ "name": "Top" }, { "name": "Bottom" }]
-        },
-        {
-          "name": "header-text",
-          "description": "Defines the header text displayed in the hero banner.\n\nThis is the main greeting header, typically a personalized message\nsuch as \"Hello, John\".",
-          "values": []
-        },
-        {
-          "name": "overline-text",
-          "description": "Defines text displayed above the heading as an overline.\nCan be used to show the current date, a status message, or any other relevant contextual information.",
           "values": []
         }
       ],
@@ -1247,7 +1204,7 @@
     },
     {
       "name": "ui5-timeline",
-      "description": "### Overview\n\nThe `ui5-timeline` component shows entries (such as objects, events, or posts) in chronological order.\nA common use case is to provide information about changes to an object, or events related to an object.\nThese entries can be generated by the system (for example, value XY changed from A to B), or added manually.\nThere are two distinct variants of the timeline: basic and social. The basic timeline is read-only,\nwhile the social timeline offers a high level of interaction and collaboration, and is integrated within SAP Jam.\n\n### Header and Info Bar Slots\n\nThe Timeline exposes two named slots above the items area:\n\n- `header` — for a controls bar (search field, filter trigger, sort toggle, etc.).\nThe most common pattern is to place a `ui5-toolbar` containing a search input and buttons that open\na filter dialog or toggle sort direction. The Timeline itself performs no filtering, sorting, or\nsearching — the application listens for events from its own controls and reorders, hides, or\nadds items in the default slot accordingly.\n\n- `infoBar` — for a status bar that reflects the result of the controls (active filters,\napplied sort, current search query). Typically contains tokens, labels, or a `ui5-bar`.\n\nThe Timeline itself does not filter, sort, or search — the application owns that logic.\nUse `stickyHeader` to pin both bars while the Timeline's items scroll. Give the Timeline\na constrained height in this mode so it owns its scrollbar.\n\n\n---\n\n\n\n\n### **Events:**\n - **load-more** - Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`.\n\n### **Slots:**\n - **default** - Determines the content of the `ui5-timeline`.\n- **header** - Defines the content of the Timeline's header area, displayed above the items.\nTypically a `ui5-toolbar` with search, sort, and filter controls.\n- **infoBar** - Defines the content of the Timeline's info bar area, displayed below the header\nand above the items. Use for status display (applied filters, sort direction, counts).",
+      "description": "### Overview\n\nThe `ui5-timeline` component shows entries (such as objects, events, or posts) in chronological order.\nA common use case is to provide information about changes to an object, or events related to an object.\nThese entries can be generated by the system (for example, value XY changed from A to B), or added manually.\nThere are two distinct variants of the timeline: basic and social. The basic timeline is read-only,\nwhile the social timeline offers a high level of interaction and collaboration, and is integrated within SAP Jam.\n\n\n---\n\n\n\n\n### **Events:**\n - **load-more** - Fired when the user presses the `More` button or scrolls to the Timeline's end.\n\n**Note:** The event will be fired if `growing` is set to `Button` or `Scroll`.\n\n### **Slots:**\n - **default** - Determines the content of the `ui5-timeline`.",
       "attributes": [
         {
           "name": "accessible-name",
@@ -1276,11 +1233,6 @@
         {
           "name": "loading-delay",
           "description": "Defines the delay in milliseconds, after which the loading indicator will show up for this component.",
-          "values": []
-        },
-        {
-          "name": "sticky-header",
-          "description": "Defines whether the content of the `header` and `infoBar` slots remains visible when the user scrolls the Timeline.\n\n**Note:** The bars pin to the Timeline's own scrollport. Give the Timeline a\nconstrained height (for example `style=\"height: 32rem\"`) so its items scroll\ninside it. Placing the Timeline inside an externally scrolling ancestor while\nleaving the Timeline itself unsized is not supported in this mode — the bars\nwill scroll away with the ancestor.",
           "values": []
         }
       ],

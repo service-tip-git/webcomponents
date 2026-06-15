@@ -606,7 +606,7 @@ let TabContainer = TabContainer_1 = class TabContainer extends UI5Element {
             return;
         }
         if (originalEvent) {
-            selectedTab.fireDecoratorEvent("click", { originalEvent });
+            selectedTab.fireDecoratorEvent("click", { tab: selectedTab, originalEvent });
         }
         // update selected property on all items
         this._itemsFlat.forEach(item => {

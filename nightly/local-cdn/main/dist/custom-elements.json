@@ -11358,14 +11358,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -11662,14 +11655,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -12241,14 +12227,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -12915,14 +12894,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -16875,7 +16847,7 @@
                 "text": "number"
               },
               "default": "0",
-              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.\n\n**Note:** This property is ignored when the `tickmarks` property is used.\nIn that case every custom tickmark is labelled with its own `label`.",
+              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.",
               "privacy": "public"
             },
             {
@@ -16947,23 +16919,6 @@
               "default": "1",
               "description": "Defines the size of the slider's selection intervals (e.g. min = 0, max = 10, step = 5 would result in possible selection of the values 0, 5, 10).\n\n**Note:** If set to 0 the slider handle movement is disabled. When negative number or value other than a number, the component fallbacks to its default value.",
               "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "tickmarks",
-              "type": {
-                "text": "Array<Tickmark>",
-                "references": [
-                  {
-                    "name": "Tickmark",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/SliderScale.js"
-                  }
-                ]
-              },
-              "default": "[]",
-              "description": "Defines custom tickmarks with labels on the slider scale.\nEach tickmark object has a numeric `value` and an optional `label` string.\nTickmarks are purely visual — they display labeled markers at specific positions\nbut do not affect the slider's movement behavior. The slider still moves\naccording to `min`, `max`, and `step`.\n\nWhen the current value matches a tickmark value, the tickmark's label\nis shown in the tooltip and announced via `aria-valuetext`.\n\n**Note:** When `tickmarks` is provided, the scale is automatically shown\n(equivalent to `showTickmarks`), and `labelInterval` is ignored - every\ncustom tickmark is rendered with its own `label`.",
-              "privacy": "public"
             }
           ],
           "attributes": [
@@ -17004,7 +16959,7 @@
               }
             },
             {
-              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.\n\n**Note:** This property is ignored when the `tickmarks` property is used.\nIn that case every custom tickmark is labelled with its own `label`.",
+              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.",
               "name": "label-interval",
               "default": "0",
               "fieldName": "labelInterval",
@@ -17073,15 +17028,6 @@
               "fieldName": "step",
               "type": {
                 "text": "number"
-              }
-            },
-            {
-              "description": "Defines custom tickmarks with labels on the slider scale.\nEach tickmark object has a numeric `value` and an optional `label` string.\nTickmarks are purely visual — they display labeled markers at specific positions\nbut do not affect the slider's movement behavior. The slider still moves\naccording to `min`, `max`, and `step`.\n\nWhen the current value matches a tickmark value, the tickmark's label\nis shown in the tooltip and announced via `aria-valuetext`.\n\n**Note:** When `tickmarks` is provided, the scale is automatically shown\n(equivalent to `showTickmarks`), and `labelInterval` is ignored - every\ncustom tickmark is rendered with its own `label`.",
-              "name": "tickmarks",
-              "default": "[]",
-              "fieldName": "tickmarks",
-              "type": {
-                "text": "Tickmark[]"
               }
             }
           ],
@@ -18738,7 +18684,7 @@
                 "text": "number"
               },
               "default": "0",
-              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.\n\n**Note:** This property is ignored when the `tickmarks` property is used.\nIn that case every custom tickmark is labelled with its own `label`.",
+              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.",
               "privacy": "public"
             },
             {
@@ -18803,23 +18749,6 @@
             },
             {
               "kind": "field",
-              "name": "tickmarks",
-              "type": {
-                "text": "Array<Tickmark>",
-                "references": [
-                  {
-                    "name": "Tickmark",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/SliderScale.js"
-                  }
-                ]
-              },
-              "default": "[]",
-              "description": "Defines custom tickmarks with labels on the slider scale.\nEach tickmark object has a numeric `value` and an optional `label` string.\nTickmarks are purely visual — they display labeled markers at specific positions\nbut do not affect the slider's movement behavior. The slider still moves\naccording to `min`, `max`, and `step`.\n\nWhen the current value matches a tickmark value, the tickmark's label\nis shown in the tooltip and announced via `aria-valuetext`.\n\n**Note:** When `tickmarks` is provided, the scale is automatically shown\n(equivalent to `showTickmarks`), and `labelInterval` is ignored - every\ncustom tickmark is rendered with its own `label`.",
-              "privacy": "public"
-            },
-            {
-              "kind": "field",
               "name": "value",
               "type": {
                 "text": "number"
@@ -18858,7 +18787,7 @@
               }
             },
             {
-              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.\n\n**Note:** This property is ignored when the `tickmarks` property is used.\nIn that case every custom tickmark is labelled with its own `label`.",
+              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.",
               "name": "label-interval",
               "default": "0",
               "fieldName": "labelInterval",
@@ -18918,15 +18847,6 @@
               "fieldName": "step",
               "type": {
                 "text": "number"
-              }
-            },
-            {
-              "description": "Defines custom tickmarks with labels on the slider scale.\nEach tickmark object has a numeric `value` and an optional `label` string.\nTickmarks are purely visual — they display labeled markers at specific positions\nbut do not affect the slider's movement behavior. The slider still moves\naccording to `min`, `max`, and `step`.\n\nWhen the current value matches a tickmark value, the tickmark's label\nis shown in the tooltip and announced via `aria-valuetext`.\n\n**Note:** When `tickmarks` is provided, the scale is automatically shown\n(equivalent to `showTickmarks`), and `labelInterval` is ignored - every\ncustom tickmark is rendered with its own `label`.",
-              "name": "tickmarks",
-              "default": "[]",
-              "fieldName": "tickmarks",
-              "type": {
-                "text": "Tickmark[]"
               }
             },
             {
@@ -19029,7 +18949,7 @@
                 "text": "number"
               },
               "default": "0",
-              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.\n\n**Note:** This property is ignored when the `tickmarks` property is used.\nIn that case every custom tickmark is labelled with its own `label`.",
+              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.",
               "privacy": "public"
             },
             {
@@ -19091,23 +19011,6 @@
               "default": "1",
               "description": "Defines the size of the slider's selection intervals (e.g. min = 0, max = 10, step = 5 would result in possible selection of the values 0, 5, 10).\n\n**Note:** If set to 0 the slider handle movement is disabled. When negative number or value other than a number, the component fallbacks to its default value.",
               "privacy": "public"
-            },
-            {
-              "kind": "field",
-              "name": "tickmarks",
-              "type": {
-                "text": "Array<Tickmark>",
-                "references": [
-                  {
-                    "name": "Tickmark",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/SliderScale.js"
-                  }
-                ]
-              },
-              "default": "[]",
-              "description": "Defines custom tickmarks with labels on the slider scale.\nEach tickmark object has a numeric `value` and an optional `label` string.\nTickmarks are purely visual — they display labeled markers at specific positions\nbut do not affect the slider's movement behavior. The slider still moves\naccording to `min`, `max`, and `step`.\n\nWhen the current value matches a tickmark value, the tickmark's label\nis shown in the tooltip and announced via `aria-valuetext`.\n\n**Note:** When `tickmarks` is provided, the scale is automatically shown\n(equivalent to `showTickmarks`), and `labelInterval` is ignored - every\ncustom tickmark is rendered with its own `label`.",
-              "privacy": "public"
             }
           ],
           "events": [
@@ -19155,7 +19058,7 @@
               }
             },
             {
-              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.\n\n**Note:** This property is ignored when the `tickmarks` property is used.\nIn that case every custom tickmark is labelled with its own `label`.",
+              "description": "Displays a label with a value on every N-th step.\n\n**Note:** The step and tickmarks properties must be enabled.\nExample - if the step value is set to 2 and the label interval is also specified to 2 - then every second\ntickmark will be labelled, which means every 4th value number.",
               "name": "label-interval",
               "default": "0",
               "fieldName": "labelInterval",
@@ -19215,15 +19118,6 @@
               "fieldName": "step",
               "type": {
                 "text": "number"
-              }
-            },
-            {
-              "description": "Defines custom tickmarks with labels on the slider scale.\nEach tickmark object has a numeric `value` and an optional `label` string.\nTickmarks are purely visual — they display labeled markers at specific positions\nbut do not affect the slider's movement behavior. The slider still moves\naccording to `min`, `max`, and `step`.\n\nWhen the current value matches a tickmark value, the tickmark's label\nis shown in the tooltip and announced via `aria-valuetext`.\n\n**Note:** When `tickmarks` is provided, the scale is automatically shown\n(equivalent to `showTickmarks`), and `labelInterval` is ignored - every\ncustom tickmark is rendered with its own `label`.",
-              "name": "tickmarks",
-              "default": "[]",
-              "fieldName": "tickmarks",
-              "type": {
-                "text": "Tickmark[]"
               }
             }
           ],
@@ -20385,14 +20279,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -28158,14 +28045,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -28599,14 +28479,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -28997,14 +28870,7 @@
               "kind": "field",
               "name": "accessibleRole",
               "type": {
-                "text": "ListItemAccessibleRole | undefined",
-                "references": [
-                  {
-                    "name": "ListItemAccessibleRole",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/types/ListItemAccessibleRole.js"
-                  }
-                ]
+                "text": "Exclude<ListItemAccessibleRole, ListItemAccessibleRole.Group> | undefined"
               },
               "description": "Used to define the role of the list item.\n\n**Note:** If not set, the role is automatically inherited from the parent `ui5-list` based on its `accessible-role` property\n(e.g. `Menu` -> `MenuItem`, `Tree` -> `TreeItem`, `ListBox` -> `Option`).\nAn explicitly set `accessible-role` on the list item takes precedence over the inherited role.",
               "default": "undefined",
@@ -29798,21 +29664,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/delegate/DragAndDropHandler.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "DragAndDropHandler",
-            "module": "dist/delegate/DragAndDropHandler.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/colorpicker-utils/ColorValue.js",
       "declarations": [],
       "exports": [
@@ -29822,6 +29673,21 @@
           "declaration": {
             "name": "ColorValue",
             "module": "dist/colorpicker-utils/ColorValue.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/delegate/DragAndDropHandler.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "DragAndDropHandler",
+            "module": "dist/delegate/DragAndDropHandler.js"
           }
         }
       ]
