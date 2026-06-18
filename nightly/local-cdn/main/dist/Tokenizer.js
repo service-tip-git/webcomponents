@@ -441,13 +441,17 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
             e.preventDefault();
             const isCut = e.key.toLowerCase() === "x" || isDeleteShift(e);
             const selectedTokens = this._tokens.filter(token => token.selected);
-            const focusedToken = selectedTokens.find(token => token.focused);
-            if (isCut) {
-                const cutResult = this._fillClipboard(ClipboardDataOperation.cut, selectedTokens);
-                focusedToken && this.deleteToken(focusedToken);
+            const focusedToken = this._tokens.find(token => token.focused);
+            let tokensToCopy = selectedTokens;
+            if (!tokensToCopy.length && focusedToken) {
+                tokensToCopy = [focusedToken];
+            }
+            if (isCut && !this.readonly && tokensToCopy.length) {
+                const cutResult = this._fillClipboard(ClipboardDataOperation.cut, tokensToCopy);
+                this.deleteToken(tokensToCopy[0]);
                 return cutResult;
             }
-            return this._fillClipboard(ClipboardDataOperation.copy, selectedTokens);
+            return this._fillClipboard(ClipboardDataOperation.copy, tokensToCopy);
         }
         if (isCtrl && e.key.toLowerCase() === "i" && this._tokens.length > 0) {
             e.preventDefault();
@@ -729,7 +733,7 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
         return this.showClearAll && this.hasTokens && this.multiLine && !this.readonly;
     }
     _fillClipboard(shortcutName, tokens) {
-        const tokensTexts = tokens.filter(token => token.selected).map(token => token.text).join("\r\n");
+        const tokensTexts = tokens.map(token => token.text).join("\r\n");
         // Async clipboard API (works in secure contexts - HTTPS/localhost)
         if (navigator.clipboard?.writeText && window.isSecureContext) {
             navigator.clipboard.writeText(tokensTexts)?.catch(() => {

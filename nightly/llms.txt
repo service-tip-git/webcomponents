@@ -2,7 +2,7 @@
 
 > Enterprise-grade, framework-agnostic web components library implementing SAP Fiori design
 
-Version: 2.23.0-rc.1
+Version: 2.24.0-rc.0
 Website: https://ui5.github.io/webcomponents/
 GitHub: https://github.com/SAP/ui5-webcomponents
 
@@ -507,6 +507,10 @@ import "@ui5/webcomponents/dist/Button.js";
   - tag: `ui5-group-item`
   - description: The ui5-group-item component defines the grouping criteria for data in ui5-view-settings-dialog.
 
+#### [HeroBanner](https://ui5.github.io/webcomponents/nightly/components/fiori/HeroBanner/)
+  - tag: `ui5-hero-banner`
+  - description: The ui5-hero-banner is a flexible, full-width banner designed for placement at the top of a page.
+
 #### [IllustratedMessage](https://ui5.github.io/webcomponents/nightly/components/fiori/IllustratedMessage/)
   - tag: `ui5-illustrated-message`
   - description: An IllustratedMessage is a recommended combination of a solution-oriented message, an engaging
@@ -834,4 +838,4 @@ import "@ui5/webcomponents-icons/dist/add.js";
 
 ---
 
-Generated: 2026-06-17T03:53:48.556Z
+Generated: 2026-06-18T03:41:22.603Z

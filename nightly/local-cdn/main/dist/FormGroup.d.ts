@@ -63,6 +63,7 @@ declare class FormGroup extends UI5Element implements IFormItem {
      * **Note:** This property is ignored if `columnSpan` is set, as it is expected that the column span is defined.
      *
      * @default undefined
+     * @since 2.23.0
      * @public
      */
     colSpan?: string;
