@@ -363,25 +363,14 @@ let DynamicPage = DynamicPage_1 = class DynamicPage extends UI5Element {
         this.dynamicPageTitle?.removeAttribute("hovered");
     }
     onContentFocusIn(e) {
-        // composedPath()[0] is the actual focused element inside shadow DOM (e.g. a button inside
-        // a web component host). Must be captured synchronously - composedPath() returns [] inside RAF.
-        const target = e.composedPath()[0];
+        const target = e.target;
         this.setScrollPadding({ start: this.scrollPaddingTop, end: this.endAreaHeight });
-        // Elements partially hidden behind sticky header/footer appear "in view" to the browser
-        // but are obscured. Scroll only if the target is actually behind the sticky areas.
-        // Note: browsers don't reflect dynamic scroll-padding changes, so we check manually.
+        // textareas and similar elements appear "in view" even when partially
+        // hidden behind sticky header/footer.
+        // manual scroll brings them fully into view.
+        // another issue is that browsers do not reflect dynamic changes of scroll-padding
         requestAnimationFrame(() => {
-            const scrollContainer = this.scrollContainer;
-            if (!scrollContainer) {
-                return;
-            }
-            const rect = target.getBoundingClientRect();
-            const containerRect = scrollContainer.getBoundingClientRect();
-            const topObscured = rect.top < containerRect.top + this.scrollPaddingTop;
-            const bottomObscured = rect.bottom > containerRect.bottom - this.endAreaHeight;
-            if (topObscured || bottomObscured) {
-                target.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            }
+            target.scrollIntoView({ behavior: "smooth", block: "nearest" });
         });
     }
     onContentFocusOut() {

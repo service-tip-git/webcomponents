@@ -39,12 +39,10 @@ import ResponsivePopoverCommonCss from "./generated/themes/ResponsivePopoverComm
 import ValueStateMessageCss from "./generated/themes/ValueStateMessage.css.js";
 import SuggestionsCss from "./generated/themes/Suggestions.css.js";
 import "./ComboBoxItem.js";
-import "./ComboBoxItemCustom.js";
 // eslint-disable-next-line
 import "./ComboBoxItemGroup.js";
 // eslint-disable-next-line
 import { isInstanceOfComboBoxItemGroup } from "./ComboBoxItemGroup.js";
-import ComboBoxSelectionChangeTrigger from "./types/ComboBoxSelectionChangeTrigger.js";
 const SKIP_ITEMS_SIZE = 10;
 var ValueStateIconMapping;
 (function (ValueStateIconMapping) {
@@ -593,7 +591,6 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         this._applyAtomicValueAndSelection(item, filterValue);
     }
     _handleArrowDown(e, indexOfItem) {
-        this._selectionTrigger = ComboBoxSelectionChangeTrigger.Keyboard;
         const isOpen = this.open;
         if (this.focused && indexOfItem === -1 && isOpen) {
             this.focused = false;
@@ -609,7 +606,6 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         this._handleItemNavigation(e, itemIndexToBeFocused, true /* isForward */);
     }
     _handleArrowUp(e, indexOfItem) {
-        this._selectionTrigger = ComboBoxSelectionChangeTrigger.Keyboard;
         const isOpen = this.open;
         if (indexOfItem === 0) {
             this._clearFocus();
@@ -624,7 +620,6 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         this._handleItemNavigation(e, --indexOfItem, false /* isForward */);
     }
     _handlePageUp(e, indexOfItem) {
-        this._selectionTrigger = ComboBoxSelectionChangeTrigger.Keyboard;
         const allItems = this._getItems();
         const isProposedIndexValid = indexOfItem - SKIP_ITEMS_SIZE > -1;
         indexOfItem = isProposedIndexValid ? indexOfItem - SKIP_ITEMS_SIZE : 0;
@@ -632,7 +627,6 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         this._handleItemNavigation(e, indexOfItem, shouldMoveForward);
     }
     _handlePageDown(e, indexOfItem) {
-        this._selectionTrigger = ComboBoxSelectionChangeTrigger.Keyboard;
         const allItems = this._getItems();
         const itemsLength = allItems.length;
         const isProposedIndexValid = indexOfItem + SKIP_ITEMS_SIZE < itemsLength;
@@ -641,12 +635,10 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         this._handleItemNavigation(e, indexOfItem, shouldMoveForward);
     }
     _handleHome(e) {
-        this._selectionTrigger = ComboBoxSelectionChangeTrigger.Keyboard;
         const shouldMoveForward = isInstanceOfComboBoxItemGroup(this._filteredItems[0]) && !this.open;
         this._handleItemNavigation(e, 0, shouldMoveForward);
     }
     _handleEnd(e) {
-        this._selectionTrigger = ComboBoxSelectionChangeTrigger.Keyboard;
         this._handleItemNavigation(e, this._getItems().length - 1, true /* isForward */);
     }
     _keyup() {
@@ -893,17 +885,8 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
                 }
                 else {
                     if (this._useSelectedValue) {
-                        // During initial render, match by value even if text is empty
-                        if (this._initialRendering && this.value === "") {
-                            itemToBeSelected = this._filteredItems.find(i => !i.isGroupItem && i.value === valueToMatch);
-                        }
-                        else if (this.value !== "") {
-                            // When user is typing, require exact text match in addition to value match
-                            itemToBeSelected = this._filteredItems.find(i => !i.isGroupItem && i.value === valueToMatch && i.text?.toLowerCase() === this.value.toLowerCase());
-                        }
-                        if (itemToBeSelected) {
-                            return;
-                        }
+                        itemToBeSelected = this.items.find(i => i.value === valueToMatch && (this.value === "" || i.text?.toLowerCase() === this.value.toLowerCase()));
+                        return;
                     }
                     itemToBeSelected = item.text?.toLowerCase() === this.value.toLowerCase() ? item : undefined;
                 }
@@ -930,22 +913,22 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
             this.selectedValue = itemToBeSelected?.value;
         }
         const noUserInteraction = !this.focused && !this._isKeyNavigation && !this._selectionPerformed && !this._iconPressed;
+        // Skip firing "selection-change" event if this is initial rendering or if there has been no user interaction yet
         if (this._initialRendering || noUserInteraction) {
             return;
         }
+        // Fire selection-change event only when selection actually changes
         if (previouslySelectedItem !== itemToBeSelected) {
-            const trigger = this._selectionTrigger || ComboBoxSelectionChangeTrigger.Typeahead;
-            this._selectionTrigger = undefined;
             if (itemToBeSelected) {
+                // New item selected
                 this.fireDecoratorEvent("selection-change", {
                     item: itemToBeSelected,
-                    trigger,
                 });
             }
             else if (previouslySelectedItem) {
+                // Selection cleared - fire event with 'null'
                 this.fireDecoratorEvent("selection-change", {
                     item: null,
-                    trigger,
                 });
             }
         }
@@ -995,7 +978,6 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
         if (!item.selected) {
             this.fireDecoratorEvent("selection-change", {
                 item,
-                trigger: ComboBoxSelectionChangeTrigger.Click,
             });
         }
         this._fireChangeEvent();
@@ -1410,7 +1392,6 @@ ComboBox = ComboBox_1 = __decorate([
     /**
      * Fired when selection is changed by user interaction
      * @param {IComboBoxItem} item item to be selected.
-     * @param {ComboBoxSelectionChangeTrigger} trigger source of the selection change - typeahead, click or keyboard navigation.
      * @public
      */
     ,
@@ -1420,5 +1401,4 @@ ComboBox = ComboBox_1 = __decorate([
 ], ComboBox);
 ComboBox.define();
 export default ComboBox;
-export { ComboBoxSelectionChangeTrigger };
 //# sourceMappingURL=ComboBox.js.map

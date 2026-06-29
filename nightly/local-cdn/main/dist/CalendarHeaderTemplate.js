@@ -34,8 +34,9 @@ function renderMiddleButtons(headerText) {
                         _jsx("span", { class: "ui5-calheader-btn-sectext", children: this._headerYearRangeButtonTextSecType })] })] }));
 }
 function renderNextButton(isFirst, isLast, isMultiple) {
+    // In portrait or compact mode, show next button only on first calendar
     // In landscape mode, show next button only on last calendar
-    const isVertical = this._portraitView;
+    const isVertical = this._portraitView || this._isCompactMode;
     const shouldShowNextButton = !isMultiple || (isVertical ? isFirst : isLast);
     const shouldShowSpacer = isMultiple && (isVertical ? isLast : !isLast);
     if (shouldShowNextButton) {

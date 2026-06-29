@@ -1,4 +1,4 @@
-import { createOrUpdateStyle } from "./ManagedStyles.js";
+import { hasStyle, createStyle } from "./ManagedStyles.js";
 import { getFeature } from "./FeaturesRegistry.js";
 import fontFaceCSS from "./generated/css/FontFace.css.js";
 import { getDefaultFontLoading } from "./config/Fonts.js";
@@ -14,7 +14,9 @@ const insertMainFontFace = () => {
     if (!getDefaultFontLoading() || hasFontStyles) {
         return;
     }
-    createOrUpdateStyle(fontFaceCSS, "data-ui5-font-face");
+    if (!hasStyle("data-ui5-font-face")) {
+        createStyle(fontFaceCSS, "data-ui5-font-face");
+    }
 };
 export default insertFontFace;
 //# sourceMappingURL=FontFace.js.map

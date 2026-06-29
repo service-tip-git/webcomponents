@@ -4,12 +4,10 @@ import type Dialog from "@ui5/webcomponents/dist/Dialog.js";
 import type { Result, Exception } from "@zxing/library";
 import type { Interval } from "@ui5/webcomponents-base/dist/types.js";
 import type { Slot } from "@ui5/webcomponents-base/dist/UI5Element.js";
-declare const BrowserMultiFormatReader: typeof import("@zxing/library").BrowserMultiFormatReader, BarcodeFormat: typeof import("@zxing/library").BarcodeFormat;
-type BarcodeFormatString = keyof typeof BarcodeFormat;
+declare const BrowserMultiFormatReader: typeof import("@zxing/library").BrowserMultiFormatReader;
 type BarcodeScannerDialogScanSuccessEventDetail = {
     text: string;
     rawBytes: Uint8Array;
-    format: BarcodeFormatString;
 };
 type BarcodeScannerDialogScanErrorEventDetail = {
     message: string;
@@ -136,4 +134,4 @@ declare class BarcodeScannerDialog extends UI5Element {
     _resetReader(): void;
 }
 export default BarcodeScannerDialog;
-export type { BarcodeScannerDialogScanErrorEventDetail, BarcodeScannerDialogScanSuccessEventDetail, BarcodeFormatString, };
+export type { BarcodeScannerDialogScanErrorEventDetail, BarcodeScannerDialogScanSuccessEventDetail, };
