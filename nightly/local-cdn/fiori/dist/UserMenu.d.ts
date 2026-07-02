@@ -89,6 +89,20 @@ declare class UserMenu extends UI5Element {
      */
     showEditButton: boolean;
     /**
+     * Defines whether the avatar of the selected account is interactive (focusable and pressable).
+     *
+     * When `false` (default), the avatar is rendered as a non-interactive image
+     * and is not announced as a button by screen readers.
+     *
+     * **Note:** When `showEditButton` is set to `true`, the avatar is treated as interactive
+     * regardless of this property's value, to preserve the edit affordance.
+     *
+     * @default false
+     * @public
+     * @since 2.25.0
+     */
+    avatarInteractive: boolean;
+    /**
      * Defines the menu items.
      * @public
      */
@@ -109,6 +123,15 @@ declare class UserMenu extends UI5Element {
      * @since 2.20.0
      */
     footer: Slot<HTMLElement>;
+    /**
+     * Defines the content of the info area inside the User Menu's account block.
+     *
+     * **Note:** When empty, the User Menu renders unchanged.
+     *
+     * @public
+     * @since 2.24.0
+     */
+    infoArea: Slot<HTMLElement>;
     static i18nBundle: I18nBundle;
     /**
      * @default false
@@ -176,6 +199,8 @@ declare class UserMenu extends UI5Element {
     get _ariaLabelledByActions(): string;
     get _hasCustomFooter(): boolean;
     get _showDefaultFooter(): boolean;
+    get _hasInfoArea(): boolean;
+    get _isAvatarInteractive(): boolean;
     getAccountDescriptionText(account: UserMenuAccount): string;
     getAccountByRefId(refId: string): UserMenuAccount;
     captureRef(ref: HTMLElement & {

@@ -75,6 +75,20 @@ let UserMenu = UserMenu_1 = class UserMenu extends UI5Element {
          */
         this.showEditButton = false;
         /**
+         * Defines whether the avatar of the selected account is interactive (focusable and pressable).
+         *
+         * When `false` (default), the avatar is rendered as a non-interactive image
+         * and is not announced as a button by screen readers.
+         *
+         * **Note:** When `showEditButton` is set to `true`, the avatar is treated as interactive
+         * regardless of this property's value, to preserve the edit affordance.
+         *
+         * @default false
+         * @public
+         * @since 2.25.0
+         */
+        this.avatarInteractive = false;
+        /**
          * @default false
          * @private
          */
@@ -273,6 +287,12 @@ let UserMenu = UserMenu_1 = class UserMenu extends UI5Element {
     get _showDefaultFooter() {
         return this.footer.length === 0;
     }
+    get _hasInfoArea() {
+        return this.infoArea.length > 0;
+    }
+    get _isAvatarInteractive() {
+        return this.avatarInteractive || this.showEditButton;
+    }
     getAccountDescriptionText(account) {
         return `${account.titleText} ${account.subtitleText} ${account.description} ${account.selected ? UserMenu_1.i18nBundle.getText(USER_MENU_POPOVER_ACCESSIBLE_ACCOUNT_SELECTED_TXT) : ""}`;
     }
@@ -307,6 +327,9 @@ __decorate([
     property({ type: Boolean })
 ], UserMenu.prototype, "showEditButton", void 0);
 __decorate([
+    property({ type: Boolean })
+], UserMenu.prototype, "avatarInteractive", void 0);
+__decorate([
     slot({
         type: HTMLElement,
         "default": true,
@@ -324,6 +347,9 @@ __decorate([
 __decorate([
     slot()
 ], UserMenu.prototype, "footer", void 0);
+__decorate([
+    slot()
+], UserMenu.prototype, "infoArea", void 0);
 __decorate([
     property({ type: Boolean })
 ], UserMenu.prototype, "_titleMovedToHeader", void 0);

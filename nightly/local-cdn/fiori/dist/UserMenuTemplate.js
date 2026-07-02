@@ -31,13 +31,14 @@ export default function UserMenuTemplate() {
 }
 function headerContent() {
     return (_jsx(_Fragment, { children: this._selectedAccount &&
-            _jsxs("div", { class: "ui5-user-menu-selected-account", "aria-label": this._ariaLabelledByAccountInformationText, children: [_jsx("span", { title: this.showEditButton ? this._editAvatarTooltip : undefined, children: _jsxs(Avatar, { size: "L", onClick: this._handleAvatarClick, initials: this._selectedAccount._initials, colorScheme: this._selectedAccount.avatarColorScheme, fallbackIcon: personPlaceholder, class: "ui5-user-menu-selected-account-avatar", interactive: true, children: [this._selectedAccount.avatarSrc &&
+            _jsxs("div", { class: "ui5-user-menu-selected-account", "aria-label": this._ariaLabelledByAccountInformationText, children: [_jsx("span", { title: this.showEditButton ? this._editAvatarTooltip : undefined, children: _jsxs(Avatar, { size: "L", onClick: this._isAvatarInteractive ? this._handleAvatarClick : undefined, initials: this._selectedAccount._initials, colorScheme: this._selectedAccount.avatarColorScheme, fallbackIcon: personPlaceholder, class: "ui5-user-menu-selected-account-avatar", mode: this._isAvatarInteractive ? "Interactive" : "Image", children: [this._selectedAccount.avatarSrc &&
                                     _jsx("img", { src: this._selectedAccount.avatarSrc }), this.showEditButton &&
                                     _jsx(Tag, { slot: "badge", wrappingType: "None", design: "Set1", colorScheme: "5", children: _jsx(Icon, { slot: "icon", name: edit }) })] }) }), this._selectedAccount.titleText &&
                         _jsx(Text, { id: "selected-account-title", class: "ui5-user-menu-selected-account-title", children: this._selectedAccount.titleText }), this._selectedAccount.subtitleText &&
                         _jsx(Text, { class: "ui5-user-menu-selected-account-subtitleText", children: this._selectedAccount.subtitleText }), this._selectedAccount.description &&
                         _jsx(Text, { class: "ui5-user-menu-selected-account-description", children: this._selectedAccount.description }), this._selectedAccount.additionalInfo &&
-                        _jsx(Text, { class: "ui5-user-menu-selected-account-additional-info", children: this._selectedAccount.additionalInfo }), this.showManageAccount &&
+                        _jsx(Text, { class: "ui5-user-menu-selected-account-additional-info", children: this._selectedAccount.additionalInfo }), this._hasInfoArea &&
+                        _jsx("div", { class: "ui5-user-menu-info-area", children: _jsx("slot", { name: "infoArea" }) }), this.showManageAccount &&
                         _jsx(Button, { id: "selected-account-manage-btn", icon: userSettings, class: "ui5-user-menu-manage-account-btn", onClick: this._handleManageAccountClick, children: this._manageAccountButtonText })] }) }));
 }
 function otherAccountsContent() {

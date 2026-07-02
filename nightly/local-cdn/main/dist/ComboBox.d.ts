@@ -12,6 +12,7 @@ import type { IFormInputElement } from "@ui5/webcomponents-base/dist/features/In
 import type { IIcon } from "./Icon.js";
 import "./ComboBoxItem.js";
 import type ComboBoxItem from "./ComboBoxItem.js";
+import "./ComboBoxItemCustom.js";
 import type Popover from "./Popover.js";
 import type ResponsivePopover from "./ResponsivePopover.js";
 import type List from "./List.js";
@@ -41,8 +42,15 @@ interface IComboBoxItem extends UI5Element {
 }
 type ValueStateAnnouncement = Record<Exclude<ValueState, ValueState.None>, string>;
 type ValueStateTypeAnnouncement = Record<Exclude<ValueState, ValueState.None>, string>;
+/**
+ * Describes the source of a `selection-change` event fired by the `ui5-combobox`.
+ * @public
+ * @since 2.24.0
+ */
+type ComboBoxSelectionChangeTrigger = "Typeahead" | "Click" | "Keyboard";
 type ComboBoxSelectionChangeEventDetail = {
     item: ComboBoxItem | null;
+    trigger: ComboBoxSelectionChangeTrigger;
 };
 /**
  * @class
@@ -306,6 +314,7 @@ declare class ComboBox extends UI5Element implements IFormInputElement {
     _autocomplete: boolean;
     _isKeyNavigation: boolean;
     _selectionPerformed: boolean;
+    _selectionTrigger?: ComboBoxSelectionChangeTrigger;
     _lastValue: string;
     _selectedItemText: string;
     _userTypedValue: string;
@@ -451,4 +460,4 @@ declare class ComboBox extends UI5Element implements IFormInputElement {
     };
 }
 export default ComboBox;
-export type { ComboBoxSelectionChangeEventDetail, IComboBoxItem, };
+export type { ComboBoxSelectionChangeEventDetail, ComboBoxSelectionChangeTrigger, IComboBoxItem, };
