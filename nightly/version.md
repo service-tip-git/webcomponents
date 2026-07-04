@@ -1,7 +1,9 @@
-commit 5aec716d6d7bed75ad4fc7f120e60bcfd175c536
-Author: service-tip-git <tmsatsls+github.com_service-tip-git@sap.com>
-Date:   Thu Jul 2 07:33:17 2026 +0000
+commit 9ca0ef0c4333c22a9e43c86d87c31e4a35f61e3f
+Author: ilhan007 <ilhan.myumyun@sap.com>
+Date:   Fri Jul 3 11:40:16 2026 +0300
 
-    [INTERNAL] Translation delivery: commit by LX Lab
+    test(ui5-dialog): use i18n bundle default text for aria-describedby assertions
     
-    Change-Id: I6d493ee1e3df9140753323b3ebb458a6e18acb8f
+    The Dialog.cy.tsx test hardcoded the English strings for the aria-describedby
+    hidden text. After the translation delivery renamed the i18n keys, use the
+    i18n bundle default text so the assertions stay in sync with the source.
