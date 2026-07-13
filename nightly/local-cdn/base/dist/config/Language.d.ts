@@ -1,4 +1,4 @@
-declare const getLanguageChangePending: () => Promise<void> | null;
+declare const getLanguageChangePending: () => boolean;
 /**
  * Returns the currently configured language, or the browser language as a fallback.
  * @public

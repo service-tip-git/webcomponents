@@ -11983,7 +11983,7 @@
               "default": "false",
               "description": "Defines whether the avatar of the selected account is interactive (focusable and pressable).\n\nWhen `false` (default), the avatar is rendered as a non-interactive image\nand is not announced as a button by screen readers.\n\n**Note:** When `showEditButton` is set to `true`, the avatar is treated as interactive\nregardless of this property's value, to preserve the edit affordance.",
               "privacy": "public",
-              "_ui5since": "2.24.0"
+              "_ui5since": "2.25.0"
             },
             {
               "kind": "field",
