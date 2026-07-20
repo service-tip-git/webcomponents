@@ -2055,12 +2055,6 @@
               },
               "_ui5privacy": "public"
             }
-          ],
-          "cssStates": [
-            {
-              "description": "When the item is displayed in the overflow popover.\nUse this state to apply different styles when the item is overflowed.\nAvailable since 2.20.0.",
-              "name": "overflowed"
-            }
           ]
         }
       ],
@@ -2217,12 +2211,6 @@
                 ]
               },
               "_ui5privacy": "public"
-            }
-          ],
-          "cssStates": [
-            {
-              "description": "When the item is displayed in the overflow popover.\nUse this state to apply different styles when the item is overflowed.\nAvailable since 2.20.0.",
-              "name": "overflowed"
             }
           ]
         }

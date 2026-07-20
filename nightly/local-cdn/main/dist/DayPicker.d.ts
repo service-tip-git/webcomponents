@@ -106,7 +106,6 @@ declare class DayPicker extends CalendarPart implements ICalendarPicker {
     disabledDates: Array<DisabledDateRangeT>;
     _focusableDay: HTMLElement;
     _autoFocus?: boolean;
-    _mousedownTimestamp?: number;
     static i18nBundle: I18nBundle;
     onBeforeRendering(): void;
     /**

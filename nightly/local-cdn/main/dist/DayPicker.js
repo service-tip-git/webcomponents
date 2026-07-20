@@ -340,8 +340,7 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
         if (!this._isDayPressed(target)) {
             return;
         }
-        const timestamp = setTimestamp ? this._getTimestampFromDom(target) : (this._mousedownTimestamp ?? this.timestamp);
-        this._mousedownTimestamp = undefined;
+        const timestamp = this._getTimestampFromDom(target);
         if (setTimestamp) {
             this._safelySetTimestamp(timestamp);
         }
@@ -424,14 +423,7 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
         if (!this._isDayPressed(target)) {
             return;
         }
-        const timestamp = this._getTimestampFromDom(target);
-        const clickedDate = CalendarDate.fromTimestamp(timestamp * 1000, this._primaryCalendarType);
-        const isOtherMonth = clickedDate.getMonth() !== this._calendarDate.getMonth();
-        this._mousedownTimestamp = timestamp;
-        this._safelySetTimestamp(timestamp);
-        if (isOtherMonth) {
-            this._autoFocus = true;
-        }
+        this._safelySetTimestamp(this._getTimestampFromDom(target));
         this.fireDecoratorEvent("navigate", { timestamp: this.timestamp, mouse: true });
     }
     /**

@@ -11,28 +11,23 @@ attachConfigurationReset(() => {
     curLanguage = undefined;
     fetchDefaultLanguage = undefined;
 });
-// Promise that resolves when the current language change (i18n bundles + CLDR data)
-// completes, or `null` when no language change is in flight. Consumers that need to
-// wait for locale data to be ready before rendering — most notably language-aware
-// UI5Element instances mounted while setLanguage is in flight — can await it.
-let languageChangePending = null;
-const startLanguageChange = (language) => {
-    const changePromise = fireLanguageChange(language).then(() => {
-        if (isBooted()) {
-            return reRenderAllUI5Elements({ languageAware: true });
-        }
-    }).finally(() => {
-        // Only clear if no newer change has already replaced us
-        if (languageChangePending === changePromise) {
-            languageChangePending = null;
-        }
-    });
-    languageChangePending = changePromise;
-    return changePromise;
-};
+// Flag indicating that a language change is in progress and not yet complete.
+// While this flag is true, language-aware components will not re-render.
+// These components may rely on language-specific data (e.g., CLDR, language bundles),
+// which might be unavailable during the loading phase.
+// During this phase, all re-rendering is postponed.
+// Once all necessary language data has been loaded, the language change
+// will trigger a re-render of all language-aware components.
+let languageChangePending = false;
 attachConfigChange("language", (language) => {
     curLanguage = language;
-    startLanguageChange(language);
+    languageChangePending = true;
+    fireLanguageChange(language).then(() => {
+        languageChangePending = false;
+        if (isBooted()) {
+            reRenderAllUI5Elements({ languageAware: true });
+        }
+    });
 });
 const getLanguageChangePending = () => languageChangePending;
 /**
@@ -58,9 +53,14 @@ const setLanguage = async (language) => {
     if (curLanguage === language) {
         return;
     }
+    languageChangePending = true;
     curLanguage = language;
     fireConfigChange("language", language);
-    await startLanguageChange(language);
+    await fireLanguageChange(language);
+    languageChangePending = false;
+    if (isBooted()) {
+        await reRenderAllUI5Elements({ languageAware: true });
+    }
 };
 /**
  * Returns the default languague.
