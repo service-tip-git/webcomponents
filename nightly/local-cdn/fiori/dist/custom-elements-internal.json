@@ -15794,6 +15794,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/upload-utils/UploadCollectionBodyDnD.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/types/FCLLayout.js",
       "declarations": [
         {
@@ -18205,12 +18211,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/upload-utils/UploadCollectionBodyDnD.js",
-      "declarations": [],
-      "exports": []
     }
   ]
 }
