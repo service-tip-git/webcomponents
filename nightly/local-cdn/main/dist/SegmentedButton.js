@@ -15,7 +15,9 @@ import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import ItemNavigation from "@ui5/webcomponents-base/dist/delegate/ItemNavigation.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import { isSpace, isEnter, isShift, isEscape, isSpaceShift, } from "@ui5/webcomponents-base/dist/Keys.js";
-import { SEGMENTEDBUTTON_ARIA_DESCRIPTION, SEGMENTEDBUTTON_ARIA_DESCRIBEDBY } from "./generated/i18n/i18n-defaults.js";
+import { LIST_ITEM_SELECTED } from "./generated/i18n/i18n-defaults.js";
+import announce from "@ui5/webcomponents-base/dist/util/InvisibleMessage.js";
+import InvisibleMessageMode from "@ui5/webcomponents-base/dist/types/InvisibleMessageMode.js";
 import "./SegmentedButtonItem.js";
 import SegmentedButtonSelectionMode from "./types/SegmentedButtonSelectionMode.js";
 // Template
@@ -122,6 +124,9 @@ let SegmentedButton = SegmentedButton_1 = class SegmentedButton extends UI5Eleme
         this.fireDecoratorEvent("selection-change", {
             selectedItems: this.selectedItems,
         });
+        if (target.selected) {
+            announce(SegmentedButton_1.i18nBundle.getText(LIST_ITEM_SELECTED), InvisibleMessageMode.Assertive);
+        }
         this._itemNavigation.setCurrentItem(target);
         return this;
     }
@@ -207,10 +212,7 @@ let SegmentedButton = SegmentedButton_1 = class SegmentedButton extends UI5Eleme
         return getEffectiveAriaLabelText(this) || getAssociatedLabelForTexts(this) || undefined;
     }
     get ariaDescriptionText() {
-        return `${(getEffectiveAriaDescriptionText(this) || "")} ${SegmentedButton_1.i18nBundle.getText(SEGMENTEDBUTTON_ARIA_DESCRIBEDBY)}`.trim();
-    }
-    get ariaRoleDescription() {
-        return SegmentedButton_1.i18nBundle.getText(SEGMENTEDBUTTON_ARIA_DESCRIPTION);
+        return getEffectiveAriaDescriptionText(this) || undefined;
     }
 };
 __decorate([

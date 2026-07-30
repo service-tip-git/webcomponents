@@ -131,7 +131,6 @@ declare class SegmentedButtonItem extends UI5Element implements IButton, ISegmen
      */
     text: DefaultSlot<Node>;
     static i18nBundle: I18nBundle;
-    get ariaDescription(): string;
     constructor();
     _onclick(e: MouseEvent): void;
     onEnterDOM(): void;
@@ -139,7 +138,7 @@ declare class SegmentedButtonItem extends UI5Element implements IButton, ISegmen
     _onkeyup(e: KeyboardEvent): void;
     get tabIndexValue(): string | undefined;
     get ariaLabelText(): string | undefined;
-    get ariaDescriptionText(): string | undefined;
+    get ariaDescriptionText(): string;
     get showIconTooltip(): boolean;
     get slotTextContent(): string;
 }

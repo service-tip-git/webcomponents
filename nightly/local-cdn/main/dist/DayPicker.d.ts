@@ -1,6 +1,7 @@
 import type LocaleData from "@ui5/webcomponents-localization/dist/LocaleData.js";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import CalendarDate from "@ui5/webcomponents-localization/dist/dates/CalendarDate.js";
+import DateFormat from "@ui5/webcomponents-localization/dist/DateFormat.js";
 import CalendarSelectionMode from "./types/CalendarSelectionMode.js";
 import CalendarPart from "./CalendarPart.js";
 import type { DisabledDateRangeT, ICalendarPicker, SpecialCalendarDateT } from "./Calendar.js";
@@ -106,14 +107,14 @@ declare class DayPicker extends CalendarPart implements ICalendarPicker {
     disabledDates: Array<DisabledDateRangeT>;
     _focusableDay: HTMLElement;
     _autoFocus?: boolean;
+    _mousedownTimestamp?: number;
     static i18nBundle: I18nBundle;
     onBeforeRendering(): void;
     /**
      * Builds the "_weeks" object that represents the month.
-     * @param localeData
      * @private
      */
-    _buildWeeks(localeData: LocaleData): void;
+    _buildWeeks(): void;
     _calculateWeekNumber(date: Date): number;
     /**
      * Builds the dayNames object (header of the month).
@@ -282,6 +283,8 @@ declare class DayPicker extends CalendarPart implements ICalendarPicker {
         };
     };
     get ariaRoledescription(): string;
+    get _formatLong(): DateFormat;
+    get _formatLongSecondary(): DateFormat;
 }
 export default DayPicker;
 export type { DayPickerNavigateEventDetail, DayPickerChangeEventDetail, };

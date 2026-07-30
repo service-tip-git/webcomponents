@@ -16,7 +16,7 @@ import { getEffectiveAriaLabelText, getAssociatedLabelForTexts, getEffectiveAria
 import willShowContent from "@ui5/webcomponents-base/dist/util/willShowContent.js";
 import slot from "@ui5/webcomponents-base/dist/decorators/slot-strict.js";
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
-import { SEGMENTEDBUTTONITEM_ARIA_DESCRIPTION } from "./generated/i18n/i18n-defaults.js";
+import { SEGMENTEDBUTTON_ARIA_DESCRIBEDBY } from "./generated/i18n/i18n-defaults.js";
 import SegmentedButtonItemTemplate from "./SegmentedButtonItemTemplate.js";
 import event from "@ui5/webcomponents-base/dist/decorators/event-strict.js";
 import segmentedButtonItemCss from "./generated/themes/SegmentedButtonItem.css.js";
@@ -42,9 +42,6 @@ import segmentedButtonItemCss from "./generated/themes/SegmentedButtonItem.css.j
  * @public
  */
 let SegmentedButtonItem = SegmentedButtonItem_1 = class SegmentedButtonItem extends UI5Element {
-    get ariaDescription() {
-        return SegmentedButtonItem_1.i18nBundle.getText(SEGMENTEDBUTTONITEM_ARIA_DESCRIPTION);
-    }
     constructor() {
         super();
         /**
@@ -131,7 +128,7 @@ let SegmentedButtonItem = SegmentedButtonItem_1 = class SegmentedButtonItem exte
         return getEffectiveAriaLabelText(this) || getAssociatedLabelForTexts(this) || undefined;
     }
     get ariaDescriptionText() {
-        return getEffectiveAriaDescriptionText(this) || undefined;
+        return `${(getEffectiveAriaDescriptionText(this) || "")} ${SegmentedButtonItem_1.i18nBundle.getText(SEGMENTEDBUTTON_ARIA_DESCRIBEDBY)}`.trim();
     }
     get showIconTooltip() {
         return getEnableDefaultTooltips() && this.iconOnly && !this.tooltip;

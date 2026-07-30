@@ -120,8 +120,7 @@ declare class SegmentedButton extends UI5Element {
     get selectedItems(): Array<ISegmentedButtonItem>;
     get navigatableItems(): SegmentedButtonItem[];
     get ariaLabelText(): string | undefined;
-    get ariaDescriptionText(): string;
-    get ariaRoleDescription(): string;
+    get ariaDescriptionText(): string | undefined;
 }
 export default SegmentedButton;
 export type { SegmentedButtonSelectionChangeEventDetail, ISegmentedButtonItem, };

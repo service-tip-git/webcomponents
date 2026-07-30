@@ -1,5 +1,5 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
-import type { Slot, DefaultSlot } from "@ui5/webcomponents-base/dist/UI5Element.js";
+import type { Slot, DefaultSlot, ChangeInfo } from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type { ResizeObserverCallback } from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.js";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import type { IButton } from "@ui5/webcomponents/dist/Button.js";
@@ -199,18 +199,11 @@ declare class IllustratedMessage extends UI5Element {
     illustrationTitle?: string;
     illustrationSubtitle?: string;
     static i18nBundle: I18nBundle;
-    _lastKnownOffsetWidthForMedia: Record<string, number>;
-    _lastKnownOffsetHeightForMedia: Record<string, number>;
-    _lastKnownMedia: string;
+    _contentHeightForMedia: Record<string, number>;
     _handleResize: ResizeObserverCallback;
+    _handleThemeLoaded: () => void;
     constructor();
     static get BREAKPOINTS(): {
-        DIALOG: number;
-        SPOT: number;
-        DOT: number;
-        BASE: number;
-    };
-    static get BREAKPOINTS_HEIGHT(): {
         DIALOG: number;
         SPOT: number;
         DOT: number;
@@ -226,10 +219,17 @@ declare class IllustratedMessage extends UI5Element {
     onBeforeRendering(): Promise<void>;
     onEnterDOM(): void;
     onExitDOM(): void;
+    onInvalidation(changeInfo: ChangeInfo): void;
     handleResize(): void;
-    _applyMedia(heightChange?: boolean): void;
+    /**
+     * Checks if the current height of the component is enough to display the illustration, title, subtitle and actions.
+     * If not, the minimum required height for the current media is stored in the `_contentHeightForMedia` object.
+     * @private
+     */
+    _checkHeightConstraints(): void;
+    _applyMedia(): void;
+    _mediaExceedsContainerHeight(media: string): boolean;
     _setSVGAccAttrs(): void;
-    _adjustHeightToFitContainer(): void;
     onAfterRendering(): void;
     /**
      * Modifies the IM styles in accordance to the `size` property's value.
