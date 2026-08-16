@@ -19,6 +19,9 @@ type SideNavigationSelectionChangeEventDetail = {
 type SideNavigationItemClickEventDetail = {
     item: SideNavigationSelectableItemBase;
 };
+type SideNavigationItemToggleEventDetail = {
+    item: SideNavigationItemBase;
+};
 /**
  * @class
  *
@@ -70,6 +73,7 @@ declare class SideNavigation extends UI5Element {
     eventDetails: {
         "selection-change": SideNavigationSelectionChangeEventDetail;
         "item-click": SideNavigationItemClickEventDetail;
+        "item-toggle": SideNavigationItemToggleEventDetail;
     };
     /**
      * Defines whether the `ui5-side-navigation` is expanded or collapsed.
@@ -188,4 +192,4 @@ declare class SideNavigation extends UI5Element {
 }
 export declare const isInstanceOfSideNavigation: (object: any) => object is SideNavigation;
 export default SideNavigation;
-export type { SideNavigationSelectionChangeEventDetail, SideNavigationItemClickEventDetail, };
+export type { SideNavigationSelectionChangeEventDetail, SideNavigationItemClickEventDetail, SideNavigationItemToggleEventDetail, };

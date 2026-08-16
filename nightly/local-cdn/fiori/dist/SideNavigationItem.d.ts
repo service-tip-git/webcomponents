@@ -94,7 +94,16 @@ declare class SideNavigationItem extends SideNavigationSelectableItemBase {
     _onfocusout(): void;
     _onmouseenter(): void;
     _onmouseleave(): void;
-    _toggle(): void;
+    /**
+     * Handles the user-driven expand/collapse of the item.
+     *
+     * Fires the cancelable `item-toggle` event and, unless it is prevented, applies the
+     * new `expanded` value. The event is only fired for user interaction - programmatic
+     * changes to `expanded` stay silent.
+     *
+     * @private
+     */
+    _toggle(expanded: boolean): void;
     get isSideNavigationItem(): boolean;
 }
 export default SideNavigationItem;

@@ -14,6 +14,14 @@ declare class UserSettingsAccountView extends UserSettingsView {
      */
     account: Slot<UserMenuAccount>;
     /**
+     * Defines if the User Settings Account View shows the edit button on the avatar.
+     *
+     * @default false
+     * @public
+     * @since 2.26.0
+     */
+    showEditButton: boolean;
+    /**
      * Defines if the User Menu shows the `Manage Account` option.
      *
      * @default false

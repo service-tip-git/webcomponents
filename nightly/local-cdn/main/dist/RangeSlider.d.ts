@@ -125,6 +125,7 @@ declare class RangeSlider extends SliderBase implements IFormInputElement {
     get _ariaLabelledByText(): string;
     get _ariaHandlesText(): AriaHandlesText;
     get _ariaValueNow(): number;
+    get _progressRole(): "slider";
     /**
      * Check if the previously saved state is outdated. That would mean
      * either it is the initial rendering or that a property has been changed

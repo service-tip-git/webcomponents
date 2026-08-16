@@ -966,12 +966,6 @@ let ComboBox = ComboBox_1 = class ComboBox extends UI5Element {
     }
     _itemMousedown(e) {
         e.preventDefault();
-        const target = e.target;
-        const listItem = target.closest("[ui5-cb-item], [ui5-cb-item-group]");
-        if (listItem) {
-            this._clearFocus();
-            listItem.focused = true;
-        }
     }
     _selectItem(e) {
         const item = e.detail.item;

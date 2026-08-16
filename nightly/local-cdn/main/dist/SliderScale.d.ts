@@ -1,6 +1,7 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type { ResizeObserverCallback } from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.js";
 import type SliderHandle from "./SliderHandle.js";
+import type { AriaRole } from "@ui5/webcomponents-base/dist/types.js";
 type Tickmark = {
     value: number;
     label?: string;
@@ -82,7 +83,7 @@ declare class SliderScale extends UI5Element {
      * ARIA role for the progress bar.
      * @private
      */
-    progressRole?: string;
+    progressRole?: AriaRole;
     /**
      * ARIA aria-valuenow for the progress bar.
      * @private

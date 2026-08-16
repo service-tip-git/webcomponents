@@ -202,7 +202,6 @@ export default `:host {
     --_ui5_card_header_title_font_weight: normal;
     --_ui5_card_header_subtitle_margin_top: .25rem;
     --_ui5_checkbox_wrapper_padding: var(--_ui5-compact-size, var(--_ui5_checkbox_compact_wrapper_padding))  var(--_ui5-cozy-size, .6875rem);
-    --_ui5_checkbox_width_height: var(--_ui5-compact-size, var(--_ui5_checkbox_compact_width_height))  var(--_ui5-cozy-size, 2.75rem);
     --_ui5_checkbox_transition: unset;
     --_ui5_checkbox_disabled_opacity: var(--sapContent_DisabledOpacity);
     --_ui5_checkbox_border_radius: 0;
@@ -216,7 +215,7 @@ export default `:host {
     --_ui5_checkbox_focus_outline: var(--sapContent_FocusWidth) var(--sapContent_FocusStyle) var(--sapContent_FocusColor);
     --_ui5_checkbox_focus_border_radius: 0;
     --_ui5_checkbox_outer_hover_background: transparent;
-    --_ui5_checkbox_inner_width_height: var(--_ui5-compact-size, var(--_ui5_checkbox_compact_inner_size))  var(--_ui5-cozy-size, 1.375rem);
+    --_ui5_checkbox_inner_width_height: var(--_ui5-compact-size, var(--_ui5_checkbox_compact_inner_size))  var(--_ui5-cozy-size, 1.5714em);
     --_ui5_checkbox_inner_border: solid var(--sapField_BorderWidth) var(--sapField_BorderColor);
     --_ui5_checkbox_inner_hover_border_color: var(--sapField_Hover_BorderColor);
     --_ui5_checkbox_inner_hover_checked_border_color: var(--sapField_Hover_BorderColor);
@@ -238,7 +237,7 @@ export default `:host {
     --_ui5_checkbox_wrapped_focus_inset_block: var(--_ui5-compact-size, .125rem)  var(--_ui5-cozy-size, var(--_ui5_checkbox_focus_position));
     --_ui5_checkbox_compact_wrapper_padding: .5rem;
     --_ui5_checkbox_compact_width_height: 2rem;
-    --_ui5_checkbox_compact_inner_size: 1rem;
+    --_ui5_checkbox_compact_inner_size: 1.1429em;
     --_ui5_checkbox_compact_focus_position: .375rem;
     --_ui5_checkbox_label_color: var(--sapField_TextColor);
     --_ui5_checkbox_label_offset: var(--_ui5-compact-size, var(--_ui5_checkbox_compact_wrapper_padding))  var(--_ui5-cozy-size, var(--_ui5_checkbox_wrapper_padding));
@@ -246,7 +245,7 @@ export default `:host {
     --_ui5_checkbox_default_focus_border: none;
     --_ui5_checkbox_focus_outline_display: block;
     --_ui5_checkbox_right_focus_distance: .3125rem;
-    --_ui5_checkbox_icon_size: var(--_ui5-compact-size, .75rem)  var(--_ui5-cozy-size, 1rem);
+    --_ui5_checkbox_icon_size: var(--_ui5-compact-size, .8571em)  var(--_ui5-cozy-size, 1.1429em);
     --_ui5_color-palette-item-after-focus-border-radius: .125rem;
     --_ui5_color-palette-item-hover-margin: var(--_ui5-compact-size, 0)  var(--_ui5-cozy-size, 0);
     --_ui5_color-palette-row-height: var(--_ui5-compact-size, 7.5rem)  var(--_ui5-cozy-size, 9.5rem);
@@ -1066,7 +1065,7 @@ export default `:host {
     --_ui5_calendar_overlay_top: var(--_ui5-compact-size, 54%)  var(--_ui5-cozy-size, 57%);
     --_ui5_calendar_overlay_width: var(--_ui5-compact-size, 100%)  var(--_ui5-cozy-size, 16rem);
     --_ui5_checkbox_root_side_padding: var(--_ui5-compact-size, var(--_ui5_checkbox_wrapped_focus_padding))  var(--_ui5-cozy-size, .6875rem);
-    --_ui5_checkbox_partially_icon_size: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, .75rem);
+    --_ui5_checkbox_partially_icon_size: var(--_ui5-compact-size, .5714em)  var(--_ui5-cozy-size, .8571em);
     --_ui5_custom_list_item_rb_min_width: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.75rem);
     --_ui5_day_picker_item_width: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.25rem);
     --_ui5_day_picker_item_height: var(--_ui5-compact-size, 2rem)  var(--_ui5-cozy-size, 2.875rem);

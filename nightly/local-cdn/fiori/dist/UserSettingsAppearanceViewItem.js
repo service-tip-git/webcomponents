@@ -62,6 +62,12 @@ class UserSettingsAppearanceViewItem extends ListItemCustom {
     get isUserSettingsAppearanceViewItem() {
         return true;
     }
+    get accessibilityInfo() {
+        return {
+            ...super.accessibilityInfo,
+            description: this.text,
+        };
+    }
 };
 __decorate([
     property()

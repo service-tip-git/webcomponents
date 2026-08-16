@@ -134,6 +134,20 @@ declare class Wizard extends UI5Element {
      */
     contentLayout: `${WizardContentLayout}`;
     /**
+     * Defines the accessible ARIA name of the component.
+     * @default undefined
+     * @public
+     * @since 2.26.0
+     */
+    accessibleName?: string;
+    /**
+     * Receives id(or many ids) of the elements that label the component.
+     * @default undefined
+     * @public
+     * @since 2.26.0
+     */
+    accessibleNameRef?: string;
+    /**
      * Defines the width of the `ui5-wizard`.
      * @private
      */

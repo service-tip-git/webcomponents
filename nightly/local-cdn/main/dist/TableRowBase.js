@@ -121,7 +121,7 @@ let TableRowBase = TableRowBase_1 = class TableRowBase extends UI5Element {
         return (this._table?.rows.length ?? 0) > 0 && this.cells.some(c => c._popin && !c._popinHidden);
     }
     get _stickyCells() {
-        return [this._selectionCell, ...this.cells, this._navigatedCell].filter(cell => cell?.hasAttribute("fixed"));
+        return [this._selectionCell, this._actionsCell, this._navigatedCell].filter(Boolean);
     }
     get _i18nRowSelector() {
         return TableRowBase_1.i18nBundle.getText(TABLE_ROW_SELECTOR);
@@ -145,6 +145,9 @@ __decorate([
 __decorate([
     query("#selection-cell")
 ], TableRowBase.prototype, "_selectionCell", void 0);
+__decorate([
+    query("#actions-cell")
+], TableRowBase.prototype, "_actionsCell", void 0);
 __decorate([
     query("#navigated-cell")
 ], TableRowBase.prototype, "_navigatedCell", void 0);

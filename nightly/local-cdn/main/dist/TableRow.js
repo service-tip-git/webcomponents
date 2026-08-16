@@ -12,7 +12,7 @@ import { toggleAttribute } from "./TableUtils.js";
 import TableRowTemplate from "./TableRowTemplate.js";
 import TableRowBase from "./TableRowBase.js";
 import TableRowCss from "./generated/themes/TableRow.css.js";
-import { TABLE_ROW_MULTIPLE_ACTIONS, TABLE_ROW_SINGLE_ACTION, } from "./generated/i18n/i18n-defaults.js";
+import { TABLE_ROW_MULTIPLE_ACTIONS, TABLE_ROW_SINGLE_ACTION, TABLE_ROW_OVERFLOW_BUTTON, } from "./generated/i18n/i18n-defaults.js";
 /**
  * @class
  *
@@ -131,6 +131,9 @@ let TableRow = class TableRow extends TableRowBase {
             return renderableActionsCount > this._rowActionCount;
         });
     }
+    get _overflowButtonTooltip() {
+        return TableRowBase.i18nBundle.getText(TABLE_ROW_OVERFLOW_BUTTON);
+    }
     get _flexibleActions() {
         const flexibleActions = this.actions.filter(action => !action.isFixedAction());
         const fixedActionsCount = this.actions.length - flexibleActions.length;
@@ -217,9 +220,6 @@ __decorate([
 __decorate([
     query("#popin-cell")
 ], TableRow.prototype, "_popinCell", void 0);
-__decorate([
-    query("#actions-cell")
-], TableRow.prototype, "_actionsCell", void 0);
 TableRow = __decorate([
     customElement({
         tag: "ui5-table-row",

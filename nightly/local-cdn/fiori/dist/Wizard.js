@@ -18,6 +18,7 @@ import clamp from "@ui5/webcomponents-base/dist/util/clamp.js";
 import ResizeHandler from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.js";
 import debounce from "@ui5/webcomponents-base/dist/util/debounce.js";
 import { getFirstFocusableElement } from "@ui5/webcomponents-base/dist/util/FocusableElements.js";
+import { getEffectiveAriaLabelText } from "@ui5/webcomponents-base/dist/util/AccessibilityTextsHelper.js";
 import "./WizardStep.js";
 // Texts
 import { WIZARD_NAV_STEP_DEFAULT_HEADING, WIZARD_NAV_ARIA_ROLE_DESCRIPTION, WIZARD_NAV_ARIA_LABEL, WIZARD_LIST_ARIA_LABEL, WIZARD_LIST_ARIA_DESCRIBEDBY, WIZARD_ACTIONSHEET_STEPS_ARIA_LABEL, WIZARD_OPTIONAL_STEP_ARIA_LABEL, WIZARD_STEP_ARIA_LABEL, WIZARD_STEP_ACTIVE, WIZARD_STEP_INACTIVE, WIZARD_CANCEL_BUTTON, } from "./generated/i18n/i18n-defaults.js";
@@ -593,6 +594,9 @@ let Wizard = Wizard_1 = class Wizard extends UI5Element {
         return Wizard_1.i18nBundle.getText(WIZARD_STEP_INACTIVE);
     }
     get ariaLabelText() {
+        if (this.accessibleName || this.accessibleNameRef) {
+            return getEffectiveAriaLabelText(this) || Wizard_1.i18nBundle.getText(WIZARD_NAV_ARIA_ROLE_DESCRIPTION);
+        }
         return Wizard_1.i18nBundle.getText(WIZARD_NAV_ARIA_ROLE_DESCRIPTION);
     }
     get _dialogCancelButtonText() {
@@ -791,6 +795,12 @@ let Wizard = Wizard_1 = class Wizard extends UI5Element {
 __decorate([
     property()
 ], Wizard.prototype, "contentLayout", void 0);
+__decorate([
+    property()
+], Wizard.prototype, "accessibleName", void 0);
+__decorate([
+    property()
+], Wizard.prototype, "accessibleNameRef", void 0);
 __decorate([
     property({ type: Number })
 ], Wizard.prototype, "width", void 0);

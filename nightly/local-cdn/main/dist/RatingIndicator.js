@@ -101,6 +101,16 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
          */
         this.readonly = false;
         /**
+         * Defines whether the component is in display-only mode.
+         *
+         * **Note:** A display-only component is visually identical to read-only
+         * but cannot receive focus and is not announced by screen readers.
+         * @default false
+         * @public
+         * @since 2.26.0
+         */
+        this.displayOnly = false;
+        /**
         * Defines whether the component is required.
         * @default false
         * @public
@@ -157,7 +167,7 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
     }
     _onclick(e) {
         const target = e.target;
-        if (!(target instanceof HTMLElement) || this.disabled || this.readonly) {
+        if (!(target instanceof HTMLElement) || this.disabled || this.readonly || this.displayOnly) {
             return;
         }
         const targetValue = target.getAttribute("data-ui5-value");
@@ -173,7 +183,7 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
         }
     }
     _onkeydown(e) {
-        if (this.disabled || this.readonly) {
+        if (this.disabled || this.readonly || this.displayOnly) {
             // prevent page scrolling
             if (isSpace(e)) {
                 e.preventDefault();
@@ -212,7 +222,7 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
         }
     }
     _onfocusin() {
-        if (this.disabled) {
+        if (this.disabled || this.displayOnly) {
             return;
         }
         this._focused = true;
@@ -223,7 +233,7 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
     }
     get effectiveTabIndex() {
         const tabindex = this.getAttribute("tabindex");
-        if (this.disabled) {
+        if (this.disabled || this.displayOnly) {
             return -1;
         }
         return tabindex ? parseInt(tabindex) : 0;
@@ -241,7 +251,7 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
         return RatingIndicator_1.i18nBundle.getText(RATING_INDICATOR_TEXT);
     }
     get _ariaDisabled() {
-        return this.disabled || undefined;
+        return this.disabled || this.displayOnly || undefined;
     }
     get _ariaLabel() {
         return getEffectiveAriaLabelText(this);
@@ -250,6 +260,9 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
         return this.required ? RatingIndicator_1.i18nBundle.getText(RATING_INDICATOR_ARIA_DESCRIPTION) : undefined;
     }
     get ariaReadonly() {
+        if (this.displayOnly) {
+            return undefined;
+        }
         return this.readonly ? "true" : undefined;
     }
 };
@@ -268,6 +281,9 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], RatingIndicator.prototype, "readonly", void 0);
+__decorate([
+    property({ type: Boolean })
+], RatingIndicator.prototype, "displayOnly", void 0);
 __decorate([
     property()
 ], RatingIndicator.prototype, "accessibleName", void 0);

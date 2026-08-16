@@ -163,6 +163,7 @@ declare class Menu extends UI5Element {
     onBeforeRendering(): void;
     getFocusDomRef(): HTMLElement | undefined;
     _setupItemNavigation(): void;
+    _updatePageSize(): void;
     _close(): void;
     _openItemSubMenu(item: MenuItem, openedByMouse?: boolean): void;
     _itemMouseOver(e: MouseEvent): void;

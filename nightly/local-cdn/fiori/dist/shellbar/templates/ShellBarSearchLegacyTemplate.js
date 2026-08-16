@@ -12,7 +12,7 @@ function ShellBarSearchFieldFullWidth() {
 }
 function ShellBarSearchButton() {
     const searchAction = this.getAction("search");
-    return (_jsx(_Fragment, { children: !this.hideSearchButton && (_jsx(Button, { "data-ui5-stable": searchAction?.stableDomRef, class: "ui5-shellbar-search-button ui5-shellbar-action-button ui5-shellbar-gap-start ui5-shellbar-search-toggle", icon: searchAction?.icon, design: "Transparent", onClick: this.handleSearchButtonClick, tooltip: this.actionsAccessibilityInfo.search.title, "aria-expanded": this.showSearchField, accessibilityAttributes: this.actionsAccessibilityInfo.search.accessibilityAttributes })) }));
+    return (_jsx(_Fragment, { children: !this.hideSearchButton && (_jsx(Button, { "data-ui5-stable": searchAction?.stableDomRef, class: "ui5-shellbar-search-button ui5-shellbar-action-button ui5-shellbar-gap-start ui5-shellbar-search-toggle", icon: searchAction?.icon, design: "Transparent", onClick: this.handleSearchButtonClick, tooltip: this.actionsAccessibilityInfo.search.title, accessibilityAttributes: this.actionsAccessibilityInfo.search.accessibilityAttributes })) }));
 }
 export { ShellBarSearchField, ShellBarSearchButton, ShellBarSearchFieldFullWidth, };
 //# sourceMappingURL=ShellBarSearchLegacyTemplate.js.map

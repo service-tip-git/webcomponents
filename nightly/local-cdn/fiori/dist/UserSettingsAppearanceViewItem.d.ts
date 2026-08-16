@@ -1,3 +1,4 @@
+import type { AccessibilityInfo } from "@ui5/webcomponents-base/dist/types.js";
 import ListItemCustom from "@ui5/webcomponents/dist/ListItemCustom.js";
 import "@ui5/webcomponents-icons/dist/product.js";
 declare class UserSettingsAppearanceViewItem extends ListItemCustom {
@@ -26,6 +27,7 @@ declare class UserSettingsAppearanceViewItem extends ListItemCustom {
      */
     colorScheme: string;
     get isUserSettingsAppearanceViewItem(): boolean;
+    get accessibilityInfo(): AccessibilityInfo;
 }
 export declare const isInstanceOfUserSettingsAppearanceViewItem: (object: any) => object is UserSettingsAppearanceViewItem;
 export default UserSettingsAppearanceViewItem;

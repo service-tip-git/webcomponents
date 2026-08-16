@@ -1,6 +1,6 @@
 class ShellBarAccessibility {
     getActionsAccessibilityAttributes(defaultTexts, params) {
-        const { overflowPopoverOpen, accessibilityAttributes } = params;
+        const { overflowPopoverOpen, accessibilityAttributes, showSearchField } = params;
         const overflowExpanded = accessibilityAttributes.overflow?.expanded;
         return {
             notifications: {
@@ -28,6 +28,7 @@ class ShellBarAccessibility {
                 title: defaultTexts.search,
                 accessibilityAttributes: {
                     hasPopup: accessibilityAttributes.search?.hasPopup,
+                    expanded: accessibilityAttributes.search?.expanded !== undefined ? accessibilityAttributes.search.expanded : showSearchField,
                 },
             },
             overflow: {

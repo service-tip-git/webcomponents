@@ -15,7 +15,7 @@ export default function InputPopoverTemplate(hooks) {
                 mobileHeader,
                 valueStateMessage,
                 valueStateMessageInputIcon
-            }), this.hasValueStateMessage && (_jsx(Popover, { preventInitialFocus: true, preventFocusRestore: true, hideArrow: true, class: "ui5-valuestatemessage-popover", placement: "Bottom", tabindex: -1, horizontalAlign: PopoverHorizontalAlign.Start, opener: this, open: this.valueStateOpen, onClose: this._handleValueStatePopoverAfterClose, children: _jsxs("div", { slot: "header", class: this.classes.popoverValueState, children: [_jsx(Icon, { class: "ui5-input-value-state-message-icon", name: valueStateMessageInputIcon.call(this) }), this.valueStateOpen && valueStateMessage.call(this)] }) }))] }));
+            }), this.hasValueStateMessage && (_jsx(Popover, { preventInitialFocus: true, preventFocusRestore: true, hideArrow: true, accessibleRole: "None", class: "ui5-valuestatemessage-popover", placement: "Bottom", tabindex: -1, horizontalAlign: PopoverHorizontalAlign.Start, opener: this, open: this.valueStateOpen, onClose: this._handleValueStatePopoverAfterClose, children: _jsxs("div", { slot: "header", class: this.classes.popoverValueState, children: [_jsx(Icon, { class: "ui5-input-value-state-message-icon", name: valueStateMessageInputIcon.call(this) }), this.valueStateOpen && valueStateMessage.call(this)] }) }))] }));
 }
 function valueStateMessage() {
     return (_jsx(_Fragment, { children: this.shouldDisplayDefaultValueStateMessage ? this.valueStateText : _jsx("slot", { name: "valueStateMessage" }) }));

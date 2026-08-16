@@ -98,6 +98,7 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
                 this._selectedSetting = item;
             }
             item._siblingsWithIcon = siblingsWithIcon;
+            item._inMobileView = this._showSettingWithNavigation;
         });
         this.fixedItems.forEach(item => {
             if (item.text.toLowerCase().includes(searchValue)) {
@@ -106,6 +107,7 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
             if (item.selected) {
                 this._selectedSetting = item;
             }
+            item._inMobileView = this._showSettingWithNavigation;
         });
         if (this._filteredItems.length === 0 && this._filteredFixedItems.length === 0) {
             this._showNoSearchResult = true;

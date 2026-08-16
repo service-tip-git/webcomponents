@@ -302,6 +302,7 @@ declare class Table extends UI5Element {
     _onEvent(e: Event): void;
     _onResize(): void;
     _onfocusin(e: FocusEvent): void;
+    _scrollElementIntoView(element: HTMLElement): void;
     _onGrow(): void;
     _getPopinOrderedColumns(reverse: boolean): TableHeaderCell[];
     /**
@@ -330,7 +331,6 @@ declare class Table extends UI5Element {
     get _hasFlexibleColumns(): boolean;
     get _isRowSelectorRequired(): boolean | undefined;
     get _scrollContainer(): HTMLElement;
-    get _stickyElements(): (TableHeaderRow | TableHeaderCell)[];
     get _effectiveNoDataText(): string;
     get _ariaLabel(): string | undefined;
     get _ariaDescription(): string | undefined;

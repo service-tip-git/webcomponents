@@ -78,6 +78,7 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
          * Indicates whether any of the element siblings have icon.
          */
         this._siblingsWithIcon = false;
+        this._inMobileView = false;
     }
     get _hasSelectedPageView() {
         return this.pages.some(view => view.selected);
@@ -95,7 +96,7 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
         return this.icon;
     }
     _handleBackButtonClick() {
-        if (this._shouldShowBackButton) {
+        if (this._hasSelectedPageView && this._selectedPageView.secondary) {
             const selectedPageView = this._selectedPageView;
             const eventPrevented = !this.fireDecoratorEvent("selection-change", {
                 view: selectedPageView,
@@ -125,7 +126,7 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
         }
     }
     get _shouldShowBackButton() {
-        return !!(this._hasSelectedPageView && this._selectedPageView.secondary);
+        return !!(this._inMobileView || (this._hasSelectedPageView && this._selectedPageView.secondary));
     }
     captureRef(ref) {
         if (ref) {
@@ -184,6 +185,9 @@ __decorate([
 __decorate([
     property({ type: Boolean, noAttribute: true })
 ], UserSettingsItem.prototype, "_siblingsWithIcon", void 0);
+__decorate([
+    property({ type: Boolean, noAttribute: true })
+], UserSettingsItem.prototype, "_inMobileView", void 0);
 UserSettingsItem = __decorate([
     customElement({
         tag: "ui5-user-settings-item",

@@ -78,7 +78,6 @@ declare class TableRow extends TableRowBase<TableCell> {
      */
     movable: boolean;
     _popinCell?: TableCell;
-    _actionsCell?: TableCell;
     onBeforeRendering(): void;
     _onpointerdown(e: PointerEvent): Promise<void>;
     _onkeydown(e: KeyboardEvent, eventOrigin: HTMLElement): void;
@@ -89,6 +88,7 @@ declare class TableRow extends TableRowBase<TableCell> {
     get _isNavigable(): boolean;
     get _rowIndex(): number;
     get _hasOverflowActions(): boolean;
+    get _overflowButtonTooltip(): string;
     get _flexibleActions(): TableRowActionBase[];
     get _fixedActions(): TableRowActionBase[];
     get _overflowActions(): TableRowActionBase[];

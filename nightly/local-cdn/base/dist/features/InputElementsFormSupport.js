@@ -6,7 +6,8 @@
 const getAssociatedForm = (element) => {
     const formAttribute = element.getAttribute("form");
     if (formAttribute) {
-        const form = document.getElementById(formAttribute);
+        const rootNode = element.getRootNode();
+        const form = rootNode.getElementById?.(formAttribute) || document.getElementById(formAttribute);
         return form instanceof HTMLFormElement ? form : null;
     }
     return element._internals?.form ?? null;

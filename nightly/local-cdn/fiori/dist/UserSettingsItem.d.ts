@@ -116,6 +116,7 @@ declare class UserSettingsItem extends UI5Element {
      * Indicates whether any of the element siblings have icon.
      */
     _siblingsWithIcon: boolean;
+    _inMobileView: boolean;
     /**
      * @private
      */

@@ -17,7 +17,7 @@ import TableOverflowMode from "./types/TableOverflowMode.js";
 import TableDragAndDrop from "./TableDragAndDrop.js";
 import TableCustomAnnouncement from "./TableCustomAnnouncement.js";
 import ResizeHandler from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.js";
-import { findVerticalScrollContainer, scrollElementIntoView, isFeature, isValidColumnWidth, } from "./TableUtils.js";
+import { findVerticalScrollContainer, computeAxisScrollDelta, isFeature, isValidColumnWidth, } from "./TableUtils.js";
 import { getEffectiveAriaLabelText } from "@ui5/webcomponents-base/dist/util/AccessibilityTextsHelper.js";
 import { TABLE_NO_DATA, } from "./generated/i18n/i18n-defaults.js";
 /**
@@ -275,8 +275,21 @@ let Table = Table_1 = class Table extends UI5Element {
         if (e.target === this) {
             return;
         }
-        // Handles focus in the table, when the focus is below a sticky element
-        scrollElementIntoView(this._scrollContainer, e.target, this._stickyElements, this.effectiveDir === "rtl");
+        this._scrollElementIntoView(e.target);
+    }
+    _scrollElementIntoView(element) {
+        const verticalStickyElements = this.headerRow.filter(row => row.sticky);
+        if (verticalStickyElements.length) {
+            const verticalScrollContainer = findVerticalScrollContainer(this._tableElement, true);
+            const deltaY = computeAxisScrollDelta(element, verticalScrollContainer, verticalStickyElements, "y");
+            verticalScrollContainer.scrollBy({ top: deltaY });
+        }
+        const horizontalStickyElements = this.overflowMode === "Scroll" ? this.headerRow[0]._stickyCells : [];
+        if (horizontalStickyElements.length) {
+            const horizontalScrollContainer = this._tableElement;
+            const deltaX = computeAxisScrollDelta(element, horizontalScrollContainer, horizontalStickyElements, "x");
+            horizontalScrollContainer.scrollBy({ left: deltaX });
+        }
     }
     _onGrow() {
         this._getGrowing()?.loadMore();
@@ -391,11 +404,6 @@ let Table = Table_1 = class Table extends UI5Element {
     }
     get _scrollContainer() {
         return this._getVirtualizer() ? this._tableElement : findVerticalScrollContainer(this);
-    }
-    get _stickyElements() {
-        const stickyRows = this.headerRow.filter(row => row.sticky);
-        const stickyColumns = this.headerRow[0]._stickyCells;
-        return [...stickyRows, ...stickyColumns];
     }
     get _effectiveNoDataText() {
         return this.noDataText || Table_1.i18nBundle.getText(TABLE_NO_DATA);

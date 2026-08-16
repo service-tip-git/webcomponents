@@ -19,6 +19,7 @@ declare abstract class TableRowBase<TCell extends TableCellBase = TableCellBase>
     _alternate: boolean;
     _renderDummyCell: boolean;
     _selectionCell?: HTMLElement;
+    _actionsCell?: HTMLElement;
     _navigatedCell?: HTMLElement;
     static i18nBundle: I18nBundle;
     isHeaderRow(): boolean;
@@ -42,7 +43,7 @@ declare abstract class TableRowBase<TCell extends TableCellBase = TableCellBase>
     get _firstVisibleCell(): TCell | undefined;
     get _popinCells(): TCell[];
     get _hasPopin(): boolean;
-    get _stickyCells(): (HTMLElement | undefined)[];
+    get _stickyCells(): HTMLElement[];
     get _i18nRowSelector(): string;
 }
 export default TableRowBase;

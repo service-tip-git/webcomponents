@@ -90,6 +90,16 @@ declare class RatingIndicator extends UI5Element {
      */
     readonly: boolean;
     /**
+     * Defines whether the component is in display-only mode.
+     *
+     * **Note:** A display-only component is visually identical to read-only
+     * but cannot receive focus and is not announced by screen readers.
+     * @default false
+     * @public
+     * @since 2.26.0
+     */
+    displayOnly: boolean;
+    /**
      * Defines the accessible ARIA name of the component.
      * @default undefined
      * @public

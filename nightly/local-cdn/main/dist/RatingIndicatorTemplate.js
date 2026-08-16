@@ -10,7 +10,7 @@ function starLi(star) {
     if (star.halfStar) {
         return (_jsxs("li", { class: "ui5-rating-indicator-item ui5-rating-indicator-item-half", children: [_jsx("div", { class: "ui5-rating-indicator-half-icon-wrapper ui5-rating-indicator-half-icon-left", children: _jsx(Icon, { "data-ui5-value": star.index, name: this.ratedIcon }) }), _jsx("div", { class: "ui5-rating-indicator-half-icon-wrapper ui5-rating-indicator-half-icon-right", children: _jsx(Icon, { "data-ui5-value": star.index, name: this.unratedIcon }) })] }));
     }
-    if (this.readonly) {
+    if (this.readonly || this.displayOnly) {
         return (_jsx("li", { class: "ui5-rating-indicator-item ui5-rating-indicator-item-unsel", children: _jsx(Icon, { "data-ui5-value": star.index, name: this.ratedIcon }) }));
     }
     if (this.disabled) {

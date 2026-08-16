@@ -34,6 +34,7 @@ declare class ShellBarAccessibility {
     getActionsAccessibilityAttributes(defaultTexts: Record<string, string | undefined>, params: {
         accessibilityAttributes: ShellBarAccessibilityAttributes;
         overflowPopoverOpen: boolean;
+        showSearchField: boolean;
     }): ShellBarAccessibilityInfo;
     getActionsRole(visibleItemsCount: number): "toolbar" | undefined;
     getContentRole(visibleItemsCount: number): "group" | undefined;

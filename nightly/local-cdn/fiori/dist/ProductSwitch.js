@@ -70,12 +70,23 @@ let ProductSwitch = ProductSwitch_1 = class ProductSwitch extends UI5Element {
         ResizeHandler.deregister(document.body, this._handleResizeBound);
     }
     onBeforeRendering() {
-        this.desktopColumns = this.items.length > 6 ? 4 : 3;
+        if (this.items.length > 6) {
+            this.desktopColumns = 4;
+        }
+        else if (this.items.length <= 2) {
+            this.desktopColumns = 2;
+        }
+        else {
+            this.desktopColumns = 3;
+        }
     }
     _handleResize() {
         const documentWidth = document.body.clientWidth;
         if (documentWidth <= this.constructor.ROW_MIN_WIDTH.ONE_COLUMN) {
             this._setRowSize(1);
+        }
+        else if (this.items.length <= 2) {
+            this._setRowSize(2);
         }
         else if (documentWidth <= this.constructor.ROW_MIN_WIDTH.THREE_COLUMN || this.items.length <= 6) {
             this._setRowSize(3);

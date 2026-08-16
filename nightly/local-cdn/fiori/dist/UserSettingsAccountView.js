@@ -30,6 +30,14 @@ class UserSettingsAccountView extends UserSettingsView {
     constructor() {
         super(...arguments);
         /**
+         * Defines if the User Settings Account View shows the edit button on the avatar.
+         *
+         * @default false
+         * @public
+         * @since 2.26.0
+         */
+        this.showEditButton = false;
+        /**
          * Defines if the User Menu shows the `Manage Account` option.
          *
          * @default false
@@ -64,6 +72,9 @@ __decorate([
         },
     })
 ], UserSettingsAccountView.prototype, "account", void 0);
+__decorate([
+    property({ type: Boolean })
+], UserSettingsAccountView.prototype, "showEditButton", void 0);
 __decorate([
     property({ type: Boolean })
 ], UserSettingsAccountView.prototype, "showManageAccount", void 0);

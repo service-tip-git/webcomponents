@@ -73,7 +73,7 @@ let SearchItemShowMore = SearchItemShowMore_1 = class SearchItemShowMore extends
     }
 };
 __decorate([
-    property()
+    property({ type: Number })
 ], SearchItemShowMore.prototype, "itemsToShowCount", void 0);
 __decorate([
     property({ type: Boolean })

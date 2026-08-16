@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "@ui5/webcompo
 import Avatar from "@ui5/webcomponents/dist/Avatar.js";
 import Button from "@ui5/webcomponents/dist/Button.js";
 import Icon from "@ui5/webcomponents/dist/Icon.js";
-import Tag from "@ui5/webcomponents/dist/Tag.js";
+import AvatarBadge from "@ui5/webcomponents/dist/AvatarBadge.js";
 import Title from "@ui5/webcomponents/dist/Title.js";
 import Text from "@ui5/webcomponents/dist/Text.js";
 import Label from "@ui5/webcomponents/dist/Label.js";
@@ -33,7 +33,7 @@ function headerContent() {
     return (_jsx(_Fragment, { children: this._selectedAccount &&
             _jsxs("div", { class: "ui5-user-menu-selected-account", "aria-label": this._ariaLabelledByAccountInformationText, children: [_jsx("span", { title: this.showEditButton ? this._editAvatarTooltip : undefined, children: _jsxs(Avatar, { size: "L", onClick: this._isAvatarInteractive ? this._handleAvatarClick : undefined, initials: this._selectedAccount._initials, colorScheme: this._selectedAccount.avatarColorScheme, fallbackIcon: personPlaceholder, class: "ui5-user-menu-selected-account-avatar", mode: this._isAvatarInteractive ? "Interactive" : "Image", children: [this._selectedAccount.avatarSrc &&
                                     _jsx("img", { src: this._selectedAccount.avatarSrc }), this.showEditButton &&
-                                    _jsx(Tag, { slot: "badge", wrappingType: "None", design: "Set1", colorScheme: "5", children: _jsx(Icon, { slot: "icon", name: edit }) })] }) }), this._selectedAccount.titleText &&
+                                    _jsx(AvatarBadge, { slot: "badge", icon: edit })] }) }), this._selectedAccount.titleText &&
                         _jsx(Text, { id: "selected-account-title", class: "ui5-user-menu-selected-account-title", children: this._selectedAccount.titleText }), this._selectedAccount.subtitleText &&
                         _jsx(Text, { class: "ui5-user-menu-selected-account-subtitleText", children: this._selectedAccount.subtitleText }), this._selectedAccount.description &&
                         _jsx(Text, { class: "ui5-user-menu-selected-account-description", children: this._selectedAccount.description }), this._selectedAccount.additionalInfo &&
