@@ -12628,102 +12628,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/shellbar/IShellBarSearchController.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarAccessibility.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarAccessibility",
-            "module": "dist/shellbar/ShellBarAccessibility.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarItemNavigation.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarItemNavigation",
-            "module": "dist/shellbar/ShellBarItemNavigation.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarLegacy.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarLegacy",
-            "module": "dist/shellbar/ShellBarLegacy.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarOverflow.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarOverflow",
-            "module": "dist/shellbar/ShellBarOverflow.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarSearch.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarSearch",
-            "module": "dist/shellbar/ShellBarSearch.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarSearchLegacy.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarSearchLegacy",
-            "module": "dist/shellbar/ShellBarSearchLegacy.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/types/FCLLayout.js",
       "declarations": [],
       "exports": [
@@ -13102,6 +13006,102 @@
       "path": "dist/upload-utils/UploadCollectionBodyDnD.js",
       "declarations": [],
       "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/IShellBarSearchController.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarAccessibility.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarAccessibility",
+            "module": "dist/shellbar/ShellBarAccessibility.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarItemNavigation.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarItemNavigation",
+            "module": "dist/shellbar/ShellBarItemNavigation.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarLegacy.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarLegacy",
+            "module": "dist/shellbar/ShellBarLegacy.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarOverflow.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarOverflow",
+            "module": "dist/shellbar/ShellBarOverflow.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarSearch.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarSearch",
+            "module": "dist/shellbar/ShellBarSearch.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarSearchLegacy.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarSearchLegacy",
+            "module": "dist/shellbar/ShellBarSearchLegacy.js"
+          }
+        }
+      ]
     }
   ]
 }
