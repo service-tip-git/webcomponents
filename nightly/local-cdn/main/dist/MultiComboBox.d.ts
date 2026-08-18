@@ -208,6 +208,9 @@ declare class MultiComboBox extends UI5Element implements IFormInputElement {
     filter: `${ComboBoxFilter}`;
     /**
      * Defines whether the clear icon of the multi-combobox will be shown.
+     *
+     * **Note:** The clear icon is only visible when there is text typed by the user
+     * and only clears the typed value, not the selected tokens.
      * @default false
      * @public
      * @since 1.20.1

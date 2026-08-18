@@ -426,7 +426,7 @@ let Search = Search_1 = class Search extends SearchField {
         return startsWithMatches[0];
     }
     _getPicker() {
-        return this.shadowRoot.querySelector("[ui5-responsive-popover]");
+        return this.shadowRoot.querySelector("#ui5-search-list");
     }
     _getItemsList() {
         return this._getPicker().querySelector(".ui5-search-list");

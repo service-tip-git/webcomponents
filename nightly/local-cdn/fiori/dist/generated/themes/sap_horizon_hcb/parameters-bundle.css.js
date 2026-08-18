@@ -238,6 +238,7 @@ export default `:host{
     --_ui5-search-loading-overlay-background: var(--sapBackgroundColor);
     --_ui5-search-loading-overlay-transparency: .3;
     --_ui5-search-field-text-color: var(--sapField_TextColor);
+    --_ui5-search-scope-spacing: 0 .25rem;
     --_ui5_search_item_vertical_padding: var(--_ui5-compact-size, .5rem)  var(--_ui5-cozy-size, 1rem);
     --_ui5_search_byline_vertical_padding: .5rem;
     --_ui5_search_popover_max_height: 39rem;

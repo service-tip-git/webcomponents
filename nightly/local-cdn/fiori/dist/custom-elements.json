@@ -4997,7 +4997,7 @@
               "type": {
                 "text": "string | undefined"
               },
-              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
               "default": "undefined",
               "privacy": "public"
             },
@@ -5132,7 +5132,7 @@
               }
             },
             {
-              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
               "name": "placeholder",
               "default": "undefined",
               "fieldName": "placeholder",
@@ -5251,7 +5251,7 @@
               "type": {
                 "text": "string | undefined"
               },
-              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
               "default": "undefined",
               "privacy": "public"
             },
@@ -5345,7 +5345,7 @@
               }
             },
             {
-              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
               "name": "placeholder",
               "default": "undefined",
               "fieldName": "placeholder",
@@ -6852,7 +6852,7 @@
               "type": {
                 "text": "string | undefined"
               },
-              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
               "default": "undefined",
               "privacy": "public"
             },
@@ -6952,7 +6952,7 @@
               }
             },
             {
-              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+              "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
               "name": "placeholder",
               "default": "undefined",
               "fieldName": "placeholder",
@@ -12628,6 +12628,102 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/shellbar/IShellBarSearchController.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarAccessibility.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarAccessibility",
+            "module": "dist/shellbar/ShellBarAccessibility.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarItemNavigation.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarItemNavigation",
+            "module": "dist/shellbar/ShellBarItemNavigation.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarLegacy.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarLegacy",
+            "module": "dist/shellbar/ShellBarLegacy.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarOverflow.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarOverflow",
+            "module": "dist/shellbar/ShellBarOverflow.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarSearch.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarSearch",
+            "module": "dist/shellbar/ShellBarSearch.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/shellbar/ShellBarSearchLegacy.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "ShellBarSearchLegacy",
+            "module": "dist/shellbar/ShellBarSearchLegacy.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/types/FCLLayout.js",
       "declarations": [],
       "exports": [
@@ -13006,102 +13102,6 @@
       "path": "dist/upload-utils/UploadCollectionBodyDnD.js",
       "declarations": [],
       "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/IShellBarSearchController.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarAccessibility.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarAccessibility",
-            "module": "dist/shellbar/ShellBarAccessibility.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarItemNavigation.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarItemNavigation",
-            "module": "dist/shellbar/ShellBarItemNavigation.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarLegacy.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarLegacy",
-            "module": "dist/shellbar/ShellBarLegacy.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarOverflow.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarOverflow",
-            "module": "dist/shellbar/ShellBarOverflow.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarSearch.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarSearch",
-            "module": "dist/shellbar/ShellBarSearch.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/shellbar/ShellBarSearchLegacy.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "ShellBarSearchLegacy",
-            "module": "dist/shellbar/ShellBarSearchLegacy.js"
-          }
-        }
-      ]
     }
   ]
 }

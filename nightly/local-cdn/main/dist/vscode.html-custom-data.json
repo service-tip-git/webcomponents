@@ -3228,7 +3228,7 @@
         },
         {
           "name": "show-clear-icon",
-          "description": "Defines whether the clear icon of the multi-combobox will be shown.",
+          "description": "Defines whether the clear icon of the multi-combobox will be shown.\n\n**Note:** The clear icon is only visible when there is text typed by the user\n  and only clears the typed value, not the selected tokens.",
           "values": []
         },
         {
@@ -5930,7 +5930,7 @@
     },
     {
       "name": "ui5-toolbar",
-      "description": "### Overview\n\nThe `ui5-toolbar` component is used to create a horizontal layout with items.\nThe items can be overflowing in a popover, when the space is not enough to show all of them.\n\n### Keyboard Handling\nThe `ui5-toolbar` provides advanced keyboard handling.\n\n- [Left]/[Right] - navigate among toolbar items\n- [Home]/[End] - move to first/last toolbar item\n- [Tab] / [Shift]+[Tab] - exit the toolbar\n\n### ES6 Module Import\n`import \"@ui5/webcomponents/dist/Toolbar.js\";`\n\n\n---\n\n\n\n\n### **Methods:**\n - **isOverflowOpen(): _boolean_** - Returns if the overflow popup is open.\n\n### **Slots:**\n - **default** - Defines the items of the component.\n\n**Note:** Currently only `ui5-toolbar-button`, `ui5-toolbar-select`, `ui5-toolbar-separator` and `ui5-toolbar-spacer` are allowed here.",
+      "description": "### Overview\n\nThe `ui5-toolbar` component is used to create a horizontal layout with items.\nThe items can be overflowing in a popover, when the space is not enough to show all of them.\n\n### Keyboard Handling\nThe `ui5-toolbar` provides advanced keyboard handling.\n\n- [Left]/[Right] - navigate among toolbar items\n- [Home]/[End] - move to first/last toolbar item\n- [Tab] / [Shift]+[Tab] - exit the toolbar\n\n### ES6 Module Import\n`import \"@ui5/webcomponents/dist/Toolbar.js\";`\n\n\n---\n\n\n\n\n### **Methods:**\n - **isOverflowOpen(): _boolean_** - Returns if the overflow popup is open.\n\n### **Slots:**\n - **default** - Defines the items of the component.\n\n**Note:** Use `ui5-toolbar-button`, `ui5-toolbar-select`, `ui5-toolbar-separator` and `ui5-toolbar-spacer` for the most common toolbar actions. To place any other UI5 Web Component into the toolbar and have it participate in overflow handling, wrap it in a `ui5-toolbar-item`.",
       "attributes": [
         {
           "name": "accessible-name",

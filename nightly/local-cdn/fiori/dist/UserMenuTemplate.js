@@ -42,7 +42,7 @@ function headerContent() {
                         _jsx(Button, { id: "selected-account-manage-btn", icon: userSettings, class: "ui5-user-menu-manage-account-btn", onClick: this._handleManageAccountClick, children: this._manageAccountButtonText })] }) }));
 }
 function otherAccountsContent() {
-    return (_jsx(_Fragment, { children: _jsxs(Panel, { collapsed: true, class: "ui5-user-menu-other-accounts", children: [_jsxs("div", { slot: "header", class: "ui5-user-menu-account-header", children: [_jsxs(Title, { slot: "header", level: "H4", "wrapping-type": "None", children: [this._otherAccountsButtonText, " (", this._otherAccounts.length, ")"] }), this.showEditAccounts &&
+    return (_jsx(_Fragment, { children: _jsxs(Panel, { collapsed: true, class: "ui5-user-menu-other-accounts", accessibleName: `${this._otherAccountsButtonText} (${this._otherAccounts.length})`, children: [_jsxs("div", { slot: "header", class: "ui5-user-menu-account-header", children: [_jsxs(Title, { slot: "header", level: "H4", "wrapping-type": "None", children: [this._otherAccountsButtonText, " (", this._otherAccounts.length, ")"] }), this.showEditAccounts &&
                             _jsx(Button, { slot: "header", class: "ui5-user-menu-add-account-btn", design: "Transparent", icon: userEdit, onClick: this._handleEditAccountsClick, tooltip: this._editAccountsTooltip })] }), this._otherAccounts.length > 0 &&
                     _jsx(_Fragment, { children: otherAccountsList.call(this) })] }) }));
 }

@@ -3,6 +3,7 @@ import type { Slot } from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type Button from "@ui5/webcomponents/dist/Button.js";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import type { SelectChangeEventDetail } from "@ui5/webcomponents/dist/Select.js";
+import type { ListItemClickEventDetail } from "@ui5/webcomponents/dist/List.js";
 /**
  * Interface for components that may be slotted inside a `ui5-search`
  * @public
@@ -73,6 +74,11 @@ declare class SearchField extends UI5Element {
     /**
      * Defines a short hint intended to aid the user with data entry when the
      * component has no value.
+     *
+     * **Note:** When `scopes` are defined and no custom placeholder is provided,
+     * the placeholder automatically displays "Search in: \{selected scope name\}".
+     * Setting a custom placeholder will override this automatic behavior.
+     *
      * @default undefined
      * @public
      */
@@ -123,8 +129,24 @@ declare class SearchField extends UI5Element {
      * @private
      */
     _effectiveShowClearIcon: boolean;
+    /**
+     * Indicates whether the component renders on a small screen (mobile).
+     * @private
+     */
+    _isMobileView: boolean;
+    /**
+     * Indicates whether the scope selection popover is open on mobile.
+     * @private
+     */
+    _scopePopoverOpen: boolean;
+    _scopeIconButton?: HTMLElement;
+    _resizeHandler?: () => void;
     static i18nBundle: I18nBundle;
+    onEnterDOM(): void;
+    onExitDOM(): void;
     onBeforeRendering(): void;
+    private _isSmallScreen;
+    private _handleResize;
     _onkeydown(e: KeyboardEvent): void;
     _onfocusin(): void;
     _onfocusout(): void;
@@ -136,6 +158,9 @@ declare class SearchField extends UI5Element {
     _handleInput(e: InputEvent): void;
     _handleClear(): void;
     _handleScopeChange(e: CustomEvent<SelectChangeEventDetail>): void;
+    _handleScopeIconPress(): void;
+    _handleScopePopoverClose(): void;
+    _handleScopeItemClick(e: CustomEvent<ListItemClickEventDetail>): void;
     get _isSearchIcon(): boolean | 0;
     get _searchButtonAccessibilityAttributes(): {
         expanded: boolean;
@@ -145,11 +170,15 @@ declare class SearchField extends UI5Element {
         searchIcon: string;
         clearIcon: string;
         searchFieldAriaLabel: string;
+        placeholderWithScope: string;
     };
+    get _effectivePlaceholder(): string | undefined;
+    get _scopeIconAccessibleName(): string;
     get _effectiveIconTooltip(): string;
     captureRef(ref: HTMLElement & {
         scopeOption?: UI5Element;
     } | null): void;
+    captureScopeIconRef(ref: HTMLElement | null): void;
 }
 export default SearchField;
 export type { ISearchScope, SearchFieldScopeSelectionChangeDetails };

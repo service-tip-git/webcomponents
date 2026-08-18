@@ -660,7 +660,7 @@
         },
         {
           "name": "placeholder",
-          "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+          "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
           "values": []
         },
         {
@@ -702,7 +702,7 @@
         },
         {
           "name": "placeholder",
-          "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.",
+          "description": "Defines a short hint intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When `scopes` are defined and no custom placeholder is provided,\nthe placeholder automatically displays \"Search in: \\{selected scope name\\}\".\nSetting a custom placeholder will override this automatic behavior.",
           "values": []
         },
         {
