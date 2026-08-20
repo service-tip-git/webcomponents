@@ -12951,7 +12951,7 @@
             {
               "name": "selected",
               "description": "Defines the selected state of the component.",
-              "value": { "type": "any", "default": "false" }
+              "value": { "type": "boolean", "default": "false" }
             },
             {
               "name": "value",
@@ -12971,7 +12971,7 @@
               {
                 "name": "selected",
                 "description": "Defines the selected state of the component.",
-                "value": { "type": "any" }
+                "value": { "type": "boolean" }
               },
               {
                 "name": "value",

@@ -106,6 +106,12 @@ declare class UserSettingsDialog extends UI5Element {
      */
     _showNoSearchResult: boolean;
     /**
+     * Indicates that the user changed the search value and the search
+     * results should be announced on the next rendering.
+     * @private
+     */
+    _announceSearchResults: boolean;
+    /**
      * Defines the current media query size.
      * @private
      */
@@ -122,6 +128,7 @@ declare class UserSettingsDialog extends UI5Element {
     get saveButtonText(): string;
     get cancelButtonText(): string;
     get noSearchResultsText(): string;
+    get _searchResultsText(): string;
     get _selectedItemSlotName(): string | undefined;
     get _showSettingWithNavigation(): boolean;
     _handleCloseButtonClick(): void;

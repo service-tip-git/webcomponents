@@ -25,9 +25,7 @@ declare class ToolbarSelectOption extends UI5Element {
      * @default false
      * @public
      */
-    set selected(value: boolean);
-    get selected(): boolean;
-    _clearSiblingsAndSync(): void;
+    selected: boolean;
     /**
      * Defines the text of the component.
      *

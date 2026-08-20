@@ -11,10 +11,12 @@ import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import { isPhone, isTablet, isCombi } from "@ui5/webcomponents-base/dist/Device.js";
 import MediaRange from "@ui5/webcomponents-base/dist/MediaRange.js";
+import announce from "@ui5/webcomponents-base/dist/util/InvisibleMessage.js";
+import InvisibleMessageMode from "@ui5/webcomponents-base/dist/types/InvisibleMessageMode.js";
 import UserSettingsDialogTemplate from "./UserSettingsDialogTemplate.js";
 import UserSettingsDialogCss from "./generated/themes/UserSettingsDialog.css.js";
 // Texts
-import { USER_SETTINGS_DIALOG_ACCESSIBLE_NAME, USER_SETTINGS_LIST_ARIA_ROLE_DESC, USER_SETTINGS_DIALOG_CLOSE_BUTTON_TEXT, USER_SETTINGS_DIALOG_SAVE_BUTTON_TEXT, USER_SETTINGS_DIALOG_CANCEL_BUTTON_TEXT, USER_SETTINGS_DIALOG_NO_SEARCH_RESULTS_TEXT, } from "./generated/i18n/i18n-defaults.js";
+import { USER_SETTINGS_DIALOG_ACCESSIBLE_NAME, USER_SETTINGS_LIST_ARIA_ROLE_DESC, USER_SETTINGS_DIALOG_CLOSE_BUTTON_TEXT, USER_SETTINGS_DIALOG_SAVE_BUTTON_TEXT, USER_SETTINGS_DIALOG_CANCEL_BUTTON_TEXT, USER_SETTINGS_DIALOG_NO_SEARCH_RESULTS_TEXT, USER_SETTINGS_DIALOG_SEARCH_NO_RESULTS, USER_SETTINGS_DIALOG_SEARCH_ONE_RESULT, USER_SETTINGS_DIALOG_SEARCH_MORE_RESULTS, } from "./generated/i18n/i18n-defaults.js";
 /**
  * @class
  * ### Overview
@@ -80,6 +82,12 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
          * @private
          */
         this._showNoSearchResult = false;
+        /**
+         * Indicates that the user changed the search value and the search
+         * results should be announced on the next rendering.
+         * @private
+         */
+        this._announceSearchResults = false;
     }
     onEnterDOM() {
         this.setAttribute("data-sap-ui-fastnavgroup-container", "true");
@@ -114,6 +122,10 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
         }
         else {
             this._showNoSearchResult = false;
+        }
+        if (this._announceSearchResults) {
+            this._announceSearchResults = false;
+            announce(this._searchResultsText, InvisibleMessageMode.Polite);
         }
         if (!this._selectedSetting) {
             this._selectedSetting = this.items[0] || this.fixedItems[0];
@@ -179,6 +191,17 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
     get noSearchResultsText() {
         return UserSettingsDialog_1.i18nBundle.getText(USER_SETTINGS_DIALOG_NO_SEARCH_RESULTS_TEXT);
     }
+    get _searchResultsText() {
+        const resultsCount = this._filteredItems.length + this._filteredFixedItems.length;
+        switch (resultsCount) {
+            case 0:
+                return UserSettingsDialog_1.i18nBundle.getText(USER_SETTINGS_DIALOG_SEARCH_NO_RESULTS);
+            case 1:
+                return UserSettingsDialog_1.i18nBundle.getText(USER_SETTINGS_DIALOG_SEARCH_ONE_RESULT);
+            default:
+                return UserSettingsDialog_1.i18nBundle.getText(USER_SETTINGS_DIALOG_SEARCH_MORE_RESULTS, resultsCount);
+        }
+    }
     get _selectedItemSlotName() {
         return this._selectedSetting ? this._selectedSetting._individualSlot : "";
     }
@@ -202,6 +225,7 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
     }
     _handleInput(e) {
         this._searchValue = e.target.value;
+        this._announceSearchResults = true;
     }
     captureRef(ref) {
         if (ref) {

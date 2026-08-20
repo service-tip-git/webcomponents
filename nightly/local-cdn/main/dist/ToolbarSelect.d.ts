@@ -91,18 +91,22 @@ declare class ToolbarSelect extends ToolbarItemBase {
      * @since 2.15.0
      */
     set value(newValue: string);
-    get value(): string | undefined;
+    get value(): string;
     get select(): Select | null;
-    _value: string;
+    _pendingValue: string;
+    _hasPendingValue: boolean;
+    _lastSelectedIndex: number;
     onClick(e: Event): void;
     onOpen(e: Event): void;
     onClose(e: Event): void;
+    onBeforeRendering(): void;
     onChange(e: CustomEvent<SelectChangeEventDetail>): void;
     _syncOptions(selectedOptionIndex: number): void;
     get styles(): {
         width: string | undefined;
     };
     get hasCustomLabel(): boolean;
+    get _innerSelectValue(): string | undefined;
 }
 export default ToolbarSelect;
 export type { ToolbarSelectChangeEventDetail, };

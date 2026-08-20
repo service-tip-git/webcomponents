@@ -6145,7 +6145,7 @@
         {
           "name": "selected",
           "description": "Defines the selected state of the component.",
-          "values": [{ "name": "any" }]
+          "values": []
         },
         {
           "name": "value",

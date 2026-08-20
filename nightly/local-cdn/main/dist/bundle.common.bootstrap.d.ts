@@ -33,6 +33,8 @@ declare const testAssets: {
     };
     invisibleMessage: {
         announce: (message: string, mode: import("@ui5/webcomponents-base/dist/types/InvisibleMessageMode.js").default) => void;
+        registerInvisibleMessageRegion: (container: HTMLElement) => void;
+        deregisterInvisibleMessageRegion: (container: HTMLElement) => void;
     };
     getElementSelection: (element: HTMLElement) => {
         selectedText: string;

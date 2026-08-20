@@ -21,6 +21,7 @@ import { getFocusedElement, isFocusedElementWithinNode } from "@ui5/webcomponent
 import ResizeHandler from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.js";
 import MediaRange from "@ui5/webcomponents-base/dist/MediaRange.js";
 import toLowercaseEnumValue from "@ui5/webcomponents-base/dist/util/toLowercaseEnumValue.js";
+import { registerInvisibleMessageRegion, deregisterInvisibleMessageRegion } from "@ui5/webcomponents-base/dist/util/InvisibleMessage.js";
 import PopupTemplate from "./PopupTemplate.js";
 import PopupAccessibleRole from "./types/PopupAccessibleRole.js";
 import { addOpenedPopup, removeOpenedPopup } from "./popup-utils/OpenedPopupsRegistry.js";
@@ -145,6 +146,7 @@ let Popup = Popup_1 = class Popup extends UI5Element {
         }
         this._deregisterResizeHandler();
         this._detachBrowserEvents();
+        this._deregisterInvisibleMessageRegion();
         deregisterUI5Element(this);
     }
     /**
@@ -188,6 +190,7 @@ let Popup = Popup_1 = class Popup extends UI5Element {
             this._updateMediaRange();
         }
         this._addOpenedPopup();
+        this._registerInvisibleMessageRegion();
         this.classList.add("ui5-popup-opening");
         setTimeout(() => {
             this.classList.remove("ui5-popup-opening");
@@ -379,6 +382,7 @@ let Popup = Popup_1 = class Popup extends UI5Element {
         this.hide();
         this.open = false;
         this._detachBrowserEvents();
+        this._deregisterInvisibleMessageRegion();
         if (!preventRegistryUpdate) {
             this._removeOpenedPopup();
         }
@@ -393,6 +397,31 @@ let Popup = Popup_1 = class Popup extends UI5Element {
      */
     _removeOpenedPopup() {
         removeOpenedPopup(this);
+    }
+    /**
+     * Asks the InvisibleMessage to render its aria-live region inside the popup, so that announcements
+     * made while the popup is open are read out.
+     *
+     * A screen reader scopes its accessibility tree to a modal popup (aria-modal="true"), so a body-level
+     * aria-live region is silenced while the popup is open. Non-modal popups (e.g. a ComboBox dropdown) do
+     * not cause this scoping, so their announcements are still heard from the default body-level region and
+     * must not be routed into the popup subtree.
+     * @protected
+     */
+    _registerInvisibleMessageRegion() {
+        if (this.isModal && this._root) {
+            registerInvisibleMessageRegion(this._root);
+        }
+    }
+    /**
+     * Asks the InvisibleMessage to stop rendering its aria-live region inside the popup, restoring
+     * the default region.
+     * @protected
+     */
+    _deregisterInvisibleMessageRegion() {
+        if (this._root) {
+            deregisterInvisibleMessageRegion(this._root);
+        }
     }
     /**
      * Returns the focus to the previously focused element

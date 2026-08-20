@@ -218,6 +218,23 @@ declare abstract class Popup extends UI5Element {
      */
     _removeOpenedPopup(): void;
     /**
+     * Asks the InvisibleMessage to render its aria-live region inside the popup, so that announcements
+     * made while the popup is open are read out.
+     *
+     * A screen reader scopes its accessibility tree to a modal popup (aria-modal="true"), so a body-level
+     * aria-live region is silenced while the popup is open. Non-modal popups (e.g. a ComboBox dropdown) do
+     * not cause this scoping, so their announcements are still heard from the default body-level region and
+     * must not be routed into the popup subtree.
+     * @protected
+     */
+    _registerInvisibleMessageRegion(): void;
+    /**
+     * Asks the InvisibleMessage to stop rendering its aria-live region inside the popup, restoring
+     * the default region.
+     * @protected
+     */
+    _deregisterInvisibleMessageRegion(): void;
+    /**
      * Returns the focus to the previously focused element
      * @protected
      */

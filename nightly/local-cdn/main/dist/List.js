@@ -462,6 +462,9 @@ let List = List_1 = class List extends UI5Element {
     get listAccessibleRole() {
         return toLowercaseEnumValue(this.accessibleRole);
     }
+    get noDataItemRole() {
+        return LIST_ACCESSIBLE_ROLE_TO_ITEM_ROLE[this.accessibleRole] || "listitem";
+    }
     get classes() {
         return {
             root: {

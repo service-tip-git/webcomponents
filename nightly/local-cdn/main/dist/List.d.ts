@@ -383,6 +383,7 @@ declare class List extends UI5Element {
     get growsWithButton(): boolean;
     get _growingButtonText(): string;
     get listAccessibleRole(): "menu" | "list" | "listbox" | "tree";
+    get noDataItemRole(): string;
     get classes(): ClassMap;
     prepareListItems(): void;
     observeListEnd(): Promise<void>;

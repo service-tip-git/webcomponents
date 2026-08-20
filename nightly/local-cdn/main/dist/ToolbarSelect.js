@@ -47,8 +47,11 @@ let ToolbarSelect = class ToolbarSelect extends ToolbarItemBase {
          * @public
          */
         this.disabled = false;
-        // Internal value storage, in case the composite select is not rendered on the the assignment happens
-        this._value = "";
+        // Staging buffer for value= assignments that arrive before options are available.
+        this._pendingValue = "";
+        this._hasPendingValue = false;
+        // Computed in onBeforeRendering: index of the last selected option (-1 = none)
+        this._lastSelectedIndex = -1;
     }
     /**
      * Defines the value of the component:
@@ -58,13 +61,24 @@ let ToolbarSelect = class ToolbarSelect extends ToolbarItemBase {
      * @since 2.15.0
      */
     set value(newValue) {
-        if (this.select && this.select.value !== newValue) {
-            this.select.value = newValue;
+        if (this.options.length) {
+            // Options are available: resolve immediately by setting selected on the matching outer option.
+            // Empty string clears all selections.
+            this.options.forEach(option => {
+                option.selected = newValue !== "" && (option.value === newValue || option.textContent?.trim() === newValue);
+            });
+            this._pendingValue = "";
+            this._hasPendingValue = false;
         }
-        this._value = newValue;
+        else {
+            // Options not yet available (pre-render): stage for onBeforeRendering to resolve.
+            this._pendingValue = newValue;
+            this._hasPendingValue = true;
+        }
     }
     get value() {
-        return this.select ? this.select.value : this._value;
+        const selectedOption = this._lastSelectedIndex >= 0 ? this.options[this._lastSelectedIndex] : undefined;
+        return selectedOption?.value || selectedOption?.textContent?.trim() || "";
     }
     get select() {
         return this.shadowRoot.querySelector("[ui5-select]");
@@ -90,6 +104,20 @@ let ToolbarSelect = class ToolbarSelect extends ToolbarItemBase {
             this.fireDecoratorEvent("close-overflow");
         }
     }
+    onBeforeRendering() {
+        super.onBeforeRendering();
+        // Resolve a pending value= assignment now that options are available.
+        if (this._hasPendingValue && this.options.length) {
+            const pending = this._pendingValue;
+            this.options.forEach(option => {
+                option.selected = pending !== "" && (option.value === pending || option.textContent?.trim() === pending);
+            });
+            this._pendingValue = "";
+            this._hasPendingValue = false;
+        }
+        // Last selected wins — mirrors Select._applyAutoSelection behaviour.
+        this._lastSelectedIndex = this.options.reduce((last, option, index) => (option.selected ? index : last), -1);
+    }
     onChange(e) {
         e.stopImmediatePropagation();
         const selectedOptionIndex = Number(e.detail.selectedOption?.getAttribute("data-ui5-external-action-item-index"));
@@ -101,6 +129,8 @@ let ToolbarSelect = class ToolbarSelect extends ToolbarItemBase {
         this._syncOptions(selectedOptionIndex);
     }
     _syncOptions(selectedOptionIndex) {
+        this._pendingValue = "";
+        this._hasPendingValue = false;
         this.options.forEach((option, index) => {
             option.selected = index === selectedOptionIndex;
         });
@@ -112,6 +142,16 @@ let ToolbarSelect = class ToolbarSelect extends ToolbarItemBase {
     }
     get hasCustomLabel() {
         return !!this.label.length;
+    }
+    // Drives the inner Select via its value= API (non-deprecated path).
+    // When nothing is selected, the sentinel prevents _applyAutoSelection from forcing index 0.
+    // The sentinel never leaks to a form: ToolbarSelect is not form-associated and the inner Select lives in shadow DOM.
+    get _innerSelectValue() {
+        if (this._lastSelectedIndex === -1) {
+            return "__no-selection__";
+        }
+        const opt = this.options[this._lastSelectedIndex];
+        return opt?.value || opt?.textContent?.trim() || "";
     }
 };
 __decorate([
