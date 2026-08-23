@@ -118,7 +118,7 @@ declare class UserSettingsDialog extends UI5Element {
     _mediaRange?: any;
     onEnterDOM(): void;
     onBeforeRendering(): void;
-    _handleItemClick(e: CustomEvent<ListItemClickEventDetail>): void;
+    _handleItemClick(e: CustomEvent<ListItemClickEventDetail>): Promise<void>;
     _handleDialogAfterOpen(): void;
     _handleDialogBeforeClose(e: CustomEvent<PopupBeforeCloseEventDetail>): void;
     _handleDialogAfterClose(): void;
@@ -134,7 +134,7 @@ declare class UserSettingsDialog extends UI5Element {
     _handleCloseButtonClick(): void;
     _handleSaveButtonClick(): void;
     _handleCancelButtonClick(): void;
-    _handleCollapseClick(): void;
+    _handleCollapseClick(): Promise<void>;
     _handleInput(e: CustomEvent<InputEventDetail>): void;
     captureRef(ref: HTMLElement & {
         associatedSettingItem?: UI5Element;

@@ -9,7 +9,7 @@ const EVENT_PARAMETERS_SYMBOL = Symbol("parameters");
 
 /**
  * @author SAP SE
- * @version 1.146.0
+ * @version 1.151.0
  *
  * Creates an event with the given <code>sType</code>,
  * linked to the provided <code>oTarget</code> and enriched with the <code>oParameters</code>.

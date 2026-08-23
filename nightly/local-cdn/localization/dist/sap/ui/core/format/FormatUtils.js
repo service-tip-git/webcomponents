@@ -2,7 +2,7 @@
  * Formatter related utility functions
  *
  * @author SAP SE
- * @version 1.146.0
+ * @version 1.151.0
  * @namespace
  * @private
  */ /*!

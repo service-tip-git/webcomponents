@@ -72,7 +72,7 @@ let mLocaleIdToData = {};
  *   {@link https://cldr.unicode.org/ Unicode CLDR}.
  * @hideconstructor
  * @public
- * @version 1.146.0
+ * @version 1.151.0
  */
 var LocaleData = BaseObject.extend("sap.ui.core.LocaleData", /** @lends sap.ui.core.LocaleData.prototype */{
   constructor: function (oLocale, bAsync) {
@@ -1906,6 +1906,28 @@ var LocaleData = BaseObject.extend("sap.ui.core.LocaleData", /** @lends sap.ui.c
     assert(sStyle == "wide" || sStyle == "narrow", "sStyle must be wide or narrow");
     const sText = this._get("sap-calendarWeek")[sStyle];
     return iWeekNumber ? sText.replace("{0}", iWeekNumber) : sText;
+  },
+  /**
+   * Gets the locale-specific date input placeholder pattern.
+   *
+   * @returns {string} The placeholder pattern, for example "e.g. {0}" or "z.B. {0}"
+   *
+   * @private
+   */
+  getDatePlaceholder: function () {
+    return this._get("sap-datePlaceholder");
+  },
+  /**
+   * Gets the locale-specific file size format pattern for the given unit.
+   *
+   * @param {string} sUnit
+   *   The file size unit key
+   * @returns {string} The format pattern
+   *
+   * @private
+   */
+  getFileSizePattern: function (sUnit) {
+    return this._get("sap-fileSize", sUnit);
   },
   /**
    * Whether 1 January is the first day of the first calendar week.

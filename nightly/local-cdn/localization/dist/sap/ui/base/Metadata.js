@@ -25,7 +25,7 @@ function isFunction(obj) {
  *
  * @class Metadata for a class.
  * @author Frank Weigel
- * @version 1.146.0
+ * @version 1.151.0
  * @since 0.8.6
  * @public
  * @alias sap.ui.base.Metadata

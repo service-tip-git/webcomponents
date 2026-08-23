@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import { customElement, property, slotStrict as slot, eventStrict as event, } from "@ui5/webcomponents-base/dist/decorators.js";
+import { getFirstFocusableElement } from "@ui5/webcomponents-base/dist/util/FocusableElements.js";
+import { renderFinished } from "@ui5/webcomponents-base/dist/Render.js";
 import UserSettingsItemTemplate from "./UserSettingsItemTemplate.js";
 import UserSettingsItemCss from "./generated/themes/UserSettingsItem.css.js";
 /**
@@ -79,6 +81,18 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
          */
         this._siblingsWithIcon = false;
         this._inMobileView = false;
+        /**
+         * Indicates that focus should be moved to the first interactive content element
+         * once the content becomes available (e.g. after the loading state finishes).
+         * @private
+         */
+        this._pendingContentFocus = false;
+    }
+    onAfterRendering() {
+        if (this._pendingContentFocus && !this.loading) {
+            this._pendingContentFocus = false;
+            this._focusFirstContentElementWhenReady();
+        }
     }
     get _hasSelectedPageView() {
         return this.pages.some(view => view.selected);
@@ -127,6 +141,42 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
     }
     get _shouldShowBackButton() {
         return !!(this._inMobileView || (this._hasSelectedPageView && this._selectedPageView.secondary));
+    }
+    /**
+     * Moves the focus to the first interactive element of the item's content,
+     * skipping the navigation back button in the header.
+     *
+     * If the content is not yet available because the item is in loading state,
+     * the focus is deferred until the loading finishes and the content is rendered.
+     * @private
+     */
+    focusFirstContentElement() {
+        if (this.loading) {
+            this._pendingContentFocus = true;
+            return;
+        }
+        this._focusFirstContentElement();
+    }
+    async _focusFirstContentElementWhenReady() {
+        // The content (and its slotted views) may still be settling after the loading
+        // state clears, so wait for the render to finish before moving the focus.
+        await renderFinished();
+        this._focusFirstContentElement();
+    }
+    async _focusFirstContentElement() {
+        const root = this.getDomRef();
+        if (!root) {
+            return;
+        }
+        // The content is rendered right after the header (which holds the back button),
+        // so start the focus lookup from the element following the header.
+        const header = root.querySelector(".ui5-user-settings-item-header-container");
+        const contentElement = (header?.nextElementSibling || root.firstElementChild);
+        if (!contentElement) {
+            return;
+        }
+        const focusable = await getFirstFocusableElement(contentElement, true);
+        focusable?.focus();
     }
     captureRef(ref) {
         if (ref) {

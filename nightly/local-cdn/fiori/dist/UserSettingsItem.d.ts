@@ -121,6 +121,13 @@ declare class UserSettingsItem extends UI5Element {
      * @private
      */
     _individualSlot?: string;
+    /**
+     * Indicates that focus should be moved to the first interactive content element
+     * once the content becomes available (e.g. after the loading state finishes).
+     * @private
+     */
+    _pendingContentFocus: boolean;
+    onAfterRendering(): void;
     get _hasSelectedPageView(): boolean;
     get _selectedPageView(): UserSettingsView;
     get ariaLabelledByText(): string;
@@ -129,6 +136,17 @@ declare class UserSettingsItem extends UI5Element {
     _handleBackButtonClick(): void;
     _handleTabSelect(e: CustomEvent<TabContainerTabSelectEventDetail>): void;
     get _shouldShowBackButton(): boolean;
+    /**
+     * Moves the focus to the first interactive element of the item's content,
+     * skipping the navigation back button in the header.
+     *
+     * If the content is not yet available because the item is in loading state,
+     * the focus is deferred until the loading finishes and the content is rendered.
+     * @private
+     */
+    focusFirstContentElement(): void;
+    _focusFirstContentElementWhenReady(): Promise<void>;
+    _focusFirstContentElement(): Promise<void>;
     captureRef(this: UserSettingsView, ref: HTMLElement & {
         associatedSettingView?: UserSettingsView;
     } | null): void;

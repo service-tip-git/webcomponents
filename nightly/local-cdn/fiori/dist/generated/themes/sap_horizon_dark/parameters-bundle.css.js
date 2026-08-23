@@ -86,7 +86,8 @@ export default `:host{
     --_ui5-search-wrapper-background: var(--sapShell_InteractiveBackground);
     --_ui5_search_separator_background: var(--sapShell_InteractiveBorderColor);
     --_ui5-search-wrapper-hover-background: var(--sapField_Hover_BackgroundStyle);
-    --_ui5-search-wrapper-hover-background-color: var(--sapField_Hover_Background);
+    --_ui5-search-wrapper-hover-background-color: var(--sapShell_Hover_Background);
+    --_ui5-search-wrapper-active-background-color: var(--sapShell_Active_Background);
     --_ui5-search-elements-hover-background: none;
     --_ui5-search-elements-active-background: none;
     --_ui5_search_input_scope_margin: 0 .125rem 0 .5rem;

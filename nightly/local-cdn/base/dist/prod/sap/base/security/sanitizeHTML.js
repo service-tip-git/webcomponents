@@ -22,7 +22,7 @@ import "../../ui/thirdparty/caja-html-sanitizer.js";
  * @private
  */
 var fnSanitizeHTML = function (sHTML, mOptions) {
-  assert(window.html && window.html.sanitize, "Sanitizer should have been loaded");
+  assert(globalThis.html && globalThis.html.sanitize, "Sanitizer should have been loaded");
   mOptions = mOptions || {
     uriRewriter: function (sUrl) {
       // by default, we use the URLListValidator to check the URLs
@@ -32,7 +32,7 @@ var fnSanitizeHTML = function (sHTML, mOptions) {
       }
     }
   };
-  var oTagPolicy = mOptions.tagPolicy || window.html.makeTagPolicy(mOptions.uriRewriter, mOptions.tokenPolicy);
-  return window.html.sanitizeWithPolicy(sHTML, oTagPolicy);
+  var oTagPolicy = mOptions.tagPolicy || globalThis.html.makeTagPolicy(mOptions.uriRewriter, mOptions.tokenPolicy);
+  return globalThis.html.sanitizeWithPolicy(sHTML, oTagPolicy);
 };
 export default fnSanitizeHTML;

@@ -10,7 +10,7 @@ import Event from "./Event.js";
  * @class A simple eventing implementation that manages listeners and can fire events.
  *
  * @author SAP SE
- * @version 1.146.0
+ * @version 1.151.0
  *
  * @since 1.120.0
  * @private

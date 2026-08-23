@@ -460,6 +460,7 @@ export default `:host {
     --_ui5_link_active_text_decoration: var(--sapLink_Active_TextDecoration);
     --_ui5_link_outline: .125rem dotted var(--sapContent_FocusColor);
     --_ui5_link_focus_border-radius: 0;
+    --_ui5_link_outline_offset: 0;
     --_ui5_link_focus_background_color: transparent;
     --_ui5_link_focus_color: var(--sapLinkColor);
     --_ui5_link_focus_text_decoration: underline;

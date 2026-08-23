@@ -200,6 +200,7 @@ export default `:host {
     --_ui5_search_separator_background: none;
     --_ui5-search-wrapper-hover-background: none;
     --_ui5-search-wrapper-hover-background-color: none;
+    --_ui5-search-wrapper-active-background-color: none;
     --_ui5-search-elements-hover-background: none;
     --_ui5-search-elements-active-background: none;
     --_ui5_search_input_scope_margin: 0;

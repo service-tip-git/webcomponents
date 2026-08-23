@@ -10,6 +10,7 @@ import { customElement, property, slotStrict as slot, eventStrict as event, } fr
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import { isPhone, isTablet, isCombi } from "@ui5/webcomponents-base/dist/Device.js";
+import { renderFinished } from "@ui5/webcomponents-base/dist/Render.js";
 import MediaRange from "@ui5/webcomponents-base/dist/MediaRange.js";
 import announce from "@ui5/webcomponents-base/dist/util/InvisibleMessage.js";
 import InvisibleMessageMode from "@ui5/webcomponents-base/dist/types/InvisibleMessageMode.js";
@@ -140,12 +141,13 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
             }
         });
     }
-    _handleItemClick(e) {
+    async _handleItemClick(e) {
         const setting = e.detail.item;
         const settingItem = setting.associatedSettingItem;
         const eventPrevented = !this.fireDecoratorEvent("selection-change", {
             item: settingItem,
         });
+        const shouldNavigate = this._showSettingWithNavigation;
         this._collapsed = true;
         if (!eventPrevented) {
             this.items.forEach(item => {
@@ -155,6 +157,12 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
                 item.selected = false;
             });
             settingItem.selected = true;
+        }
+        // In navigation (single-column) mode the content replaces the list, so move the
+        // focus to the first interactive element of the content instead of losing it.
+        if (shouldNavigate) {
+            await renderFinished();
+            this._selectedSetting?.focusFirstContentElement();
         }
     }
     _handleDialogAfterOpen() {
@@ -220,8 +228,15 @@ let UserSettingsDialog = UserSettingsDialog_1 = class UserSettingsDialog extends
     _handleCancelButtonClick() {
         this.fireDecoratorEvent("cancel");
     }
-    _handleCollapseClick() {
+    async _handleCollapseClick() {
         this._collapsed = false;
+        // The side list replaces the content, so return the focus to the
+        // user settings item that was selected instead of losing it.
+        await renderFinished();
+        const selectedListItem = this._selectedSetting
+            ? this.shadowRoot.querySelector(`#setting-${this._selectedSetting._id}`)
+            : null;
+        selectedListItem?.focus();
     }
     _handleInput(e) {
         this._searchValue = e.target.value;
