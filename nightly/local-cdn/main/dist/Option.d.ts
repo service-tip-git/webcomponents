@@ -65,6 +65,16 @@ declare class Option extends ListItemBase implements IOption {
      */
     selected: boolean;
     get displayIconBegin(): boolean;
+    /**
+     * Per-group aria-setsize, set by Select when this option is inside a ui5-option-group.
+     * @private
+     */
+    _forcedSetsize?: number;
+    /**
+     * Per-group aria-posinset, set by Select when this option is inside a ui5-option-group.
+     * @private
+     */
+    _forcedPosinset?: number;
     get effectiveDisplayText(): string;
 }
 export default Option;

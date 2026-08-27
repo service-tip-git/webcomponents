@@ -24,12 +24,13 @@ import { isPhone } from "@ui5/webcomponents-base/dist/Device.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import InvisibleMessageMode from "@ui5/webcomponents-base/dist/types/InvisibleMessageMode.js";
 import List from "./List.js";
-import { VALUE_STATE_SUCCESS, VALUE_STATE_INFORMATION, VALUE_STATE_ERROR, VALUE_STATE_WARNING, VALUE_STATE_TYPE_SUCCESS, VALUE_STATE_TYPE_INFORMATION, VALUE_STATE_TYPE_ERROR, VALUE_STATE_TYPE_WARNING, LIST_ITEM_POSITION, SELECT_ROLE_DESCRIPTION, SELECT_POPOVER_ACCESSIBLE_NAME_PREFIX, SELECT_LISTBOX_LABEL, SELECT_DIALOG_CANCEL_BUTTON, FORM_SELECTABLE_REQUIRED, } from "./generated/i18n/i18n-defaults.js";
+import { VALUE_STATE_SUCCESS, VALUE_STATE_INFORMATION, VALUE_STATE_ERROR, VALUE_STATE_WARNING, VALUE_STATE_TYPE_SUCCESS, VALUE_STATE_TYPE_INFORMATION, VALUE_STATE_TYPE_ERROR, VALUE_STATE_TYPE_WARNING, LIST_ITEM_POSITION, SELECT_ROLE_DESCRIPTION, SELECT_POPOVER_ACCESSIBLE_NAME_PREFIX, SELECT_LISTBOX_LABEL, SELECT_DIALOG_CANCEL_BUTTON, FORM_SELECTABLE_REQUIRED, SELECT_OPTIONS_IN_GROUPS, } from "./generated/i18n/i18n-defaults.js";
 import Label from "./Label.js";
 import ResponsivePopover from "./ResponsivePopover.js";
 import Popover from "./Popover.js";
 import Icon from "./Icon.js";
 import Button from "./Button.js";
+import OptionGroup, { isInstanceOfOptionGroup } from "./OptionGroup.js";
 // Templates
 import SelectTemplate from "./SelectTemplate.js";
 // Styles
@@ -189,8 +190,50 @@ let Select = Select_1 = class Select extends UI5Element {
     onExitDOM() {
         deregisterUI5Element(this);
     }
+    get _flatOptions() {
+        return this.options.flatMap(item => {
+            if (isInstanceOfOptionGroup(item)) {
+                return item.items;
+            }
+            return item;
+        });
+    }
+    get hasGroups() {
+        return this.options.some(item => isInstanceOfOptionGroup(item));
+    }
+    get _groupCountMessageId() {
+        return `${this._id}-groupCountDesc`;
+    }
+    get _groupCountText() {
+        const groups = this.options.filter(item => isInstanceOfOptionGroup(item));
+        return Select_1.i18nBundle.getText(SELECT_OPTIONS_IN_GROUPS, this._flatOptions.length, groups.length);
+    }
+    _applyGroupAriaPositions() {
+        const flatOptions = this._flatOptions;
+        flatOptions.forEach(o => {
+            o._forcedSetsize = undefined;
+            o._forcedPosinset = undefined;
+        });
+        if (!this.hasGroups) {
+            return;
+        }
+        const totalCount = flatOptions.length;
+        let globalPosition = 0;
+        this.options.forEach(item => {
+            if (isInstanceOfOptionGroup(item)) {
+                item.items.forEach(opt => {
+                    opt._forcedSetsize = totalCount;
+                    opt._forcedPosinset = ++globalPosition;
+                });
+            }
+            else {
+                globalPosition++;
+            }
+        });
+    }
     onBeforeRendering() {
         this._applySelection();
+        this._applyGroupAriaPositions();
         this.style.setProperty("--_ui5-input-icons-count", `${this.iconsCount}`);
     }
     onAfterRendering() {
@@ -219,8 +262,7 @@ let Select = Select_1 = class Select extends UI5Element {
      */
     _applySelectionByValue(value) {
         if (value !== (this.selectedOption?.value || this.selectedOption?.textContent)) {
-            const options = Array.from(this.children);
-            options.forEach(option => {
+            this._flatOptions.forEach(option => {
                 option.selected = !!((option.getAttribute("value") || option.textContent) === value);
             });
         }
@@ -230,10 +272,11 @@ let Select = Select_1 = class Select extends UI5Element {
      * or selects the last option if multiple options are selected.
      */
     _applyAutoSelection() {
-        let selectedIndex = this.options.findLastIndex(option => option.selected);
+        const flatOptions = this._flatOptions;
+        let selectedIndex = flatOptions.findLastIndex(option => option.selected);
         selectedIndex = selectedIndex === -1 ? 0 : selectedIndex;
-        for (let i = 0; i < this.options.length; i++) {
-            this.options[i].selected = selectedIndex === i;
+        for (let i = 0; i < flatOptions.length; i++) {
+            flatOptions[i].selected = selectedIndex === i;
             if (selectedIndex === i) {
                 break;
             }
@@ -287,7 +330,7 @@ let Select = Select_1 = class Select extends UI5Element {
         return this.selectedOption?.value === undefined ? (this.selectedOption?.textContent || "") : this.selectedOption?.value;
     }
     get _selectedIndex() {
-        return this.options.findIndex(option => option.selected);
+        return this._flatOptions.findIndex(option => option.selected);
     }
     /**
      * Currently selected `ui5-option` element.
@@ -295,7 +338,7 @@ let Select = Select_1 = class Select extends UI5Element {
      * @default undefined
      */
     get selectedOption() {
-        return this.options.find(option => option.selected);
+        return this._flatOptions.find(option => option.selected);
     }
     /**
      * Helper function to build display text with separator when additional text exists
@@ -418,7 +461,7 @@ let Select = Select_1 = class Select extends UI5Element {
         const currentIndex = this._selectedIndex;
         const itemToSelect = this._searchNextItemByText(text);
         if (itemToSelect) {
-            const nextIndex = this.options.indexOf(itemToSelect);
+            const nextIndex = this._flatOptions.indexOf(itemToSelect);
             this._changeSelectedItem(this._selectedIndex, nextIndex);
             if (currentIndex !== this._selectedIndex) {
                 this.itemSelectionAnnounce();
@@ -427,7 +470,7 @@ let Select = Select_1 = class Select extends UI5Element {
         }
     }
     _searchNextItemByText(text) {
-        let orderedOptions = this.options.slice(0);
+        let orderedOptions = this._flatOptions.slice(0);
         const optionsAfterSelected = orderedOptions.splice(this._selectedIndex + 1, orderedOptions.length - this._selectedIndex);
         const optionsBeforeSelected = orderedOptions.splice(0, orderedOptions.length - 1);
         orderedOptions = optionsAfterSelected.concat(optionsBeforeSelected);
@@ -445,7 +488,7 @@ let Select = Select_1 = class Select extends UI5Element {
         if (this.readonly) {
             return;
         }
-        const lastIndex = this.options.length - 1;
+        const lastIndex = this._flatOptions.length - 1;
         this._changeSelectedItem(this._selectedIndex, lastIndex);
     }
     _onkeyup(e) {
@@ -459,17 +502,18 @@ let Select = Select_1 = class Select extends UI5Element {
         }
     }
     _getItemIndex(item) {
-        return this.options.indexOf(item);
+        return this._flatOptions.indexOf(item);
     }
     _select(index) {
         const selectedIndex = this._selectedIndex;
-        if (index < 0 || index >= this.options.length || this.options.length === 0) {
+        const flatOptions = this._flatOptions;
+        if (index < 0 || index >= flatOptions.length || flatOptions.length === 0) {
             return;
         }
-        if (this.options[selectedIndex]) {
-            this.options[selectedIndex].selected = false;
+        if (flatOptions[selectedIndex]) {
+            flatOptions[selectedIndex].selected = false;
         }
-        const selectedOption = this.options[index];
+        const selectedOption = flatOptions[index];
         if (selectedIndex !== index) {
             this.fireDecoratorEvent("live-change", { selectedOption });
         }
@@ -540,7 +584,7 @@ let Select = Select_1 = class Select extends UI5Element {
         }
     }
     _changeSelectedItem(oldIndex, newIndex) {
-        const options = this.options;
+        const options = this._flatOptions;
         // Normalize: first navigation with Up when nothing selected -> last item
         if (oldIndex === -1 && newIndex < 0 && options.length) {
             newIndex = options.length - 1;
@@ -570,14 +614,14 @@ let Select = Select_1 = class Select extends UI5Element {
         }
     }
     _getNextOptionIndex() {
-        return this._selectedIndex === (this.options.length - 1) ? this._selectedIndex : (this._selectedIndex + 1);
+        return this._selectedIndex === (this._flatOptions.length - 1) ? this._selectedIndex : (this._selectedIndex + 1);
     }
     _getPreviousOptionIndex() {
         return this._selectedIndex === 0 ? this._selectedIndex : (this._selectedIndex - 1);
     }
     _beforeOpen() {
         this._selectedIndexBeforeOpen = this._selectedIndex;
-        this._lastSelectedOption = this.options[this._selectedIndex];
+        this._lastSelectedOption = this._flatOptions[this._selectedIndex];
     }
     _afterOpen() {
         this.opened = true;
@@ -587,7 +631,8 @@ let Select = Select_1 = class Select extends UI5Element {
         this._applyFocusToSelectedItem();
     }
     _applyFocusToSelectedItem() {
-        this.options.forEach(option => {
+        const flatOptions = this._flatOptions;
+        flatOptions.forEach(option => {
             option.focused = option.selected;
             if (option.focused) {
                 // move focus to the selected option so screen readers
@@ -604,9 +649,9 @@ let Select = Select_1 = class Select extends UI5Element {
             this._select(this._selectedIndexBeforeOpen);
             this._escapePressed = false;
         }
-        else if (this._lastSelectedOption !== this.options[this._selectedIndex]) {
-            this._fireChangeEvent(this.options[this._selectedIndex]);
-            this._lastSelectedOption = this.options[this._selectedIndex];
+        else if (this._lastSelectedOption !== this._flatOptions[this._selectedIndex]) {
+            this._fireChangeEvent(this._flatOptions[this._selectedIndex]);
+            this._lastSelectedOption = this._flatOptions[this._selectedIndex];
         }
         this.fireDecoratorEvent("close");
     }
@@ -674,7 +719,7 @@ let Select = Select_1 = class Select extends UI5Element {
         return Select_1.i18nBundle.getText(SELECT_DIALOG_CANCEL_BUTTON);
     }
     get _currentlySelectedOption() {
-        return this.options[this._selectedIndex];
+        return this._flatOptions[this._selectedIndex];
     }
     get _effectiveTabIndex() {
         return this.disabled
@@ -713,13 +758,14 @@ let Select = Select_1 = class Select extends UI5Element {
     }
     get styles() {
         const remSizeInPx = parseInt(getComputedStyle(document.documentElement).fontSize);
+        const flatOptionsCount = this._flatOptions.length;
         return {
             popoverHeader: {
                 "display": "block",
             },
             responsivePopoverHeader: {
-                "display": this.options.length && this._listWidth === 0 ? "none" : "inline-block",
-                "width": `${this.options.length ? this._listWidth : this.offsetWidth}px`,
+                "display": flatOptionsCount && this._listWidth === 0 ? "none" : "inline-block",
+                "width": `${flatOptionsCount ? this._listWidth : this.offsetWidth}px`,
                 "max-width": "100%",
             },
             responsivePopover: {
@@ -761,7 +807,7 @@ let Select = Select_1 = class Select extends UI5Element {
     }
     itemSelectionAnnounce() {
         let text;
-        const optionsCount = this.options.length;
+        const optionsCount = this._flatOptions.length;
         const itemPositionText = Select_1.i18nBundle.getText(LIST_ITEM_POSITION, this._selectedIndex + 1, optionsCount);
         if (this.focused && this._currentlySelectedOption) {
             text = `${this._currentlySelectedOption.textContent} ${this._isPickerOpen ? itemPositionText : ""}`;
@@ -796,7 +842,11 @@ let Select = Select_1 = class Select extends UI5Element {
         return this.ariaDescriptionText ? "accessibleDescription" : "";
     }
     get ariaDescribedByIds() {
-        const ids = [this.valueStateTextId, this.ariaDescriptionTextId].filter(Boolean);
+        const ids = [
+            this.valueStateTextId,
+            this.ariaDescriptionTextId,
+            this.hasGroups ? this._groupCountMessageId : undefined,
+        ].filter(Boolean);
         return ids.length ? ids.join(" ") : undefined;
     }
     get accessibilityInfo() {
@@ -903,6 +953,7 @@ Select = Select_1 = __decorate([
             List,
             Icon,
             Button,
+            OptionGroup,
         ],
     })
     /**

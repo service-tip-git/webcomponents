@@ -11274,7 +11274,7 @@
           "slots": [
             {
               "name": "fontIcon",
-              "description": "Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```",
+              "description": "Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Note:** To control the glyph size, set `font-size` on the `ui5-icon` host element.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```",
               "_ui5since": "2.23.0",
               "_ui5type": {
                 "text": "Array<HTMLElement>"
@@ -13516,7 +13516,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             }
           ],
@@ -13618,12 +13618,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             }
           ],
@@ -13891,7 +13891,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             }
           ],
@@ -13969,12 +13969,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             }
           ],
@@ -14683,7 +14683,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             },
             {
@@ -14833,12 +14833,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             },
             {
@@ -15497,7 +15497,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             }
           ],
@@ -15764,12 +15764,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             }
           ],
@@ -18400,6 +18400,232 @@
           "declaration": {
             "name": "OptionCustom",
             "module": "dist/OptionCustom.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/OptionGroup.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "### Overview\n\nThe `ui5-option-group` component is used to group options within a `ui5-select`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/OptionGroup.js\";`",
+          "name": "OptionGroup",
+          "slots": [
+            {
+              "name": "default",
+              "description": "Defines the options of the group.\n\n**Note:** Use the `ui5-option` component to define the desired options.",
+              "_ui5propertyName": "items",
+              "_ui5type": {
+                "text": "Array<Option>",
+                "references": [
+                  {
+                    "name": "Option",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/Option.js"
+                  }
+                ]
+              },
+              "_ui5privacy": "public"
+            },
+            {
+              "name": "header",
+              "description": "Defines the header of the component.\n\n**Note:** Using this slot, the default header text of group and the value of `headerText` property will be overwritten.",
+              "_ui5type": {
+                "text": "Array<ListItemBase>",
+                "references": [
+                  {
+                    "name": "ListItemBase",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemBase.js"
+                  }
+                ]
+              },
+              "_ui5privacy": "public"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "headerAccessibleName",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the accessible name of the header.",
+              "privacy": "public",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "headerText",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Defines the header text of the <code>ui5-li-group</code>.",
+              "privacy": "public",
+              "default": "undefined"
+            },
+            {
+              "kind": "field",
+              "name": "wrappingType",
+              "type": {
+                "text": "WrappingType",
+                "references": [
+                  {
+                    "name": "WrappingType",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/types/WrappingType.js"
+                  }
+                ]
+              },
+              "default": "\"None\"",
+              "description": "Defines if the text of the component should wrap when it's too long.\nWhen set to \"Normal\", the content (title, description) will be wrapped\nusing the `ui5-expandable-text` component.<br/>\n\nThe text can wrap up to 100 characters on small screens (size S) and\nup to 300 characters on larger screens (size M and above). When text exceeds\nthese limits, it truncates with an ellipsis followed by a text expansion trigger.\n\nAvailable options are:\n- `None` (default) - The text will truncate with an ellipsis.\n- `Normal` - The text will wrap (without truncation).",
+              "privacy": "public",
+              "_ui5since": "2.15.0"
+            }
+          ],
+          "superclass": {
+            "name": "ListItemGroup",
+            "package": "@ui5/webcomponents",
+            "module": "dist/ListItemGroup.js"
+          },
+          "tagName": "ui5-option-group",
+          "customElement": true,
+          "_ui5since": "2.26.0",
+          "_ui5privacy": "public",
+          "cssParts": [
+            {
+              "description": "Used to style the header item of the group",
+              "name": "header"
+            },
+            {
+              "description": "Used to style the title of the group header",
+              "name": "title"
+            }
+          ],
+          "attributes": [
+            {
+              "description": "Defines the accessible name of the header.",
+              "name": "header-accessible-name",
+              "default": "undefined",
+              "fieldName": "headerAccessibleName",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "description": "Defines the header text of the <code>ui5-li-group</code>.",
+              "name": "header-text",
+              "default": "undefined",
+              "fieldName": "headerText",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "description": "Defines if the text of the component should wrap when it's too long.\nWhen set to \"Normal\", the content (title, description) will be wrapped\nusing the `ui5-expandable-text` component.<br/>\n\nThe text can wrap up to 100 characters on small screens (size S) and\nup to 300 characters on larger screens (size M and above). When text exceeds\nthese limits, it truncates with an ellipsis followed by a text expansion trigger.\n\nAvailable options are:\n- `None` (default) - The text will truncate with an ellipsis.\n- `Normal` - The text will wrap (without truncation).",
+              "name": "wrapping-type",
+              "default": "\"None\"",
+              "fieldName": "wrappingType",
+              "type": {
+                "text": "\"None\" | \"Normal\""
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "move",
+              "_ui5privacy": "public",
+              "type": {
+                "text": "CustomEvent<ListItemGroupMoveEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemGroupMoveEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemGroup.js"
+                  }
+                ]
+              },
+              "description": "Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action.",
+              "_ui5Cancelable": false,
+              "_ui5allowPreventDefault": false,
+              "_ui5Bubbles": true,
+              "_ui5since": "2.1.0",
+              "_ui5parameters": [
+                {
+                  "type": {
+                    "text": "object"
+                  },
+                  "name": "destination",
+                  "_ui5privacy": "public",
+                  "description": "Contains information about the destination of the moved element. Has `element` and `placement` properties."
+                },
+                {
+                  "type": {
+                    "text": "object"
+                  },
+                  "name": "source",
+                  "_ui5privacy": "public",
+                  "description": "Contains information about the moved element under `element` property."
+                }
+              ]
+            },
+            {
+              "name": "move-over",
+              "_ui5privacy": "public",
+              "type": {
+                "text": "CustomEvent<ListItemGroupMoveEventDetail>",
+                "references": [
+                  {
+                    "name": "ListItemGroupMoveEventDetail",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/ListItemGroup.js"
+                  }
+                ]
+              },
+              "description": "Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`.",
+              "_ui5Cancelable": true,
+              "_ui5allowPreventDefault": true,
+              "_ui5Bubbles": true,
+              "_ui5since": "2.1.0",
+              "_ui5parameters": [
+                {
+                  "type": {
+                    "text": "object"
+                  },
+                  "name": "destination",
+                  "_ui5privacy": "public",
+                  "description": "Contains information about the destination of the moved element. Has `element` and `placement` properties."
+                },
+                {
+                  "type": {
+                    "text": "object"
+                  },
+                  "name": "source",
+                  "_ui5privacy": "public",
+                  "description": "Contains information about the moved element under `element` property."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "OptionGroup",
+            "module": "dist/OptionGroup.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "ui5-option-group",
+          "declaration": {
+            "name": "OptionGroup",
+            "module": "dist/OptionGroup.js"
           }
         }
       ]
@@ -21685,6 +21911,12 @@
           "_ui5privacy": "public"
         },
         {
+          "kind": "interface",
+          "name": "IOptionGroup",
+          "description": "Interface for group containers slotted inside `ui5-select`",
+          "_ui5privacy": "public"
+        },
+        {
           "kind": "class",
           "description": "### Overview\n\nThe `ui5-select` component is used to create a drop-down list.\n\n### Usage\n\nThere are two main usages of the `ui5-select>`.\n\n- With Option (`ui5-option`) web component:\n\nThe available options of the Select are defined by using the Option component.\nThe Option comes with predefined design and layout, including `icon`, `text` and `additional-text`.\n\n- With OptionCustom (`ui5-option-custom`) web component.\n\nOptions with custom content are defined by using the OptionCustom component.\nThe OptionCustom component comes with no predefined layout and it expects consumers to define it.\n\n### Selection\n\nThe options can be selected via user interaction (click or with the use of the Space and Enter keys)\nand programmatically - the Select component supports two distinct selection APIs, though mixing them is not supported:\n- The \"value\" property of the Select component\n- The \"selected\" property on individual options\n\n**Note:** If the \"value\" property is set but does not match any option,\nno option will be selected and the Select component will be displayed as empty.\n\n**Note:** when both \"value\" and \"selected\" are both used (although discouraged),\nthe \"value\" property will take precedence.\n\n### Keyboard Handling\n\nThe `ui5-select` provides advanced keyboard handling.\n\n- [F4] / [Alt] + [Up] / [Alt] + [Down] / [Space] or [Enter] - Opens/closes the drop-down.\n- [Up] or [Down] - If the drop-down is closed - changes selection to the next or the previous option. If the drop-down is opened - moves focus to the next or the previous option.\n- [Space], [Enter] - If the drop-down is opened - selects the focused option.\n- [Escape] - Closes the drop-down without changing the selection.\n- [Home] - Navigates to first option\n- [End] - Navigates to the last option\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Select\";`\n\n`import \"@ui5/webcomponents/dist/Option\";`\n`import \"@ui5/webcomponents/dist/OptionCustom\";`",
           "name": "Select",
@@ -21697,17 +21929,10 @@
           "slots": [
             {
               "name": "default",
-              "description": "Defines the component options.\n\n**Note:** Only one selected option is allowed.\nIf more than one option is defined as selected, the last one would be considered as the selected one.\n\n**Note:** Use the `ui5-option` component to define the desired options.",
+              "description": "Defines the component options.\n\n**Note:** Only one selected option is allowed.\nIf more than one option is defined as selected, the last one would be considered as the selected one.\n\n**Note:** Use the `ui5-option` component to define the desired options.\nUse the `ui5-option-group` component to group options.",
               "_ui5propertyName": "options",
               "_ui5type": {
-                "text": "Array<IOption>",
-                "references": [
-                  {
-                    "name": "IOption",
-                    "package": "@ui5/webcomponents",
-                    "module": "dist/Select.js"
-                  }
-                ]
+                "text": "Array<IOption | IOptionGroup>"
               },
               "_ui5privacy": "public"
             },
@@ -24250,7 +24475,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             },
             {
@@ -24408,12 +24633,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             },
             {
@@ -33415,7 +33640,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             }
           ],
@@ -33556,12 +33781,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             }
           ],
@@ -33924,7 +34149,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             }
           ],
@@ -34089,12 +34314,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             }
           ],
@@ -34395,7 +34620,7 @@
                 ]
               },
               "default": "\"Active\"",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "privacy": "public"
             }
           ],
@@ -34527,12 +34752,12 @@
               }
             },
             {
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "name": "type",
               "default": "\"Active\"",
               "fieldName": "type",
               "type": {
-                "text": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                "text": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
               }
             }
           ],
@@ -37808,6 +38033,16 @@
               "description": "Indicates the list item does not have any active feedback when item is pressed.",
               "default": "Inactive",
               "name": "Inactive",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "static": true,
+              "privacy": "public",
+              "_ui5since": "2.26.0",
+              "description": "Indicates the list item does not have any active feedback when item is pressed,\nbut selection (checkbox/radio) is still possible when a selection mode is active.\nThe `item-click` event is not fired for items of this type.",
+              "default": "InactiveSelectable",
+              "name": "InactiveSelectable",
               "readonly": true
             },
             {

@@ -24,6 +24,17 @@ interface IOption extends ListItemBase {
     additionalText?: string;
     focused: boolean;
     effectiveDisplayText: string;
+    _forcedSetsize?: number;
+    _forcedPosinset?: number;
+}
+/**
+ * Interface for group containers slotted inside `ui5-select`
+ * @public
+ */
+interface IOptionGroup {
+    isOptionGroup: boolean;
+    items: Array<IOption>;
+    headerText?: string;
 }
 type SelectChangeEventDetail = {
     selectedOption: IOption;
@@ -231,9 +242,10 @@ declare class Select extends UI5Element implements IFormInputElement {
      * If more than one option is defined as selected, the last one would be considered as the selected one.
      *
      * **Note:** Use the `ui5-option` component to define the desired options.
+     * Use the `ui5-option-group` component to group options.
      * @public
      */
-    options: DefaultSlot<IOption>;
+    options: DefaultSlot<IOption | IOptionGroup>;
     /**
      * Defines the value state message that will be displayed as pop up under the component.
      *
@@ -266,6 +278,11 @@ declare class Select extends UI5Element implements IFormInputElement {
     get formFormattedValue(): string | null;
     onEnterDOM(): void;
     onExitDOM(): void;
+    get _flatOptions(): Array<IOption>;
+    get hasGroups(): boolean;
+    get _groupCountMessageId(): string;
+    get _groupCountText(): string;
+    _applyGroupAriaPositions(): void;
     onBeforeRendering(): void;
     onAfterRendering(): void;
     /**
@@ -446,4 +463,4 @@ declare class Select extends UI5Element implements IFormInputElement {
     _getPopover(): Popover | null;
 }
 export default Select;
-export type { IOption, SelectChangeEventDetail, SelectLiveChangeEventDetail, };
+export type { IOption, IOptionGroup, SelectChangeEventDetail, SelectLiveChangeEventDetail, };

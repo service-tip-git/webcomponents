@@ -6,7 +6,7 @@ import Popover from "./Popover.js";
 import Icon from "./Icon.js";
 import Title from "./Title.js";
 export default function SelectPopoverTemplate() {
-    return (_jsxs(_Fragment, { children: [this.options.length > 0 &&
+    return (_jsxs(_Fragment, { children: [this._flatOptions.length > 0 &&
                 _jsxs(ResponsivePopover, { id: this.responsivePopoverId, class: {
                         "ui5-select-popover": true,
                         ...this.classes.popover

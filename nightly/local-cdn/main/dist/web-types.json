@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
   "name": "@ui5/webcomponents",
-  "version": "2.26.0-rc.0",
+  "version": "2.26.0",
   "description-markup": "markdown",
   "contributions": {
     "html": {
@@ -4545,7 +4545,7 @@
         },
         {
           "name": "ui5-icon",
-          "description": "### Overview\n\nThe `ui5-icon` component represents an SVG icon.\nThere are two main scenarios how the `ui5-icon` component is used:\nas a purely decorative element,\nor as an interactive element that can be focused and clicked.\n\n### Usage\n\n1. **Get familiar with the icons collections.**\n\nBefore displaying an icon, you need to explore the icons collections to find and import the desired icon.\n\nCurrently there are 3 icons collection, available as 3 npm packages:\n\n- [@ui5/webcomponents-icons](https://www.npmjs.com/package/@ui5/webcomponents-icons) represents the \"SAP-icons\" collection and includes the following\n[icons](https://sdk.openui5.org/test-resources/sap/m/demokit/iconExplorer/webapp/index.html#/overview/SAP-icons).\n- [@ui5/webcomponents-icons-tnt](https://www.npmjs.com/package/@ui5/webcomponents-icons-tnt) represents the \"tnt\" collection and includes the following\n[icons](https://sdk.openui5.org/test-resources/sap/m/demokit/iconExplorer/webapp/index.html#/overview/SAP-icons-TNT).\n- [@ui5/webcomponents-icons-business-suite](https://www.npmjs.com/package/@ui5/webcomponents-icons-business-suite) represents the \"business-suite\" collection and includes the following\n[icons](https://ui5.sap.com/test-resources/sap/m/demokit/iconExplorer/webapp/index.html#/overview/BusinessSuiteInAppSymbols).\n\n2. **After exploring the icons collections, add one or more of the packages as dependencies to your project.**\n\n`npm i @ui5/webcomponents-icons`\n`npm i @ui5/webcomponents-icons-tnt`\n`npm i @ui5/webcomponents-icons-business-suite`\n\n3. **Then, import the desired icon**.\n\n`import \"@ui5/\\{package_name\\}/dist/\\{icon_name\\}.js\";`\n\n**For Example**:\n\nFor the standard \"SAP-icons\" icon collection, import an icon from the `@ui5/webcomponents-icons` package:\n\n`import \"@ui5/webcomponents-icons/dist/employee.js\";`\n\nFor the \"tnt\" (SAP Fiori Tools) icon collection, import an icon from the `@ui5/webcomponents-icons-tnt` package:\n\n`import \"@ui5/webcomponents-icons-tnt/dist/antenna.js\";`\n\nFor the \"business-suite\" (SAP Business Suite) icon collection, import an icon from the `@ui5/webcomponents-icons-business-suite` package:\n\n`import \"@ui5/webcomponents-icons-business-suite/dist/ab-testing.js\";`\n\n4. **Display the icon using the `ui5-icon` web component.**\nSet the icon collection (\"SAP-icons\", \"tnt\" or \"business-suite\" - \"SAP-icons\" is the default icon collection and can be skipped)\nand the icon name to the `name` property.\n\n`<ui5-icon name=\"employee\"></ui5-icon>`\n`<ui5-icon name=\"tnt/antenna\"></ui5-icon>`\n`<ui5-icon name=\"business-suite/ab-testing\"></ui5-icon>`\n\n### Keyboard Handling\n\n- [Space] / [Enter] or [Return] - Fires the `click` event if the `mode` property is set to `Interactive`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Icon.js\";`\n---\n\n\n### **Events:**\n - **click** - Fired when the component is activated by mouse/touch, keyboard (Enter or Space),\nor screen reader virtual cursor activation.\n\n**Note:** The event will not be fired if the `mode` property is set to `Decorative` or `Image`.\n\n### **Slots:**\n - **fontIcon** - Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```\n\n### **CSS Parts:**\n - **root** - Used to style the outermost wrapper of the `ui5-icon`.",
+          "description": "### Overview\n\nThe `ui5-icon` component represents an SVG icon.\nThere are two main scenarios how the `ui5-icon` component is used:\nas a purely decorative element,\nor as an interactive element that can be focused and clicked.\n\n### Usage\n\n1. **Get familiar with the icons collections.**\n\nBefore displaying an icon, you need to explore the icons collections to find and import the desired icon.\n\nCurrently there are 3 icons collection, available as 3 npm packages:\n\n- [@ui5/webcomponents-icons](https://www.npmjs.com/package/@ui5/webcomponents-icons) represents the \"SAP-icons\" collection and includes the following\n[icons](https://sdk.openui5.org/test-resources/sap/m/demokit/iconExplorer/webapp/index.html#/overview/SAP-icons).\n- [@ui5/webcomponents-icons-tnt](https://www.npmjs.com/package/@ui5/webcomponents-icons-tnt) represents the \"tnt\" collection and includes the following\n[icons](https://sdk.openui5.org/test-resources/sap/m/demokit/iconExplorer/webapp/index.html#/overview/SAP-icons-TNT).\n- [@ui5/webcomponents-icons-business-suite](https://www.npmjs.com/package/@ui5/webcomponents-icons-business-suite) represents the \"business-suite\" collection and includes the following\n[icons](https://ui5.sap.com/test-resources/sap/m/demokit/iconExplorer/webapp/index.html#/overview/BusinessSuiteInAppSymbols).\n\n2. **After exploring the icons collections, add one or more of the packages as dependencies to your project.**\n\n`npm i @ui5/webcomponents-icons`\n`npm i @ui5/webcomponents-icons-tnt`\n`npm i @ui5/webcomponents-icons-business-suite`\n\n3. **Then, import the desired icon**.\n\n`import \"@ui5/\\{package_name\\}/dist/\\{icon_name\\}.js\";`\n\n**For Example**:\n\nFor the standard \"SAP-icons\" icon collection, import an icon from the `@ui5/webcomponents-icons` package:\n\n`import \"@ui5/webcomponents-icons/dist/employee.js\";`\n\nFor the \"tnt\" (SAP Fiori Tools) icon collection, import an icon from the `@ui5/webcomponents-icons-tnt` package:\n\n`import \"@ui5/webcomponents-icons-tnt/dist/antenna.js\";`\n\nFor the \"business-suite\" (SAP Business Suite) icon collection, import an icon from the `@ui5/webcomponents-icons-business-suite` package:\n\n`import \"@ui5/webcomponents-icons-business-suite/dist/ab-testing.js\";`\n\n4. **Display the icon using the `ui5-icon` web component.**\nSet the icon collection (\"SAP-icons\", \"tnt\" or \"business-suite\" - \"SAP-icons\" is the default icon collection and can be skipped)\nand the icon name to the `name` property.\n\n`<ui5-icon name=\"employee\"></ui5-icon>`\n`<ui5-icon name=\"tnt/antenna\"></ui5-icon>`\n`<ui5-icon name=\"business-suite/ab-testing\"></ui5-icon>`\n\n### Keyboard Handling\n\n- [Space] / [Enter] or [Return] - Fires the `click` event if the `mode` property is set to `Interactive`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Icon.js\";`\n---\n\n\n### **Events:**\n - **click** - Fired when the component is activated by mouse/touch, keyboard (Enter or Space),\nor screen reader virtual cursor activation.\n\n**Note:** The event will not be fired if the `mode` property is set to `Decorative` or `Image`.\n\n### **Slots:**\n - **fontIcon** - Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Note:** To control the glyph size, set `font-size` on the `ui5-icon` host element.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```\n\n### **CSS Parts:**\n - **root** - Used to style the outermost wrapper of the `ui5-icon`.",
           "doc-url": "",
           "attributes": [
             {
@@ -4583,7 +4583,7 @@
           "slots": [
             {
               "name": "fontIcon",
-              "description": "Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```"
+              "description": "Defines the font icon to be used as an icon.\nIntended for font-based icon libraries where\nthe application loads the font and provides a slotted element with the unicode character.\nWhen this slot is used, the component renders a `<span>` instead of an `<svg>`.\nAccessibility is fully delegated to the application — set `accessible-name` and `mode` explicitly.\n\n**Note:** To control the glyph size, set `font-size` on the `ui5-icon` host element.\n\n**Example:**\n```html\n<ui5-icon mode=\"Image\" accessible-name=\"Home\">\n  <i class=\"fa fa-home\" slot=\"fontIcon\"></i>\n</ui5-icon>\n```"
             }
           ],
           "events": [
@@ -5537,9 +5537,9 @@
             },
             {
               "name": "type",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "value": {
-                "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\"",
+                "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\"",
                 "default": "\"Active\""
               }
             }
@@ -5612,9 +5612,9 @@
               },
               {
                 "name": "type",
-                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
                 "value": {
-                  "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                  "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
                 }
               }
             ],
@@ -5845,9 +5845,9 @@
             },
             {
               "name": "type",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "value": {
-                "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\"",
+                "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\"",
                 "default": "\"Active\""
               }
             },
@@ -5964,9 +5964,9 @@
               },
               {
                 "name": "type",
-                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
                 "value": {
-                  "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                  "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
                 }
               },
               {
@@ -6214,9 +6214,9 @@
             },
             {
               "name": "type",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "value": {
-                "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\"",
+                "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\"",
                 "default": "\"Active\""
               }
             }
@@ -6340,9 +6340,9 @@
               },
               {
                 "name": "type",
-                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
                 "value": {
-                  "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                  "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
                 }
               }
             ],
@@ -7493,6 +7493,80 @@
               {
                 "name": "click",
                 "description": "Fired when the component is activated either with a mouse/tap or by using the Enter or Space key.\n\n**Note:** The event will not be fired if the `disabled` property is set to `true`."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ui5-option-group",
+          "description": "### Overview\n\nThe `ui5-option-group` component is used to group options within a `ui5-select`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/OptionGroup.js\";`\n---\n\n\n### **Events:**\n - **move** - Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action.\n- **move-over** - Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`.\n\n### **Slots:**\n - **default** - Defines the options of the group.\n\n**Note:** Use the `ui5-option` component to define the desired options.\n- **header** - Defines the header of the component.\n\n**Note:** Using this slot, the default header text of group and the value of `headerText` property will be overwritten.\n\n### **CSS Parts:**\n - **header** - Used to style the header item of the group\n- **title** - Used to style the title of the group header",
+          "doc-url": "",
+          "attributes": [
+            {
+              "name": "header-accessible-name",
+              "description": "Defines the accessible name of the header.",
+              "value": { "type": "string | undefined", "default": "undefined" }
+            },
+            {
+              "name": "header-text",
+              "description": "Defines the header text of the <code>ui5-li-group</code>.",
+              "value": { "type": "string | undefined", "default": "undefined" }
+            },
+            {
+              "name": "wrapping-type",
+              "description": "Defines if the text of the component should wrap when it's too long.\nWhen set to \"Normal\", the content (title, description) will be wrapped\nusing the `ui5-expandable-text` component.<br/>\n\nThe text can wrap up to 100 characters on small screens (size S) and\nup to 300 characters on larger screens (size M and above). When text exceeds\nthese limits, it truncates with an ellipsis followed by a text expansion trigger.\n\nAvailable options are:\n- `None` (default) - The text will truncate with an ellipsis.\n- `Normal` - The text will wrap (without truncation).",
+              "value": {
+                "type": "\"None\" | \"Normal\"",
+                "default": "\"None\""
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default",
+              "description": "Defines the options of the group.\n\n**Note:** Use the `ui5-option` component to define the desired options."
+            },
+            {
+              "name": "header",
+              "description": "Defines the header of the component.\n\n**Note:** Using this slot, the default header text of group and the value of `headerText` property will be overwritten."
+            }
+          ],
+          "events": [
+            {
+              "name": "move",
+              "description": "Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action."
+            },
+            {
+              "name": "move-over",
+              "description": "Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`."
+            }
+          ],
+          "js": {
+            "properties": [
+              {
+                "name": "header-accessible-name",
+                "description": "Defines the accessible name of the header.",
+                "value": { "type": "string | undefined" }
+              },
+              {
+                "name": "header-text",
+                "description": "Defines the header text of the <code>ui5-li-group</code>.",
+                "value": { "type": "string | undefined" }
+              },
+              {
+                "name": "wrapping-type",
+                "description": "Defines if the text of the component should wrap when it's too long.\nWhen set to \"Normal\", the content (title, description) will be wrapped\nusing the `ui5-expandable-text` component.<br/>\n\nThe text can wrap up to 100 characters on small screens (size S) and\nup to 300 characters on larger screens (size M and above). When text exceeds\nthese limits, it truncates with an ellipsis followed by a text expansion trigger.\n\nAvailable options are:\n- `None` (default) - The text will truncate with an ellipsis.\n- `Normal` - The text will wrap (without truncation).",
+                "value": { "type": "\"None\" | \"Normal\"" }
+              }
+            ],
+            "events": [
+              {
+                "name": "move",
+                "description": "Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action."
+              },
+              {
+                "name": "move-over",
+                "description": "Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`."
               }
             ]
           }
@@ -8862,7 +8936,7 @@
         },
         {
           "name": "ui5-select",
-          "description": "### Overview\n\nThe `ui5-select` component is used to create a drop-down list.\n\n### Usage\n\nThere are two main usages of the `ui5-select>`.\n\n- With Option (`ui5-option`) web component:\n\nThe available options of the Select are defined by using the Option component.\nThe Option comes with predefined design and layout, including `icon`, `text` and `additional-text`.\n\n- With OptionCustom (`ui5-option-custom`) web component.\n\nOptions with custom content are defined by using the OptionCustom component.\nThe OptionCustom component comes with no predefined layout and it expects consumers to define it.\n\n### Selection\n\nThe options can be selected via user interaction (click or with the use of the Space and Enter keys)\nand programmatically - the Select component supports two distinct selection APIs, though mixing them is not supported:\n- The \"value\" property of the Select component\n- The \"selected\" property on individual options\n\n**Note:** If the \"value\" property is set but does not match any option,\nno option will be selected and the Select component will be displayed as empty.\n\n**Note:** when both \"value\" and \"selected\" are both used (although discouraged),\nthe \"value\" property will take precedence.\n\n### Keyboard Handling\n\nThe `ui5-select` provides advanced keyboard handling.\n\n- [F4] / [Alt] + [Up] / [Alt] + [Down] / [Space] or [Enter] - Opens/closes the drop-down.\n- [Up] or [Down] - If the drop-down is closed - changes selection to the next or the previous option. If the drop-down is opened - moves focus to the next or the previous option.\n- [Space], [Enter] - If the drop-down is opened - selects the focused option.\n- [Escape] - Closes the drop-down without changing the selection.\n- [Home] - Navigates to first option\n- [End] - Navigates to the last option\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Select\";`\n\n`import \"@ui5/webcomponents/dist/Option\";`\n`import \"@ui5/webcomponents/dist/OptionCustom\";`\n---\n\n\n### **Events:**\n - **change** - Fired when the selected option changes.\n- **close** - Fired after the component's dropdown menu closes.\n- **live-change** - Fired when the user navigates through the options, but the selection is not finalized,\nor when pressing the ESC key to revert the current selection.\n- **open** - Fired after the component's dropdown menu opens.\n\n### **Slots:**\n - **default** - Defines the component options.\n\n**Note:** Only one selected option is allowed.\nIf more than one option is defined as selected, the last one would be considered as the selected one.\n\n**Note:** Use the `ui5-option` component to define the desired options.\n- **label** - Defines the HTML element that will be displayed in the component input part,\nrepresenting the selected option.\n\n**Note:** If not specified and `ui5-option-custom` is used,\neither the option's `display-text` or its textContent will be displayed.\n\n**Note:** If not specified and `ui5-option` is used,\nthe option's textContent will be displayed.\n- **valueStateMessage** - Defines the value state message that will be displayed as pop up under the component.\n\n**Note:** If not specified, a default text (in the respective language) will be displayed.\n\n**Note:** The `valueStateMessage` would be displayed,\nwhen the component is in `Information`, `Critical` or `Negative` value state.\n\n**Note:** If the component has `suggestionItems`,\nthe `valueStateMessage` would be displayed as part of the same popover, if used on desktop, or dialog - on phone.\n\n### **CSS Parts:**\n - **popover** - Used to style the popover element",
+          "description": "### Overview\n\nThe `ui5-select` component is used to create a drop-down list.\n\n### Usage\n\nThere are two main usages of the `ui5-select>`.\n\n- With Option (`ui5-option`) web component:\n\nThe available options of the Select are defined by using the Option component.\nThe Option comes with predefined design and layout, including `icon`, `text` and `additional-text`.\n\n- With OptionCustom (`ui5-option-custom`) web component.\n\nOptions with custom content are defined by using the OptionCustom component.\nThe OptionCustom component comes with no predefined layout and it expects consumers to define it.\n\n### Selection\n\nThe options can be selected via user interaction (click or with the use of the Space and Enter keys)\nand programmatically - the Select component supports two distinct selection APIs, though mixing them is not supported:\n- The \"value\" property of the Select component\n- The \"selected\" property on individual options\n\n**Note:** If the \"value\" property is set but does not match any option,\nno option will be selected and the Select component will be displayed as empty.\n\n**Note:** when both \"value\" and \"selected\" are both used (although discouraged),\nthe \"value\" property will take precedence.\n\n### Keyboard Handling\n\nThe `ui5-select` provides advanced keyboard handling.\n\n- [F4] / [Alt] + [Up] / [Alt] + [Down] / [Space] or [Enter] - Opens/closes the drop-down.\n- [Up] or [Down] - If the drop-down is closed - changes selection to the next or the previous option. If the drop-down is opened - moves focus to the next or the previous option.\n- [Space], [Enter] - If the drop-down is opened - selects the focused option.\n- [Escape] - Closes the drop-down without changing the selection.\n- [Home] - Navigates to first option\n- [End] - Navigates to the last option\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Select\";`\n\n`import \"@ui5/webcomponents/dist/Option\";`\n`import \"@ui5/webcomponents/dist/OptionCustom\";`\n---\n\n\n### **Events:**\n - **change** - Fired when the selected option changes.\n- **close** - Fired after the component's dropdown menu closes.\n- **live-change** - Fired when the user navigates through the options, but the selection is not finalized,\nor when pressing the ESC key to revert the current selection.\n- **open** - Fired after the component's dropdown menu opens.\n\n### **Slots:**\n - **default** - Defines the component options.\n\n**Note:** Only one selected option is allowed.\nIf more than one option is defined as selected, the last one would be considered as the selected one.\n\n**Note:** Use the `ui5-option` component to define the desired options.\nUse the `ui5-option-group` component to group options.\n- **label** - Defines the HTML element that will be displayed in the component input part,\nrepresenting the selected option.\n\n**Note:** If not specified and `ui5-option-custom` is used,\neither the option's `display-text` or its textContent will be displayed.\n\n**Note:** If not specified and `ui5-option` is used,\nthe option's textContent will be displayed.\n- **valueStateMessage** - Defines the value state message that will be displayed as pop up under the component.\n\n**Note:** If not specified, a default text (in the respective language) will be displayed.\n\n**Note:** The `valueStateMessage` would be displayed,\nwhen the component is in `Information`, `Critical` or `Negative` value state.\n\n**Note:** If the component has `suggestionItems`,\nthe `valueStateMessage` would be displayed as part of the same popover, if used on desktop, or dialog - on phone.\n\n### **CSS Parts:**\n - **popover** - Used to style the popover element",
           "doc-url": "",
           "attributes": [
             {
@@ -8940,7 +9014,7 @@
           "slots": [
             {
               "name": "default",
-              "description": "Defines the component options.\n\n**Note:** Only one selected option is allowed.\nIf more than one option is defined as selected, the last one would be considered as the selected one.\n\n**Note:** Use the `ui5-option` component to define the desired options."
+              "description": "Defines the component options.\n\n**Note:** Only one selected option is allowed.\nIf more than one option is defined as selected, the last one would be considered as the selected one.\n\n**Note:** Use the `ui5-option` component to define the desired options.\nUse the `ui5-option-group` component to group options."
             },
             {
               "name": "label",
@@ -9794,9 +9868,9 @@
             },
             {
               "name": "type",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "value": {
-                "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\"",
+                "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\"",
                 "default": "\"Active\""
               }
             },
@@ -9917,9 +9991,9 @@
               },
               {
                 "name": "type",
-                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
                 "value": {
-                  "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                  "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
                 }
               },
               {
@@ -13336,9 +13410,9 @@
             },
             {
               "name": "type",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "value": {
-                "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\"",
+                "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\"",
                 "default": "\"Active\""
               }
             }
@@ -13452,9 +13526,9 @@
               },
               {
                 "name": "type",
-                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
                 "value": {
-                  "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                  "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
                 }
               }
             ],
@@ -13559,9 +13633,9 @@
             },
             {
               "name": "type",
-              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+              "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
               "value": {
-                "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\"",
+                "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\"",
                 "default": "\"Active\""
               }
             }
@@ -13674,9 +13748,9 @@
               },
               {
                 "name": "type",
-                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive` and `Detail` - will not.",
+                "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
                 "value": {
-                  "type": "\"Navigation\" | \"Inactive\" | \"Active\" | \"Detail\""
+                  "type": "\"Navigation\" | \"Inactive\" | \"InactiveSelectable\" | \"Active\" | \"Detail\""
                 }
               }
             ],
@@ -14244,6 +14318,14 @@
         {
           "name": "part(root)",
           "description": "Used to style the root DOM element of the Input component"
+        },
+        {
+          "name": "part(header)",
+          "description": "Used to style the header item of the group"
+        },
+        {
+          "name": "part(title)",
+          "description": "Used to style the title of the group header"
         },
         {
           "name": "part(content)",

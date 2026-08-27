@@ -5,4 +5,6 @@ export default function ListItemBaseTemplate(this: ListItemBase, hooks?: {
 }, injectedProps?: {
     role?: AriaRole;
     title?: string;
+    ariaSetsize?: number;
+    ariaPosinset?: number;
 }): import("@ui5/webcomponents-base/jsx-runtime").JSX.Element;

@@ -27,6 +27,7 @@ export default function SelectTemplate() {
                                     "ui5-select-icon": true,
                                 } }) }), this.hasValueState &&
                         _jsx("span", { id: `${this._id}-valueStateDesc`, class: "ui5-hidden-text", children: this.valueStateText }), this.ariaDescriptionText &&
-                        _jsx("span", { id: "accessibleDescription", class: "ui5-hidden-text", children: this.ariaDescriptionText })] }), SelectPopoverTemplate.call(this)] }));
+                        _jsx("span", { id: "accessibleDescription", class: "ui5-hidden-text", children: this.ariaDescriptionText }), this.hasGroups &&
+                        _jsx("span", { id: this._groupCountMessageId, class: "ui5-hidden-text", children: this._groupCountText })] }), SelectPopoverTemplate.call(this)] }));
 }
 //# sourceMappingURL=SelectTemplate.js.map

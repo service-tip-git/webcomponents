@@ -55,6 +55,12 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], Option.prototype, "selected", void 0);
+__decorate([
+    property({ type: Number, noAttribute: true })
+], Option.prototype, "_forcedSetsize", void 0);
+__decorate([
+    property({ type: Number, noAttribute: true })
+], Option.prototype, "_forcedPosinset", void 0);
 Option = __decorate([
     customElement({
         tag: "ui5-option",

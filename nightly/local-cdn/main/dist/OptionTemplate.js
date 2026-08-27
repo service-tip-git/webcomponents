@@ -2,7 +2,12 @@ import { jsx as _jsx, jsxs as _jsxs } from "@ui5/webcomponents-base/jsx-runtime"
 import Icon from "./Icon.js";
 import ListItemBaseTemplate from "./ListItemBaseTemplate.js";
 export default function OptionTemplate() {
-    return ListItemBaseTemplate.call(this, { listItemContent }, { role: "option", title: this.tooltip });
+    return ListItemBaseTemplate.call(this, { listItemContent }, {
+        role: "option",
+        title: this.tooltip,
+        ariaSetsize: this._forcedSetsize,
+        ariaPosinset: this._forcedPosinset,
+    });
 }
 function listItemContent() {
     return (_jsxs("div", { part: "content", id: `${this._id}-content`, class: "ui5-li-content", children: [this.displayIconBegin &&

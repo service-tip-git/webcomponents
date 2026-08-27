@@ -58,10 +58,13 @@ declare abstract class ListItem extends ListItemBase {
     };
     /**
      * Defines the visual indication and behavior of the list items.
-     * Available options are `Active` (by default), `Inactive`, `Detail` and `Navigation`.
+     * Available options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.
      *
      * **Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,
-     * while with type `Inactive` and `Detail` - will not.
+     * while with type `Inactive`, `InactiveSelectable` and `Detail` - will not.
+     *
+     * **Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled
+     * when the list has a selection mode. The `item-click` event is not fired for this type.
      * @default "Active"
      * @public
     */
@@ -181,6 +184,7 @@ declare abstract class ListItem extends ListItemBase {
     onDetailClick(): void;
     fireItemPress(e: Event): void;
     get isInactive(): boolean;
+    get isInactiveSelectable(): boolean;
     get placeSelectionElementBefore(): boolean;
     get placeSelectionElementAfter(): boolean;
     get modeSingleSelect(): boolean;
