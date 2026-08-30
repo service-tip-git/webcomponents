@@ -222,6 +222,13 @@ declare class Avatar extends UI5Element implements ITabbable, IAvatarGroupItem {
     get _ariaHasPopup(): import("@ui5/webcomponents-base/dist/types.js").AriaHasPopup | undefined;
     get _interactive(): boolean;
     get validInitials(): string | null | undefined;
+    /**
+     * Returns the accessible label for the avatar root element.
+     * Uses `accessibleName` if provided, otherwise falls back to the default
+     * "Avatar" text appended with `initials` if set.
+     * The badge's effective tooltip, if present, is always appended at the end
+     * so screen readers announce the badge state.
+     */
     get accessibleNameText(): string;
     get hasImage(): boolean;
     get imageEl(): HTMLImageElement | null;

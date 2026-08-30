@@ -12,6 +12,8 @@ import ComboBoxItemGroup from "./ComboBoxItemGroup.js";
  * @public
  * @implements {IMultiComboBoxItem}
  * @since 2.0.0
+ * @csspart header - Used to style the header item of the group
+ * @csspart title - Used to style the title of the group header
  */
 declare class MultiComboBoxItemGroup extends ComboBoxItemGroup implements IMultiComboBoxItem {
     eventDetails: ComboBoxItemGroup["eventDetails"];

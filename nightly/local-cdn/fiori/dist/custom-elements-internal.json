@@ -7015,16 +7015,6 @@
           "kind": "class",
           "description": "The `ui5-search-item-group` is type of suggestion item,\nthat can be used to split the `ui5-search-item` suggestions into groups.",
           "name": "SearchItemGroup",
-          "superclass": {
-            "name": "ListItemGroup",
-            "package": "@ui5/webcomponents",
-            "module": "dist/ListItemGroup.js"
-          },
-          "tagName": "ui5-search-item-group",
-          "customElement": true,
-          "_ui5experimental": true,
-          "_ui5since": "2.9.0",
-          "_ui5privacy": "public",
           "cssParts": [
             {
               "description": "Used to style the header item of the group",
@@ -7035,6 +7025,16 @@
               "name": "title"
             }
           ],
+          "superclass": {
+            "name": "ListItemGroup",
+            "package": "@ui5/webcomponents",
+            "module": "dist/ListItemGroup.js"
+          },
+          "tagName": "ui5-search-item-group",
+          "customElement": true,
+          "_ui5experimental": true,
+          "_ui5since": "2.9.0",
+          "_ui5privacy": "public",
           "slots": [
             {
               "name": "default",
@@ -13555,6 +13555,16 @@
           "kind": "class",
           "description": "### Overview\n\nThe `ui5-user-settings-appearance-view-group` is a special list item group used to group appearance view items.\n\nThis is the item to use inside a `ui5-user-settings-appearance-view`.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents-fiori/dist/UserSettingsAppearanceViewGroup.js\";`",
           "name": "UserSettingsAppearanceViewGroup",
+          "cssParts": [
+            {
+              "description": "Used to style the header item of the group",
+              "name": "header"
+            },
+            {
+              "description": "Used to style the title of the group header",
+              "name": "title"
+            }
+          ],
           "slots": [
             {
               "name": "default",
@@ -13597,16 +13607,6 @@
           "customElement": true,
           "_ui5since": "2.17.0",
           "_ui5privacy": "public",
-          "cssParts": [
-            {
-              "description": "Used to style the header item of the group",
-              "name": "header"
-            },
-            {
-              "description": "Used to style the title of the group header",
-              "name": "title"
-            }
-          ],
           "members": [
             {
               "kind": "field",

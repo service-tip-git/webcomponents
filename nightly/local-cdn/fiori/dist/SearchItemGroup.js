@@ -18,6 +18,8 @@ import WrappingType from "@ui5/webcomponents/dist/types/WrappingType.js";
  * @public
  * @since 2.9.0
  * @experimental
+ * @csspart header - Used to style the header item of the group
+ * @csspart title - Used to style the title of the group header
  */
 let SearchItemGroup = class SearchItemGroup extends ListItemGroup {
     get isGroupItem() {

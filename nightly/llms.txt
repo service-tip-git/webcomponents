@@ -2,7 +2,7 @@
 
 > Enterprise-grade, framework-agnostic web components library implementing SAP Fiori design
 
-Version: 2.26.0
+Version: 2.27.0-rc.0
 Website: https://ui5.github.io/webcomponents/
 GitHub: https://github.com/SAP/ui5-webcomponents
 
@@ -256,6 +256,10 @@ import "@ui5/webcomponents/dist/Button.js";
 #### [MultiInput](https://ui5.github.io/webcomponents/components/MultiInput/)
   - tag: `ui5-multi-input`
   - description: A ui5-multi-input field allows the user to enter multiple values, which are displayed as ui5-token.
+
+#### [NumberInput](https://ui5.github.io/webcomponents/components/NumberInput/)
+  - tag: `ui5-number-input`
+  - description: The ui5-number-input component is a numeric input field. It allows users to enter, edit and select numeric values.
 
 #### [Option](https://ui5.github.io/webcomponents/components/Option/)
   - tag: `ui5-option`
@@ -854,4 +858,4 @@ import "@ui5/webcomponents-icons/dist/add.js";
 
 ---
 
-Generated: 2026-08-29T05:33:53.847Z
+Generated: 2026-08-30T03:31:32.364Z

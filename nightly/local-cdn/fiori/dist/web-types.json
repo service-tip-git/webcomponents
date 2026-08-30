@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
   "name": "@ui5/webcomponents-fiori",
-  "version": "2.26.0",
+  "version": "2.27.0-rc.0",
   "description-markup": "markdown",
   "contributions": {
     "html": {
@@ -1890,7 +1890,7 @@
         },
         {
           "name": "ui5-search-item-group",
-          "description": "The `ui5-search-item-group` is type of suggestion item,\nthat can be used to split the `ui5-search-item` suggestions into groups.\n---\n",
+          "description": "The `ui5-search-item-group` is type of suggestion item,\nthat can be used to split the `ui5-search-item` suggestions into groups.\n---\n\n\n### **CSS Parts:**\n - **header** - Used to style the header item of the group\n- **title** - Used to style the title of the group header",
           "doc-url": "",
           "attributes": [],
           "events": [],
@@ -3896,7 +3896,7 @@
         },
         {
           "name": "ui5-user-settings-appearance-view-group",
-          "description": "### Overview\n\nThe `ui5-user-settings-appearance-view-group` is a special list item group used to group appearance view items.\n\nThis is the item to use inside a `ui5-user-settings-appearance-view`.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents-fiori/dist/UserSettingsAppearanceViewGroup.js\";`\n---\n\n\n### **Slots:**\n - **default** - Defines the items of the <code>ui5-user-settings-appearance-view-group</code>.",
+          "description": "### Overview\n\nThe `ui5-user-settings-appearance-view-group` is a special list item group used to group appearance view items.\n\nThis is the item to use inside a `ui5-user-settings-appearance-view`.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents-fiori/dist/UserSettingsAppearanceViewGroup.js\";`\n---\n\n\n### **Slots:**\n - **default** - Defines the items of the <code>ui5-user-settings-appearance-view-group</code>.\n\n### **CSS Parts:**\n - **header** - Used to style the header item of the group\n- **title** - Used to style the title of the group header",
           "doc-url": "",
           "attributes": [],
           "slots": [
@@ -4620,8 +4620,24 @@
           "description": "Used to style the suggestions popup"
         },
         {
+          "name": "part(header)",
+          "description": "Used to style the header item of the group"
+        },
+        {
+          "name": "part(title)",
+          "description": "Used to style the title of the group header"
+        },
+        {
           "name": "part(root)",
           "description": "Used to style the outermost wrapper of the `ui5-shellbar`"
+        },
+        {
+          "name": "part(header)",
+          "description": "Used to style the header item of the group"
+        },
+        {
+          "name": "part(title)",
+          "description": "Used to style the title of the group header"
         },
         { "name": "part(header)", "description": "Used to style the header." },
         {
