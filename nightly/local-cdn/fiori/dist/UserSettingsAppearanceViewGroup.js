@@ -23,8 +23,6 @@ import createInstanceChecker from "@ui5/webcomponents-base/dist/util/createInsta
  * @extends ListItemGroup
  * @public
  * @since 2.17.0
- * @csspart header - Used to style the header item of the group
- * @csspart title - Used to style the title of the group header
  */
 let UserSettingsAppearanceViewGroup = class UserSettingsAppearanceViewGroup extends ListItemGroup {
     get isUserSettingsAppearanceViewGroup() {

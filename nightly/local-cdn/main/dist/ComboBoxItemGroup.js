@@ -19,8 +19,6 @@ import ComboBoxItemGroupTemplate from "./ComboBoxItemGroupTemplate.js";
  * @public
  * @implements {IComboBoxItem}
  * @since 1.0.0-rc.15
- * @csspart header - Used to style the header item of the group
- * @csspart title - Used to style the title of the group header
  */
 let ComboBoxItemGroup = class ComboBoxItemGroup extends ListItemGroup {
     get isGroupItem() {

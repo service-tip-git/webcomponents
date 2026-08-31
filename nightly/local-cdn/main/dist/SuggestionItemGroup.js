@@ -16,8 +16,6 @@ import ListBoxItemGroupTemplate from "./ListBoxItemGroupTemplate.js";
  * @extends ListItemGroup
  * @public
  * @since 2.0.0
- * @csspart header - Used to style the header item of the group
- * @csspart title - Used to style the title of the group header
  */
 let SuggestionItemGroup = class SuggestionItemGroup extends ListItemGroup {
 };

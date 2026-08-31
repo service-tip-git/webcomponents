@@ -213,19 +213,12 @@ let Avatar = Avatar_1 = class Avatar extends UI5Element {
         }
         return null;
     }
-    /**
-     * Returns the accessible label for the avatar root element.
-     * Uses `accessibleName` if provided, otherwise falls back to the default
-     * "Avatar" text appended with `initials` if set.
-     * The badge's effective tooltip, if present, is always appended at the end
-     * so screen readers announce the badge state.
-     */
     get accessibleNameText() {
+        if (this.accessibleName) {
+            return this.accessibleName;
+        }
         const defaultLabel = Avatar_1.i18nBundle.getText(AVATAR_TOOLTIP);
-        const baseLabel = this.accessibleName
-            || (this.initials ? `${defaultLabel} ${this.initials}`.trim() : defaultLabel);
-        const badgeTooltip = this.badge[0]?.effectiveTooltip;
-        return badgeTooltip ? `${baseLabel} ${badgeTooltip}` : baseLabel;
+        return this.initials ? `${defaultLabel} ${this.initials}`.trim() : defaultLabel;
     }
     get hasImage() {
         return !!this.image.length && !this._imageLoadError;
@@ -423,13 +416,7 @@ __decorate([
     slot({ type: HTMLElement, "default": true })
 ], Avatar.prototype, "image", void 0);
 __decorate([
-    slot({
-        type: HTMLElement,
-        invalidateOnChildChange: {
-            properties: ["icon", "tooltip", "effectiveTooltip"],
-            slots: false,
-        },
-    })
+    slot()
 ], Avatar.prototype, "badge", void 0);
 __decorate([
     i18n("@ui5/webcomponents")
