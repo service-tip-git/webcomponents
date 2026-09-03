@@ -58,6 +58,16 @@ let ToolbarButton = class ToolbarButton extends ToolbarItemBase {
          */
         this.design = "Default";
         /**
+         * Defines the ARIA role of the component.
+         *
+         * **Note:** Use `ButtonAccessibleRole.Link` role only with a press handler that performs navigation.
+         * In all other scenarios the default button semantics are recommended.
+         * @default "Button"
+         * @public
+         * @since 2.27.0
+         */
+        this.accessibleRole = "Button";
+        /**
          * Defines the additional accessibility attributes that will be applied to the component.
          *
          * The following fields are supported:
@@ -157,6 +167,12 @@ __decorate([
 __decorate([
     property()
 ], ToolbarButton.prototype, "accessibleNameRef", void 0);
+__decorate([
+    property()
+], ToolbarButton.prototype, "accessibleDescription", void 0);
+__decorate([
+    property()
+], ToolbarButton.prototype, "accessibleRole", void 0);
 __decorate([
     property({ type: Object })
 ], ToolbarButton.prototype, "accessibilityAttributes", void 0);

@@ -347,19 +347,13 @@ let SideNavigation = SideNavigation_1 = class SideNavigation extends UI5Element 
             return null;
         }
         const overflowItem = this._overflowItem;
-        const flexibleContentDomRef = domRef.querySelector(".ui5-sn-flexible");
         if (!overflowItem) {
             return null;
         }
         overflowItem.classList.add("ui5-sn-item-hidden");
         const overflowItems = this.overflowItems;
-        let itemsHeight = overflowItems.reduce((sum, itemRef) => {
-            if (!itemRef) {
-                return sum;
-            }
-            itemRef.classList.remove("ui5-sn-item-hidden");
-            return sum + itemRef.offsetHeight;
-        }, 0);
+        let itemsHeight = this._calculateItemsHeight(overflowItems);
+        const flexibleContentDomRef = domRef.querySelector(".ui5-sn-flexible");
         const { paddingTop, paddingBottom } = window.getComputedStyle(flexibleContentDomRef);
         const listHeight = flexibleContentDomRef?.offsetHeight - parseInt(paddingTop) - parseInt(paddingBottom);
         if (itemsHeight <= listHeight) {
@@ -367,34 +361,89 @@ let SideNavigation = SideNavigation_1 = class SideNavigation extends UI5Element 
         }
         overflowItem.classList.remove("ui5-sn-item-hidden");
         itemsHeight = overflowItem.offsetHeight;
-        const selectedItem = overflowItems.filter(isInstanceOfSideNavigationSelectableItemBase).find(item => item._selected);
+        const navItems = overflowItems.filter(isInstanceOfSideNavigationSelectableItemBase);
+        const selectedItem = navItems.find(item => item._selected);
+        itemsHeight += this._getSelectedItemHeight(overflowItems, selectedItem) + 1; // +1 for sub-pixel rounding
+        itemsHeight += this._getLastSeparatorHeight(navItems, overflowItems);
+        this._updateItemsVisibility(overflowItems, selectedItem, itemsHeight, listHeight);
+        this._flexibleItemNavigation._init();
+    }
+    _calculateItemsHeight(overflowItems) {
+        return overflowItems.reduce((sum, itemRef) => {
+            if (!itemRef) {
+                return sum;
+            }
+            itemRef.classList.remove("ui5-sn-item-hidden");
+            let itemDomRef = itemRef;
+            if (isInstanceOfSideNavigationItemBase(itemRef) && itemRef.getDomRef()) {
+                itemDomRef = itemRef.getDomRef();
+            }
+            const { marginTop, marginBottom } = window.getComputedStyle(itemDomRef);
+            return sum + itemDomRef.offsetHeight + parseFloat(marginTop) + parseFloat(marginBottom);
+        }, 0);
+    }
+    _getSelectedItemHeight(overflowItems, selectedItem) {
+        if (!selectedItem) {
+            return 0;
+        }
+        let height = 0;
         if (selectedItem) {
             const selectedItemDomRef = selectedItem.getDomRef();
             if (selectedItemDomRef) {
                 const { marginTop, marginBottom } = window.getComputedStyle(selectedItemDomRef);
-                itemsHeight += selectedItemDomRef.offsetHeight + parseFloat(marginTop) + parseFloat(marginBottom);
+                height += selectedItemDomRef.offsetHeight + parseFloat(marginTop) + parseFloat(marginBottom);
+            }
+            const indexOf = overflowItems.indexOf(selectedItem);
+            const itemAfterSelected = overflowItems[indexOf + 1];
+            if (itemAfterSelected && !isInstanceOfSideNavigationItemBase(itemAfterSelected)) {
+                height += itemAfterSelected.offsetHeight;
             }
         }
-        overflowItems.forEach(item => {
+        return height;
+    }
+    _getLastSeparatorHeight(navItems, overflowItems) {
+        const lastNonSelectedItem = navItems.findLast(item => !item._selected);
+        if (!lastNonSelectedItem) {
+            return 0;
+        }
+        const indexOf = overflowItems.indexOf(lastNonSelectedItem);
+        const nextSeparator = overflowItems[indexOf + 1];
+        if (nextSeparator && !isInstanceOfSideNavigationItemBase(nextSeparator)) {
+            return nextSeparator.offsetHeight;
+        }
+        return 0;
+    }
+    _updateItemsVisibility(overflowItems, selectedItem, itemsHeight, listHeight) {
+        for (let i = 0; i < overflowItems.length; i++) {
+            const item = overflowItems[i];
             if (!item || item === selectedItem) {
-                return;
+                // eslint-disable-next-line no-continue
+                continue;
             }
             let itemDomRef;
-            if (isInstanceOfSideNavigationItemBase(item) && item.getDomRef()) {
+            if (isInstanceOfSideNavigationItemBase(item)) {
                 itemDomRef = item.getDomRef();
             }
-            else {
-                itemDomRef = item;
+            if (!itemDomRef) {
+                // eslint-disable-next-line no-continue
+                continue;
             }
-            if (itemDomRef) {
-                const { marginTop, marginBottom } = window.getComputedStyle(itemDomRef);
-                itemsHeight += itemDomRef.offsetHeight + parseFloat(marginTop) + parseFloat(marginBottom);
-                if (itemsHeight > listHeight) {
-                    item.classList.add("ui5-sn-item-hidden");
-                }
+            const { marginTop, marginBottom } = window.getComputedStyle(itemDomRef);
+            itemsHeight += itemDomRef.offsetHeight + parseFloat(marginTop) + parseFloat(marginBottom);
+            // if the next item is a separator, the item and the separator
+            // should be hidden together, so we need to add the separator height to the itemsHeight
+            const nextItem = overflowItems[i + 1];
+            let nextItemDomRef;
+            if (nextItem && !isInstanceOfSideNavigationItemBase(nextItem)) {
+                nextItemDomRef = nextItem;
+                itemsHeight += nextItemDomRef.offsetHeight;
+                i++;
             }
-        });
-        this._flexibleItemNavigation._init();
+            if (itemsHeight > listHeight) {
+                item.classList.add("ui5-sn-item-hidden");
+                nextItemDomRef?.classList.add("ui5-sn-item-hidden");
+            }
+        }
     }
     _findFocusedItem(items) {
         return this._getFocusableItems(items).find(item => item.forcedTabIndex === "0");
