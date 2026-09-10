@@ -14,7 +14,7 @@ export default function DayPickerTemplate() {
                                                 _jsx("span", { class: "ui5-dp-daytext ui5-dp-daysectext", children: day.secondDay }), day.type &&
                                                 _jsx("div", { class: `ui5-dp-specialday ${day.type}` })] })
                                     :
-                                        !day.isHidden && (_jsx("div", { className: "ui5-dp-weekname-container", role: "rowheader", "aria-label": `Calendar Week ${day.weekNum}`, children: _jsx("span", { className: "ui5-dp-weekname", children: day.weekNum }) }));
+                                        !day.isHidden && (_jsx("div", { className: "ui5-dp-weekname-container", role: "rowheader", "aria-label": this._getCalendarWeekLabel(day.weekNum), children: _jsx("span", { className: "ui5-dp-weekname", children: day.weekNum }) }));
                             }) })
                         :
                             _jsx("div", { class: "ui5-dp-empty-week" });

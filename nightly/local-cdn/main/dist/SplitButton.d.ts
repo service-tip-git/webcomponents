@@ -5,7 +5,7 @@ import type { UI5CustomEvent } from "@ui5/webcomponents-base";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import type ButtonDesign from "./types/ButtonDesign.js";
 import type Button from "./Button.js";
-type SplitButtonRootAccAttributes = Pick<AccessibilityAttributes, "hasPopup" | "roleDescription" | "title" | "ariaKeyShortcuts">;
+type SplitButtonRootAccAttributes = Pick<AccessibilityAttributes, "hasPopup" | "title" | "ariaKeyShortcuts">;
 type SplitButtonArrowButtonAccAtributes = Pick<AccessibilityAttributes, "hasPopup" | "expanded" | "title">;
 type SplitButtonAccessibilityAttributes = {
     root?: SplitButtonRootAccAttributes;
@@ -144,14 +144,18 @@ declare class SplitButton extends UI5Element {
      */
     _hideArrowButton: boolean;
     /**
+     * Overrides the default role description announced by screen readers.
+     * @default undefined
+     * @private
+     */
+    _roleDescription?: string;
+    /**
      * Defines the additional accessibility attributes that will be applied to the component.
      * The `accessibilityAttributes` property accepts an object with the following optional fields:
      *
      * - **root**: Attributes that will be applied to the main (text) button.
      *   - **hasPopup**: Indicates the presence and type of popup triggered by the button.
      *     Accepts string values: `"dialog"`, `"grid"`, `"listbox"`, `"menu"`, or `"tree"`.
-     *   - **roleDescription**: Provides a human-readable description for the role of the button.
-     *     Accepts any string value.
      *   - **title**: Specifies a tooltip or description for screen readers.
      *     Accepts any string value.
      * 	- **ariaKeyShortcuts**: Defines keyboard shortcuts that activate or give focus to the button.

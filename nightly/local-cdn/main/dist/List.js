@@ -912,7 +912,7 @@ let List = List_1 = class List extends UI5Element {
         e.stopPropagation();
         this._itemNavigation.setCurrentItem(target);
         this.fireDecoratorEvent("item-focused", { item: target });
-        if (this.selectionMode === ListSelectionMode.SingleAuto) {
+        if (this.selectionMode === ListSelectionMode.SingleAuto && !target.isInactiveSelectable) {
             const detail = {
                 item: target,
                 selectionComponentPressed: false,

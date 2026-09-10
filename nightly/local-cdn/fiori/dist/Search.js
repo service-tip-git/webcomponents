@@ -68,17 +68,35 @@ let Search = Search_1 = class Search extends SearchField {
         this._typedInValue = "";
         this._valueBeforeOpen = this.getAttribute("value") || "";
         this._isTyping = false;
+        this._openChangedInternally = false;
+        this._lastOpenState = this.open;
         this._deleteHandler = this._onItemDelete.bind(this);
     }
     onBeforeRendering() {
         super.onBeforeRendering();
         if (this.collapsed && !isPhone()) {
             this.open = false;
+            this._lastOpenState = false;
+            this._openChangedInternally = false;
             return;
         }
         const innerInput = this.nativeInput;
         const autoCompletedChars = innerInput && (innerInput.selectionEnd - innerInput.selectionStart);
-        this.open = this.open || (this._popoupHasAnyContent() && this._isTyping && innerInput.value.length > 0);
+        // The public `open` property is application-controlled and takes higher
+        // precedence. Internal writes go through `_setInternalOpen`, which raises
+        // `_openChangedInternally`. A change is treated as application-driven only
+        // when that flag is not set AND `open` differs from the last committed
+        // state; that distinguishes an app write from a plain re-render (e.g. when
+        // lazy-loaded items arrive) where the internal auto-open logic must still run.
+        const appControlledOpen = !this._openChangedInternally && this.open !== this._lastOpenState;
+        if (!appControlledOpen) {
+            this.open = this.open || (this._popoupHasAnyContent() && this._isTyping && innerInput.value.length > 0);
+        }
+        else if (!this.open) {
+            // The application force-closed the picker; reset the typing state so the
+            // internal auto-open logic does not immediately reopen it on next render.
+            this._isTyping = false;
+        }
         // If there is already a selection the autocomplete has already been performed
         if (this._shouldAutocomplete && !autoCompletedChars) {
             const item = this._getFirstMatchingItem(this.value);
@@ -106,6 +124,11 @@ let Search = Search_1 = class Search extends SearchField {
             item.removeEventListener("ui5-delete", this._deleteHandler, true);
             item.addEventListener("ui5-delete", this._deleteHandler, true);
         });
+        // Commit the resolved open state and clear the internal-change flag so the
+        // next reconciliation can tell an application-driven change to `open` apart
+        // from a re-render where `open` was not touched.
+        this._lastOpenState = this.open;
+        this._openChangedInternally = false;
     }
     onAfterRendering() {
         const innerInput = this.nativeInput;
@@ -191,14 +214,31 @@ let Search = Search_1 = class Search extends SearchField {
         }
         firstListItem?.focus();
     }
+    /**
+     * Sets the `open` property from internal control logic and flags the change
+     * as internally driven, so reconciliation can distinguish it from an
+     * application-driven change to `open`.
+     * @private
+     */
+    _setInternalOpen(value) {
+        // Only flag the change when `open` actually changes. A no-op assignment
+        // does not invalidate the component (see UI5Element property setter), so
+        // no reconciliation would run to clear the flag - leaving it stale and
+        // causing a later application-driven change to be misread as internal.
+        if (value === this.open) {
+            return;
+        }
+        this._openChangedInternally = true;
+        this.open = value;
+    }
     _handleInnerClick() {
         if (isPhone()) {
-            this.open = true;
+            this._setInternalOpen(true);
         }
     }
     _handleSearchIconPress() {
         if (isPhone()) {
-            this.open = true;
+            this._setInternalOpen(true);
         }
         else {
             super._handleSearchIconPress();
@@ -224,7 +264,7 @@ let Search = Search_1 = class Search extends SearchField {
         this.fireDecoratorEvent("search", { item: this._proposedItem });
     }
     _closePopupAndResetState() {
-        this.open = false;
+        this._setInternalOpen(false);
         this._isTyping = false;
         this._valueBeforeArrowNav = undefined;
     }
@@ -250,7 +290,7 @@ let Search = Search_1 = class Search extends SearchField {
             return;
         }
         this._isTyping = true;
-        this.open = this.value.length > 0 && this._popoupHasAnyContent();
+        this._setInternalOpen(this.value.length > 0 && this._popoupHasAnyContent());
     }
     _handleClear() {
         super._handleClear();
@@ -258,7 +298,7 @@ let Search = Search_1 = class Search extends SearchField {
         this._innerValue = "";
         this._shouldAutocomplete = false;
         this._valueBeforeArrowNav = undefined;
-        this.open = false;
+        this._setInternalOpen(false);
     }
     _popoupHasAnyContent() {
         return this.items.length > 0 || this.illustration.length > 0 || this.messageArea.length > 0 || this.loading || this.action.length > 0;
@@ -328,7 +368,7 @@ let Search = Search_1 = class Search extends SearchField {
         this._shouldAutocomplete = false;
         this._performTextSelection = true;
         this._valueBeforeArrowNav = undefined;
-        this.open = false;
+        this._setInternalOpen(false);
         this._isTyping = false;
         this.focus();
     }
@@ -379,7 +419,7 @@ let Search = Search_1 = class Search extends SearchField {
         if (this._getPicker().contains(target) || this.contains(target)) {
             return;
         }
-        this.open = false;
+        this._setInternalOpen(false);
         this._isTyping = false;
     }
     _handleBeforeClose(e) {
@@ -393,7 +433,7 @@ let Search = Search_1 = class Search extends SearchField {
         this.fireDecoratorEvent("input");
     }
     _handleClose() {
-        this.open = false;
+        this._setInternalOpen(false);
         this._isTyping = false;
         this._valueBeforeArrowNav = undefined;
         this.fireDecoratorEvent("close");

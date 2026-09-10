@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<title>Shell Bar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <script type="module" crossorigin src="/webcomponents/nightly/assets/bundle.esm-D6uu_xUv.js"></script>
+  <script type="module" crossorigin src="/webcomponents/nightly/assets/test/pages/ShellBarSearch.html-BtZ0DsLc.js"></script>
+  <link rel="modulepreload" crossorigin href="/webcomponents/nightly/assets/bundle.esm-CZ1Eg3Pm.js">
 </head>
 <ui5-shellbar slot="header" id="shellbar" notifications-count="10" show-notifications show-product-switch>
 	<ui5-shellbar-branding slot="branding">
@@ -20,7 +21,7 @@
 
 	<ui5-toggle-button icon="sap-icon://da" slot="assistant"></ui5-toggle-button>
 
-	<ui5-shellbar-search slot="searchField" id="search-scope" scope-value="all" show-clear-icon
+	<ui5-shellbar-search slot="searchField" id="search-scope" scope-value="all" no-typeahead
 		placeholder="Search Apps, Products">
 		<ui5-search-scope text="All" value="all" slot="scopes"></ui5-search-scope>
 		<ui5-search-scope text="Apps" value="apps" slot="scopes"></ui5-search-scope>
@@ -54,6 +55,12 @@
 </ui5-shellbar>
 
 <body>
+	<div style="padding: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+		<ui5-button id="app-open">Open search (from app)</ui5-button>
+		<ui5-button id="app-close">Close search (from app)</ui5-button>
+		<ui5-text id="open-state"></ui5-text>
+	</div>
 </body>
+
 
 </html>

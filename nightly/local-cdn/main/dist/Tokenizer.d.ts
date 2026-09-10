@@ -214,6 +214,12 @@ declare class Tokenizer extends UI5Element implements IFormInputElement {
     get formFormattedValue(): FormData | null;
     constructor();
     handleClearAll(): void;
+    /**
+     * Announces the number of deleted tokens to screen readers.
+     * @private
+     * @param count The number of tokens being deleted
+     */
+    _announceTokenDeletion(count: number): void;
     onBeforeRendering(): void;
     onEnterDOM(): void;
     onExitDOM(): void;

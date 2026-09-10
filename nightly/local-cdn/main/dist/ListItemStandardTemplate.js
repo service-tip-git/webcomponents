@@ -13,7 +13,7 @@ export default function ListItemStandardTemplate(hooks) {
     return ListItemTemplate.call(this, currentHooks);
 }
 function listItemContent() {
-    return _jsxs(_Fragment, { children: [_jsxs("div", { class: "ui5-li-text-wrapper", children: [renderTitle.call(this), renderDescription.call(this), !this.typeActive && _jsx("span", { class: "ui5-hidden-text", children: this.type })] }), !this.description && renderAdditionalText.call(this)] });
+    return _jsxs(_Fragment, { children: [_jsxs("div", { class: "ui5-li-text-wrapper", children: [renderTitle.call(this), renderDescription.call(this), !this.typeActive && !this.isInactiveSelectable && _jsx("span", { class: "ui5-hidden-text", children: this.type })] }), !this.description && renderAdditionalText.call(this)] });
 }
 function renderTitle() {
     if (this.wrappingType === WrappingType.Normal) {

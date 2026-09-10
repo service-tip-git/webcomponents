@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
   "name": "@ui5/webcomponents-fiori",
-  "version": "2.27.0-rc.0",
+  "version": "2.27.0-rc.1",
   "description-markup": "markdown",
   "contributions": {
     "html": {
@@ -4193,6 +4193,166 @@
               {
                 "name": "selection-change",
                 "description": "Fired when a selected view changed."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ui5-user-settings-notifications-view",
+          "description": "### Overview\n\nThe `ui5-user-settings-notifications-view` represents a view displayed in the\n`ui5-user-settings-item` that lists notification preferences. Individual settings\nare represented by `ui5-user-settings-notifications-view-item` elements, optionally\ngrouped by `ui5-user-settings-notifications-view-group`.\n\nWhen a navigable item is clicked, the view drills into a sibling secondary view of\nits parent `ui5-user-settings-item`. When an item's `item-key` matches a target\nview's `id`, that view is opened and keeps its own `text`. Otherwise the first\nsibling marked as `secondary` is opened and its `text` is set to the clicked\nitem's `text` so the drill-in header reflects the origin.\n\nApps can override this behavior by preventing the `item-click` event.\n\nApplications should listen to the item's `switch-change` event (which bubbles) to\nbe notified when a switch is toggled.\n\nAdditional content (e.g. an information message strip) can be placed via the\n`additionalContent` slot, which is rendered above the list.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents-fiori/dist/UserSettingsNotificationsView.js\";`\n---\n\n\n### **Events:**\n - **item-click** - Fired when a navigable item in the list is clicked.\n\nThe event is cancelable: preventing it skips the built-in drill-in to the\nparent's secondary view, allowing the application to take over.\n\n### **Slots:**\n - **additionalContent** - Defines additional content displayed above the items list.\n- **default** - Defines the items of the component. Can be a mix of\n`ui5-user-settings-notifications-view-item` and\n`ui5-user-settings-notifications-view-group` elements.\n- **headerItems** - Defines header items rendered above the grouped items list.\nEach item is wrapped in a `role=\"form\"` landmark — a separate Tab stop.\nUse this slot for product-level toggles (e.g. \"Allow Notifications\") that appear\nabove the notification-type groups.",
+          "doc-url": "",
+          "attributes": [
+            {
+              "name": "secondary",
+              "description": "Indicates whether the view is secondary. It is relevant only if the view is used in `pages` slot of `ui5-user-settings-item`\nand controls the visibility of the back button.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "selected",
+              "description": "Defines whether the view is selected. There can be just one selected view at a time.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "text",
+              "description": "Defines the title text of the user settings view.",
+              "value": { "type": "string | undefined", "default": "undefined" }
+            }
+          ],
+          "slots": [
+            {
+              "name": "additionalContent",
+              "description": "Defines additional content displayed above the items list."
+            },
+            {
+              "name": "default",
+              "description": "Defines the items of the component. Can be a mix of\n`ui5-user-settings-notifications-view-item` and\n`ui5-user-settings-notifications-view-group` elements."
+            },
+            {
+              "name": "headerItems",
+              "description": "Defines header items rendered above the grouped items list.\nEach item is wrapped in a `role=\"form\"` landmark — a separate Tab stop.\nUse this slot for product-level toggles (e.g. \"Allow Notifications\") that appear\nabove the notification-type groups."
+            }
+          ],
+          "events": [
+            {
+              "name": "item-click",
+              "description": "Fired when a navigable item in the list is clicked.\n\nThe event is cancelable: preventing it skips the built-in drill-in to the\nparent's secondary view, allowing the application to take over."
+            }
+          ],
+          "js": {
+            "properties": [
+              {
+                "name": "secondary",
+                "description": "Indicates whether the view is secondary. It is relevant only if the view is used in `pages` slot of `ui5-user-settings-item`\nand controls the visibility of the back button.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "selected",
+                "description": "Defines whether the view is selected. There can be just one selected view at a time.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "text",
+                "description": "Defines the title text of the user settings view.",
+                "value": { "type": "string | undefined" }
+              }
+            ],
+            "events": [
+              {
+                "name": "item-click",
+                "description": "Fired when a navigable item in the list is clicked.\n\nThe event is cancelable: preventing it skips the built-in drill-in to the\nparent's secondary view, allowing the application to take over."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ui5-user-settings-notifications-view-group",
+          "description": "### Overview\n\nThe `ui5-user-settings-notifications-view-group` groups `ui5-user-settings-notifications-view-item`\nelements inside a `ui5-user-settings-notifications-view`. Its header renders as a plain bold\nsection title with a separator line below, per the notifications design spec.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents-fiori/dist/UserSettingsNotificationsViewGroup.js\";`\n---\n\n\n### **Slots:**\n - **default** - Defines the items of the `ui5-user-settings-notifications-view-group`.",
+          "doc-url": "",
+          "attributes": [],
+          "slots": [
+            {
+              "name": "default",
+              "description": "Defines the items of the `ui5-user-settings-notifications-view-group`."
+            }
+          ],
+          "events": [],
+          "js": { "properties": [], "events": [] }
+        },
+        {
+          "name": "ui5-user-settings-notifications-view-item",
+          "description": "### Overview\n\nThe `ui5-user-settings-notifications-view-item` represents a single notification setting\nwithin the `ui5-user-settings-notifications-view`.\n\nIt displays a title and an optional byline. By default a trailing switch reflects\nthe `checked` state. Applications can override the trailing control by providing content\nin the `endContent` slot (e.g. a `ui5-select` for a value picker); the built-in switch and\nits `switch-change` event are then suppressed. Items can additionally be flagged as\n`navigable` to display a navigation arrow and behave as clickable list rows.\n\n**Note:** The default switch and the `endContent` slot are mutually exclusive.\nWhen any content is provided in `endContent`, the trailing switch is not rendered\nand no `switch-change` event is fired.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents-fiori/dist/UserSettingsNotificationsViewItem.js\";`\n---\n\n\n### **Events:**\n - **switch-change** - Fired when the switch state changes.\n\nNot fired when the `endContent` slot is used to override the trailing control.\n\n### **Slots:**\n - **endContent** - Defines custom content rendered at the trailing end of the item, replacing the\ndefault switch. Use this to place a `ui5-select`, `ui5-input`, or any other\ncontrol instead of a boolean toggle.",
+          "doc-url": "",
+          "attributes": [
+            {
+              "name": "byline-text",
+              "description": "Defines the byline text of the item, rendered below the title.",
+              "value": { "type": "string", "default": "\"\"" }
+            },
+            {
+              "name": "checked",
+              "description": "Defines whether the trailing switch is on.\n\nIgnored when the `endContent` slot is used.",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "item-key",
+              "description": "Defines the unique identifier of the item.\n\nWhen the item is navigable, `itemKey` is also used to route to a matching sibling\n`secondary` view by id.",
+              "value": { "type": "string", "default": "\"\"" }
+            },
+            {
+              "name": "navigable",
+              "description": "Defines whether the item is navigable. When true, a navigation arrow is rendered\nand the whole row becomes clickable (fires the parent view's `item-click` event).",
+              "value": { "type": "boolean", "default": "false" }
+            },
+            {
+              "name": "text",
+              "description": "Defines the title text of the item.",
+              "value": { "type": "string", "default": "\"\"" }
+            }
+          ],
+          "slots": [
+            {
+              "name": "endContent",
+              "description": "Defines custom content rendered at the trailing end of the item, replacing the\ndefault switch. Use this to place a `ui5-select`, `ui5-input`, or any other\ncontrol instead of a boolean toggle."
+            }
+          ],
+          "events": [
+            {
+              "name": "switch-change",
+              "description": "Fired when the switch state changes.\n\nNot fired when the `endContent` slot is used to override the trailing control."
+            }
+          ],
+          "js": {
+            "properties": [
+              {
+                "name": "byline-text",
+                "description": "Defines the byline text of the item, rendered below the title.",
+                "value": { "type": "string" }
+              },
+              {
+                "name": "checked",
+                "description": "Defines whether the trailing switch is on.\n\nIgnored when the `endContent` slot is used.",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "item-key",
+                "description": "Defines the unique identifier of the item.\n\nWhen the item is navigable, `itemKey` is also used to route to a matching sibling\n`secondary` view by id.",
+                "value": { "type": "string" }
+              },
+              {
+                "name": "navigable",
+                "description": "Defines whether the item is navigable. When true, a navigation arrow is rendered\nand the whole row becomes clickable (fires the parent view's `item-click` event).",
+                "value": { "type": "boolean" }
+              },
+              {
+                "name": "text",
+                "description": "Defines the title text of the item.",
+                "value": { "type": "string" }
+              }
+            ],
+            "events": [
+              {
+                "name": "switch-change",
+                "description": "Fired when the switch state changes.\n\nNot fired when the `endContent` slot is used to override the trailing control."
               }
             ]
           }

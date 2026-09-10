@@ -1,3 +1,4 @@
+import { isDesktop } from "@ui5/webcomponents-base/dist/Device.js";
 /**
  * Search controller for legacy search fields (ui5-input, custom div).
  * Handles search fields that don't have collapsed/open properties.
@@ -50,7 +51,7 @@ class ShellBarSearchLegacy {
         if (hiddenItems > 0 && !preventCollapse) {
             this.setSearchState(false);
         }
-        else if (availableSpace + this.getSearchButtonSize() > searchFieldWidth) {
+        else if (isDesktop() && availableSpace + this.getSearchButtonSize() > searchFieldWidth) {
             this.setSearchState(true);
         }
         this.initialRender = false;

@@ -1,11 +1,9 @@
-import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
-import type { Slot, DefaultSlot } from "@ui5/webcomponents-base/dist/UI5Element.js";
+import type { Slot } from "@ui5/webcomponents-base/dist/UI5Element.js";
 import DragAndDropHandler from "./delegate/DragAndDropHandler.js";
 import MovePlacement from "@ui5/webcomponents-base/dist/types/MovePlacement.js";
 import type DropIndicator from "./DropIndicator.js";
 import type ListItemBase from "./ListItemBase.js";
-import type { ListItemBaseClickEventDetail } from "./ListItemBase.js";
-import type ListItemGroupHeader from "./ListItemGroupHeader.js";
+import ListItemGroupBase from "./ListItemGroupBase.js";
 import WrappingType from "./types/WrappingType.js";
 type ListItemGroupMoveEventDetail = {
     source: {
@@ -28,33 +26,21 @@ type ListItemGroupMoveEventDetail = {
  * @csspart header - Used to style the header item of the group
  * @csspart title - Used to style the title of the group header
  * @constructor
- * @extends UI5Element
+ * @extends ListItemGroupBase
  * @public
  * @since 2.0.0
  */
-declare class ListItemGroup extends UI5Element {
-    eventDetails: {
-        "click"?: ListItemBaseClickEventDetail;
+declare class ListItemGroup extends ListItemGroupBase {
+    eventDetails: ListItemGroupBase["eventDetails"] & {
         "move-over": ListItemGroupMoveEventDetail;
         "move": ListItemGroupMoveEventDetail;
     };
-    /**
-     * Defines the header text of the <code>ui5-li-group</code>.
-     * @public
-     * @default undefined
-     */
-    headerText?: string;
     /**
      * Defines the accessible name of the header.
      * @public
      * @default undefined
      */
     headerAccessibleName?: string;
-    /**
-     * Defines the items of the <code>ui5-li-group</code>.
-     * @public
-     */
-    items: DefaultSlot<ListItemBase>;
     /**
      * Defines if the text of the component should wrap when it's too long.
      * When set to "Normal", the content (title, description) will be wrapped
@@ -87,19 +73,17 @@ declare class ListItemGroup extends UI5Element {
     header: Slot<ListItemBase>;
     _dragAndDropHandler: DragAndDropHandler;
     constructor();
-    get groupHeaderItem(): ListItemGroupHeader;
     get hasHeader(): boolean;
     get hasFormattedHeader(): boolean;
-    get isListItemGroup(): boolean;
     get dropIndicatorDOM(): DropIndicator | null;
     _ondragenter(e: DragEvent): void;
     _ondragleave(e: DragEvent): void;
     _ondragover(e: DragEvent): void;
     _ondrop(e: DragEvent): void;
     _filterPlacements(placements: MovePlacement[], draggedElement: HTMLElement, targetElement: HTMLElement): MovePlacement[];
-    getFocusDomRef(): ListItemGroupHeader;
+    getFocusDomRef(): import("./ListItemGroupHeader.js").default;
     getGroupHeaderWrapping(): WrappingType;
 }
 export default ListItemGroup;
-export declare const isInstanceOfListItemGroup: (object: any) => object is ListItemGroup;
+export { isInstanceOfListItemGroup } from "./ListItemGroupBase.js";
 export type { ListItemGroupMoveEventDetail };

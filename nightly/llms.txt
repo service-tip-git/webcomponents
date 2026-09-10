@@ -2,7 +2,7 @@
 
 > Enterprise-grade, framework-agnostic web components library implementing SAP Fiori design
 
-Version: 2.27.0-rc.0
+Version: 2.27.0-rc.1
 Website: https://ui5.github.io/webcomponents/
 GitHub: https://github.com/SAP/ui5-webcomponents
 
@@ -695,6 +695,18 @@ import "@ui5/webcomponents/dist/Button.js";
   - tag: `ui5-user-settings-item`
   - description: The ui5-user-settings-item represents an item in the ui5-user-settings-dialog.
 
+#### [UserSettingsNotificationsView](https://ui5.github.io/webcomponents/nightly/components/fiori/UserSettingsNotificationsView/)
+  - tag: `ui5-user-settings-notifications-view`
+  - description: The ui5-user-settings-notifications-view represents a view displayed in the
+
+#### [UserSettingsNotificationsViewGroup](https://ui5.github.io/webcomponents/nightly/components/fiori/UserSettingsNotificationsViewGroup/)
+  - tag: `ui5-user-settings-notifications-view-group`
+  - description: The ui5-user-settings-notifications-view-group groups ui5-user-settings-notifications-view-item
+
+#### [UserSettingsNotificationsViewItem](https://ui5.github.io/webcomponents/nightly/components/fiori/UserSettingsNotificationsViewItem/)
+  - tag: `ui5-user-settings-notifications-view-item`
+  - description: The ui5-user-settings-notifications-view-item represents a single notification setting
+
 #### [UserSettingsView](https://ui5.github.io/webcomponents/nightly/components/fiori/UserSettingsView/)
   - tag: `ui5-user-settings-view`
   - description: The ui5-user-settings-view represents a view displayed in the ui5-user-settings-item.
@@ -858,4 +870,4 @@ import "@ui5/webcomponents-icons/dist/add.js";
 
 ---
 
-Generated: 2026-09-09T03:00:16.518Z
+Generated: 2026-09-10T03:01:30.846Z

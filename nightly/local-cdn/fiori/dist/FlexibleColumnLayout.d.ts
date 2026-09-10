@@ -404,6 +404,7 @@ declare class FlexibleColumnLayout extends UI5Element {
     get accMiddleColumnText(): string;
     get accEndColumnText(): string;
     get accStartSeparatorText(): string | undefined;
+    get accStartArrowText(): string;
     get accEndSeparatorText(): string;
     get accStartColumnRole(): FCLAccessibilityRoles | undefined;
     get accMiddleColumnRole(): FCLAccessibilityRoles | undefined;
