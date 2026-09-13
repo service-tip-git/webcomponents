@@ -1,4 +1,4 @@
-import { isPhone, isDesktop } from "@ui5/webcomponents-base/dist/Device.js";
+import { isPhone } from "@ui5/webcomponents-base/dist/Device.js";
 /**
  * Search controller for self-collapsible search (ui5-shellbar-search).
  * Handles search fields with collapsed/open properties and ui5-open/close/search events.
@@ -35,7 +35,6 @@ class ShellBarSearch {
     /**
      * Auto-collapse/restore search field based on available space.
      * Delegates decision logic to SearchController.
-     * Note: on non-desktop devices (phone/tablet), auto-expand is suppressed — expansion must come from an explicit user tap.
      */
     autoManageSearchState(hiddenItems, availableSpace) {
         if (!this.hasSearchField) {
@@ -53,7 +52,7 @@ class ShellBarSearch {
         if (hiddenItems > 0 && !preventCollapse) {
             this.setSearchState(false);
         }
-        else if (isDesktop() && availableSpace + this.getSearchButtonSize() > searchFieldWidth) {
+        else if (availableSpace + this.getSearchButtonSize() > searchFieldWidth) {
             this.setSearchState(true);
         }
         this.initialRender = false;

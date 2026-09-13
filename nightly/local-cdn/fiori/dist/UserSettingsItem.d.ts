@@ -147,11 +147,6 @@ declare class UserSettingsItem extends UI5Element {
     focusFirstContentElement(): void;
     _focusFirstContentElementWhenReady(): Promise<void>;
     _focusFirstContentElement(): Promise<void>;
-    /**
-     * @private
-     * @since 2.27.0
-     */
-    _focusBackButton(): void;
     captureRef(this: UserSettingsView, ref: HTMLElement & {
         associatedSettingView?: UserSettingsView;
     } | null): void;

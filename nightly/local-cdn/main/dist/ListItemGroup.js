@@ -9,14 +9,15 @@ import event from "@ui5/webcomponents-base/dist/decorators/event-strict.js";
 import property from "@ui5/webcomponents-base/dist/decorators/property.js";
 import customElement from "@ui5/webcomponents-base/dist/decorators/customElement.js";
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
+import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import DragAndDropHandler from "./delegate/DragAndDropHandler.js";
 import MovePlacement from "@ui5/webcomponents-base/dist/types/MovePlacement.js";
-import ListItemGroupBase from "./ListItemGroupBase.js";
 // Template
 import ListItemGroupTemplate from "./ListItemGroupTemplate.js";
 // Styles
 import ListItemGroupCss from "./generated/themes/ListItemGroup.css.js";
 import WrappingType from "./types/WrappingType.js";
+import createInstanceChecker from "@ui5/webcomponents-base/dist/util/createInstanceChecker.js";
 /**
  * @class
  * ### Overview
@@ -29,11 +30,11 @@ import WrappingType from "./types/WrappingType.js";
  * @csspart header - Used to style the header item of the group
  * @csspart title - Used to style the title of the group header
  * @constructor
- * @extends ListItemGroupBase
+ * @extends UI5Element
  * @public
  * @since 2.0.0
  */
-let ListItemGroup = class ListItemGroup extends ListItemGroupBase {
+let ListItemGroup = class ListItemGroup extends UI5Element {
     constructor() {
         super();
         /**
@@ -67,11 +68,17 @@ let ListItemGroup = class ListItemGroup extends ListItemGroupBase {
             filterPlacements: this._filterPlacements.bind(this),
         });
     }
+    get groupHeaderItem() {
+        return this.shadowRoot.querySelector("[ui5-li-group-header]");
+    }
     get hasHeader() {
         return !!this.headerText || this.hasFormattedHeader;
     }
     get hasFormattedHeader() {
         return !!this.header.length;
+    }
+    get isListItemGroup() {
+        return true;
     }
     get dropIndicatorDOM() {
         return this.shadowRoot.querySelector("[ui5-drop-indicator]");
@@ -102,7 +109,17 @@ let ListItemGroup = class ListItemGroup extends ListItemGroupBase {
 };
 __decorate([
     property()
+], ListItemGroup.prototype, "headerText", void 0);
+__decorate([
+    property()
 ], ListItemGroup.prototype, "headerAccessibleName", void 0);
+__decorate([
+    slot({
+        "default": true,
+        invalidateOnChildChange: true,
+        type: HTMLElement,
+    })
+], ListItemGroup.prototype, "items", void 0);
 __decorate([
     property()
 ], ListItemGroup.prototype, "wrappingType", void 0);
@@ -150,5 +167,5 @@ ListItemGroup = __decorate([
 ], ListItemGroup);
 ListItemGroup.define();
 export default ListItemGroup;
-export { isInstanceOfListItemGroup } from "./ListItemGroupBase.js";
+export const isInstanceOfListItemGroup = createInstanceChecker("isListItemGroup");
 //# sourceMappingURL=ListItemGroup.js.map

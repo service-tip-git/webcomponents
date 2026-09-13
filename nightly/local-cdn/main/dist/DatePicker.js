@@ -72,10 +72,10 @@ import ValueStateMessageCss from "./generated/themes/ValueStateMessage.css.js";
  * The input field also accepts locale-aware relative date expressions sourced from the Unicode CLDR.
  * The following expressions are supported in English:
  *
- * - Day: "today", "yesterday", "tomorrow", "in N days", "N days ago"
- * - Week: "this week", "last week", "next week", "in N weeks", "N weeks ago"
- * - Month: "this month", "last month", "next month", "in N months", "N months ago"
- * - Year: "this year", "last year", "next year", "in N years", "N years ago"
+ * - Day: "today", "yesterday", "tomorrow"
+ * - Week: "this week", "last week", "next week"
+ * - Month: "this month", "last month", "next month"
+ * - Year: "this year", "last year", "next year"
  *
  * The recognized expressions are locale-specific — the equivalent terms in the user's language are used (for example, "heute" in German, "bugün" in Turkish).
  * Week, month, and year expressions resolve to an offset from today (for example, "next week" = today + 7 days).

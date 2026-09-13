@@ -31,7 +31,6 @@ declare class ShellBarSearch implements IShellBarSearchController {
     /**
      * Auto-collapse/restore search field based on available space.
      * Delegates decision logic to SearchController.
-     * Note: on non-desktop devices (phone/tablet), auto-expand is suppressed — expansion must come from an explicit user tap.
      */
     autoManageSearchState(hiddenItems: number, availableSpace: number): void;
     /**

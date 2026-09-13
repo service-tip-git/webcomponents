@@ -90,7 +90,7 @@ let ShellBarSearch = ShellBarSearch_1 = class ShellBarSearch extends Search {
     _onfocusin() {
         super._onfocusin();
         if (this.autoOpen) {
-            this._setInternalOpen(true);
+            this.open = true;
             this.fireDecoratorEvent("open");
         }
     }

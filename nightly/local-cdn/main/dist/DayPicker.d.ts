@@ -283,7 +283,6 @@ declare class DayPicker extends CalendarPart implements ICalendarPicker {
         };
     };
     get ariaRoledescription(): string;
-    _getCalendarWeekLabel(weekNum: number): string;
     get _formatLong(): DateFormat;
     get _formatLongSecondary(): DateFormat;
 }

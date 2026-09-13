@@ -128,9 +128,6 @@ let Icon = Icon_1 = class Icon extends UI5Element {
     }
     _onclick(e) {
         if (this.mode !== IconMode.Interactive) {
-            if (this.mode === IconMode.Image) {
-                e.stopPropagation();
-            }
             return;
         }
         // prevents the native browser "click" event from firing

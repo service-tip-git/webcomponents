@@ -243,14 +243,11 @@ let Button = Button_1 = class Button extends UI5Element {
         const labelRefTexts = getAllAccessibleNameRefTexts(this) || getEffectiveAriaLabelText(this) || getAssociatedLabelForTexts(this) || "";
         const mainTitle = this._hasText ? Button_1.i18nBundleAi.getText(BUTTON_TOOLTIP_TEXT, this._stateText) : "";
         const title = `${mainTitle} ${labelRefTexts}`.trim();
-        const roleDescription = this.accessibilityAttributes?.root?.roleDescription;
-        const effectiveTitle = this._hideArrowButton && roleDescription
-            ? `${title} ${roleDescription}`.trim()
-            : title;
         return {
             root: {
                 hasPopup: this.accessibilityAttributes?.root?.hasPopup || "false",
-                title: this.accessibilityAttributes?.root?.title || effectiveTitle,
+                roleDescription: this.accessibilityAttributes?.root?.roleDescription,
+                title: this.accessibilityAttributes?.root?.title || title,
                 ariaKeyShortcuts: this.accessibilityAttributes?.root?.ariaKeyShortcuts,
             },
             arrowButton: {
