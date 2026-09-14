@@ -1,5 +1,6 @@
 import type { ButtonAccessibilityAttributes } from "./Button.js";
 import type ButtonDesign from "./types/ButtonDesign.js";
+import type ButtonAccessibleRole from "./types/ButtonAccessibleRole.js";
 import type ToolbarItemOverflowBehavior from "./types/ToolbarItemOverflowBehavior.js";
 import ToolbarItemBase from "./ToolbarItemBase.js";
 import type { ToolbarItemEventDetail } from "./ToolbarItemBase.js";
@@ -94,6 +95,23 @@ declare class ToolbarButton extends ToolbarItemBase {
      * @public
      */
     accessibleNameRef?: string;
+    /**
+     * Defines the accessible description of the component.
+     * @default undefined
+     * @public
+     * @since 2.27.0
+     */
+    accessibleDescription?: string;
+    /**
+     * Defines the ARIA role of the component.
+     *
+     * **Note:** Use `ButtonAccessibleRole.Link` role only with a press handler that performs navigation.
+     * In all other scenarios the default button semantics are recommended.
+     * @default "Button"
+     * @public
+     * @since 2.27.0
+     */
+    accessibleRole: `${ButtonAccessibleRole}`;
     /**
      * Defines the additional accessibility attributes that will be applied to the component.
      *

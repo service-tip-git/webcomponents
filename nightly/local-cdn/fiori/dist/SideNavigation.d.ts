@@ -142,7 +142,6 @@ declare class SideNavigation extends UI5Element {
     _onBeforePopoverClose(): void;
     _onBeforeMenuOpen(): void;
     _onBeforeMenuClose(): void;
-    _bn?: SideNavigationSelectableItemBase;
     _onMenuClose(): void;
     get accSideNavigationPopoverHiddenText(): string;
     get ariaRoleDescNavigationList(): string;
@@ -171,6 +170,10 @@ declare class SideNavigation extends UI5Element {
     onExitDOM(): void;
     handleResize(): void;
     _updateOverflowItems(): null | undefined;
+    _calculateItemsHeight(overflowItems: Array<HTMLElement>): number;
+    _getSelectedItemHeight(overflowItems: Array<HTMLElement>, selectedItem: SideNavigationSelectableItemBase | undefined): number;
+    _getLastSeparatorHeight(navItems: Array<SideNavigationSelectableItemBase>, overflowItems: Array<HTMLElement>): number;
+    _updateItemsVisibility(overflowItems: Array<HTMLElement>, selectedItem: SideNavigationSelectableItemBase | undefined, itemsHeight: number, listHeight: number): void;
     _findFocusedItem(items: Array<SideNavigationItemBase>): SideNavigationItemBase | undefined;
     _getSelectableItems(items: Array<SideNavigationItemBase>): Array<SideNavigationSelectableItemBase>;
     _getFocusableItems(items: Array<SideNavigationItemBase>): Array<SideNavigationItemBase>;

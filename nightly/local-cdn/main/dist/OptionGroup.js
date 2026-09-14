@@ -9,7 +9,7 @@ import customElement from "@ui5/webcomponents-base/dist/decorators/customElement
 import slot from "@ui5/webcomponents-base/dist/decorators/slot-strict.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import createInstanceChecker from "@ui5/webcomponents-base/dist/util/createInstanceChecker.js";
-import ListItemGroup from "./ListItemGroup.js";
+import ListItemGroupBase from "./ListItemGroupBase.js";
 import OptionGroupTemplate from "./OptionGroupTemplate.js";
 import { LIST_ITEM_GROUP_HEADER } from "./generated/i18n/i18n-defaults.js";
 import OptionGroupCss from "./generated/themes/OptionGroup.css.js";
@@ -24,11 +24,11 @@ import OptionGroupCss from "./generated/themes/OptionGroup.css.js";
  *
  * `import "@ui5/webcomponents/dist/OptionGroup.js";`
  * @constructor
- * @extends ListItemGroup
+ * @extends ListItemGroupBase
  * @public
  * @since 2.26.0
  */
-let OptionGroup = OptionGroup_1 = class OptionGroup extends ListItemGroup {
+let OptionGroup = OptionGroup_1 = class OptionGroup extends ListItemGroupBase {
     get isOptionGroup() {
         return true;
     }

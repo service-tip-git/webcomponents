@@ -117,6 +117,19 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
             });
             if (!eventPrevented) {
                 selectedPageView.selected = false;
+                const primaryView = this.pages?.find(view => !view.secondary && view !== selectedPageView);
+                renderFinished().then(() => {
+                    if (!this.isConnected) {
+                        return;
+                    }
+                    const lastItem = primaryView?._lastNavigatedItem;
+                    if (lastItem?.getFocusDomRef) {
+                        lastItem.getFocusDomRef()?.focus();
+                    }
+                    else {
+                        this._focusFirstContentElement();
+                    }
+                });
             }
         }
         else {
@@ -177,6 +190,14 @@ let UserSettingsItem = class UserSettingsItem extends UI5Element {
         }
         const focusable = await getFirstFocusableElement(contentElement, true);
         focusable?.focus();
+    }
+    /**
+     * @private
+     * @since 2.27.0
+     */
+    _focusBackButton() {
+        const backButton = this.shadowRoot?.querySelector(".ui5-user-settings-item-collapse-btn");
+        backButton?.focus();
     }
     captureRef(ref) {
         if (ref) {

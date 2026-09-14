@@ -15,6 +15,8 @@ import ResizeHandler from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.j
 import { renderFinished } from "@ui5/webcomponents-base/dist/Render.js";
 import ItemNavigation from "@ui5/webcomponents-base/dist/delegate/ItemNavigation.js";
 import { getEffectiveAriaLabelText } from "@ui5/webcomponents-base/dist/util/AccessibilityTextsHelper.js";
+import announce from "@ui5/webcomponents-base/dist/util/InvisibleMessage.js";
+import InvisibleMessageMode from "@ui5/webcomponents-base/dist/types/InvisibleMessageMode.js";
 import getActiveElement from "@ui5/webcomponents-base/dist/util/getActiveElement.js";
 import { getFocusedElement } from "@ui5/webcomponents-base/dist/util/PopupUtils.js";
 import ScrollEnablement from "@ui5/webcomponents-base/dist/delegate/ScrollEnablement.js";
@@ -24,7 +26,7 @@ import { isSpace, isSpaceCtrl, isSpaceShift, isLeftCtrl, isRightCtrl, isUpCtrl, 
 import { isPhone } from "@ui5/webcomponents-base/dist/Device.js";
 import ListSelectionMode from "./types/ListSelectionMode.js";
 import TokenizerTemplate from "./TokenizerTemplate.js";
-import { MULTIINPUT_SHOW_MORE_TOKENS, TOKENIZER_ARIA_LABEL, TOKENIZER_ARIA_CONTAIN_TOKEN, TOKENIZER_ARIA_CONTAIN_ONE_TOKEN, TOKENIZER_ARIA_CONTAIN_SEVERAL_TOKENS, TOKENIZER_SHOW_ALL_ITEMS, TOKENIZER_CLEAR_ALL, TOKENIZER_DIALOG_OK_BUTTON, TOKENIZER_DIALOG_CANCEL_BUTTON, INPUT_SUGGESTIONS_TITLE, } from "./generated/i18n/i18n-defaults.js";
+import { MULTIINPUT_SHOW_MORE_TOKENS, TOKENIZER_ARIA_LABEL, TOKENIZER_ARIA_CONTAIN_TOKEN, TOKENIZER_ARIA_CONTAIN_ONE_TOKEN, TOKENIZER_ARIA_CONTAIN_SEVERAL_TOKENS, TOKENIZER_SHOW_ALL_ITEMS, TOKENIZER_CLEAR_ALL, TOKENIZER_DIALOG_OK_BUTTON, TOKENIZER_DIALOG_CANCEL_BUTTON, TOKENIZER_TOKEN_DELETED_SINGULAR, TOKENIZER_TOKEN_DELETED_PLURAL, INPUT_SUGGESTIONS_TITLE, } from "./generated/i18n/i18n-defaults.js";
 // Styles
 import TokenizerCss from "./generated/themes/Tokenizer.css.js";
 import TokenizerPopoverCss from "./generated/themes/TokenizerPopover.css.js";
@@ -183,7 +185,19 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
         this._deletedDialogItems = [];
     }
     handleClearAll() {
+        this._announceTokenDeletion(this._tokens.length);
         this.fireDecoratorEvent("token-delete", { tokens: this._tokens });
+    }
+    /**
+     * Announces the number of deleted tokens to screen readers.
+     * @private
+     * @param count The number of tokens being deleted
+     */
+    _announceTokenDeletion(count) {
+        const text = count === 1
+            ? Tokenizer_1.i18nBundle.getText(TOKENIZER_TOKEN_DELETED_SINGULAR)
+            : Tokenizer_1.i18nBundle.getText(TOKENIZER_TOKEN_DELETED_PLURAL, count);
+        announce(text, InvisibleMessageMode.Assertive);
     }
     onBeforeRendering() {
         if (!this.multiLine) {
@@ -320,9 +334,11 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
         const deletedTokenIndex = token ? tokens.indexOf(token) : tokens.indexOf(target); // The index of the token that just got deleted
         const nextTokenIndex = deletedTokenIndex === tokens.length - 1 ? deletedTokenIndex - 1 : deletedTokenIndex + 1; // The index of the next token that needs to be focused next due to the deletion
         const nextToken = tokens[nextTokenIndex]; // if the last item was deleted this will be undefined
+        const tokensToDelete = [token];
+        this._announceTokenDeletion(tokensToDelete.length);
         this._handleCurrentItemAfterDeletion(nextToken);
         this._tokenDeleting = true;
-        this.fireDecoratorEvent("token-delete", { tokens: [token] });
+        this.fireDecoratorEvent("token-delete", { tokens: tokensToDelete });
     }
     _handleCurrentItemAfterDeletion(nextToken) {
         if (nextToken && !isPhone()) {
@@ -365,23 +381,22 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
         else {
             nextToken = notSelectedTokens[0];
         }
+        const tokensToDelete = this._selectedTokens.length ? this._selectedTokens : [token];
+        this._announceTokenDeletion(tokensToDelete.length);
         this._handleCurrentItemAfterDeletion(nextToken);
         this._tokenDeleting = true;
-        if (this._selectedTokens.length) {
-            this.fireDecoratorEvent("token-delete", { tokens: this._selectedTokens });
-        }
-        else {
-            this.fireDecoratorEvent("token-delete", { tokens: [token] });
-        }
+        this.fireDecoratorEvent("token-delete", { tokens: tokensToDelete });
     }
     async itemDelete(e) {
         const token = this.getTokenByRefId(e.detail.item.getAttribute("data-ui5-token-ref-id"));
         const tokensArray = this._tokens;
+        const tokensToDelete = [token];
         // delay the token deletion in order to close the popover before removing token of the DOM
         if (tokensArray.length === 1) {
             const morePopover = this.getPopover();
             morePopover.addEventListener("ui5-close", () => {
-                this.fireDecoratorEvent("token-delete", { tokens: [token] });
+                this._announceTokenDeletion(tokensToDelete.length);
+                this.fireDecoratorEvent("token-delete", { tokens: tokensToDelete });
             }, {
                 once: true,
             });
@@ -392,7 +407,8 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
                 this._deletedDialogItems.push(token);
             }
             else {
-                this.fireDecoratorEvent("token-delete", { tokens: [token] });
+                this._announceTokenDeletion(tokensToDelete.length);
+                this.fireDecoratorEvent("token-delete", { tokens: tokensToDelete });
             }
             const currentListItem = e.detail.item;
             const nextListItem = currentListItem.nextElementSibling;
@@ -428,6 +444,7 @@ let Tokenizer = Tokenizer_1 = class Tokenizer extends UI5Element {
         const isOkButton = e.target.hasAttribute("data-ui5-tokenizer-dialog-ok-button");
         const confirm = !!isOkButton;
         if (confirm && this._deletedDialogItems.length) {
+            this._announceTokenDeletion(this._deletedDialogItems.length);
             this.fireDecoratorEvent("token-delete", { tokens: this._deletedDialogItems });
         }
         this.open = false;

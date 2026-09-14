@@ -154,6 +154,20 @@ declare class Search extends SearchField {
      * @private
      */
     _deleteHandler: (e: CustomEvent) => void;
+    /**
+     * Tracks whether the most recent change to the `open` property originated
+     * from the component's internal control logic (through `_setInternalOpen`)
+     * rather than from the application. Consumed and reset on each reconciliation.
+     * @private
+     */
+    _openChangedInternally: boolean;
+    /**
+     * Holds the `open` value committed during the previous reconciliation.
+     * Used together with `_openChangedInternally` to tell an application-driven
+     * change to `open` apart from a re-render where `open` was not touched.
+     * @private
+     */
+    _lastOpenState: boolean;
     static i18nBundle: I18nBundle;
     constructor();
     onBeforeRendering(): void;
@@ -168,6 +182,13 @@ declare class Search extends SearchField {
     _selectMatchingItem(item: ISearchSuggestionItem): void;
     _handleDown(e: KeyboardEvent): void;
     _handleArrowDown(): void;
+    /**
+     * Sets the `open` property from internal control logic and flags the change
+     * as internally driven, so reconciliation can distinguish it from an
+     * application-driven change to `open`.
+     * @private
+     */
+    _setInternalOpen(value: boolean): void;
     _handleInnerClick(): void;
     _handleSearchIconPress(): void;
     _handleEnter(): void;

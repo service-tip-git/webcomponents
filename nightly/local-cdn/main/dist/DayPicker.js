@@ -23,7 +23,7 @@ import CalendarUtils from "@ui5/webcomponents-localization/dist/CalendarUtils.js
 import DateFormat from "@ui5/webcomponents-localization/dist/DateFormat.js";
 import CalendarSelectionMode from "./types/CalendarSelectionMode.js";
 import CalendarPart from "./CalendarPart.js";
-import { DAY_PICKER_WEEK_NUMBER_TEXT, DAY_PICKER_NON_WORKING_DAY, DAY_PICKER_TODAY, LIST_ITEM_SELECTED, DAY_PICKER_SELECTED_RANGE_START, DAY_PICKER_SELECTED_RANGE_END, DAY_PICKER_SELECTED_RANGE_BETWEEN, } from "./generated/i18n/i18n-defaults.js";
+import { DAY_PICKER_WEEK_NUMBER_TEXT, DAY_PICKER_CALENDAR_WEEK, DAY_PICKER_NON_WORKING_DAY, DAY_PICKER_TODAY, LIST_ITEM_SELECTED, DAY_PICKER_SELECTED_RANGE_START, DAY_PICKER_SELECTED_RANGE_END, DAY_PICKER_SELECTED_RANGE_BETWEEN, } from "./generated/i18n/i18n-defaults.js";
 // Template
 import DayPickerTemplate from "./DayPickerTemplate.js";
 // Styles
@@ -773,6 +773,9 @@ let DayPicker = DayPicker_1 = class DayPicker extends CalendarPart {
         return this.hasSecondaryCalendarType
             ? `${this._primaryCalendarType} calendar with secondary ${this.secondaryCalendarType} calendar`
             : `${this._primaryCalendarType} calendar`;
+    }
+    _getCalendarWeekLabel(weekNum) {
+        return DayPicker_1.i18nBundle.getText(DAY_PICKER_CALENDAR_WEEK, weekNum);
     }
     get _formatLong() {
         return DateFormat.getDateInstance({ style: "long", calendarType: this._primaryCalendarType });

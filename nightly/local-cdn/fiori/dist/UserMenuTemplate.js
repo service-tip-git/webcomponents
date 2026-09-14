@@ -22,7 +22,7 @@ export default function UserMenuTemplate() {
     return (_jsxs(ResponsivePopover, { id: "user-menu-rp", class: "ui5-user-menu-rp", placement: "Bottom", verticalAlign: "Bottom", horizontalAlign: "End", tabindex: -1, accessibleName: this.accessibleNameText, "aria-label": this.accessibleNameText, open: this.open, opener: this.opener, onClose: this._handlePopoverAfterClose, onOpen: this._handlePopoverAfterOpen, onScroll: this._handleScroll, children: [_jsxs(_Fragment, { children: [_jsxs(Bar, { class: {
                             "ui5-user-menu-fixed-header": true,
                             "ui5-user-menu-rp-scrolled": this._isScrolled || this._titleMovedToHeader
-                        }, slot: "header", children: [this._titleMovedToHeader &&
+                        }, slot: "header", "accessible-name": this._ariaLabelledByAccountInformationText, children: [this._titleMovedToHeader &&
                                 _jsx(Title, { level: "H1", wrappingType: "None", children: this._selectedAccount.titleText }), this._isPhone && _jsx(Button, { icon: decline, design: "Transparent", accessibleName: this._closeDialogAriaLabel, onClick: this._closeUserMenu, slot: "endContent" })] }), _jsx("div", { class: "ui5-user-menu-header", children: headerContent.call(this) })] }), this.showOtherAccounts &&
                 _jsx(_Fragment, { children: otherAccountsContent.call(this) }), this.menuItems.length > 0 &&
                 _jsx(List, { id: "ui5-user-menu-list", class: "ui5-user-menu-list", selectionMode: "None", separators: "None", accessibleRole: "Menu", accessibleName: this._ariaLabelledByActions, onItemClick: this._handleMenuItemClick, onMouseOver: this._itemMouseOver, "onui5-close-menu": this._handleMenuItemClose, children: _jsx("slot", {}) }), this._hasCustomFooter &&
@@ -31,7 +31,7 @@ export default function UserMenuTemplate() {
 }
 function headerContent() {
     return (_jsx(_Fragment, { children: this._selectedAccount &&
-            _jsxs("div", { class: "ui5-user-menu-selected-account", "aria-label": this._ariaLabelledByAccountInformationText, children: [_jsx("span", { title: this.showEditButton ? this._editAvatarTooltip : undefined, children: _jsxs(Avatar, { size: "L", onClick: this._isAvatarInteractive ? this._handleAvatarClick : undefined, initials: this._selectedAccount._initials, colorScheme: this._selectedAccount.avatarColorScheme, fallbackIcon: personPlaceholder, class: "ui5-user-menu-selected-account-avatar", mode: this._isAvatarInteractive ? "Interactive" : "Image", children: [this._selectedAccount.avatarSrc &&
+            _jsxs("div", { class: "ui5-user-menu-selected-account", children: [_jsx("span", { title: this.showEditButton ? this._editAvatarTooltip : undefined, children: _jsxs(Avatar, { size: "L", onClick: this._isAvatarInteractive ? this._handleAvatarClick : undefined, initials: this._selectedAccount._initials, colorScheme: this._selectedAccount.avatarColorScheme, fallbackIcon: personPlaceholder, class: "ui5-user-menu-selected-account-avatar", mode: this._isAvatarInteractive ? "Interactive" : "Image", children: [this._selectedAccount.avatarSrc &&
                                     _jsx("img", { src: this._selectedAccount.avatarSrc }), this.showEditButton &&
                                     _jsx(AvatarBadge, { slot: "badge", icon: edit })] }) }), this._selectedAccount.titleText &&
                         _jsx(Text, { id: "selected-account-title", class: "ui5-user-menu-selected-account-title", children: this._selectedAccount.titleText }), this._selectedAccount.subtitleText &&

@@ -128,8 +128,6 @@ let SplitButton = SplitButton_1 = class SplitButton extends UI5Element {
          * - **root**: Attributes that will be applied to the main (text) button.
          *   - **hasPopup**: Indicates the presence and type of popup triggered by the button.
          *     Accepts string values: `"dialog"`, `"grid"`, `"listbox"`, `"menu"`, or `"tree"`.
-         *   - **roleDescription**: Provides a human-readable description for the role of the button.
-         *     Accepts any string value.
          *   - **title**: Specifies a tooltip or description for screen readers.
          *     Accepts any string value.
          * 	- **ariaKeyShortcuts**: Defines keyboard shortcuts that activate or give focus to the button.
@@ -320,7 +318,6 @@ let SplitButton = SplitButton_1 = class SplitButton extends UI5Element {
         return {
             root: {
                 hasPopup: this.accessibilityAttributes?.root?.hasPopup,
-                roleDescription: this.accessibilityAttributes?.root?.roleDescription || (this._hideArrowButton ? undefined : SplitButton_1.i18nBundle.getText(SPLIT_BUTTON_DESCRIPTION)),
                 title: this.accessibilityAttributes?.root?.title,
                 ariaKeyShortcuts: this.accessibilityAttributes?.root?.ariaKeyShortcuts,
             },
@@ -334,7 +331,7 @@ let SplitButton = SplitButton_1 = class SplitButton extends UI5Element {
     get accInfo() {
         return {
             "keyboardHint": SplitButton_1.i18nBundle.getText(SPLIT_BUTTON_KEYBOARD_HINT),
-            "description": SplitButton_1.i18nBundle.getText(SPLIT_BUTTON_DESCRIPTION),
+            "description": this._roleDescription || SplitButton_1.i18nBundle.getText(SPLIT_BUTTON_DESCRIPTION),
         };
     }
     get arrowButtonTooltip() {
@@ -380,6 +377,9 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], SplitButton.prototype, "_hideArrowButton", void 0);
+__decorate([
+    property({ noAttribute: true })
+], SplitButton.prototype, "_roleDescription", void 0);
 __decorate([
     property({ type: Object })
 ], SplitButton.prototype, "accessibilityAttributes", void 0);

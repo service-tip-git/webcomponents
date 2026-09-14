@@ -1030,7 +1030,7 @@
         },
         {
           "name": "header-text",
-          "description": "Defines the header text of the <code>ui5-li-group</code>.",
+          "description": "Defines the header text of the group.",
           "values": []
         },
         {
@@ -1043,7 +1043,7 @@
     },
     {
       "name": "ui5-date-picker",
-      "description": "### Overview\n\nThe `ui5-date-picker` component provides an input field with assigned calendar which opens on user action.\nThe `ui5-date-picker` allows users to select a localized date using touch,\nmouse, or keyboard input. It consists of two parts: the date input field and the\ndate picker.\n\n### Usage\n\nThe user can enter a date by:\n\n- Using the calendar that opens in a popup\n- Typing it in directly in the input field\n\nWhen the user makes an entry and presses the enter key, the calendar shows the corresponding date.\nWhen the user directly triggers the calendar display, the actual date is displayed.\n\n### Formatting\n\nIf a date is entered by typing it into\nthe input field, it must fit to the used date format.\n\nSupported format options are pattern-based on Unicode LDML Date Format notation.\nFor more information, see [UTS #35: Unicode Locale Data Markup Language](https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).\n\nFor example, if the valueFormat is \"yyyy-MM-dd\", the displayFormat is \"MMM d, y\", and the used locale is English, a valid value string is \"2015-07-30\", which leads to an output of \"Jul 30, 2015\".\nIf no placeholder is set to the DatePicker, the used displayFormat is displayed as a placeholder. If another placeholder is needed, it must be set.\n\n### Relative date input\n\nThe input field also accepts locale-aware relative date expressions sourced from the Unicode CLDR.\nThe following expressions are supported in English:\n\n- Day: \"today\", \"yesterday\", \"tomorrow\"\n- Week: \"this week\", \"last week\", \"next week\"\n- Month: \"this month\", \"last month\", \"next month\"\n- Year: \"this year\", \"last year\", \"next year\"\n\nThe recognized expressions are locale-specific — the equivalent terms in the user's language are used (for example, \"heute\" in German, \"bugün\" in Turkish).\nWeek, month, and year expressions resolve to an offset from today (for example, \"next week\" = today + 7 days).\nFor the full list of supported fields and patterns, see [CLDR Date Fields](https://unicode.org/reports/tr35/tr35-dates.html#Calendar_Fields).\n\n### Keyboard Handling\nThe `ui5-date-picker` provides advanced keyboard handling.\nIf the `ui5-date-picker` is focused,\nyou can open or close the drop-down by pressing [F4], [Alt] + [Up] or [Alt] + [Down] keys.\nOnce the drop-down is opened, you can use the [Up], [Down], [Left] or [Right] arrow keys\nto navigate through the dates and select one by pressing the `Space` or `Enter` keys. Moreover you can\nuse TAB to reach the buttons for changing month and year.\n\nIf the `ui5-date-picker` input field is focused and its corresponding picker dialog is not opened,\nthen users can increment or decrement the date referenced by `dateValue` property\nby using the following shortcuts:\n\n- [Page Down] - Decrements the corresponding day of the month by one\n- [Shift] + [Page Down] - Decrements the corresponding month by one\n- [Shift] + [Ctrl] + [Page Down] - Decrements the corresponding year by one\n- [Page Up] - Increments the corresponding day of the month by one\n- [Shift] + [Page Up] - Increments the corresponding month by one\n- [Shift] + [Ctrl] + [Page Up] - Increments the corresponding year by one\n\n### Calendar types\nThe component supports several calendar types - Gregorian, Buddhist, Islamic, Japanese and Persian.\nBy default the Gregorian Calendar is used. In order to use the Buddhist, Islamic, Japanese or Persian calendar,\nyou need to set the `primaryCalendarType` property and import one or more of the following modules:\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Buddhist.js\";`\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Islamic.js\";`\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Japanese.js\";`\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Persian.js\";`\n\nOr, you can use the global configuration and set the `calendarType` key:\n\n```html\n<script data-id=\"sap-ui-config\" type=\"application/json\">\n\t{\n\t\t\"calendarType\": \"Japanese\"\n\t}\n<script>\n```\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/DatePicker.js\";`\n---\n\n\n### **Events:**\n - **change** - Fired when the input operation has finished by pressing Enter or on focusout.\n- **close** - Fired after the component's picker is closed.\n- **input** - Fired when the value of the component is changed at each key stroke.\n- **open** - Fired after the component's picker is opened.\n- **value-state-change** - Fired before the value state of the component is updated internally.\nThe event is preventable, meaning that if it's default action is\nprevented, the component will not update the value state.\n\n### **Methods:**\n - **formatValue(date: _Date_): _string_** - Formats a Java Script date object into a string representing a locale date\naccording to the `formatPattern` property of the DatePicker instance\n- **isInValidRange(value: _string_): _boolean_** - Checks if a date is between the minimum and maximum date.\n- **isValid(value: _string_): _boolean_** - @deprecated Use isValidValue or isValidDisplayValue instead - Checks if a value is valid against the current date format of the DatePicker.\n- **isValidDisplayValue(value: _string_): _boolean_** - Checks if a value is valid against the current date format of the DatePicker.\n- **isValidValue(value: _string_): _boolean_** - Checks if a value is valid against the current date format of the DatePicker.\n\n### **Slots:**\n - **valueStateMessage** - Defines the value state message that will be displayed as pop up under the component.\n\n**Note:** If not specified, a default text (in the respective language) will be displayed.\n\n**Note:** The `valueStateMessage` would be displayed,\nwhen the component is in `Information`, `Critical` or `Negative` value state.\n\n### **CSS Parts:**\n - **input** - Used to style the input element. This part is forwarded to the underlying ui5-input element.",
+      "description": "### Overview\n\nThe `ui5-date-picker` component provides an input field with assigned calendar which opens on user action.\nThe `ui5-date-picker` allows users to select a localized date using touch,\nmouse, or keyboard input. It consists of two parts: the date input field and the\ndate picker.\n\n### Usage\n\nThe user can enter a date by:\n\n- Using the calendar that opens in a popup\n- Typing it in directly in the input field\n\nWhen the user makes an entry and presses the enter key, the calendar shows the corresponding date.\nWhen the user directly triggers the calendar display, the actual date is displayed.\n\n### Formatting\n\nIf a date is entered by typing it into\nthe input field, it must fit to the used date format.\n\nSupported format options are pattern-based on Unicode LDML Date Format notation.\nFor more information, see [UTS #35: Unicode Locale Data Markup Language](https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).\n\nFor example, if the valueFormat is \"yyyy-MM-dd\", the displayFormat is \"MMM d, y\", and the used locale is English, a valid value string is \"2015-07-30\", which leads to an output of \"Jul 30, 2015\".\nIf no placeholder is set to the DatePicker, the used displayFormat is displayed as a placeholder. If another placeholder is needed, it must be set.\n\n### Relative date input\n\nThe input field also accepts locale-aware relative date expressions sourced from the Unicode CLDR.\nThe following expressions are supported in English:\n\n- Day: \"today\", \"yesterday\", \"tomorrow\", \"in N days\", \"N days ago\"\n- Week: \"this week\", \"last week\", \"next week\", \"in N weeks\", \"N weeks ago\"\n- Month: \"this month\", \"last month\", \"next month\", \"in N months\", \"N months ago\"\n- Year: \"this year\", \"last year\", \"next year\", \"in N years\", \"N years ago\"\n\nThe recognized expressions are locale-specific — the equivalent terms in the user's language are used (for example, \"heute\" in German, \"bugün\" in Turkish).\nWeek, month, and year expressions resolve to an offset from today (for example, \"next week\" = today + 7 days).\nFor the full list of supported fields and patterns, see [CLDR Date Fields](https://unicode.org/reports/tr35/tr35-dates.html#Calendar_Fields).\n\n### Keyboard Handling\nThe `ui5-date-picker` provides advanced keyboard handling.\nIf the `ui5-date-picker` is focused,\nyou can open or close the drop-down by pressing [F4], [Alt] + [Up] or [Alt] + [Down] keys.\nOnce the drop-down is opened, you can use the [Up], [Down], [Left] or [Right] arrow keys\nto navigate through the dates and select one by pressing the `Space` or `Enter` keys. Moreover you can\nuse TAB to reach the buttons for changing month and year.\n\nIf the `ui5-date-picker` input field is focused and its corresponding picker dialog is not opened,\nthen users can increment or decrement the date referenced by `dateValue` property\nby using the following shortcuts:\n\n- [Page Down] - Decrements the corresponding day of the month by one\n- [Shift] + [Page Down] - Decrements the corresponding month by one\n- [Shift] + [Ctrl] + [Page Down] - Decrements the corresponding year by one\n- [Page Up] - Increments the corresponding day of the month by one\n- [Shift] + [Page Up] - Increments the corresponding month by one\n- [Shift] + [Ctrl] + [Page Up] - Increments the corresponding year by one\n\n### Calendar types\nThe component supports several calendar types - Gregorian, Buddhist, Islamic, Japanese and Persian.\nBy default the Gregorian Calendar is used. In order to use the Buddhist, Islamic, Japanese or Persian calendar,\nyou need to set the `primaryCalendarType` property and import one or more of the following modules:\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Buddhist.js\";`\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Islamic.js\";`\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Japanese.js\";`\n\n`import \"@ui5/webcomponents-localization/dist/features/calendar/Persian.js\";`\n\nOr, you can use the global configuration and set the `calendarType` key:\n\n```html\n<script data-id=\"sap-ui-config\" type=\"application/json\">\n\t{\n\t\t\"calendarType\": \"Japanese\"\n\t}\n<script>\n```\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/DatePicker.js\";`\n---\n\n\n### **Events:**\n - **change** - Fired when the input operation has finished by pressing Enter or on focusout.\n- **close** - Fired after the component's picker is closed.\n- **input** - Fired when the value of the component is changed at each key stroke.\n- **open** - Fired after the component's picker is opened.\n- **value-state-change** - Fired before the value state of the component is updated internally.\nThe event is preventable, meaning that if it's default action is\nprevented, the component will not update the value state.\n\n### **Methods:**\n - **formatValue(date: _Date_): _string_** - Formats a Java Script date object into a string representing a locale date\naccording to the `formatPattern` property of the DatePicker instance\n- **isInValidRange(value: _string_): _boolean_** - Checks if a date is between the minimum and maximum date.\n- **isValid(value: _string_): _boolean_** - @deprecated Use isValidValue or isValidDisplayValue instead - Checks if a value is valid against the current date format of the DatePicker.\n- **isValidDisplayValue(value: _string_): _boolean_** - Checks if a value is valid against the current date format of the DatePicker.\n- **isValidValue(value: _string_): _boolean_** - Checks if a value is valid against the current date format of the DatePicker.\n\n### **Slots:**\n - **valueStateMessage** - Defines the value state message that will be displayed as pop up under the component.\n\n**Note:** If not specified, a default text (in the respective language) will be displayed.\n\n**Note:** The `valueStateMessage` would be displayed,\nwhen the component is in `Information`, `Critical` or `Negative` value state.\n\n### **CSS Parts:**\n - **input** - Used to style the input element. This part is forwarded to the underlying ui5-input element.",
       "attributes": [
         {
           "name": "accessible-description",
@@ -2529,7 +2529,7 @@
         },
         {
           "name": "type",
-          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
+          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection to be toggled\nvia the checkbox (Multi mode) or radio button (Single modes) when the list has a selection mode.\nClicking the item body or pressing Space/Enter does not trigger selection — only interacting\nwith the selection component directly does. The `item-click` event is not fired for this type.",
           "values": [
             { "name": "Navigation" },
             { "name": "Inactive" },
@@ -2543,7 +2543,7 @@
     },
     {
       "name": "ui5-li-group",
-      "description": "### Overview\nThe `ui5-li-group` is a special list item, used only to create groups of list items.\n\nThis is the item to use inside a `ui5-list`.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents/dist/ListItemGroup.js\";`\n---\n\n\n### **Events:**\n - **move** - Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action.\n- **move-over** - Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`.\n\n### **Slots:**\n - **default** - Defines the items of the <code>ui5-li-group</code>.\n- **header** - Defines the header of the component.\n\n**Note:** Using this slot, the default header text of group and the value of `headerText` property will be overwritten.\n\n### **CSS Parts:**\n - **header** - Used to style the header item of the group\n- **title** - Used to style the title of the group header",
+      "description": "### Overview\nThe `ui5-li-group` is a special list item, used only to create groups of list items.\n\nThis is the item to use inside a `ui5-list`.\n\n### ES6 Module Import\n`import \"@ui5/webcomponents/dist/ListItemGroup.js\";`\n---\n\n\n### **Events:**\n - **move** - Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action.\n- **move-over** - Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`.\n\n### **Slots:**\n - **default** - Defines the items of the group.\n- **header** - Defines the header of the component.\n\n**Note:** Using this slot, the default header text of group and the value of `headerText` property will be overwritten.\n\n### **CSS Parts:**\n - **header** - Used to style the header item of the group\n- **title** - Used to style the title of the group header",
       "attributes": [
         {
           "name": "header-accessible-name",
@@ -2552,7 +2552,7 @@
         },
         {
           "name": "header-text",
-          "description": "Defines the header text of the <code>ui5-li-group</code>.",
+          "description": "Defines the header text of the group.",
           "values": []
         },
         {
@@ -2674,7 +2674,7 @@
         },
         {
           "name": "type",
-          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
+          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection to be toggled\nvia the checkbox (Multi mode) or radio button (Single modes) when the list has a selection mode.\nClicking the item body or pressing Space/Enter does not trigger selection — only interacting\nwith the selection component directly does. The `item-click` event is not fired for this type.",
           "values": [
             { "name": "Navigation" },
             { "name": "Inactive" },
@@ -2831,7 +2831,7 @@
         },
         {
           "name": "type",
-          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
+          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection to be toggled\nvia the checkbox (Multi mode) or radio button (Single modes) when the list has a selection mode.\nClicking the item body or pressing Space/Enter does not trigger selection — only interacting\nwith the selection component directly does. The `item-click` event is not fired for this type.",
           "values": [
             { "name": "Navigation" },
             { "name": "Inactive" },
@@ -3121,7 +3121,7 @@
         },
         {
           "name": "header-text",
-          "description": "Defines the header text of the <code>ui5-li-group</code>.",
+          "description": "Defines the header text of the group.",
           "values": []
         },
         {
@@ -3392,22 +3392,12 @@
     },
     {
       "name": "ui5-option-group",
-      "description": "### Overview\n\nThe `ui5-option-group` component is used to group options within a `ui5-select`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/OptionGroup.js\";`\n---\n\n\n### **Events:**\n - **move** - Fired when a movable list item is dropped onto a drop target.\n\n**Note:** `move` event is fired only if there was a preceding `move-over` with prevented default action.\n- **move-over** - Fired when a movable list item is moved over a potential drop target during a dragging operation.\n\nIf the new position is valid, prevent the default action of the event using `preventDefault()`.\n\n### **Slots:**\n - **default** - Defines the options of the group.\n\n**Note:** Use the `ui5-option` component to define the desired options.\n- **header** - Defines the header of the component.\n\n**Note:** Using this slot, the default header text of group and the value of `headerText` property will be overwritten.\n\n### **CSS Parts:**\n - **header** - Used to style the header item of the group\n- **title** - Used to style the title of the group header",
+      "description": "### Overview\n\nThe `ui5-option-group` component is used to group options within a `ui5-select`.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/OptionGroup.js\";`\n---\n\n\n### **Slots:**\n - **default** - Defines the options of the group.\n\n**Note:** Use the `ui5-option` component to define the desired options.",
       "attributes": [
         {
-          "name": "header-accessible-name",
-          "description": "Defines the accessible name of the header.",
-          "values": []
-        },
-        {
           "name": "header-text",
-          "description": "Defines the header text of the <code>ui5-li-group</code>.",
+          "description": "Defines the header text of the group.",
           "values": []
-        },
-        {
-          "name": "wrapping-type",
-          "description": "Defines if the text of the component should wrap when it's too long.\nWhen set to \"Normal\", the content (title, description) will be wrapped\nusing the `ui5-expandable-text` component.<br/>\n\nThe text can wrap up to 100 characters on small screens (size S) and\nup to 300 characters on larger screens (size M and above). When text exceeds\nthese limits, it truncates with an ellipsis followed by a text expansion trigger.\n\nAvailable options are:\n- `None` (default) - The text will truncate with an ellipsis.\n- `Normal` - The text will wrap (without truncation).",
-          "values": [{ "name": "None" }, { "name": "Normal" }]
         }
       ],
       "references": []
@@ -4239,7 +4229,7 @@
       "attributes": [
         {
           "name": "accessibility-attributes",
-          "description": "Defines the additional accessibility attributes that will be applied to the component.\nThe `accessibilityAttributes` property accepts an object with the following optional fields:\n\n- **root**: Attributes that will be applied to the main (text) button.\n  - **hasPopup**: Indicates the presence and type of popup triggered by the button.\n    Accepts string values: `\"dialog\"`, `\"grid\"`, `\"listbox\"`, `\"menu\"`, or `\"tree\"`.\n  - **roleDescription**: Provides a human-readable description for the role of the button.\n    Accepts any string value.\n  - **title**: Specifies a tooltip or description for screen readers.\n    Accepts any string value.\n\t- **ariaKeyShortcuts**: Defines keyboard shortcuts that activate or give focus to the button.\n\n- **arrowButton**: Attributes applied specifically to the arrow (split) button.\n  - **hasPopup**: Indicates the presence and type of popup triggered by the arrow button.\n    Accepts string values: `\"dialog\"`, `\"grid\"`, `\"listbox\"`, `\"menu\"`, or `\"tree\"`.\n  - **expanded**: Indicates whether the popup triggered by the arrow button is currently expanded.\n    Accepts boolean values: `true` or `false`.",
+          "description": "Defines the additional accessibility attributes that will be applied to the component.\nThe `accessibilityAttributes` property accepts an object with the following optional fields:\n\n- **root**: Attributes that will be applied to the main (text) button.\n  - **hasPopup**: Indicates the presence and type of popup triggered by the button.\n    Accepts string values: `\"dialog\"`, `\"grid\"`, `\"listbox\"`, `\"menu\"`, or `\"tree\"`.\n  - **title**: Specifies a tooltip or description for screen readers.\n    Accepts any string value.\n\t- **ariaKeyShortcuts**: Defines keyboard shortcuts that activate or give focus to the button.\n\n- **arrowButton**: Attributes applied specifically to the arrow (split) button.\n  - **hasPopup**: Indicates the presence and type of popup triggered by the arrow button.\n    Accepts string values: `\"dialog\"`, `\"grid\"`, `\"listbox\"`, `\"menu\"`, or `\"tree\"`.\n  - **expanded**: Indicates whether the popup triggered by the arrow button is currently expanded.\n    Accepts boolean values: `true` or `false`.",
           "values": [{ "name": "SplitButtonAccessibilityAttributes" }]
         },
         {
@@ -4395,7 +4385,7 @@
         },
         {
           "name": "header-text",
-          "description": "Defines the header text of the <code>ui5-li-group</code>.",
+          "description": "Defines the header text of the group.",
           "values": []
         },
         {
@@ -4500,7 +4490,7 @@
         },
         {
           "name": "type",
-          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
+          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection to be toggled\nvia the checkbox (Multi mode) or radio button (Single modes) when the list has a selection mode.\nClicking the item body or pressing Space/Enter does not trigger selection — only interacting\nwith the selection component directly does. The `item-click` event is not fired for this type.",
           "values": [
             { "name": "Navigation" },
             { "name": "Inactive" },
@@ -5688,6 +5678,11 @@
           "values": [{ "name": "ButtonAccessibilityAttributes" }]
         },
         {
+          "name": "accessible-description",
+          "description": "Defines the accessible description of the component.",
+          "values": []
+        },
+        {
           "name": "accessible-name",
           "description": "Defines the accessible ARIA name of the component.",
           "values": []
@@ -5696,6 +5691,11 @@
           "name": "accessible-name-ref",
           "description": "Receives id(or many ids) of the elements that label the component.",
           "values": []
+        },
+        {
+          "name": "accessible-role",
+          "description": "Defines the ARIA role of the component.\n\n**Note:** Use `ButtonAccessibleRole.Link` role only with a press handler that performs navigation.\nIn all other scenarios the default button semantics are recommended.",
+          "values": [{ "name": "Button" }, { "name": "Link" }]
         },
         {
           "name": "design",
@@ -6053,7 +6053,7 @@
         },
         {
           "name": "type",
-          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
+          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection to be toggled\nvia the checkbox (Multi mode) or radio button (Single modes) when the list has a selection mode.\nClicking the item body or pressing Space/Enter does not trigger selection — only interacting\nwith the selection component directly does. The `item-click` event is not fired for this type.",
           "values": [
             { "name": "Navigation" },
             { "name": "Inactive" },
@@ -6159,7 +6159,7 @@
         },
         {
           "name": "type",
-          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection (checkbox/radio) to be toggled\nwhen the list has a selection mode. The `item-click` event is not fired for this type.",
+          "description": "Defines the visual indication and behavior of the list items.\nAvailable options are `Active` (by default), `Inactive`, `InactiveSelectable`, `Detail` and `Navigation`.\n\n**Note:** When set to `Active` or `Navigation`, the item will provide visual response upon press and hover,\nwhile with type `Inactive`, `InactiveSelectable` and `Detail` - will not.\n\n**Note:** `InactiveSelectable` behaves like `Inactive` but allows selection to be toggled\nvia the checkbox (Multi mode) or radio button (Single modes) when the list has a selection mode.\nClicking the item body or pressing Space/Enter does not trigger selection — only interacting\nwith the selection component directly does. The `item-click` event is not fired for this type.",
           "values": [
             { "name": "Navigation" },
             { "name": "Inactive" },
