@@ -1,5 +1,7 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import TableSelectionMode from "./types/TableSelectionMode.js";
+import CheckBox from "./CheckBox.js";
+import RadioButton from "./RadioButton.js";
 import type Table from "./Table.js";
 import type { ITableFeature } from "./Table.js";
 import type TableRow from "./TableRow.js";
@@ -79,6 +81,9 @@ declare class TableSelection extends UI5Element implements ITableFeature {
     isSelectable(): boolean;
     isMultiSelectable(): boolean;
     isRowSelectorRequired(): boolean;
+    getSelectionComponent(): typeof CheckBox | typeof RadioButton;
+    getClearAllComponent(): undefined;
+    getClearAllIcon(): undefined;
     getAriaDescriptionForTable(): string | undefined;
     getAriaDescriptionForColumnHeader(): string | undefined;
     getRowKey(row: TableRow): string;

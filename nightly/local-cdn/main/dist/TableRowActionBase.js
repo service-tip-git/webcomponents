@@ -9,6 +9,8 @@ import { customElement, property, eventStrict } from "@ui5/webcomponents-base/di
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import TableRowActionBaseTemplate from "./TableRowActionBaseTemplate.js";
 import TableRowActionBaseStyles from "./generated/themes/TableRowActionBase.css.js";
+import Button from "./Button.js";
+import iconOverflow from "@ui5/webcomponents-icons/dist/overflow.js";
 let MenuConstructor;
 let MenuItemConstructor;
 /**
@@ -29,6 +31,12 @@ let TableRowActionBase = class TableRowActionBase extends UI5Element {
          * @public
          */
         this.invisible = false;
+    }
+    get overflowButtonComponent() {
+        return Button;
+    }
+    get overflowButtonIcon() {
+        return iconOverflow;
     }
     static async showMenu(actions, opener) {
         if (!MenuConstructor) {

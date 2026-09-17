@@ -232,6 +232,16 @@ let Timeline = Timeline_1 = class Timeline extends UI5Element {
             target = target.shadowRoot.querySelector("[ui5-toggle-button]");
         }
         this._itemNavigation.setCurrentItem(target);
+        if (this.layout === TimelineLayout.Horizontal) {
+            this._scrollFocusedListItemIntoView(e);
+        }
+    }
+    _scrollFocusedListItemIntoView(e) {
+        const listItem = e.composedPath().find((el) => el instanceof HTMLElement && el.classList.contains("ui5-timeline-list-item"));
+        listItem?.scrollIntoView({
+            block: "nearest",
+            inline: "nearest",
+        });
     }
     _onwheel(e) {
         // In horizontal layout, translate vertical wheel into horizontal scroll

@@ -264,6 +264,14 @@ declare class TimePicker extends UI5Element implements IFormInputElement {
     onTimeSelectionChange(e: CustomEvent<TimeSelectionChangeEventDetail>): void;
     get openIconTitle(): string;
     _togglePicker(): void;
+    /**
+     * Prevents the inner input from taking focus when the value-help icon is pressed,
+     * so the subsequent click opens the picker on the first tap (same as MultiInput value-help).
+     * @private
+     */
+    _onValueHelpIconMouseDown(e: MouseEvent): void;
+    _isIconClick(e: Event): boolean;
+    _isInputFieldClick(e: Event): boolean;
     submitPickers(): void;
     onResponsivePopoverAfterClose(): void;
     onResponsivePopoverBeforeOpen(): void;
@@ -290,6 +298,7 @@ declare class TimePicker extends UI5Element implements IFormInputElement {
     onInputsPopoverAfterOpen(): void;
     onInputsPopoverAfterClose(): void;
     _handleInputClick(e: MouseEvent): void;
+    _isInputFieldFocus(e: FocusEvent): boolean;
     _updateValueAndFireEvents(value: string, normalizeValue: boolean, eventsNames: Array<"input" | "change" | "value-changed">): void;
     _updateValueState(): void;
     _handleInputChange(e: CustomEvent): void;
@@ -370,6 +379,7 @@ declare class TimePicker extends UI5Element implements IFormInputElement {
     get shouldDisplayValueStateMessageOnDesktop(): boolean;
     get _headerTitleText(): string;
     get showHeader(): boolean;
+    get _preventPickerInitialFocus(): boolean;
     /**
      * Defines whether the dialog on mobile should have header
      * @private

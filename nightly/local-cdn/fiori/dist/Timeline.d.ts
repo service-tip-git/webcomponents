@@ -176,6 +176,7 @@ declare class Timeline extends UI5Element {
     _onLoadMoreKeyup(e: KeyboardEvent): void;
     _onLoadMoreClick(): void;
     _onfocusin(e: FocusEvent): void;
+    _scrollFocusedListItemIntoView(e: FocusEvent): void;
     _onwheel(e: WheelEvent): void;
     onBeforeRendering(): void;
     _setLastItem(): void;

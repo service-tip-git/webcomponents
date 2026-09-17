@@ -105,6 +105,9 @@ let TableRowBase = TableRowBase_1 = class TableRowBase extends UI5Element {
     get _isMultiSelect() {
         return !!this._tableSelection?.isMultiSelectable();
     }
+    get _selectionComponent() {
+        return this._tableSelection?.getSelectionComponent();
+    }
     get _hasSelector() {
         return this._table?._isRowSelectorRequired;
     }

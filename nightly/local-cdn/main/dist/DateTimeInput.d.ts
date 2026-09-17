@@ -19,6 +19,12 @@ declare class DateTimeInput extends Input {
     get hasValueStateMessage(): boolean;
     get _isMobileDevice(): boolean;
     /**
+     * Placeholder must not remain on the native input when a value is present,
+     * so screen readers (e.g. JAWS) do not announce it together with the value.
+     * @override
+     */
+    get _placeholder(): string | undefined;
+    /**
      * Override to handle nested slot structure from DatePicker -> DateTimeInput slot forwarding.
      * Assumes DateTimeInput always has slot-within-slot structure for valueStateMessage.
      * @override

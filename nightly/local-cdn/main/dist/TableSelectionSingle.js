@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { customElement, property } from "@ui5/webcomponents-base/dist/decorators.js";
 import TableSelectionBase from "./TableSelectionBase.js";
+import RadioButton from "./RadioButton.js";
 /**
  * @class
  *
@@ -39,6 +40,9 @@ let TableSelectionSingle = class TableSelectionSingle extends TableSelectionBase
     isSelected(row) {
         const rowKey = this.getRowKey(row);
         return rowKey ? this.selected === rowKey : false;
+    }
+    getSelectionComponent() {
+        return RadioButton;
     }
     setSelected(row, selected, fireEvent = false) {
         const rowKey = this.getRowKey(row);

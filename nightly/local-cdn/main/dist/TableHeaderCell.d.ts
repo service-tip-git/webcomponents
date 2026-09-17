@@ -1,5 +1,6 @@
 import TableCellBase from "./TableCellBase.js";
 import SortOrder from "@ui5/webcomponents-base/dist/types/SortOrder.js";
+import Icon from "./Icon.js";
 import type TableHeaderCellActionBase from "./TableHeaderCellActionBase.js";
 import type { Slot } from "@ui5/webcomponents-base/dist/UI5Element.js";
 /**
@@ -102,6 +103,8 @@ declare class TableHeaderCell extends TableCellBase {
     _actionSlot: HTMLSlotElement;
     ariaRole: string;
     _popinWidth: number;
+    get _sortIconComponent(): typeof Icon | undefined;
+    get _sortIcon(): string | undefined;
     onBeforeRendering(): void;
     get accessibilityInfo(): {
         children: HTMLSlotElement[];

@@ -134,6 +134,12 @@ let TableRow = class TableRow extends TableRowBase {
     get _overflowButtonTooltip() {
         return TableRowBase.i18nBundle.getText(TABLE_ROW_OVERFLOW_BUTTON);
     }
+    get _overflowButtonComponent() {
+        return this.actions.at(0)?.overflowButtonComponent;
+    }
+    get _overflowButtonIcon() {
+        return this.actions.at(0)?.overflowButtonIcon;
+    }
     get _flexibleActions() {
         const flexibleActions = this.actions.filter(action => !action.isFixedAction());
         const fixedActionsCount = this.actions.length - flexibleActions.length;

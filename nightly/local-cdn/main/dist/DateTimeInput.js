@@ -37,6 +37,17 @@ let DateTimeInput = class DateTimeInput extends Input {
         return !isDesktop() && (isPhone() || isTablet());
     }
     /**
+     * Placeholder must not remain on the native input when a value is present,
+     * so screen readers (e.g. JAWS) do not announce it together with the value.
+     * @override
+     */
+    get _placeholder() {
+        if (this.value) {
+            return;
+        }
+        return super._placeholder;
+    }
+    /**
      * Override to handle nested slot structure from DatePicker -> DateTimeInput slot forwarding.
      * Assumes DateTimeInput always has slot-within-slot structure for valueStateMessage.
      * @override

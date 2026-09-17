@@ -58,6 +58,9 @@ let AvatarBadge = class AvatarBadge extends UI5Element {
          * - `Negative` - Red, used for error/rejected states
          * - `Information` - Blue, used for informational states
          *
+         * **Note:** `state` takes precedence over `colorScheme`. When `state` is set
+         * to any value other than `None`, the semantic styling applies and `colorScheme` is ignored.
+         *
          * @default "None"
          * @public
          */
@@ -108,6 +111,9 @@ __decorate([
 __decorate([
     property()
 ], AvatarBadge.prototype, "state", void 0);
+__decorate([
+    property()
+], AvatarBadge.prototype, "colorScheme", void 0);
 __decorate([
     property({ type: Boolean })
 ], AvatarBadge.prototype, "invalid", void 0);

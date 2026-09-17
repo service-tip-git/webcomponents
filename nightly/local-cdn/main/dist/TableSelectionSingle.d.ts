@@ -1,4 +1,5 @@
 import TableSelectionBase from "./TableSelectionBase.js";
+import RadioButton from "./RadioButton.js";
 import type TableRow from "./TableRow.js";
 /**
  * @class
@@ -38,6 +39,7 @@ declare class TableSelectionSingle extends TableSelectionBase {
      */
     selected?: string;
     isSelected(row: TableRow): boolean;
+    getSelectionComponent(): typeof RadioButton;
     setSelected(row: TableRow, selected: boolean, fireEvent?: boolean): void;
     /**
      * Returns the selected row.

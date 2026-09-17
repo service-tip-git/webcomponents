@@ -199,6 +199,7 @@ declare class DynamicPage extends UI5Element {
     get _footerRole(): DynamicPageFooterRoles | undefined;
     get _footerAriaLabel(): string | undefined;
     get _hidePinButton(): boolean;
+    get _actionsBarStickyTop(): number;
     /**
      * Defines if the header is snapped.
      *

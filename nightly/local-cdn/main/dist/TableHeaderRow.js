@@ -71,6 +71,12 @@ class TableHeaderRow extends TableRowBase {
     get _shouldRenderClearAll() {
         return this._tableSelection.headerSelector === "ClearAll";
     }
+    get _clearAllComponent() {
+        return this._tableSelection?.getClearAllComponent();
+    }
+    get _clearAllIcon() {
+        return this._tableSelection?.getClearAllIcon();
+    }
     get _selectionCellAriaDescription() {
         return this._tableSelection?.getAriaDescriptionForColumnHeader();
     }

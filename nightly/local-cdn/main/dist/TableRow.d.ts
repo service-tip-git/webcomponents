@@ -89,6 +89,8 @@ declare class TableRow extends TableRowBase<TableCell> {
     get _rowIndex(): number;
     get _hasOverflowActions(): boolean;
     get _overflowButtonTooltip(): string;
+    get _overflowButtonComponent(): typeof Button | undefined;
+    get _overflowButtonIcon(): string | undefined;
     get _flexibleActions(): TableRowActionBase[];
     get _fixedActions(): TableRowActionBase[];
     get _overflowActions(): TableRowActionBase[];

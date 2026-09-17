@@ -38,6 +38,7 @@ declare abstract class TableRowBase<TCell extends TableCellBase = TableCellBase>
     get _isSelected(): boolean | undefined;
     get _isSelectable(): boolean | undefined;
     get _isMultiSelect(): boolean;
+    get _selectionComponent(): typeof UI5Element | typeof import("./RadioButton.js").default | typeof import("./CheckBox.js").default | undefined;
     get _hasSelector(): boolean | undefined;
     get _visibleCells(): TCell[];
     get _firstVisibleCell(): TCell | undefined;

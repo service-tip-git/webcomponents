@@ -74,6 +74,24 @@ class TableSelectionBase extends UI5Element {
         return this.behavior === TableSelectionBehavior.RowSelector;
     }
     /**
+     * Returns the component used to render the row selector (for example, `CheckBox` or `RadioButton`).
+     */
+    getSelectionComponent() {
+        return undefined;
+    }
+    /**
+     * Returns the component used to render the "Clear All" selector in the column header.
+     */
+    getClearAllComponent() {
+        return undefined;
+    }
+    /**
+     * Returns the icon name used for the "Clear All" selector in the column header.
+     */
+    getClearAllIcon() {
+        return undefined;
+    }
+    /**
      * Returns the ARIA description of the Table as an alternative to aria-multiselectable.
      */
     getAriaDescriptionForTable() {

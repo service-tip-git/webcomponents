@@ -10,6 +10,9 @@ import TableCellBase from "./TableCellBase.js";
 import TableHeaderCellTemplate from "./TableHeaderCellTemplate.js";
 import TableHeaderCellStyles from "./generated/themes/TableHeaderCell.css.js";
 import SortOrder from "@ui5/webcomponents-base/dist/types/SortOrder.js";
+import Icon from "./Icon.js";
+import SortAscending from "@ui5/webcomponents-icons/dist/sort-ascending.js";
+import SortDescending from "@ui5/webcomponents-icons/dist/sort-descending.js";
 import query from "@ui5/webcomponents-base/dist/decorators/query.js";
 /**
  * @class
@@ -65,6 +68,19 @@ let TableHeaderCell = class TableHeaderCell extends TableCellBase {
         this.popinHidden = false;
         this.ariaRole = "columnheader";
         this._popinWidth = 0;
+    }
+    get _sortIconComponent() {
+        return this.sortIndicator === SortOrder.None ? undefined : Icon;
+    }
+    get _sortIcon() {
+        switch (this.sortIndicator) {
+            case SortOrder.Ascending:
+                return SortAscending;
+            case SortOrder.Descending:
+                return SortDescending;
+            default:
+                return undefined;
+        }
     }
     onBeforeRendering() {
         super.onBeforeRendering();

@@ -1,4 +1,5 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
+import type Icon from "./Icon.js";
 import type Table from "./Table.js";
 import type TableRowBase from "./TableRowBase.js";
 import type TableRow from "./TableRow.js";
@@ -50,6 +51,18 @@ declare abstract class TableSelectionBase extends UI5Element implements ITableFe
      * Determines whether a row selector (for example, `radiobutton` or `checkbox`) is rendered.
      */
     isRowSelectorRequired(): boolean;
+    /**
+     * Returns the component used to render the row selector (for example, `CheckBox` or `RadioButton`).
+     */
+    getSelectionComponent(): typeof UI5Element | undefined;
+    /**
+     * Returns the component used to render the "Clear All" selector in the column header.
+     */
+    getClearAllComponent(): typeof Icon | undefined;
+    /**
+     * Returns the icon name used for the "Clear All" selector in the column header.
+     */
+    getClearAllIcon(): string | undefined;
     /**
      * Returns the ARIA description of the Table as an alternative to aria-multiselectable.
      */

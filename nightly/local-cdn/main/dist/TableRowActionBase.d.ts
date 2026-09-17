@@ -1,6 +1,6 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type { UI5CustomEvent } from "@ui5/webcomponents-base";
-import type Button from "./Button.js";
+import Button from "./Button.js";
 /**
  * Fired when a row action is clicked.
  *
@@ -20,6 +20,8 @@ declare abstract class TableRowActionBase extends UI5Element {
      * @public
      */
     invisible: boolean;
+    get overflowButtonComponent(): typeof Button;
+    get overflowButtonIcon(): string;
     private static _menu;
     private static _menuItems;
     static showMenu(actions: TableRowActionBase[], opener: HTMLElement): Promise<void>;

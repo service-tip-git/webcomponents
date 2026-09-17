@@ -11,6 +11,8 @@ import customElement from "@ui5/webcomponents-base/dist/decorators/customElement
 import property from "@ui5/webcomponents-base/dist/decorators/property.js";
 import event from "@ui5/webcomponents-base/dist/decorators/event-strict.js";
 import TableSelectionMode from "./types/TableSelectionMode.js";
+import CheckBox from "./CheckBox.js";
+import RadioButton from "./RadioButton.js";
 import { isSelectionCell, isHeaderSelectionCell, findRowInPath } from "./TableUtils.js";
 /**
  * @class
@@ -100,6 +102,15 @@ let TableSelection = class TableSelection extends UI5Element {
     }
     isRowSelectorRequired() {
         return this.mode !== TableSelectionMode.None;
+    }
+    getSelectionComponent() {
+        return this.isMultiSelectable() ? CheckBox : RadioButton;
+    }
+    getClearAllComponent() {
+        return undefined;
+    }
+    getClearAllIcon() {
+        return undefined;
     }
     getAriaDescriptionForTable() {
         return undefined;

@@ -275,12 +275,39 @@ let TimePicker = TimePicker_1 = class TimePicker extends UI5Element {
             this._inputsPopover.open = false;
         }
     }
+    /**
+     * Prevents the inner input from taking focus when the value-help icon is pressed,
+     * so the subsequent click opens the picker on the first tap (same as MultiInput value-help).
+     * @private
+     */
+    _onValueHelpIconMouseDown(e) {
+        if (!this._canOpenPicker()) {
+            return;
+        }
+        e.preventDefault();
+    }
+    _isIconClick(e) {
+        return e.composedPath().some(el => el instanceof HTMLElement && el.hasAttribute("ui5-icon"));
+    }
+    _isInputFieldClick(e) {
+        const inputField = this._getInputField();
+        if (!inputField) {
+            return false;
+        }
+        return e.composedPath().includes(inputField);
+    }
     submitPickers() {
         this._updateValueAndFireEvents(this.tempValue, true, ["change", "value-changed"]);
         this._togglePicker();
     }
     onResponsivePopoverAfterClose() {
         this.open = false;
+        if (isPhone()) {
+            this.blur(); // close device's keyboard and prevent further typing
+        }
+        else {
+            this._dateTimeInput?.focus();
+        }
         this.fireDecoratorEvent("close");
     }
     onResponsivePopoverBeforeOpen() {
@@ -341,17 +368,19 @@ let TimePicker = TimePicker_1 = class TimePicker extends UI5Element {
         this._isInputsPopoverOpen = false;
     }
     _handleInputClick(e) {
-        const target = e.target;
-        if (this.open) {
+        if (this._isMobileDevice) {
             return;
         }
-        if (this._isMobileDevice && target && !target.hasAttribute("ui5-icon")) {
-            this.toggleInputsPopover();
+        if (this._isIconClick(e) || this.open) {
+            return;
         }
         const inputField = this._getInputField();
-        if (inputField) {
+        if (inputField && this._isInputFieldClick(e)) {
             inputField.select();
         }
+    }
+    _isInputFieldFocus(e) {
+        return this._isInputFieldClick(e);
     }
     _updateValueAndFireEvents(value, normalizeValue, eventsNames) {
         const isInputEvent = eventsNames.includes("input");
@@ -640,12 +669,20 @@ let TimePicker = TimePicker_1 = class TimePicker extends UI5Element {
         setTimeout(() => { this._dateTimeInput.readonly = false; }, 0);
     }
     _onfocusin(e) {
-        if (this._isMobileDevice) {
-            this._hideMobileKeyboard();
-            if (this._isInputsPopoverOpen) {
-                const popover = this._inputsPopover;
-                popover.applyFocus();
-            }
+        if (!this._isMobileDevice) {
+            return;
+        }
+        if (this._isIconClick(e)) {
+            return;
+        }
+        this._hideMobileKeyboard();
+        if (this._isInputsPopoverOpen) {
+            this._inputsPopover.applyFocus();
+            e.preventDefault();
+            return;
+        }
+        if (this._isInputFieldFocus(e)) {
+            this.toggleInputsPopover();
             e.preventDefault();
         }
     }
@@ -685,6 +722,9 @@ let TimePicker = TimePicker_1 = class TimePicker extends UI5Element {
         return this.ariaLabelText || TimePicker_1.i18nBundle.getText(INPUT_SUGGESTIONS_TITLE);
     }
     get showHeader() {
+        return isPhone();
+    }
+    get _preventPickerInitialFocus() {
         return isPhone();
     }
     /**

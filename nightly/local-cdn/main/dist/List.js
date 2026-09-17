@@ -924,7 +924,10 @@ let List = List_1 = class List extends UI5Element {
     }
     onItemPress(e) {
         const pressedItem = e.detail.item;
-        if (!this.fireDecoratorEvent("item-click", { item: pressedItem })) {
+        // if InactiveSelectable - don't fire the public "item-click" event
+        // we fall through to the selection code below
+        const isInactiveSelectable = pressedItem.isInactiveSelectable;
+        if (!isInactiveSelectable && !this.fireDecoratorEvent("item-click", { item: pressedItem })) {
             return;
         }
         if (this.selectionMode !== ListSelectionMode.Delete) {

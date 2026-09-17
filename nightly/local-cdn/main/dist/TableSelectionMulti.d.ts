@@ -1,4 +1,6 @@
 import TableSelectionBase from "./TableSelectionBase.js";
+import CheckBox from "./CheckBox.js";
+import Icon from "./Icon.js";
 import type TableRow from "./TableRow.js";
 import type TableRowBase from "./TableRowBase.js";
 import type TableSelectionMultiHeaderSelector from "./types/TableSelectionMultiHeaderSelector.js";
@@ -53,6 +55,9 @@ declare class TableSelectionMulti extends TableSelectionBase {
     onTableBeforeRendering(): void;
     onTableAfterRendering(): void;
     isMultiSelectable(): boolean;
+    getSelectionComponent(): typeof CheckBox;
+    getClearAllComponent(): typeof Icon;
+    getClearAllIcon(): string;
     isSelected(row: TableRowBase): boolean;
     setSelected(row: TableRowBase, selected: boolean, fireEvent?: boolean): void;
     /**

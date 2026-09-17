@@ -44,6 +44,8 @@ declare class TableHeaderRow extends TableRowBase<TableHeaderCell> {
     get _isSelectable(): boolean;
     get _hasSelectedRows(): boolean;
     get _shouldRenderClearAll(): boolean;
+    get _clearAllComponent(): typeof import("./Icon.js").default | undefined;
+    get _clearAllIcon(): string | undefined;
     get _selectionCellAriaDescription(): string | undefined;
     get _i18nSelection(): string;
     get _i18nRowPopin(): string;
