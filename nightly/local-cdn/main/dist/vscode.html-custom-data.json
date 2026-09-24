@@ -3293,18 +3293,8 @@
           "values": []
         },
         {
-          "name": "placeholder",
-          "description": "Defines a short hint, intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When no placeholder is set, the format pattern is displayed as a placeholder.\nPassing an empty string as the value of this property will make the component appear empty - without placeholder or format pattern.",
-          "values": []
-        },
-        {
           "name": "readonly",
           "description": "Determines whether the component is displayed as read-only.",
-          "values": []
-        },
-        {
-          "name": "required",
-          "description": "Defines whether the component is required.",
           "values": []
         },
         {

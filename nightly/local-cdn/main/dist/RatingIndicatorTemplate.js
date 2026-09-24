@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "@ui5/webcomponents-base/jsx-runtime";
 import Icon from "./Icon.js";
 export default function RatingIndicatorTemplate() {
-    return (_jsx("div", { class: "ui5-rating-indicator-root", role: "slider", "aria-roledescription": this._ariaRoleDescription, "aria-valuemin": 0, "aria-valuenow": this.value, "aria-valuemax": this.max, "aria-valuetext": `${this.value} of ${this.max}`, "aria-orientation": "horizontal", "aria-disabled": this._ariaDisabled, "aria-readonly": this.ariaReadonly, "aria-description": this._ariaDescription, tabindex: this.effectiveTabIndex, onFocusIn: this._onfocusin, onFocusOut: this._onfocusout, onClick: this._onclick, onKeyDown: this._onkeydown, title: this.ratingTooltip, "aria-label": this._ariaLabel, children: _jsx("ul", { class: "ui5-rating-indicator-list", "aria-hidden": "true", children: this._stars.map(star => starLi.call(this, star)) }) }));
+    return (_jsx("div", { class: "ui5-rating-indicator-root", role: "slider", "aria-roledescription": this._ariaRoleDescription, "aria-valuemin": 0, "aria-valuenow": this.value, "aria-valuemax": this.max, "aria-valuetext": `${this.value} of ${this.max}`, "aria-orientation": "horizontal", "aria-disabled": this._ariaDisabled, "aria-readonly": this.ariaReadonly, "aria-description": this._ariaDescription, tabindex: this.effectiveTabIndex, onFocusIn: this._onfocusin, onClick: this._onclick, onKeyDown: this._onkeydown, title: this.ratingTooltip, "aria-label": this._ariaLabel, children: _jsx("ul", { class: "ui5-rating-indicator-list", "aria-hidden": "true", children: this._stars.map(star => starLi.call(this, star)) }) }));
 }
 function starLi(star) {
     if (star.selected) {

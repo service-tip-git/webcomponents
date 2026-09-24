@@ -17,7 +17,7 @@ import type ListItemGroupHeader from "./ListItemGroupHeader.js";
  * @abstract
  * @extends UI5Element
  * @public
- * @since 2.26.0
+ * @since 2.27.0
  */
 declare class ListItemGroupBase extends UI5Element {
     eventDetails: {

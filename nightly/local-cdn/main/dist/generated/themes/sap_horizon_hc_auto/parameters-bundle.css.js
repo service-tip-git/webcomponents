@@ -159,10 +159,10 @@ export default `:host {
     --_ui5-calendar-legend-item-root-width: 7.75rem;
     --_ui5-calendar-legend-item-box-dot-display: none;
     --_ui5_calendar_header_arrow_button_border: none;
-    --_ui5_calendar_header_arrow_button_border_radius: .25rem;
+    --_ui5_calendar_header_arrow_button_border_radius: var(--sapButton_BorderCornerRadius);
     --_ui5_calendar_header_middle_button_width: 5.75rem;
     --_ui5_calendar_header_middle_button_flex: auto;
-    --_ui5_calendar_header_middle_button_focus_border_radius: .5rem;
+    --_ui5_calendar_header_middle_button_focus_border_radius: var(--sapButton_BorderCornerRadius);
     --_ui5_calendar_header_middle_button_focus_border: .125rem dotted var(--sapContent_FocusColor);
     --_ui5_calendar_header_middle_button_focus_after_display: none;
     --_ui5_calendar_header_middle_button_focus_after_width: calc(100% - .25rem) ;

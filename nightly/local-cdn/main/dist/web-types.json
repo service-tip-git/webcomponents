@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
   "name": "@ui5/webcomponents",
-  "version": "2.27.0-rc.1",
+  "version": "2.27.0",
   "description-markup": "markdown",
   "contributions": {
     "html": {
@@ -7395,18 +7395,8 @@
               "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
-              "name": "placeholder",
-              "description": "Defines a short hint, intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When no placeholder is set, the format pattern is displayed as a placeholder.\nPassing an empty string as the value of this property will make the component appear empty - without placeholder or format pattern.",
-              "value": { "type": "string | undefined", "default": "undefined" }
-            },
-            {
               "name": "readonly",
               "description": "Determines whether the component is displayed as read-only.",
-              "value": { "type": "boolean", "default": "false" }
-            },
-            {
-              "name": "required",
-              "description": "Defines whether the component is required.",
               "value": { "type": "boolean", "default": "false" }
             },
             {
@@ -7486,18 +7476,8 @@
                 "value": { "type": "string | undefined" }
               },
               {
-                "name": "placeholder",
-                "description": "Defines a short hint, intended to aid the user with data entry when the\ncomponent has no value.\n\n**Note:** When no placeholder is set, the format pattern is displayed as a placeholder.\nPassing an empty string as the value of this property will make the component appear empty - without placeholder or format pattern.",
-                "value": { "type": "string | undefined" }
-              },
-              {
                 "name": "readonly",
                 "description": "Determines whether the component is displayed as read-only.",
-                "value": { "type": "boolean" }
-              },
-              {
-                "name": "required",
-                "description": "Defines whether the component is required.",
                 "value": { "type": "boolean" }
               },
               {
@@ -12878,7 +12858,7 @@
             {
               "name": "overflow-group",
               "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-              "value": { "type": "string", "default": "\"\"" }
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "overflow-priority",
@@ -12972,7 +12952,7 @@
               {
                 "name": "overflow-group",
                 "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-                "value": { "type": "string" }
+                "value": { "type": "string | undefined" }
               },
               {
                 "name": "overflow-priority",
@@ -13023,7 +13003,7 @@
             {
               "name": "overflow-group",
               "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-              "value": { "type": "string", "default": "\"\"" }
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "overflow-priority",
@@ -13048,7 +13028,7 @@
               {
                 "name": "overflow-group",
                 "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-                "value": { "type": "string" }
+                "value": { "type": "string | undefined" }
               },
               {
                 "name": "overflow-priority",
@@ -13089,7 +13069,7 @@
             {
               "name": "overflow-group",
               "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-              "value": { "type": "string", "default": "\"\"" }
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "overflow-priority",
@@ -13167,7 +13147,7 @@
               {
                 "name": "overflow-group",
                 "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-                "value": { "type": "string" }
+                "value": { "type": "string | undefined" }
               },
               {
                 "name": "overflow-priority",
@@ -13262,7 +13242,7 @@
             {
               "name": "overflow-group",
               "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-              "value": { "type": "string", "default": "\"\"" }
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "overflow-priority",
@@ -13284,7 +13264,7 @@
               {
                 "name": "overflow-group",
                 "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-                "value": { "type": "string" }
+                "value": { "type": "string | undefined" }
               },
               {
                 "name": "overflow-priority",
@@ -13310,7 +13290,7 @@
             {
               "name": "overflow-group",
               "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-              "value": { "type": "string", "default": "\"\"" }
+              "value": { "type": "string | undefined", "default": "undefined" }
             },
             {
               "name": "overflow-priority",
@@ -13337,7 +13317,7 @@
               {
                 "name": "overflow-group",
                 "description": "Co-overflow tag. Items in the same `ui5-toolbar` whose `overflowGroup` is the same\nnon-empty string overflow as one atomic unit: either all visible in the bar, or all\nin the overflow popover, never split. The empty string (the default) means \"no group\" —\nthe item participates in overflow independently.\n\nThe tag is a free-form, case-sensitive string label (e.g. `\"filters\"`, `\"search\"`). It is\nlayout-only and carries no ARIA, keyboard, or visual-cluster semantics. Items in a\nnon-empty group must have `overflowPriority = \"Default\"`; `AlwaysOverflow` and\n`NeverOverflow` are forbidden inside a group — setting one of those on a grouped item\nemits a one-shot `console.warn` and the item's priority is treated as `Default` for\nthe layout pass. Spacers (`ui5-toolbar-spacer`) do not participate in grouping; setting\na non-empty `overflowGroup` on a spacer emits a one-shot `console.warn` and the spacer's\nexisting overflow behavior is unchanged.\n\nThe visible bar always preserves slot order — ungrouped items between group members\nkeep their slot positions and the toolbar never reorders DOM children. In the popover\ngroup members appear adjacent in slot order.",
-                "value": { "type": "string" }
+                "value": { "type": "string | undefined" }
               },
               {
                 "name": "overflow-priority",

@@ -146,19 +146,15 @@ declare class RatingIndicator extends UI5Element {
      * @private
      */
     _stars: Array<Star>;
-    /**
-     * @private
-     */
-    _focused: boolean;
     _liveValue?: number;
     static i18nBundle: I18nBundle;
     constructor();
+    onEnterDOM(): void;
     onBeforeRendering(): void;
     calcState(): void;
     _onclick(e: MouseEvent): void;
     _onkeydown(e: KeyboardEvent): void;
     _onfocusin(): void;
-    _onfocusout(): void;
     get effectiveTabIndex(): number;
     get ratingTooltip(): string | undefined;
     get defaultTooltip(): string;

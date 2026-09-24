@@ -35,10 +35,10 @@ declare class ToolbarItemBase extends UI5Element {
      * group members appear adjacent in slot order.
      *
      * @public
-     * @default ""
+     * @default undefined
      * @since 2.27.0
      */
-    overflowGroup: string;
+    overflowGroup?: string;
     /**
      * Defines if the toolbar overflow popup should close upon interaction with the item.
      * It will close by default.
@@ -124,7 +124,7 @@ declare class ToolbarItemBase extends UI5Element {
      *
      * @protected
      */
-    get effectiveOverflowGroup(): string;
+    get effectiveOverflowGroup(): string | undefined;
     get stableDomRef(): string;
     get classes(): {
         root: {

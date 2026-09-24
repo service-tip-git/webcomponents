@@ -17,14 +17,15 @@ attachConfigurationReset(() => {
 // UI5Element instances mounted while setLanguage is in flight — can await it.
 let languageChangePending = null;
 const startLanguageChange = (language) => {
-    const changePromise = fireLanguageChange(language).then(() => {
-        if (isBooted()) {
-            return reRenderAllUI5Elements({ languageAware: true });
-        }
-    }).finally(() => {
-        // Only clear if no newer change has already replaced us
+    const changePromise = fireLanguageChange(language)
+        .then(() => {
+        // Clear if there is no other language change in flight. Re-render all language-aware components
+        // so they pick up the newly loaded CLDR and i18n data.
         if (languageChangePending === changePromise) {
             languageChangePending = null;
+            if (isBooted()) {
+                return reRenderAllUI5Elements({ languageAware: true });
+            }
         }
     });
     languageChangePending = changePromise;

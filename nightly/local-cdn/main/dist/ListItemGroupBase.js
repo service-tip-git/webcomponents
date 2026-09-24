@@ -24,7 +24,7 @@ import createInstanceChecker from "@ui5/webcomponents-base/dist/util/createInsta
  * @abstract
  * @extends UI5Element
  * @public
- * @since 2.26.0
+ * @since 2.27.0
  */
 let ListItemGroupBase = class ListItemGroupBase extends UI5Element {
     get groupHeaderItem() {

@@ -1398,7 +1398,7 @@ let MultiComboBox = MultiComboBox_1 = class MultiComboBox extends UI5Element {
         return this.shadowRoot.querySelector("[ui5-tokenizer]");
     }
     inputFocusIn(e) {
-        if (!isPhone()) {
+        if (!isPhone() || this.readonly) {
             this.focused = true;
             this._tokenizer._scrollToEndOnExpand = true;
             this._tokenizer.expanded = true;

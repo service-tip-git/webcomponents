@@ -919,7 +919,7 @@ export default `:host {
     --_ui5_yearpicker_item_hover_border: .0625rem solid var(--sapButton_Lite_Hover_BorderColor);
     --_ui5_yearpicker_item_selected_border: .0625rem solid var(--sapButton_Selected_BorderColor);
     --_ui5_yearpicker_item_selected_hover_border: .0625rem solid var(--sapButton_Selected_Hover_BorderColor);
-    --_ui5_calendar_header_arrow_button_border: .0625rem solid var(--sapList_Hover_Background);
+    --_ui5_calendar_header_arrow_button_border: none;
     --_ui5_calendar_header_arrow_button_border_radius: .5rem;
     --_ui5_calendar_header_middle_button_width: 6.25rem;
     --_ui5_calendar_header_middle_button_flex: 1 1 auto;

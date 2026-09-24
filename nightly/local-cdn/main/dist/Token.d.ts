@@ -89,6 +89,7 @@ declare class Token extends UI5Element implements IToken {
     closeIcon: Slot<IIcon>;
     static i18nBundle: I18nBundle;
     _handleSelect(): void;
+    onEnterDOM(): void;
     _focusin(): void;
     _focusout(): void;
     _delete(): void;

@@ -371,7 +371,7 @@ let Toolbar = Toolbar_1 = class Toolbar extends UI5Element {
             const itemWidth = this.getCachedItemWidth(item._id) || 0;
             const slotIdx = slotIndex.get(item);
             const groupKey = item.effectiveOverflowGroup;
-            if (groupKey === "") {
+            if (!groupKey) {
                 units.push({
                     members: [item],
                     width: itemWidth,

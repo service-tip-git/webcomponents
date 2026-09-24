@@ -1,8 +1,7 @@
 import FromDateTimeTemplate from "./FromDateTimeTemplate.js";
 import DateFormat from "@ui5/webcomponents-localization/dist/DateFormat.js";
-import UI5Date from "@ui5/webcomponents-localization/dist/dates/UI5Date.js";
 import { DATETIME_PICKER_DATE_BUTTON, DATETIME_PICKER_TIME_BUTTON, DYNAMIC_DATE_RANGE_FROM_INPUT_TEXT, DYNAMIC_DATE_RANGE_FROM_TEXT, } from "../generated/i18n/i18n-defaults.js";
-import { dateTimeOptionToDates } from "./toDates.js";
+import { dateTimeOptionToDates, calendarTimestampToLocalDate } from "./toDates.js";
 import DynamicDateRange from "../DynamicDateRange.js";
 /**
  * @class
@@ -18,7 +17,7 @@ class FromDateTime {
         };
         this.template = FromDateTimeTemplate;
         this._showTimeView = false;
-        this._currentDateValue = UI5Date.getInstance();
+        this._currentDateValue = new Date();
     }
     parse(value) {
         const dateText = value.replace(this.fromText, "").trim();
@@ -112,8 +111,8 @@ class FromDateTime {
         }
         if (target.hasAttribute("ui5-calendar")) {
             if (e.detail.selectedDates[0]) {
-                const tempDate = UI5Date.getInstance(e.detail.selectedDates[0] * 1000);
-                this._currentDateValue.setFullYear(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate());
+                const localDate = calendarTimestampToLocalDate(e.detail.selectedDates[0]);
+                this._currentDateValue.setFullYear(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
                 currentValue.values = [this._currentDateValue];
             }
         }

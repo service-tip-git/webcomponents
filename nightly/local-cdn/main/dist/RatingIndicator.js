@@ -13,6 +13,7 @@ import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import jsxRenderer from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import { isDown, isUp, isLeft, isRight, isSpace, isEnter, isHome, isEnd, } from "@ui5/webcomponents-base/dist/Keys.js";
 import { getEffectiveAriaLabelText } from "@ui5/webcomponents-base/dist/util/AccessibilityTextsHelper.js";
+import { isDesktop } from "@ui5/webcomponents-base/dist/Device.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
 import "@ui5/webcomponents-icons/dist/favorite.js";
 import "@ui5/webcomponents-icons/dist/unfavorite.js";
@@ -136,10 +137,11 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
          * @private
          */
         this._stars = [];
-        /**
-         * @private
-         */
-        this._focused = false;
+    }
+    onEnterDOM() {
+        if (isDesktop()) {
+            this.setAttribute("desktop", "");
+        }
     }
     onBeforeRendering() {
         this.calcState();
@@ -225,11 +227,7 @@ let RatingIndicator = RatingIndicator_1 = class RatingIndicator extends UI5Eleme
         if (this.disabled || this.displayOnly) {
             return;
         }
-        this._focused = true;
         this._liveValue = this.value;
-    }
-    _onfocusout() {
-        this._focused = false;
     }
     get effectiveTabIndex() {
         const tabindex = this.getAttribute("tabindex");
@@ -305,9 +303,6 @@ __decorate([
 __decorate([
     property({ type: Array, noAttribute: true })
 ], RatingIndicator.prototype, "_stars", void 0);
-__decorate([
-    property({ type: Boolean })
-], RatingIndicator.prototype, "_focused", void 0);
 __decorate([
     i18n("@ui5/webcomponents")
 ], RatingIndicator, "i18nBundle", void 0);

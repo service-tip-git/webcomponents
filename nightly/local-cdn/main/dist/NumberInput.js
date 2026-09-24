@@ -91,7 +91,7 @@ let NumberInput = NumberInput_1 = class NumberInput extends UI5Element {
         /**
          * Defines whether the component is required.
          * @default false
-         * @public
+         * @private
          */
         this.required = false;
         /**

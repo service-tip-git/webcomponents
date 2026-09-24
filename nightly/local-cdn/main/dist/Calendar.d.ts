@@ -298,7 +298,7 @@ declare class Calendar extends CalendarPart {
      */
     _normalizeCurrentPicker(): void;
     onBeforeRendering(): void;
-    onAfterRendering(): Promise<void>;
+    onAfterRendering(): void;
     onInvalidation(changeInfo: ChangeInfo): void;
     /**
      * The user clicked the "month" button in the header

@@ -1,4 +1,8 @@
 import UI5Date from "@ui5/webcomponents-localization/dist/dates/UI5Date.js";
+import CalendarDate from "@ui5/webcomponents-localization/dist/dates/CalendarDate.js";
+const calendarTimestampToLocalDate = (timestampSeconds) => {
+    return CalendarDate.fromTimestamp(timestampSeconds * 1000).toLocalJSDate();
+};
 const dateOptionToDates = (value) => {
     if (!value || !value.values || value.values.length !== 1) {
         return [];
@@ -178,5 +182,5 @@ const dateTimeOptionToDates = (value) => {
     endDate.setMilliseconds(999);
     return [startDate, endDate];
 };
-export { dateOptionToDates, dateRangeOptionToDates, dateTimeRangeOptionToDates, todayToDates, tomorrowToDates, yesterdayToDates, lastNextToDates, toDatesLastNext, dateTimeOptionToDates, };
+export { calendarTimestampToLocalDate, dateOptionToDates, dateRangeOptionToDates, dateTimeRangeOptionToDates, todayToDates, tomorrowToDates, yesterdayToDates, lastNextToDates, toDatesLastNext, dateTimeOptionToDates, };
 //# sourceMappingURL=toDates.js.map
