@@ -95,6 +95,7 @@ declare class TableGrowing extends UI5Element implements ITableGrowing {
     onExitDOM(): void;
     onBeforeRendering(): void;
     hasGrowingComponent(): boolean;
+    _focusNewlyAddedRow(): void;
     /**
      * An event handler that can be used by the Table to notify the TableGrowing that
      * the Table is growing either by pressing the load more button or by scrolling to the end of the table.

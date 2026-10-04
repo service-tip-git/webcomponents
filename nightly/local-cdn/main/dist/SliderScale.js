@@ -111,6 +111,10 @@ let SliderScale = SliderScale_1 = class SliderScale extends UI5Element {
          */
         this.progressFocused = false;
         /**
+         * @private
+         */
+        this.desktop = false;
+        /**
          * Indicates that the progress bar is being hovered.
          * @default false
          * @private
@@ -187,6 +191,9 @@ let SliderScale = SliderScale_1 = class SliderScale extends UI5Element {
         return containerSize / tickmarksCount;
     }
     _onProgressMouseEnter() {
+        if (!this.desktop) {
+            return;
+        }
         this.progressHovered = true;
         this.handles.forEach(handle => {
             if (!handle.active) {
@@ -195,6 +202,9 @@ let SliderScale = SliderScale_1 = class SliderScale extends UI5Element {
         });
     }
     _onProgressMouseLeave() {
+        if (!this.desktop) {
+            return;
+        }
         this.progressHovered = false;
         this.handles.forEach(handle => {
             handle.hovered = false;
@@ -338,6 +348,9 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], SliderScale.prototype, "progressFocused", void 0);
+__decorate([
+    property({ type: Boolean })
+], SliderScale.prototype, "desktop", void 0);
 __decorate([
     property({ type: Boolean })
 ], SliderScale.prototype, "progressHovered", void 0);

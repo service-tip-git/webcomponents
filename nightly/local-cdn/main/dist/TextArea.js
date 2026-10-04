@@ -51,7 +51,7 @@ let TextArea = TextArea_1 = class TextArea extends UI5Element {
     get formValidity() {
         return {
             valueMissing: this.required && !this.value,
-            tooLong: this.showExceededText && (this.value.length > (this.maxlength ?? 0)),
+            tooLong: this._hasExceededText && (this.value.length > (this.maxlength ?? 0)),
         };
     }
     async formElementAnchor() {
@@ -127,8 +127,27 @@ let TextArea = TextArea_1 = class TextArea extends UI5Element {
          * paste and the counter below the component displays their number.
          * @default false
          * @public
+         * @deprecated Use `counterMode="Always"` instead.
          */
         this.showExceededText = false;
+        /**
+         * Determines when the character counter of the component is displayed.
+         *
+         * Available options are:
+         *
+         * - `None` - The counter is never shown and `maxlength` acts as a hard cap.
+         * - `Always` - The counter is always visible below the component.
+         * - `Auto` - The counter is shown only when the component is focused, when the character limit
+         * is exceeded, or when `valueState` is `Critical` or `Negative`. Space is always reserved to
+         * prevent layout shifts.
+         *
+         * **Note:** When set to a value other than `None`, this property takes precedence over the
+         * deprecated `showExceededText` property.
+         * @default "None"
+         * @public
+         * @since 2.28.0
+         */
+        this.counterMode = "None";
         /**
          * Enables the component to automatically grow and shrink dynamically with its content.
          * @default false
@@ -301,7 +320,7 @@ let TextArea = TextArea_1 = class TextArea extends UI5Element {
     }
     _calcExceededText() {
         let calcedMaxLength, exceededText, leftCharactersCount;
-        if (this.showExceededText) {
+        if (this._hasExceededText) {
             const maxLength = this.maxlength;
             if (maxLength !== null && maxLength !== undefined) {
                 leftCharactersCount = maxLength - this.value.length;
@@ -348,6 +367,10 @@ let TextArea = TextArea_1 = class TextArea extends UI5Element {
             root: {
                 "ui5-textarea-root": true,
             },
+            exceededText: {
+                "ui5-textarea-exceeded-text": true,
+                "ui5-textarea-exceeded-text--hidden": this._effectiveCounterMode === "Auto" && !this._isExceededTextVisible,
+            },
             valueStateMsg: {
                 "ui5-valuestatemessage-header": true,
                 "ui5-valuestatemessage--error": this.valueState === ValueState.Negative,
@@ -361,7 +384,7 @@ let TextArea = TextArea_1 = class TextArea extends UI5Element {
     }
     get ariaLabelText() {
         const effectiveAriaLabelText = getEffectiveAriaLabelText(this) || getAssociatedLabelForTexts(this);
-        if (this.showExceededText) {
+        if (this._hasExceededText) {
             if (effectiveAriaLabelText) {
                 return effectiveAriaLabelText.concat(" ", this._exceededTextProps.exceededText);
             }
@@ -431,6 +454,41 @@ let TextArea = TextArea_1 = class TextArea extends UI5Element {
             "Critical": TextArea_1.i18nBundle.getText(VALUE_STATE_TYPE_WARNING),
         };
     }
+    /**
+     * Resolves the effective counter mode, bridging the deprecated `showExceededText` Boolean.
+     * The `counterMode` enum wins when set to anything other than `None`; otherwise the
+     * deprecated Boolean maps to `Always`/`None`.
+     * @private
+     */
+    get _effectiveCounterMode() {
+        if (this.counterMode !== "None") {
+            return this.counterMode;
+        }
+        return this.showExceededText ? "Always" : "None";
+    }
+    /**
+     * Determines whether the exceeded text counter should be visible.
+     * Consulted only in `Auto` mode.
+     *
+     * The counter is visible when:
+     * - The component is focused, OR
+     * - The character limit is exceeded, OR
+     * - The valueState is "Critical" or "Negative" (for accessibility - users should always see warnings/errors)
+     * @private
+     */
+    get _isExceededTextVisible() {
+        return this.focused
+            || this.exceeding
+            || this.valueState === ValueState.Critical
+            || this.valueState === ValueState.Negative;
+    }
+    /**
+     * Determines whether the exceeded text feature is active (any mode other than `None`).
+     * @private
+     */
+    get _hasExceededText() {
+        return this._effectiveCounterMode !== "None";
+    }
 };
 __decorate([
     property()
@@ -459,6 +517,9 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], TextArea.prototype, "showExceededText", void 0);
+__decorate([
+    property()
+], TextArea.prototype, "counterMode", void 0);
 __decorate([
     property({ type: Boolean })
 ], TextArea.prototype, "growing", void 0);

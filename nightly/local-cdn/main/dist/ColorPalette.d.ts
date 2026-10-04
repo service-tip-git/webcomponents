@@ -6,6 +6,7 @@ import type { ITabbable } from "@ui5/webcomponents-base/dist/delegate/ItemNaviga
 import type { JsxTemplate } from "@ui5/webcomponents-base/dist/index.js";
 import type ColorPaletteItem from "./ColorPaletteItem.js";
 import type Button from "./Button.js";
+import type ColorPicker from "./ColorPicker.js";
 import "./ColorPaletteItem.js";
 /**
  * Interface for components that may be used inside a `ui5-color-palette` or `ui5-color-palette-popover`
@@ -126,6 +127,7 @@ declare class ColorPalette extends UI5Element {
     _shouldFocusRecentColors: boolean;
     _defaultColorButton: Button;
     _moreColorsButton: Button;
+    _colorPicker?: ColorPicker;
     static i18nBundle: I18nBundle;
     constructor();
     onBeforeRendering(): void;
@@ -260,6 +262,7 @@ declare class ColorPalette extends UI5Element {
     _addRecentColor(color: string): void;
     _closeDialog(): void;
     _openMoreColorsDialog(): void;
+    _onColorPickerDialogOpen(): void;
     _onDefaultColorClick(): void;
     /**
      * Returns the selected item.

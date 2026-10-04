@@ -1,7 +1,7 @@
 import UI5Element from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type { Slot, DefaultSlot } from "@ui5/webcomponents-base/dist/UI5Element.js";
 import type { InputEventDetail } from "@ui5/webcomponents/dist/Input.js";
-import type { ListItemClickEventDetail } from "@ui5/webcomponents/dist/List.js";
+import type { ListSelectionChangeEventDetail } from "@ui5/webcomponents/dist/List.js";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import type { PopupBeforeCloseEventDetail } from "@ui5/webcomponents/dist/Popup.js";
 import type UserSettingsItem from "./UserSettingsItem.js";
@@ -118,7 +118,24 @@ declare class UserSettingsDialog extends UI5Element {
     _mediaRange?: any;
     onEnterDOM(): void;
     onBeforeRendering(): void;
-    _handleItemClick(e: CustomEvent<ListItemClickEventDetail>): Promise<void>;
+    /**
+     * Handles selection of a side-navigation item. The inner `ui5-list` runs in
+     * `selectionMode="Single"`, so it already owns the `selected` state on the
+     * `ui5-li` items and provides the accessibility layers (aria-selected, the
+     * hidden "Selected"/"Not Selected" text and the polite announcement) for free.
+     *
+     * Here we only mirror the selection back onto the `UserSettingsItem` model
+     * (which drives `_selectedSetting` and the content slot) and re-fire the public
+     * `selection-change`. If the application cancels it, we revert the list selection.
+     */
+    _handleSelectionChange(e: CustomEvent<ListSelectionChangeEventDetail>): void;
+    /**
+     * Handles activation of a side-navigation item. In navigation (single-column)
+     * mode the content replaces the list, so this drives the drill-in behavior and
+     * moves the focus to the content. It runs on every activation - including
+     * re-activating the already-selected item, which fires no `selection-change`.
+     */
+    _handleItemClick(): Promise<void>;
     _handleDialogAfterOpen(): void;
     _handleDialogBeforeClose(e: CustomEvent<PopupBeforeCloseEventDetail>): void;
     _handleDialogAfterClose(): void;

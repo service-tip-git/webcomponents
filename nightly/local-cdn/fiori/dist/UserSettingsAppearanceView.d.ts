@@ -1,7 +1,7 @@
 import UserSettingsView from "./UserSettingsView.js";
 import type UserSettingsAppearanceViewItem from "./UserSettingsAppearanceViewItem.js";
 import type UserSettingsAppearanceViewGroup from "./UserSettingsAppearanceViewGroup.js";
-import type { ListItemClickEventDetail } from "@ui5/webcomponents/dist/List.js";
+import type { ListSelectionChangeEventDetail } from "@ui5/webcomponents/dist/List.js";
 import type { DefaultSlot, Slot } from "@ui5/webcomponents-base/dist/UI5Element.js";
 type UserSettingsAppearanceViewItemSelectEventDetail = {
     item: UserSettingsAppearanceViewItem;
@@ -23,7 +23,7 @@ declare class UserSettingsAppearanceView extends UserSettingsView {
      */
     additionalContent: Slot<HTMLElement>;
     _getAllItems(): Array<UserSettingsAppearanceViewItem>;
-    _handleItemClick: (e: CustomEvent<ListItemClickEventDetail>) => void;
+    _handleSelectionChange: (e: CustomEvent<ListSelectionChangeEventDetail>) => void;
 }
 export default UserSettingsAppearanceView;
 export type { UserSettingsAppearanceViewItemSelectEventDetail, };

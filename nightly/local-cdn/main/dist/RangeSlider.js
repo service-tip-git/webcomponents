@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var RangeSlider_1;
+import { isDesktop } from "@ui5/webcomponents-base/dist/Device.js";
 import customElement from "@ui5/webcomponents-base/dist/decorators/customElement.js";
 import property from "@ui5/webcomponents-base/dist/decorators/property.js";
 import i18n from "@ui5/webcomponents-base/dist/decorators/i18n.js";
@@ -620,14 +621,14 @@ let RangeSlider = RangeSlider_1 = class RangeSlider extends SliderBase {
         const isReversed = this._areValuesReversed();
         const affectedValue = this._valueAffected;
         if (this._isPressInCurrentRange || !affectedValue) {
-            this._progressBar?.focus();
+            this._progressBar?.focus({ focusVisible: isDesktop() });
         }
         if ((affectedValue === "startValue" && !isReversed) || (affectedValue === "endValue" && isReversed)) {
-            this._startHandle?.focus();
+            this._startHandle?.focus({ focusVisible: isDesktop() });
             this.bringToFrontTooltip("start");
         }
         if ((affectedValue === "endValue" && !isReversed) || (affectedValue === "startValue" && isReversed)) {
-            this._endHandle?.focus();
+            this._endHandle?.focus({ focusVisible: isDesktop() });
             this.bringToFrontTooltip("end");
         }
     }

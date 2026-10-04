@@ -84,16 +84,7 @@ let TableGrowing = TableGrowing_1 = class TableGrowing extends UI5Element {
         this._shouldFocusRow = false;
     }
     onTableAfterRendering() {
-        // Focus the first row after growing, when the growing button is used
-        if (this._shouldFocusRow) {
-            this._shouldFocusRow = false;
-            let focusRow = this._currentLastRow?.nextElementSibling;
-            if (this.hasGrowingComponent()) {
-                focusRow ||= this.getFocusDomRef();
-            }
-            focusRow ||= this._table?.rows[0];
-            focusRow?.focus();
-        }
+        this._focusNewlyAddedRow();
         if (this._renderContent !== this.hasGrowingComponent()) {
             this._invalidate++;
             return;
@@ -103,6 +94,7 @@ let TableGrowing = TableGrowing_1 = class TableGrowing extends UI5Element {
         }
     }
     onExitDOM() {
+        this._focusNewlyAddedRow();
         this._table = undefined;
         this._observer?.disconnect();
         this._observer = undefined;
@@ -119,6 +111,16 @@ let TableGrowing = TableGrowing_1 = class TableGrowing extends UI5Element {
             return !!this._table && this._table._scrollContainer.clientHeight >= this._table._tableElement.scrollHeight;
         }
         return this.mode === `${TableGrowingMode.Button}`;
+    }
+    _focusNewlyAddedRow() {
+        if (!this._shouldFocusRow) {
+            return;
+        }
+        const newlyAddedRow = (this._currentLastRow ? this._currentLastRow.nextElementSibling : this._table?.rows[0]);
+        if (newlyAddedRow) {
+            this._shouldFocusRow = false;
+            newlyAddedRow.focus();
+        }
     }
     /**
      * An event handler that can be used by the Table to notify the TableGrowing that

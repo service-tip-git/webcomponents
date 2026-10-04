@@ -615,6 +615,9 @@ let ColorPalette = ColorPalette_1 = class ColorPalette extends UI5Element {
         }
         this.dialogOpen = true;
     }
+    _onColorPickerDialogOpen() {
+        this._colorPicker?.focus();
+    }
     _onDefaultColorClick() {
         if (this.defaultColor) {
             this._setColor(this.defaultColor);
@@ -747,6 +750,9 @@ __decorate([
 __decorate([
     query(".ui5-cp-more-colors")
 ], ColorPalette.prototype, "_moreColorsButton", void 0);
+__decorate([
+    query("[ui5-color-picker]")
+], ColorPalette.prototype, "_colorPicker", void 0);
 __decorate([
     i18n("@ui5/webcomponents")
 ], ColorPalette, "i18nBundle", void 0);

@@ -13,6 +13,7 @@ import GridWalker from "./GridWalker.js";
 class TableNavigation extends TableExtension {
     constructor(table) {
         super();
+        this._rowsCount = 0;
         this._colPosition = 0;
         this._tabPosition = 0;
         this._table = table;
@@ -38,7 +39,8 @@ class TableNavigation extends TableExtension {
         else {
             this._gridWalker.setFirstRowPos(0);
         }
-        if (this._table.rows.length) {
+        this._rowsCount = this._table.rows.length;
+        if (this._rowsCount) {
             this._table.rows.forEach(row => items.push(this._getNavigationItemsOfRow(row)));
         }
         else if (this._table._noDataRow) {
@@ -169,7 +171,10 @@ class TableNavigation extends TableExtension {
         if (e.defaultPrevented) {
             return;
         }
-        if (!this._isEventFromCurrentItem(e) && this._getNavigationItemsOfGrid().flat().includes(eventOrigin)) {
+        if (this._rowsCount !== this._table.rows.length) {
+            this._getNavigationItemsOfGrid();
+        }
+        if (!this._isEventFromCurrentItem(e) && this._gridWalker.includes(eventOrigin)) {
             this._gridWalker.setCurrent(eventOrigin);
         }
         this._table._getVirtualizer()?._onKeyDown(e);

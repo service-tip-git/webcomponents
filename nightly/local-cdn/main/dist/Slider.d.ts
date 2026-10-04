@@ -127,6 +127,7 @@ declare class Slider extends SliderBase implements IFormInputElement {
     _onTooltopForwardFocus(e: CustomEvent): void;
     get inputValue(): string;
     get tooltip(): SliderTooltip | null | undefined;
+    focusInnerElement(): void;
     get _sliderHandle(): HTMLElement;
     get _ariaDisabled(): true | undefined;
     get _ariaLabelledByText(): string;

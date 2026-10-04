@@ -119,6 +119,10 @@ declare class SliderScale extends UI5Element {
      */
     progressFocused: boolean;
     /**
+     * @private
+     */
+    desktop: boolean;
+    /**
      * Indicates that the progress bar is being hovered.
      * @default false
      * @private

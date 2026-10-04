@@ -9,7 +9,7 @@ export default function SliderScaleTemplate() {
                     }, children: tick.label && tick.showLabel && (_jsx("span", { class: "ui5-slider-scale-tickmark-label", children: tick.label })) }))) })), _jsx("div", { class: {
                     "ui5-slider-scale-progress": true,
                     "ui5-slider-progress": true,
-                    "ui5-slider-progress--focused": this.progressFocused || this.progressPressed,
+                    "ui5-slider-progress--focused": this.desktop && (this.progressFocused || this.progressPressed),
                 }, part: "progress", style: this._progressStyle, tabIndex: this.progressTabIndex, role: this.progressRole, "aria-orientation": this.progressRole ? "horizontal" : undefined, "aria-valuemin": this.progressRole ? this.min : undefined, "aria-valuemax": this.progressRole ? this.max : undefined, "aria-valuenow": this.progressRole ? this.progressAriaValueNow : undefined, "aria-valuetext": this.progressRole ? this.progressAriaValueText : undefined, "aria-label": this.progressRole ? this.progressAriaLabel : undefined, "aria-disabled": this.progressRole ? this.progressAriaDisabled : undefined, onMouseEnter: this._onProgressMouseEnter, onMouseLeave: this._onProgressMouseLeave }), _jsx("div", { class: "ui5-slider-scale-progress-hover-area", style: this._progressStyle, onMouseEnter: this._onProgressMouseEnter, onMouseLeave: this._onProgressMouseLeave }), _jsx("slot", {})] }));
 }
 //# sourceMappingURL=SliderScaleTemplate.js.map

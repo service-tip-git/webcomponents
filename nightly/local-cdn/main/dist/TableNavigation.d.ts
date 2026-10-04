@@ -10,6 +10,7 @@ import type Table from "./Table.js";
  */
 declare class TableNavigation extends TableExtension {
     _table: Table;
+    _rowsCount: number;
     _gridWalker: GridWalker;
     _colPosition: number;
     _tabPosition: number;

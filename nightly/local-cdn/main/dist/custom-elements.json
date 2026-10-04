@@ -10672,7 +10672,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "### Overview\nThe `ui5-link` is a hyperlink component that is used to navigate to other\napps and web pages, or to trigger actions.\nIt is a clickable text element, visualized in such a way that it stands out\nfrom the standard text.\nOn hover, it changes its style to an underlined text to provide additional feedback to the user.\n\n### Usage\n\nYou can set the `ui5-link` to be enabled or disabled.\n\nTo create a visual hierarchy in large lists of links, you can set the less important links as\n`Subtle` or the more important ones as `Emphasized`,\nby using the `design` property.\n\nIf the `href` property is set, the link behaves as the HTML\nanchor tag (`<a></a>`) and opens the specified URL in the given target frame (`target` property).\nTo specify where the linked content is opened, you can use the `target` property.\n\n### Responsive behavior\n\nIf there is not enough space, the text of the `ui5-link` becomes truncated.\nIf the `wrappingType` property is set to `\"Normal\"`, the text is displayed\non several lines instead of being truncated.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Link\";`",
+          "description": "### Overview\nThe `ui5-link` is a hyperlink component that is used to navigate to other\napps and web pages, or to trigger actions.\nIt is a clickable text element, visualized in such a way that it stands out\nfrom the standard text.\nOn hover, it changes its style to an underlined text to provide additional feedback to the user.\n\n### Usage\n\nYou can set the `ui5-link` to be enabled or disabled.\n\nTo create a visual hierarchy in large lists of links, you can set the less important links as\n`Subtle` or the more important ones as `Emphasized`,\nby using the `design` property.\n\nIf the `href` property is set, the link behaves as the HTML\nanchor tag (`<a></a>`) and opens the specified URL in the given target frame (`target` property).\nTo specify where the linked content is opened, you can use the `target` property.\n\n### Navigation vs. Action\n\nThe `ui5-link` supports two distinct use cases. Choosing the right one is important for accessibility:\n\n- **Navigation**: set the `href` property (and optionally `target`). The component behaves as a\nstandard anchor tag, and the browser handles navigation, which also enables native\naffordances such as open-in-new-tab, copy link, and hover preview.\n- **Action**: when the link triggers an in-page action (for example, opening a dialog) instead of\nnavigating, leave `href` unset and set `accessibleRole` to `\"Button\"`. This exposes the component\nwith a `button` role, which assistive technologies activate reliably.\n\n**Note:** A link that triggers an action but keeps the default `\"Link\"` role (with no `href`) cannot be\nactivated by some screen readers, such as JAWS in browse mode, because a link without `href` has\nno destination to navigate to. Always set `accessibleRole=\"Button\"` for action-only links.\n\n### Responsive behavior\n\nIf there is not enough space, the text of the `ui5-link` becomes truncated.\nIf the `wrappingType` property is set to `\"Normal\"`, the text is displayed\non several lines instead of being truncated.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/Link\";`",
           "name": "Link",
           "cssParts": [
             {
@@ -10752,7 +10752,7 @@
                 ]
               },
               "default": "\"Link\"",
-              "description": "Defines the ARIA role of the component.\n\n**Note:** Use the <code>LinkAccessibleRole.Button</code> role in cases when navigation is not expected to occur and the href property is not defined.",
+              "description": "Defines the ARIA role of the component.\n\n**Note:** Set the role to <code>LinkAccessibleRole.Button</code> when the link triggers an action instead of navigating (when the <code>href</code> property is not defined). Otherwise, the component keeps the default <code>\"Link\"</code> role, and some screen readers (for example, JAWS in browse mode) cannot activate it, as a link with no <code>href</code> has no destination to navigate to.",
               "privacy": "public"
             },
             {
@@ -10921,7 +10921,7 @@
               }
             },
             {
-              "description": "Defines the ARIA role of the component.\n\n**Note:** Use the <code>LinkAccessibleRole.Button</code> role in cases when navigation is not expected to occur and the href property is not defined.",
+              "description": "Defines the ARIA role of the component.\n\n**Note:** Set the role to <code>LinkAccessibleRole.Button</code> when the link triggers an action instead of navigating (when the <code>href</code> property is not defined). Otherwise, the component keeps the default <code>\"Link\"</code> role, and some screen readers (for example, JAWS in browse mode) cannot activate it, as a link with no <code>href</code> has no destination to navigate to.",
               "name": "accessible-role",
               "default": "\"Link\"",
               "fieldName": "accessibleRole",
@@ -15461,12 +15461,12 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/NumberInput.js",
+      "path": "dist/NumericInput.js",
       "declarations": [
         {
           "kind": "class",
-          "description": "### Overview\n\nThe `ui5-number-input` component is a numeric input field. It allows users to enter, edit and select numeric values.\n\n### Usage\n\nThe default step is 1 but the app developer can set a different one.\n\nApp developers can set a maximum and minimum value for `ui5-number-input`.\nThe increase/decrease button and the up/down keyboard navigation become disabled when\nthe value reaches the max/min or a new value is entered from the input which is greater/less than the max/min.\n\n#### When to use:\n\n- To enter or adjust numeric values.\n- To adjust values for a specific step.\n\n#### When not to use:\n\n- To enter a static number (for example, postal code, phone number, or ID). In this case,\nuse the regular `ui5-input` instead.\n- To enter dates and times. In this case, use date/time related components instead.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/NumberInput.js\";`",
-          "name": "NumberInput",
+          "description": "### Overview\n\nThe `ui5-numeric-input` component is a numeric input field. It allows users to enter, edit and select numeric values.\n\n### Usage\n\nThe default step is 1 but the app developer can set a different one.\n\nApp developers can set a maximum and minimum value for `ui5-numeric-input`.\nThe increase/decrease button and the up/down keyboard navigation become disabled when\nthe value reaches the max/min or a new value is entered from the input which is greater/less than the max/min.\n\n#### When to use:\n\n- To enter or adjust numeric values.\n- To adjust values for a specific step.\n\n#### When not to use:\n\n- To enter a static number (for example, postal code, phone number, or ID). In this case,\nuse the regular `ui5-input` instead.\n- To enter dates and times. In this case, use date/time related components instead.\n\n### ES6 Module Import\n\n`import \"@ui5/webcomponents/dist/NumericInput.js\";`",
+          "name": "NumericInput",
           "slots": [
             {
               "name": "valueStateMessage",
@@ -15610,12 +15610,12 @@
             {
               "name": "value-state-change",
               "type": {
-                "text": "CustomEvent<NumberInputValueStateChangeEventDetail>",
+                "text": "CustomEvent<NumericInputValueStateChangeEventDetail>",
                 "references": [
                   {
-                    "name": "NumberInputValueStateChangeEventDetail",
+                    "name": "NumericInputValueStateChangeEventDetail",
                     "package": "@ui5/webcomponents",
-                    "module": "dist/NumberInput.js"
+                    "module": "dist/NumericInput.js"
                   }
                 ]
               },
@@ -15728,7 +15728,7 @@
             "package": "@ui5/webcomponents-base",
             "module": "dist/UI5Element.js"
           },
-          "tagName": "ui5-number-input",
+          "tagName": "ui5-numeric-input",
           "customElement": true
         }
       ],
@@ -15737,16 +15737,16 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "NumberInput",
-            "module": "dist/NumberInput.js"
+            "name": "NumericInput",
+            "module": "dist/NumericInput.js"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "ui5-number-input",
+          "name": "ui5-numeric-input",
           "declaration": {
-            "name": "NumberInput",
-            "module": "dist/NumberInput.js"
+            "name": "NumericInput",
+            "module": "dist/NumericInput.js"
           }
         }
       ]
@@ -24940,6 +24940,23 @@
             },
             {
               "kind": "field",
+              "name": "counterMode",
+              "type": {
+                "text": "TextAreaCounterMode",
+                "references": [
+                  {
+                    "name": "TextAreaCounterMode",
+                    "package": "@ui5/webcomponents",
+                    "module": "dist/types/TextAreaCounterMode.js"
+                  }
+                ]
+              },
+              "default": "\"None\"",
+              "description": "Determines when the character counter of the component is displayed.\n\nAvailable options are:\n\n- `None` - The counter is never shown and `maxlength` acts as a hard cap.\n- `Always` - The counter is always visible below the component.\n- `Auto` - The counter is shown only when the component is focused, when the character limit\nis exceeded, or when `valueState` is `Critical` or `Negative`. Space is always reserved to\nprevent layout shifts.\n\n**Note:** When set to a value other than `None`, this property takes precedence over the\ndeprecated `showExceededText` property.",
+              "privacy": "public"
+            },
+            {
+              "kind": "field",
               "name": "disabled",
               "type": {
                 "text": "boolean"
@@ -25036,7 +25053,8 @@
               },
               "default": "false",
               "description": "Determines whether the characters exceeding the maximum allowed character count are visible\nin the component.\n\nIf set to `false`, the user is not allowed to enter more characters than what is set in the\n`maxlength` property.\nIf set to `true` the characters exceeding the `maxlength` value are selected on\npaste and the counter below the component displays their number.",
-              "privacy": "public"
+              "privacy": "public",
+              "deprecated": "Use `counterMode=\"Always\"` instead."
             },
             {
               "kind": "field",
@@ -25141,6 +25159,15 @@
               }
             },
             {
+              "description": "Determines when the character counter of the component is displayed.\n\nAvailable options are:\n\n- `None` - The counter is never shown and `maxlength` acts as a hard cap.\n- `Always` - The counter is always visible below the component.\n- `Auto` - The counter is shown only when the component is focused, when the character limit\nis exceeded, or when `valueState` is `Critical` or `Negative`. Space is always reserved to\nprevent layout shifts.\n\n**Note:** When set to a value other than `None`, this property takes precedence over the\ndeprecated `showExceededText` property.",
+              "name": "counter-mode",
+              "default": "\"None\"",
+              "fieldName": "counterMode",
+              "type": {
+                "text": "\"Auto\" | \"None\" | \"Always\""
+              }
+            },
+            {
               "description": "Indicates whether the user can interact with the component or not.\n\n**Note:** A disabled component is completely noninteractive.",
               "name": "disabled",
               "default": "false",
@@ -25228,7 +25255,8 @@
               "fieldName": "showExceededText",
               "type": {
                 "text": "boolean"
-              }
+              },
+              "deprecated": "Use `counterMode=\"Always\"` instead."
             },
             {
               "description": "Defines the value of the component.",
@@ -30797,21 +30825,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/delegate/DragAndDropHandler.js",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "DragAndDropHandler",
-            "module": "dist/delegate/DragAndDropHandler.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/colorpicker-utils/ColorValue.js",
       "declarations": [],
       "exports": [
@@ -30821,6 +30834,21 @@
           "declaration": {
             "name": "ColorValue",
             "module": "dist/colorpicker-utils/ColorValue.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/delegate/DragAndDropHandler.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "DragAndDropHandler",
+            "module": "dist/delegate/DragAndDropHandler.js"
           }
         }
       ]
@@ -31049,6 +31077,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/form-utils/FormUtils.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "dist/features/ColorPaletteMoreColors.js",
       "declarations": [],
       "exports": []
@@ -31086,12 +31120,6 @@
     {
       "kind": "javascript-module",
       "path": "dist/features/ListItemStandardExpandableText.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/form-utils/FormUtils.js",
       "declarations": [],
       "exports": []
     },
@@ -32120,6 +32148,21 @@
           "declaration": {
             "name": "TagSize",
             "module": "dist/types/TagSize.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/types/TextAreaCounterMode.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "TextAreaCounterMode",
+            "module": "dist/types/TextAreaCounterMode.js"
           }
         }
       ]

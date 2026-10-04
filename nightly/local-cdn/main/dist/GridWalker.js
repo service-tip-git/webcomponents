@@ -104,6 +104,9 @@ class GridWalker {
     getLastRowPos() {
         return this.lastRowPos;
     }
+    includes(item) {
+        return this.grid.flat().includes(item);
+    }
 }
 export default GridWalker;
 //# sourceMappingURL=GridWalker.js.map

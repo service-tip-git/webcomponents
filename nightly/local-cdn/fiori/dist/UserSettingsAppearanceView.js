@@ -29,17 +29,17 @@ let UserSettingsAppearanceView =
 class UserSettingsAppearanceView extends UserSettingsView {
     constructor() {
         super(...arguments);
-        this._handleItemClick = (e) => {
-            const listItem = e.detail.item;
+        this._handleSelectionChange = (e) => {
+            const listItem = e.detail.targetItem;
             if (isInstanceOfUserSettingsAppearanceViewItem(listItem)) {
+                // The inner list runs in selectionMode="Single", so it already owns the
+                // item's selected state and provides the accessibility announcement.
                 const eventPrevented = !this.fireDecoratorEvent("selection-change", {
                     item: listItem,
                 });
-                if (!eventPrevented) {
-                    this._getAllItems().forEach(viewItem => {
-                        viewItem.selected = false;
-                    });
-                    listItem.selected = true;
+                if (eventPrevented) {
+                    // Revert the list selection so it stays in sync with the model.
+                    e.preventDefault();
                 }
             }
         };

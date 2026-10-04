@@ -54,6 +54,9 @@ let ColorPicker = ColorPicker_1 = class ColorPicker extends UI5Element {
     async formElementAnchor() {
         return this.getFocusDomRefAsync();
     }
+    getFocusDomRef() {
+        return this._hueSlider?.getFocusDomRef() ?? super.getFocusDomRef();
+    }
     get formFormattedValue() {
         return this.value;
     }
@@ -572,6 +575,9 @@ __decorate([
 __decorate([
     query(".ui5-color-picker-main-color")
 ], ColorPicker.prototype, "_mainColorRef", void 0);
+__decorate([
+    query(".ui5-color-picker-hue-slider")
+], ColorPicker.prototype, "_hueSlider", void 0);
 __decorate([
     i18n("@ui5/webcomponents")
 ], ColorPicker, "i18nBundle", void 0);

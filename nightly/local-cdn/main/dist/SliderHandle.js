@@ -72,6 +72,10 @@ let SliderHandle = class SliderHandle extends UI5Element {
          */
         this.active = false;
         /**
+         * @private
+         */
+        this.desktop = false;
+        /**
          * Defines whether the slider handle should appear hovered.
          * <br><br>
          * <b>Note:</b> Used when the progress bar is hovered to show both handles as hovered.
@@ -110,6 +114,9 @@ __decorate([
 __decorate([
     property({ type: Boolean })
 ], SliderHandle.prototype, "active", void 0);
+__decorate([
+    property({ type: Boolean })
+], SliderHandle.prototype, "desktop", void 0);
 __decorate([
     property({ type: Boolean })
 ], SliderHandle.prototype, "hovered", void 0);

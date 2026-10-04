@@ -4,9 +4,9 @@ import type { IFormInputElement } from "@ui5/webcomponents-base/dist/features/In
 import type ValueState from "@ui5/webcomponents-base/dist/types/ValueState.js";
 import type I18nBundle from "@ui5/webcomponents-base/dist/i18nBundle.js";
 import type { InputEventDetail } from "./Input.js";
-import type NumberInput from "./NumberInput.js";
-import type { NumberInputValueStateChangeEventDetail } from "./NumberInput.js";
-type StepInputValueStateChangeEventDetail = NumberInputValueStateChangeEventDetail;
+import type NumericInput from "./NumericInput.js";
+import type { NumericInputValueStateChangeEventDetail } from "./NumericInput.js";
+type StepInputValueStateChangeEventDetail = NumericInputValueStateChangeEventDetail;
 /**
  * @class
  *
@@ -141,12 +141,13 @@ declare class StepInput extends UI5Element implements IFormInputElement {
      */
     valueStateMessage: Slot<HTMLElement>;
     static i18nBundle: I18nBundle;
-    get _innerNumberInput(): NumberInput;
+    get _innerNumberInput(): NumericInput;
     formElementAnchor(): Promise<HTMLElement | undefined>;
     get formValidityMessage(): string;
     get formValidity(): ValidityStateFlags;
     get formFormattedValue(): FormData | string | null;
     getFocusDomRef(): HTMLElement | undefined;
+    getFocusDomRefAsync(): Promise<HTMLElement | undefined>;
     get _associatedLabelText(): string | undefined;
     _onNumberInputChange(e: Event): void;
     _onNumberInputInput(e: CustomEvent<InputEventDetail>): void;

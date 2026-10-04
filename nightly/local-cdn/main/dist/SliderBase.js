@@ -10,7 +10,7 @@ import property from "@ui5/webcomponents-base/dist/decorators/property.js";
 import event from "@ui5/webcomponents-base/dist/decorators/event-strict.js";
 import jsxRender from "@ui5/webcomponents-base/dist/renderer/JsxRenderer.js";
 import ResizeHandler from "@ui5/webcomponents-base/dist/delegate/ResizeHandler.js";
-import { isPhone, supportsTouch } from "@ui5/webcomponents-base/dist/Device.js";
+import { isDesktop, isPhone, supportsTouch } from "@ui5/webcomponents-base/dist/Device.js";
 import { isEscape, isHome, isEnd, isUp, isDown, isRight, isLeft, isUpCtrl, isDownCtrl, isRightCtrl, isLeftCtrl, isPlus, isMinus, isPageUp, isPageDown, isF2, } from "@ui5/webcomponents-base/dist/Keys.js";
 import { SliderHandleType } from "./SliderHandle.js";
 // Styles
@@ -202,6 +202,9 @@ class SliderBase extends UI5Element {
         };
     }
     onEnterDOM() {
+        if (isDesktop()) {
+            this.setAttribute("desktop", "");
+        }
         ResizeHandler.register(this, this._resizeHandler);
     }
     onExitDOM() {
@@ -631,6 +634,9 @@ class SliderBase extends UI5Element {
     }
     get _tabIndex() {
         return this.disabled ? -1 : 0;
+    }
+    get _isDesktop() {
+        return isDesktop();
     }
     get _ariaDescribedByHandleText() {
         return this.editableTooltip ? "ui5-slider-InputDesc" : undefined;

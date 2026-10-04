@@ -106,7 +106,7 @@ let StepInput = StepInput_1 = class StepInput extends UI5Element {
         this.valuePrecision = 0;
     }
     get _innerNumberInput() {
-        return this.shadowRoot.querySelector("[ui5-number-input]");
+        return this.shadowRoot.querySelector("[ui5-numeric-input]");
     }
     async formElementAnchor() {
         return (await this.getFocusDomRefAsync())?.getFocusDomRefAsync();
@@ -136,6 +136,10 @@ let StepInput = StepInput_1 = class StepInput extends UI5Element {
     }
     getFocusDomRef() {
         return this._innerNumberInput?.getFocusDomRef();
+    }
+    async getFocusDomRefAsync() {
+        await this._waitForDomRef();
+        return this._innerNumberInput?.getFocusDomRefAsync();
     }
     get _associatedLabelText() {
         return getAssociatedLabelForTexts(this) || undefined;

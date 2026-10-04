@@ -133,8 +133,10 @@ declare class ColorPicker extends UI5Element implements IFormInputElement {
     mouseDown: boolean;
     mouseIn: boolean;
     _mainColorRef?: HTMLElement;
+    _hueSlider?: Slider;
     static i18nBundle: I18nBundle;
     formElementAnchor(): Promise<HTMLElement | undefined>;
+    getFocusDomRef(): HTMLElement | undefined;
     get formFormattedValue(): string;
     constructor();
     get _boxSize(): number;
